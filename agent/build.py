@@ -1,8 +1,8 @@
 import torch
 
-from attribute import *
-from gear import Gear
-from weapon import Weapon
+from agent.inventory.attribute import *
+from agent.inventory.gear import Gear
+from agent.inventory.weapon import Weapon
 
 
 class Build:

@@ -1,7 +1,7 @@
-from attribute import *
-from build import Build
-from gear import *
-from weapon import Weapon
+from agent.build import Build
+from agent.inventory.attribute import *
+from agent.inventory.gear import *
+from agent.inventory.weapon import Weapon
 
 
 def main() -> None:

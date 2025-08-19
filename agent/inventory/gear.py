@@ -1,4 +1,4 @@
-from attribute import Attribute
+from agent.inventory.attribute import Attribute
 
 
 class Gear:
