@@ -1,15 +1,14 @@
 import torch
 
 from agent.inventory.attribute import *
-from agent.inventory.item.gear import Gear
-from agent.inventory.item.weapon import Weapon
+from agent.inventory.item import Item
 
 
 class Build:
     def __init__(
         self,
-        weapon: Weapon,
-        *gears: Gear,
+        weapon: Item,
+        *gears: Item,
     ) -> None:
         self.weapon = weapon
         self.gears = gears
