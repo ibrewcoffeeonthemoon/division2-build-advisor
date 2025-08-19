@@ -1,14 +1,8 @@
-from agent.inventory.attribute import Attribute
+from agent.inventory.item import Item
 
 
-class Gear:
-    def __init__(
-        self,
-        name: str,
-        *attributes: Attribute,
-    ) -> None:
-        self.name = name
-        self.attributes = attributes
+class Gear(Item):
+    pass
 
 
 class Mask(Gear):

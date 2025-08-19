@@ -1,11 +1,5 @@
-from agent.inventory.attribute import Attribute
+from agent.inventory.item import Item
 
 
-class Weapon:
-    def __init__(
-        self,
-        name: str,
-        *attributes: Attribute,
-    ) -> None:
-        self.name = name
-        self.attributes = attributes
+class Weapon(Item):
+    pass
