@@ -1,7 +1,7 @@
 from agent.build import Build
 from agent.inventory.attribute import *
-from agent.inventory.gear import *
-from agent.inventory.weapon import Weapon
+from agent.inventory.item.gear import *
+from agent.inventory.item.weapon import Weapon
 
 
 def main() -> None:
