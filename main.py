@@ -1,5 +1,7 @@
+from attribute import *
 from build import Build
 from gear import *
+from weapon import Weapon
 
 
 def main() -> None:
@@ -23,6 +25,11 @@ def main() -> None:
 
     # create the graph
     build = Build(
+        Weapon(
+            'Lexington',
+            WD('ARDamage', 0.15),
+            WD('Expertise(30)', 0.30),
+        ),
         Mask(
             'Coyote',
             WD('RedCore', 0.15),
