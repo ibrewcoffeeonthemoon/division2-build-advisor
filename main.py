@@ -59,9 +59,11 @@ def main() -> None:
         '\n'
     ))
 
+    print(f'DMG Gradients:')
     for gear in build.gears:
+        print(f'{" "*2}{gear.name}:')
         for attr in gear.attributes:
-            print(f'grad({attr.name}): {attr.value.grad:.4f}')
+            print(f'{" "*4}{attr.name:12s}: {attr.value.grad:.4f}')
 
 
 if __name__ == "__main__":
