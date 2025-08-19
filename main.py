@@ -1,4 +1,5 @@
-import torch
+from build import Build
+from gear import *
 
 
 def main() -> None:
@@ -16,20 +17,51 @@ def main() -> None:
     """
 
     # 6 red cords, 40% weapon type bonus, 25% from keener's watch
-    wd = torch.tensor(6*0.15+0.4+0.25, requires_grad=True)
+    # wd = torch.tensor(6*0.15+0.4+0.25, requires_grad=True)
     # basic Striker full buf
-    twd = torch.tensor(0.65, requires_grad=True)
+    # twd = torch.tensor(0.65, requires_grad=True)
 
     # create the graph
-    dmg_x = (1 + wd) * \
-            (1 + twd)
-
-    # calculate grads
-    dmg_x.backward()
+    build = Build(
+        Mask(
+            'Coyote',
+            WD('RedCore', 0.15),
+        ),
+        Backpack(
+            'Striker',
+            WD('RedCore', 0.15),
+            TWD('Buff', 0.65, uptime=0.8)
+        ),
+        Chest(
+            'Lengmo',
+            WD('RedCore', 0.15),
+            TWD('Obliterate', 0.20, uptime=0.5)
+        ),
+        Gloves(
+            'Striker',
+            WD('RedCore', 0.15),
+        ),
+        Holster(
+            'Striker',
+            WD('RedCore', 0.15),
+        ),
+        Kneepads(
+            'Striker',
+            WD('RedCore', 0.15),
+        ),
+    )
 
     # result
-    print(f'{wd.grad=}')
-    print(f'{twd.grad=}')
+    print((
+        'DMGx = '
+        f'WD[{build.wd.item():.4f}] x '
+        f'TWD[{build.twd.item():.4f}]'
+        '\n'
+    ))
+
+    for gear in build.gears:
+        for attr in gear.attributes:
+            print(f'grad({attr.name}): {attr.value.grad:.4f}')
 
 
 if __name__ == "__main__":
