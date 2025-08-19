@@ -52,18 +52,8 @@ def main() -> None:
     )
 
     # result
-    print((
-        'DMGx = '
-        f'WD[{build.wd.item():.4f}] x '
-        f'TWD[{build.twd.item():.4f}]'
-        '\n'
-    ))
-
-    print(f'DMG Gradients:')
-    for gear in build.gears:
-        print(f'{" "*2}{gear.name}:')
-        for attr in gear.attributes:
-            print(f'{" "*4}{attr.name:12s}: {attr.value.grad:.4f}')
+    build.formula()
+    build.gradients()
 
 
 if __name__ == "__main__":

@@ -35,3 +35,22 @@ class Build:
     def dmg(self) -> torch.Tensor:
         val = self.wd * self.twd
         return val
+
+    # helpers
+    def formula(self, newline=True) -> None:
+        print((
+            'DMGx = '
+            f'WD[{self.wd.item():.4f}] x '
+            f'TWD[{self.twd.item():.4f}]'
+        ))
+        if newline:
+            print('')
+
+    def gradients(self, newline=True) -> None:
+        print(f'DMG Gradients:')
+        for gear in self.gears:
+            print(f'{" "*2}{gear.name}:')
+            for attr in gear.attributes:
+                print(f'{" "*4}{attr.name:12s}: {attr.value.grad:.4f}')
+        if newline:
+            print('')
