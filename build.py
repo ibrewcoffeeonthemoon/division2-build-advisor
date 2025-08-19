@@ -17,29 +17,24 @@ class Build:
         # backward
         self.dmg.backward()
 
-    @property
-    def wd(self) -> torch.Tensor:
+    def _accumulate(self, T: type) -> torch.Tensor:
         val = torch.tensor(1.0)
         for attr in self.weapon.attributes:
-            if isinstance(attr, WD):
+            if isinstance(attr, T):
                 val += attr.expected_value
         for gear in self.gears:
             for attr in gear.attributes:
-                if isinstance(attr, WD):
+                if isinstance(attr, T):
                     val += attr.expected_value
         return val
 
     @property
+    def wd(self) -> torch.Tensor:
+        return self._accumulate(WD)
+
+    @property
     def twd(self) -> torch.Tensor:
-        val = torch.tensor(1.0)
-        for attr in self.weapon.attributes:
-            if isinstance(attr, TWD):
-                val += attr.expected_value
-        for gear in self.gears:
-            for attr in gear.attributes:
-                if isinstance(attr, TWD):
-                    val += attr.expected_value
-        return val
+        return self._accumulate(TWD)
 
     @property
     def dmg(self) -> torch.Tensor:
