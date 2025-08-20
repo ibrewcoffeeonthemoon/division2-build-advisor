@@ -71,7 +71,9 @@ def main() -> None:
             ),
         )
         .specialization()
-        .keeners_watch()
+        .extras(
+            KeenersWatch()
+        )
     )
 
     # result

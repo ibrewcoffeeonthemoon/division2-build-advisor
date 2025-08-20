@@ -6,6 +6,7 @@ from agent.inventory.attribute import *
 from agent.inventory.attribute import _DTA_DTH, _Attribute
 from agent.inventory.item.gear import (Backpack, Chest, Gloves, Holster,
                                        Kneepads, Mask)
+from agent.inventory.item.watch import KeenersWatch
 from agent.inventory.item.weapon import Weapon
 
 
@@ -37,13 +38,20 @@ class Build:
 
     def _accumulate(self, T: type, init_val: float = 0.0) -> Tensor:
         val = tensor(init_val)
+        # weapon
         for a in self._weapon.attributes:
             if isinstance(a, T):
                 val += a.expected_value
+        # gears
         for gear in self._gears:
             for a in gear.attributes:
                 if isinstance(a, T):
                     val += a.expected_value
+        # keeners watch
+        for a in self._keeners_watch.attributes:
+            if isinstance(a, T):
+                val += a.expected_value
+        #
         return val
 
     def _compile(self) -> None:
@@ -103,9 +111,11 @@ class Build:
         )
         return self
 
-    def keeners_watch(
+    def extras(
         self,
+        keeners_watch: KeenersWatch,
     ) -> Self:
+        self._keeners_watch = keeners_watch
         return self
 
     def specialization(
@@ -204,5 +214,10 @@ class Build:
             print(f'{" "*2}{gear.name}:')
             for attr in gear.attributes:
                 print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
+
+        print(f'{" "*2}{self._keeners_watch.name}:')
+        for attr in self._keeners_watch.attributes:
+            print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
+
         if newline:
             print('')
