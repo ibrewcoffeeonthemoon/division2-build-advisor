@@ -39,5 +39,17 @@ class AMP3(_AMP):
     pass
 
 
+class _DTA_DTH(_Attribute):
+    pass
+
+
+class DTA(_DTA_DTH):
+    pass
+
+
+class DTH(_DTA_DTH):
+    pass
+
+
 class DTTOOC(_Attribute):
     pass

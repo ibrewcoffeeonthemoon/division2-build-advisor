@@ -1,6 +1,7 @@
 import torch
 
 from agent.inventory.attribute import *
+from agent.inventory.attribute import _DTA_DTH
 from agent.inventory.item import Item
 
 
@@ -48,6 +49,10 @@ class Build:
         return self._accumulate(AMP3)
 
     @property
+    def dta_dth(self) -> torch.Tensor:
+        return self._accumulate(_DTA_DTH)
+
+    @property
     def dttooc(self) -> torch.Tensor:
         return self._accumulate(DTTOOC)
 
@@ -59,6 +64,7 @@ class Build:
             self.amp1 *
             self.amp2 *
             self.amp3 *
+            self.dta_dth *
             self.dttooc
         )
         return val
@@ -71,6 +77,7 @@ class Build:
         t += f'AMP1[{self.amp1.item():.4f}]'
         t += f'AMP2[{self.amp2.item():.4f}]'
         t += f'AMP3[{self.amp3.item():.4f}]'
+        t += f'DTA_DTH[{self.dta_dth.item():.4f}]'
         t += f'DTTOOC[{self.dttooc.item():.4f}]'
         print(t)
         if newline:

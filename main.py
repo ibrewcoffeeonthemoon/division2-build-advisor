@@ -30,6 +30,7 @@ def main() -> None:
             WD('ARDamage', 0.15),
             WD('Expertise(30)', 0.30),
             DTTOOC('DTTOOC', 0.10, uptime=0.9),
+            DTA('DTA', 0.06, uptime=0.7),
             AMP1('Sadist', 0.30, uptime=0.5),
             AMP2('Ranger', 0.25),
         ),
