@@ -73,11 +73,11 @@ class Build:
     def formula(self, newline=True) -> None:
         t = 'DMGx = '
         t += f'WD[{self.wd.item():.4f}] x '
-        t += f'TWD[{self.twd.item():.4f}]'
-        t += f'AMP1[{self.amp1.item():.4f}]'
-        t += f'AMP2[{self.amp2.item():.4f}]'
-        t += f'AMP3[{self.amp3.item():.4f}]'
-        t += f'DTA_DTH[{self.dta_dth.item():.4f}]'
+        t += f'TWD[{self.twd.item():.4f}] x '
+        t += f'AMP1[{self.amp1.item():.4f}] x '
+        t += f'AMP2[{self.amp2.item():.4f}] x '
+        t += f'AMP3[{self.amp3.item():.4f}] x '
+        t += f'DTA_DTH[{self.dta_dth.item():.4f}] x '
         t += f'DTTOOC[{self.dttooc.item():.4f}]'
         print(t)
         if newline:
