@@ -30,10 +30,11 @@ def main() -> None:
             WD('ARDamage', 0.15),
             WD('Expertise(30)', 0.30),
             DTTOOC('DTTOOC', 0.10, uptime=0.9),
-            AMP1('Ranger', 0.25),
+            AMP1('Sadist', 0.30, uptime=0.5),
+            AMP2('Ranger', 0.25),
         ),
         Mask(
-            'Coyote',
+            'Tinkerer',
             WD('RedCore', 0.15),
         ),
         Backpack(
