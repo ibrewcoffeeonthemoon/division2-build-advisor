@@ -28,17 +28,20 @@ class Build:
 
     def _select(self, T: type) -> list[_Attribute]:
         ls = []
+
+        # weapon
         for a in self._weapon.attributes:
             if isinstance(a, T):
                 ls.append(a)
-        for gear in self._gears:
-            for a in gear.attributes:
-                if isinstance(a, T):
-                    ls.append(a)
-        for item in self._extras:
-            for a in item.attributes:
-                if isinstance(a, T):
-                    ls.append(a)
+
+        # inventory items
+        for items in (self._gears, self._extras):
+            for item in items:
+                for a in item.attributes:
+                    if isinstance(a, T):
+                        ls.append(a)
+
+        #
         return ls
 
     def _accumulate(self, T: type, init_val: float = 0.0) -> Tensor:
@@ -47,16 +50,14 @@ class Build:
         for a in self._weapon.attributes:
             if isinstance(a, T):
                 val += a.expected_value
-        # gears
-        for gear in self._gears:
-            for a in gear.attributes:
-                if isinstance(a, T):
-                    val += a.expected_value
-        # extras
-        for item in self._extras:
-            for a in item.attributes:
-                if isinstance(a, T):
-                    val += a.expected_value
+
+        # inventory items
+        for items in (self._gears, self._extras):
+            for item in items:
+                for a in item.attributes:
+                    if isinstance(a, T):
+                        val += a.expected_value
+
         #
         return val
 
@@ -216,15 +217,11 @@ class Build:
         for attr in self._weapon.attributes:
             print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
 
-        for gear in self._gears:
-            print(f'{" "*2}{gear.name}:')
-            for attr in gear.attributes:
-                print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
-
-        for item in self._extras:
-            print(f'{" "*2}{item.name}:')
-            for attr in item.attributes:
-                print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
+        for items in (self._gears, self._extras):
+            for item in items:
+                print(f'{" "*2}{item.name}:')
+                for attr in item.attributes:
+                    print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
 
         if newline:
             print('')
