@@ -3,6 +3,7 @@ import torch
 from agent.build import Build
 from agent.inventory.attribute import *
 from agent.inventory.item.gear import *
+from agent.inventory.item.specialization import Specialization
 from agent.inventory.item.watch import KeenersWatch
 from agent.inventory.item.weapon import Weapon
 
@@ -70,9 +71,12 @@ def main() -> None:
                 WD('RedCore', 0.15),
             ),
         )
-        .specialization()
         .extras(
-            KeenersWatch()
+            Specialization(
+                'Gunner',
+                WD('WDType', 0.15),
+            ),
+            KeenersWatch(),
         )
     )
 

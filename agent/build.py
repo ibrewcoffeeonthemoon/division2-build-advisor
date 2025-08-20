@@ -6,6 +6,7 @@ from agent.inventory.attribute import *
 from agent.inventory.attribute import _DTA_DTH, _Attribute
 from agent.inventory.item.gear import (Backpack, Chest, Gloves, Holster,
                                        Kneepads, Mask)
+from agent.inventory.item.specialization import Specialization
 from agent.inventory.item.watch import KeenersWatch
 from agent.inventory.item.weapon import Weapon
 
@@ -34,6 +35,10 @@ class Build:
             for a in gear.attributes:
                 if isinstance(a, T):
                     ls.append(a)
+        for item in self._extras:
+            for a in item.attributes:
+                if isinstance(a, T):
+                    ls.append(a)
         return ls
 
     def _accumulate(self, T: type, init_val: float = 0.0) -> Tensor:
@@ -47,10 +52,11 @@ class Build:
             for a in gear.attributes:
                 if isinstance(a, T):
                     val += a.expected_value
-        # keeners watch
-        for a in self._keeners_watch.attributes:
-            if isinstance(a, T):
-                val += a.expected_value
+        # extras
+        for item in self._extras:
+            for a in item.attributes:
+                if isinstance(a, T):
+                    val += a.expected_value
         #
         return val
 
@@ -113,17 +119,17 @@ class Build:
 
     def extras(
         self,
+        specialization: Specialization,
         keeners_watch: KeenersWatch,
     ) -> Self:
-        self._keeners_watch = keeners_watch
-        return self
-
-    def specialization(
-        self,
-    ) -> Self:
+        self._extras = (
+            specialization,
+            keeners_watch,
+        )
         return self
 
     # helpers
+
     @property
     def chc(self) -> float:
         return self._chc.item()
@@ -215,9 +221,10 @@ class Build:
             for attr in gear.attributes:
                 print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
 
-        print(f'{" "*2}{self._keeners_watch.name}:')
-        for attr in self._keeners_watch.attributes:
-            print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
+        for item in self._extras:
+            print(f'{" "*2}{item.name}:')
+            for attr in item.attributes:
+                print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
 
         if newline:
             print('')
