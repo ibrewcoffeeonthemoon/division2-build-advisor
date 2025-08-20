@@ -69,8 +69,8 @@ class Build:
                     ls.append(a)
         return ls
 
-    def _accumulate(self, T: type) -> torch.Tensor:
-        val = torch.tensor(0.0)
+    def _accumulate(self, T: type, init_val: float = 0.0) -> torch.Tensor:
+        val = torch.tensor(init_val)
         for a in self.weapon.attributes:
             if isinstance(a, T):
                 val += a.expected_value
