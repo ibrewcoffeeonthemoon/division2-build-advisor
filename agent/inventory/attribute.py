@@ -4,18 +4,6 @@ import torch
 
 
 class _Attribute(ABC):
-    @property
-    @abstractmethod
-    def name(self) -> str: ...
-    @property
-    @abstractmethod
-    def value(self) -> torch.Tensor: ...
-    @property
-    @abstractmethod
-    def expected_value(self) -> torch.Tensor: ...
-
-
-class _StaticAttribute:
     def __init__(
         self,
         name: str,
@@ -24,8 +12,18 @@ class _StaticAttribute:
         self.name = name
         self.value = torch.tensor(value, requires_grad=True)
 
+    @property
+    @abstractmethod
+    def expected_value(self) -> torch.Tensor: ...
 
-class _DynamicAttribute(_StaticAttribute):
+
+class _StaticAttribute(_Attribute):
+    @property
+    def expected_value(self) -> torch.Tensor:
+        return self.value
+
+
+class _DynamicAttribute(_Attribute):
     def __init__(
         self,
         name: str,
@@ -35,7 +33,10 @@ class _DynamicAttribute(_StaticAttribute):
     ) -> None:
         super().__init__(name, value)
         self.uptime = torch.tensor(uptime, requires_grad=True)
-        self.expected_value = self.value * self.uptime
+
+    @property
+    def expected_value(self) -> torch.Tensor:
+        return self.value * self.uptime
 
 
 class WD(_DynamicAttribute):
