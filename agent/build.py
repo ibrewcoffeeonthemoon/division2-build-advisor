@@ -20,6 +20,7 @@ class Build:
         chc_basic: float = 0.10,
         chd_basic: float = 0.25,
         hs_basic: float = 0.50,
+        hsc: float = 0.2
     ) -> None:
         self.weapon = weapon
         self.gears = (
@@ -32,6 +33,7 @@ class Build:
         self._chc = torch.tensor(chc_basic)
         self._chd = torch.tensor(chd_basic)
         self._hs = torch.tensor(hs_basic)
+        self._hsc = torch.tensor(hsc)
 
         # backward
         self.dmg_x.backward()
@@ -77,15 +79,18 @@ class Build:
                 self._chc += attr.value
             elif isinstance(attr, CHD):
                 self._chd += attr.value
+            elif isinstance(attr, HS):
+                self._hs += attr.value
         for gear in self.gears:
             for attr in gear.attributes:
                 if isinstance(attr, CHC):
                     self._chc += attr.value
                 elif isinstance(attr, CHD):
                     self._chd += attr.value
-        self._hs = self._accumulate(HS)
+                elif isinstance(attr, HS):
+                    self._hs += attr.value
 
-        return torch.tensor(1.0) + self._chc*self._chd + self._hs
+        return torch.tensor(1.0) + self._chc*self._chd + self._hs * self._hsc
 
     @property
     def _dta_dth(self) -> torch.Tensor:
@@ -122,11 +127,16 @@ class Build:
     def hs(self) -> float:
         return self._hs.item()
 
+    @property
+    def hsc(self) -> float:
+        return self._hsc.item()
+
     def stats(self, newline=True) -> None:
         t = 'Stats:\n'
         t += f'  CHC: {self.chc:.2%}'
         t += f'  CHD: {self.chd:.2%}'
         t += f'  HS: {self.hs:.2%}'
+        t += f'  HSC: {self.hsc:.2%}'
         print(t)
         if newline:
             print('')

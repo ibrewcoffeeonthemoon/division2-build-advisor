@@ -64,14 +64,9 @@ class DTTOOC(_WeightedAttribute):
     pass
 
 
-class HS(_WeightedAttribute):
-    def __init__(
-        self,
-        value: float,
-        *,
-        uptime: float = 0.2,
-    ) -> None:
-        super().__init__('HS', value, uptime=uptime)
+class HS(_SimpleAttribute):
+    def __init__(self, value: float,) -> None:
+        super().__init__('HS', value)
 
 
 class CHC(_SimpleAttribute):
