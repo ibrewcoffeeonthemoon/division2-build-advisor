@@ -27,7 +27,7 @@ class Build:
         self.dmg_x.backward()
 
     def _accumulate(self, T: type) -> torch.Tensor:
-        val = torch.tensor(1.0)
+        val = torch.tensor(0.0)
         for a in self.weapon.attributes:
             if isinstance(a, _WeightedAttribute) and isinstance(a, T):
                 val += a.expected_value
@@ -37,25 +37,28 @@ class Build:
                     val += a.expected_value
         return val
 
+    def _multiplier(self, T: type) -> torch.Tensor:
+        return torch.tensor(1.0) + self._accumulate(T)
+
     @property
     def _wd(self) -> torch.Tensor:
-        return self._accumulate(WD)
+        return self._multiplier(WD)
 
     @property
     def _twd(self) -> torch.Tensor:
-        return self._accumulate(TWD)
+        return self._multiplier(TWD)
 
     @property
     def _amp1(self) -> torch.Tensor:
-        return self._accumulate(AMP1)
+        return self._multiplier(AMP1)
 
     @property
     def _amp2(self) -> torch.Tensor:
-        return self._accumulate(AMP2)
+        return self._multiplier(AMP2)
 
     @property
     def _amp3(self) -> torch.Tensor:
-        return self._accumulate(AMP3)
+        return self._multiplier(AMP3)
 
     @property
     def _crit_hs(self) -> torch.Tensor:
@@ -73,16 +76,17 @@ class Build:
                 elif isinstance(attr, CHD):
                     chd += attr.value
         crit = chc * chd
+        hs = self._accumulate(HS)
 
-        return self._accumulate(HS) + crit
+        return torch.tensor(1.0) + crit + hs
 
     @property
     def _dta_dth(self) -> torch.Tensor:
-        return self._accumulate(_DTA_DTH)
+        return self._multiplier(_DTA_DTH)
 
     @property
     def _dttooc(self) -> torch.Tensor:
-        return self._accumulate(DTTOOC)
+        return self._multiplier(DTTOOC)
 
     @property
     def dmg_x(self) -> torch.Tensor:
