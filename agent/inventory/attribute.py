@@ -53,3 +53,31 @@ class DTH(_DTA_DTH):
 
 class DTTOOC(_Attribute):
     pass
+
+
+class HS(_Attribute):
+    def __init__(
+        self,
+        value: float,
+    ) -> None:
+        super().__init__('HS', value)
+
+
+class _CriticalHit:
+    def __init__(
+        self,
+        name: str,
+        value: float,
+    ) -> None:
+        self.name = name
+        self.value = torch.tensor(value, requires_grad=True)
+
+
+class CHC(_CriticalHit):
+    def __init__(self, value: float) -> None:
+        super().__init__('CHC', value)
+
+
+class CHD(_CriticalHit):
+    def __init__(self, value: float) -> None:
+        super().__init__('CHD', value)

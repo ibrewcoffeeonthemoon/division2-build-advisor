@@ -54,6 +54,25 @@ class Build:
         return self._accumulate(AMP3)
 
     @property
+    def crit_hs(self) -> torch.Tensor:
+        chc = torch.tensor(0.0)
+        chd = torch.tensor(0.0)
+        for attr in self.weapon.attributes:
+            if isinstance(attr, CHC):
+                chc += attr.value
+            elif isinstance(attr, CHD):
+                chd += attr.value
+        for gear in self.gears:
+            for attr in gear.attributes:
+                if isinstance(attr, CHC):
+                    chc += attr.value
+                elif isinstance(attr, CHD):
+                    chd += attr.value
+        crit = chc * chd
+
+        return self._accumulate(HS) + crit
+
+    @property
     def dta_dth(self) -> torch.Tensor:
         return self._accumulate(_DTA_DTH)
 
@@ -69,6 +88,7 @@ class Build:
             self.amp1 *
             self.amp2 *
             self.amp3 *
+            self.crit_hs *
             self.dta_dth *
             self.dttooc
         )
@@ -82,6 +102,7 @@ class Build:
         t += f'AMP1[{self.amp1.item():.4f}] x '
         t += f'AMP2[{self.amp2.item():.4f}] x '
         t += f'AMP3[{self.amp3.item():.4f}] x '
+        t += f'Crit_HS[{self.crit_hs.item():.4f}] x '
         t += f'DTA_DTH[{self.dta_dth.item():.4f}] x '
         t += f'DTTOOC[{self.dttooc.item():.4f}]'
         print(t)

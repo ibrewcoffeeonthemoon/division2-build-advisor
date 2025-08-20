@@ -37,28 +37,34 @@ def main() -> None:
         Mask(
             'Tinkerer',
             WD('RedCore', 0.15),
+            CHD(0.12),
         ),
         Backpack(
             'Striker',
             WD('RedCore', 0.15),
-            TWD('Buff', 0.65, uptime=0.8)
+            TWD('Buff', 0.65, uptime=0.8),
+            CHD(0.12),
         ),
         Chest(
             'Lengmo',
             WD('RedCore', 0.15),
-            TWD('Obliterate', 0.20, uptime=0.5)
+            TWD('Obliterate', 0.20, uptime=0.5),
+            CHC(0.06),
         ),
         Gloves(
             'Striker',
             WD('RedCore', 0.15),
+            CHC(0.06),
         ),
         Holster(
             'Striker',
             WD('RedCore', 0.15),
+            CHC(0.06),
         ),
         Kneepads(
             'Striker',
             WD('RedCore', 0.15),
+            HS(0.12),
         ),
     )
 
