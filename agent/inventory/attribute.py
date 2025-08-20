@@ -9,8 +9,16 @@ class _Attribute(ABC):
         name: str,
         value: float,
     ) -> None:
-        self.name = name
-        self.value = torch.tensor(value, requires_grad=True)
+        self._name = name
+        self._value = torch.tensor(value, requires_grad=True)
+
+    @property
+    def name(self) -> str:
+        return self._name
+
+    @property
+    def value(self) -> torch.Tensor:
+        return self._value
 
     @property
     @abstractmethod
