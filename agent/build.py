@@ -4,10 +4,8 @@ from torch import Tensor, tensor
 
 from agent.inventory.attribute import *
 from agent.inventory.attribute import _DTA_DTH, _Attribute
-from agent.inventory.item import Item
 from agent.inventory.item.gear import (Backpack, Chest, Gloves, Holster,
                                        Kneepads, Mask)
-from agent.inventory.item.watch import KeenersWatch
 from agent.inventory.item.weapon import Weapon
 
 
@@ -24,6 +22,7 @@ class Build:
         self._chd_basic = chd_basic
         self._hs_basic = hs_basic
         self._hsc_basic = hsc_basic
+        self._compiled = False
 
     def _select(self, T: type) -> list[_Attribute]:
         ls = []
@@ -47,7 +46,9 @@ class Build:
                     val += a.expected_value
         return val
 
-    def _compile(self) -> Self:
+    def _compile(self) -> None:
+        assert not self._compiled
+
         # compute graph
         self._wd = tensor(1.0) + self._accumulate(WD)
         self._twd = tensor(1.0) + self._accumulate(TWD)
@@ -75,7 +76,8 @@ class Build:
         # backward
         self.dmg_x.backward()
 
-        return self
+        # set flag
+        self._compiled = True
 
     # chain methods
     def weapons(
@@ -129,6 +131,9 @@ class Build:
         return self._hsc.item()
 
     def stats(self, newline=True) -> None:
+        if not self._compiled:
+            self._compile()
+
         t = 'Stats:\n'
         t += f'  CHC: {self.chc:.2%}'
         t += f'  CHD: {self.chd:.2%}'
@@ -139,6 +144,9 @@ class Build:
             print('')
 
     def formula(self, newline=True) -> None:
+        if not self._compiled:
+            self._compile()
+
         t = 'Multipliers:\n'
         t += '  DMGx = '
         t += f'WD[{self._wd.item():.4f}] x '
@@ -154,6 +162,9 @@ class Build:
             print('')
 
     def breakdown(self, newline=True) -> None:
+        if not self._compiled:
+            self._compile()
+
         def joining(T: type) -> str:
             return ' + '.join([
                 f'{a.name}({a.expected_value:.4f})'
@@ -181,6 +192,9 @@ class Build:
             print('')
 
     def gradients(self, newline=True) -> None:
+        if not self._compiled:
+            self._compile()
+
         print(f'DMG Gradients:')
         print(f'{" "*2}{self._weapon.name}:')
         for attr in self._weapon.attributes:

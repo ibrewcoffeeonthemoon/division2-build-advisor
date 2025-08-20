@@ -72,7 +72,6 @@ def main() -> None:
         )
         .specialization()
         .keeners_watch()
-        ._compile()
     )
 
     # result
