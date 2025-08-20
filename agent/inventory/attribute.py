@@ -23,5 +23,17 @@ class TWD(Attribute):
     pass
 
 
+class AMP1(Attribute):
+    pass
+
+
+class AMP2(Attribute):
+    pass
+
+
+class AMP3(Attribute):
+    pass
+
+
 class DTTOOC(Attribute):
     pass

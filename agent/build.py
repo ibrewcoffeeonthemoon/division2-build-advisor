@@ -36,6 +36,18 @@ class Build:
         return self._accumulate(TWD)
 
     @property
+    def amp1(self) -> torch.Tensor:
+        return self._accumulate(AMP1)
+
+    @property
+    def amp2(self) -> torch.Tensor:
+        return self._accumulate(AMP2)
+
+    @property
+    def amp3(self) -> torch.Tensor:
+        return self._accumulate(AMP3)
+
+    @property
     def dttooc(self) -> torch.Tensor:
         return self._accumulate(DTTOOC)
 
@@ -44,6 +56,9 @@ class Build:
         val = (
             self.wd *
             self.twd *
+            self.amp1 *
+            self.amp2 *
+            self.amp3 *
             self.dttooc
         )
         return val
@@ -53,6 +68,9 @@ class Build:
         t = 'DMGx = '
         t += f'WD[{self.wd.item():.4f}] x '
         t += f'TWD[{self.twd.item():.4f}]'
+        t += f'AMP1[{self.amp1.item():.4f}]'
+        t += f'AMP2[{self.amp2.item():.4f}]'
+        t += f'AMP3[{self.amp3.item():.4f}]'
         t += f'DTTOOC[{self.dttooc.item():.4f}]'
         print(t)
         if newline:
