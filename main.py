@@ -71,6 +71,7 @@ def main() -> None:
     # result
     build.stats()
     build.formula()
+    build.breakdown()
     build.gradients()
 
 
