@@ -23,15 +23,19 @@ class TWD(_Attribute):
     pass
 
 
-class AMP1(_Attribute):
+class _AMP(_Attribute):
     pass
 
 
-class AMP2(_Attribute):
+class AMP1(_AMP):
     pass
 
 
-class AMP3(_Attribute):
+class AMP2(_AMP):
+    pass
+
+
+class AMP3(_AMP):
     pass
 
 
