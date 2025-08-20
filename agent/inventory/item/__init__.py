@@ -1,11 +1,11 @@
-from agent.inventory.attribute import Attribute
+from agent.inventory.attribute import _Attribute
 
 
 class Item:
     def __init__(
         self,
         name: str,
-        *attributes: Attribute,
+        *attributes: _Attribute,
     ) -> None:
         self.name = name
         self.attributes = attributes

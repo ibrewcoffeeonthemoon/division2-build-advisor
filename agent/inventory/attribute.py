@@ -1,7 +1,7 @@
 import torch
 
 
-class Attribute:
+class _Attribute:
     def __init__(
         self,
         name: str,
@@ -15,25 +15,25 @@ class Attribute:
         self.expected_value = self.value * self.uptime
 
 
-class WD(Attribute):
+class WD(_Attribute):
     pass
 
 
-class TWD(Attribute):
+class TWD(_Attribute):
     pass
 
 
-class AMP1(Attribute):
+class AMP1(_Attribute):
     pass
 
 
-class AMP2(Attribute):
+class AMP2(_Attribute):
     pass
 
 
-class AMP3(Attribute):
+class AMP3(_Attribute):
     pass
 
 
-class DTTOOC(Attribute):
+class DTTOOC(_Attribute):
     pass
