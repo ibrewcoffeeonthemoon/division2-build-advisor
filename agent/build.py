@@ -1,4 +1,4 @@
-import torch
+from torch import Tensor, tensor
 
 from agent.inventory.attribute import *
 from agent.inventory.attribute import _DTA_DTH, _Attribute
@@ -38,8 +38,8 @@ class Build:
         self._chc = self._accumulate(CHC, chc_basic)
         self._chd = self._accumulate(CHD, chd_basic)
         self._hs = self._accumulate(HS, hs_basic)
-        self._hsc = torch.tensor(hsc)
-        self._crit_hs = torch.tensor(1.0) + self._chc * self._chd + self._hs * self._hsc
+        self._hsc = tensor(hsc)
+        self._crit_hs = tensor(1.0) + self._chc * self._chd + self._hs * self._hsc
         self._dta_dth = self._multiplier(_DTA_DTH)
         self._dttooc = self._multiplier(DTTOOC)
         self.dmg_x = (
@@ -67,8 +67,8 @@ class Build:
                     ls.append(a)
         return ls
 
-    def _accumulate(self, T: type, init_val: float = 0.0) -> torch.Tensor:
-        val = torch.tensor(init_val)
+    def _accumulate(self, T: type, init_val: float = 0.0) -> Tensor:
+        val = tensor(init_val)
         for a in self.weapon.attributes:
             if isinstance(a, T):
                 val += a.expected_value
@@ -78,8 +78,8 @@ class Build:
                     val += a.expected_value
         return val
 
-    def _multiplier(self, T: type) -> torch.Tensor:
-        return torch.tensor(1.0) + self._accumulate(T)
+    def _multiplier(self, T: type) -> Tensor:
+        return tensor(1.0) + self._accumulate(T)
 
     # helpers
 
