@@ -64,7 +64,7 @@ def main() -> None:
         Kneepads(
             'Striker',
             WD('RedCore', 0.15),
-            HS(0.12),
+            HS(0.12, uptime=0.1),
         ),
     )
 

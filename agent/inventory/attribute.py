@@ -68,8 +68,10 @@ class HS(_WeightedAttribute):
     def __init__(
         self,
         value: float,
+        *,
+        uptime: float = 0.2,
     ) -> None:
-        super().__init__('HS', value)
+        super().__init__('HS', value, uptime=uptime)
 
 
 class CHC(_SimpleAttribute):
