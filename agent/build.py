@@ -90,7 +90,9 @@ class Build:
                 elif isinstance(attr, HS):
                     self._hs += attr.value
 
-        return torch.tensor(1.0) + self._chc*self._chd + self._hs * self._hsc
+        multiplier = torch.tensor(1.0) + self._chc * self._chd + self._hs * self._hsc
+
+        return multiplier
 
     @property
     def _dta_dth(self) -> torch.Tensor:
