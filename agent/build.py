@@ -36,8 +36,16 @@ class Build:
         return self._accumulate(TWD)
 
     @property
+    def dttooc(self) -> torch.Tensor:
+        return self._accumulate(DTTOOC)
+
+    @property
     def dmg(self) -> torch.Tensor:
-        val = self.wd * self.twd
+        val = (
+            self.wd *
+            self.twd *
+            self.dttooc
+        )
         return val
 
     # helpers
@@ -45,6 +53,7 @@ class Build:
         t = 'DMGx = '
         t += f'WD[{self.wd.item():.4f}] x '
         t += f'TWD[{self.twd.item():.4f}]'
+        t += f'DTTOOC[{self.dttooc.item():.4f}]'
         print(t)
         if newline:
             print('')

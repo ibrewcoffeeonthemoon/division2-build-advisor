@@ -29,6 +29,7 @@ def main() -> None:
             'Lexington',
             WD('ARDamage', 0.15),
             WD('Expertise(30)', 0.30),
+            DTTOOC('DTTOOC', 0.10, uptime=0.9)
         ),
         Mask(
             'Coyote',

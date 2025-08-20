@@ -21,3 +21,7 @@ class WD(Attribute):
 
 class TWD(Attribute):
     pass
+
+
+class DTTOOC(Attribute):
+    pass
