@@ -1,7 +1,7 @@
 import torch
 
 from agent.inventory.attribute import *
-from agent.inventory.attribute import _DTA_DTH
+from agent.inventory.attribute import _DTA_DTH, _Attribute
 from agent.inventory.item import Item
 
 
@@ -35,8 +35,39 @@ class Build:
         self._hs = torch.tensor(hs_basic)
         self._hsc = torch.tensor(hsc)
 
+        # compute graph
+        self._wd = self._multiplier(WD)
+        self._twd = self._multiplier(TWD)
+        self._amp1 = self._multiplier(AMP1)
+        self._amp2 = self._multiplier(AMP2)
+        self._amp3 = self._multiplier(AMP3)
+        self._crit_hs = self.__crit_hs()
+        self._dta_dth = self._multiplier(_DTA_DTH)
+        self._dttooc = self._multiplier(DTTOOC)
+        self.dmg_x = (
+            self._wd *
+            self._twd *
+            self._amp1 *
+            self._amp2 *
+            self._amp3 *
+            self._crit_hs *
+            self._dta_dth *
+            self._dttooc
+        )
+
         # backward
         self.dmg_x.backward()
+
+    def _select(self, T: type) -> list[_Attribute]:
+        ls = []
+        for a in self.weapon.attributes:
+            if isinstance(a, T):
+                ls.append(a)
+        for gear in self.gears:
+            for a in gear.attributes:
+                if isinstance(a, T):
+                    ls.append(a)
+        return ls
 
     def _accumulate(self, T: type) -> torch.Tensor:
         val = torch.tensor(0.0)
@@ -52,28 +83,7 @@ class Build:
     def _multiplier(self, T: type) -> torch.Tensor:
         return torch.tensor(1.0) + self._accumulate(T)
 
-    @property
-    def _wd(self) -> torch.Tensor:
-        return self._multiplier(WD)
-
-    @property
-    def _twd(self) -> torch.Tensor:
-        return self._multiplier(TWD)
-
-    @property
-    def _amp1(self) -> torch.Tensor:
-        return self._multiplier(AMP1)
-
-    @property
-    def _amp2(self) -> torch.Tensor:
-        return self._multiplier(AMP2)
-
-    @property
-    def _amp3(self) -> torch.Tensor:
-        return self._multiplier(AMP3)
-
-    @property
-    def _crit_hs(self) -> torch.Tensor:
+    def __crit_hs(self) -> torch.Tensor:
         for attr in self.weapon.attributes:
             if isinstance(attr, CHC):
                 self._chc += attr.value
@@ -94,29 +104,8 @@ class Build:
 
         return multiplier
 
-    @property
-    def _dta_dth(self) -> torch.Tensor:
-        return self._multiplier(_DTA_DTH)
-
-    @property
-    def _dttooc(self) -> torch.Tensor:
-        return self._multiplier(DTTOOC)
-
-    @property
-    def dmg_x(self) -> torch.Tensor:
-        val = (
-            self._wd *
-            self._twd *
-            self._amp1 *
-            self._amp2 *
-            self._amp3 *
-            self._crit_hs *
-            self._dta_dth *
-            self._dttooc
-        )
-        return val
-
     # helpers
+
     @property
     def chc(self) -> float:
         return self._chc.item()
@@ -154,6 +143,33 @@ class Build:
         t += f'Crit_HS[{self._crit_hs.item():.4f}] x '
         t += f'DTA_DTH[{self._dta_dth.item():.4f}] x '
         t += f'DTTOOC[{self._dttooc.item():.4f}]'
+        print(t)
+        if newline:
+            print('')
+
+    def breakdown(self, newline=True) -> None:
+        def joining(T: type) -> str:
+            return ' + '.join([
+                f'{a.name}({a.expected_value:.4f})'
+                for a in self._select(T)])
+
+        def presenting(T: type) -> str:
+            content = joining(T)
+            if len(content) == 0:
+                return ''
+            return f' x (1 + {content})\n'
+
+        t = 'Breakdown:\n'
+        t += 'DMG = BaseDamage\n'
+        t += presenting(WD)
+        t += presenting(TWD)
+        t += presenting(AMP1)
+        t += presenting(AMP2)
+        t += presenting(AMP3)
+        t += f' x (1 + CHC({self.chc:.4f}) x CHD({self.chd:.4f}) + HS({self.hs:.4f}) x HSC({self.hsc:.4f}))\n'
+        t += presenting(_DTA_DTH)
+        t += presenting(DTTOOC)
+
         print(t)
         if newline:
             print('')
