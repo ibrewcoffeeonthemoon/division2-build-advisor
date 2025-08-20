@@ -1,7 +1,7 @@
 import torch
 
 from agent.inventory.attribute import *
-from agent.inventory.attribute import _DTA_DTH
+from agent.inventory.attribute import _DTA_DTH, _WeightedAttribute
 from agent.inventory.item import Item
 
 
@@ -24,13 +24,13 @@ class Build:
 
     def _accumulate(self, T: type) -> torch.Tensor:
         val = torch.tensor(1.0)
-        for attr in self.weapon.attributes:
-            if isinstance(attr, T):
-                val += attr.expected_value
+        for a in self.weapon.attributes:
+            if isinstance(a, _WeightedAttribute) and isinstance(a, T):
+                val += a.expected_value
         for gear in self.gears:
-            for attr in gear.attributes:
-                if isinstance(attr, T):
-                    val += attr.expected_value
+            for a in gear.attributes:
+                if isinstance(a, _WeightedAttribute) and isinstance(a, T):
+                    val += a.expected_value
         return val
 
     @property
