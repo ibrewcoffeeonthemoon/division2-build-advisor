@@ -15,7 +15,7 @@ class _Attribute(ABC):
     def expected_value(self) -> torch.Tensor: ...
 
 
-class _SimpleAttribute:
+class _StaticAttribute:
     def __init__(
         self,
         name: str,
@@ -25,7 +25,7 @@ class _SimpleAttribute:
         self.value = torch.tensor(value, requires_grad=True)
 
 
-class _WeightedAttribute(_SimpleAttribute):
+class _DynamicAttribute(_StaticAttribute):
     def __init__(
         self,
         name: str,
@@ -38,15 +38,15 @@ class _WeightedAttribute(_SimpleAttribute):
         self.expected_value = self.value * self.uptime
 
 
-class WD(_WeightedAttribute):
+class WD(_DynamicAttribute):
     pass
 
 
-class TWD(_WeightedAttribute):
+class TWD(_DynamicAttribute):
     pass
 
 
-class _AMP(_WeightedAttribute):
+class _AMP(_DynamicAttribute):
     pass
 
 
@@ -62,7 +62,7 @@ class AMP3(_AMP):
     pass
 
 
-class _DTA_DTH(_WeightedAttribute):
+class _DTA_DTH(_DynamicAttribute):
     pass
 
 
@@ -74,20 +74,20 @@ class DTH(_DTA_DTH):
     pass
 
 
-class DTTOOC(_WeightedAttribute):
+class DTTOOC(_DynamicAttribute):
     pass
 
 
-class HS(_SimpleAttribute):
+class HS(_StaticAttribute):
     def __init__(self, value: float,) -> None:
         super().__init__('HS', value)
 
 
-class CHC(_SimpleAttribute):
+class CHC(_StaticAttribute):
     def __init__(self, value: float) -> None:
         super().__init__('CHC', value)
 
 
-class CHD(_SimpleAttribute):
+class CHD(_StaticAttribute):
     def __init__(self, value: float) -> None:
         super().__init__('CHD', value)
