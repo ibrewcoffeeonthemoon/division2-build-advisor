@@ -9,10 +9,15 @@ class Build:
     def __init__(
         self,
         weapon: Item,
-        *gears: Item,
+        gear1: Item,
+        gear2: Item,
+        gear3: Item,
+        gear4: Item,
+        gear5: Item,
+        gear6: Item,
     ) -> None:
         self.weapon = weapon
-        self.gears = gears
+        self.gears = (gear1, gear2, gear3, gear4, gear5, gear6)
 
         # backward
         self.dmg.backward()
