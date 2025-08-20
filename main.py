@@ -1,8 +1,12 @@
+import torch
+
 from agent.build import Build
 from agent.inventory.attribute import *
 from agent.inventory.item.gear import *
 from agent.inventory.item.watch import KeenersWatch
 from agent.inventory.item.weapon import Weapon
+
+torch.set_default_device('cpu')
 
 
 def main() -> None:
