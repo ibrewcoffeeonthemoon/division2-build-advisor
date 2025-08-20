@@ -1,44 +1,63 @@
+from typing import Self
+
 from torch import Tensor, tensor
 
 from agent.inventory.attribute import *
 from agent.inventory.attribute import _DTA_DTH, _Attribute
 from agent.inventory.item import Item
+from agent.inventory.item.gear import (Backpack, Chest, Gloves, Holster,
+                                       Kneepads, Mask)
+from agent.inventory.item.watch import KeenersWatch
+from agent.inventory.item.weapon import Weapon
 
 
 class Build:
     def __init__(
         self,
-        weapon: Item,
-        gear1: Item,
-        gear2: Item,
-        gear3: Item,
-        gear4: Item,
-        gear5: Item,
-        gear6: Item,
-        keeners_watch: Item,
         *,
         chc_basic: float = 0.10,
         chd_basic: float = 0.25,
         hs_basic: float = 0.50,
-        hsc: float = 0.2
+        hsc_basic: float = 0.2,
     ) -> None:
-        self.weapon = weapon
-        self.gears = (
-            gear1, gear2, gear3,
-            gear4, gear5, gear6,
-            keeners_watch
-        )
+        self._chc_basic = chc_basic
+        self._chd_basic = chd_basic
+        self._hs_basic = hs_basic
+        self._hsc_basic = hsc_basic
 
+    def _select(self, T: type) -> list[_Attribute]:
+        ls = []
+        for a in self._weapon.attributes:
+            if isinstance(a, T):
+                ls.append(a)
+        for gear in self._gears:
+            for a in gear.attributes:
+                if isinstance(a, T):
+                    ls.append(a)
+        return ls
+
+    def _accumulate(self, T: type, init_val: float = 0.0) -> Tensor:
+        val = tensor(init_val)
+        for a in self._weapon.attributes:
+            if isinstance(a, T):
+                val += a.expected_value
+        for gear in self._gears:
+            for a in gear.attributes:
+                if isinstance(a, T):
+                    val += a.expected_value
+        return val
+
+    def _compile(self) -> Self:
         # compute graph
         self._wd = tensor(1.0) + self._accumulate(WD)
         self._twd = tensor(1.0) + self._accumulate(TWD)
         self._amp1 = tensor(1.0) + self._accumulate(AMP1)
         self._amp2 = tensor(1.0) + self._accumulate(AMP2)
         self._amp3 = tensor(1.0) + self._accumulate(AMP3)
-        self._chc = self._accumulate(CHC, chc_basic)
-        self._chd = self._accumulate(CHD, chd_basic)
-        self._hs = self._accumulate(HS, hs_basic)
-        self._hsc = tensor(hsc)
+        self._chc = self._accumulate(CHC, self._chc_basic)
+        self._chd = self._accumulate(CHD, self._chd_basic)
+        self._hs = self._accumulate(HS, self._hs_basic)
+        self._hsc = tensor(self._hsc_basic)
         self._crit_hs = tensor(1.0) + self._chc * self._chd + self._hs * self._hsc
         self._dta_dth = tensor(1.0) + self._accumulate(_DTA_DTH)
         self._dttooc = tensor(1.0) + self._accumulate(DTTOOC)
@@ -56,30 +75,43 @@ class Build:
         # backward
         self.dmg_x.backward()
 
-    def _select(self, T: type) -> list[_Attribute]:
-        ls = []
-        for a in self.weapon.attributes:
-            if isinstance(a, T):
-                ls.append(a)
-        for gear in self.gears:
-            for a in gear.attributes:
-                if isinstance(a, T):
-                    ls.append(a)
-        return ls
+        return self
 
-    def _accumulate(self, T: type, init_val: float = 0.0) -> Tensor:
-        val = tensor(init_val)
-        for a in self.weapon.attributes:
-            if isinstance(a, T):
-                val += a.expected_value
-        for gear in self.gears:
-            for a in gear.attributes:
-                if isinstance(a, T):
-                    val += a.expected_value
-        return val
+    # chain methods
+    def weapons(
+        self,
+        weapon1: Weapon,
+    ) -> Self:
+        self._weapon = weapon1
+        return self
+
+    def gears(
+        self,
+        mask: Mask,
+        backpack: Backpack,
+        chest: Chest,
+        gloves: Gloves,
+        holster: Holster,
+        kneepads: Kneepads,
+    ) -> Self:
+        self._gears = (
+            mask, backpack,
+            chest, gloves,
+            holster, kneepads,
+        )
+        return self
+
+    def keeners_watch(
+        self,
+    ) -> Self:
+        return self
+
+    def specialization(
+        self,
+    ) -> Self:
+        return self
 
     # helpers
-
     @property
     def chc(self) -> float:
         return self._chc.item()
@@ -150,11 +182,11 @@ class Build:
 
     def gradients(self, newline=True) -> None:
         print(f'DMG Gradients:')
-        print(f'{" "*2}{self.weapon.name}:')
-        for attr in self.weapon.attributes:
+        print(f'{" "*2}{self._weapon.name}:')
+        for attr in self._weapon.attributes:
             print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
 
-        for gear in self.gears:
+        for gear in self._gears:
             print(f'{" "*2}{gear.name}:')
             for attr in gear.attributes:
                 print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
