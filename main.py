@@ -1,6 +1,7 @@
 from agent.build import Build
 from agent.inventory.attribute import *
 from agent.inventory.item.gear import *
+from agent.inventory.item.watch import KeenersWatch
 from agent.inventory.item.weapon import Weapon
 
 
@@ -64,11 +65,12 @@ def main() -> None:
         Kneepads(
             'Striker',
             WD('RedCore', 0.15),
-            HS(0.12, uptime=0.1),
         ),
+        KeenersWatch(),
     )
 
     # result
+    build.stats()
     build.formula()
     build.gradients()
 

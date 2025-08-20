@@ -15,13 +15,23 @@ class Build:
         gear4: Item,
         gear5: Item,
         gear6: Item,
+        keeners_watch: Item,
         *,
-        chc: float = 0.25,
-        chd: float = 0.50,
-        hs: float = 0.50,
+        chc_basic: float = 0.10,
+        chd_basic: float = 0.25,
+        hs_basic: float = 0.50,
     ) -> None:
         self.weapon = weapon
-        self.gears = (gear1, gear2, gear3, gear4, gear5, gear6)
+        self.gears = (
+            gear1, gear2, gear3,
+            gear4, gear5, gear6,
+            keeners_watch
+        )
+
+        # stats
+        self._chc = torch.tensor(chc_basic)
+        self._chd = torch.tensor(chd_basic)
+        self._hs = torch.tensor(hs_basic)
 
         # backward
         self.dmg_x.backward()
@@ -62,23 +72,20 @@ class Build:
 
     @property
     def _crit_hs(self) -> torch.Tensor:
-        chc = torch.tensor(0.0)
-        chd = torch.tensor(0.0)
         for attr in self.weapon.attributes:
             if isinstance(attr, CHC):
-                chc += attr.value
+                self._chc += attr.value
             elif isinstance(attr, CHD):
-                chd += attr.value
+                self._chd += attr.value
         for gear in self.gears:
             for attr in gear.attributes:
                 if isinstance(attr, CHC):
-                    chc += attr.value
+                    self._chc += attr.value
                 elif isinstance(attr, CHD):
-                    chd += attr.value
-        crit = chc * chd
-        hs = self._accumulate(HS)
+                    self._chd += attr.value
+        self._hs = self._accumulate(HS)
 
-        return torch.tensor(1.0) + crit + hs
+        return torch.tensor(1.0) + self._chc*self._chd + self._hs
 
     @property
     def _dta_dth(self) -> torch.Tensor:
@@ -103,8 +110,30 @@ class Build:
         return val
 
     # helpers
+    @property
+    def chc(self) -> float:
+        return self._chc.item()
+
+    @property
+    def chd(self) -> float:
+        return self._chd.item()
+
+    @property
+    def hs(self) -> float:
+        return self._hs.item()
+
+    def stats(self, newline=True) -> None:
+        t = 'Stats:\n'
+        t += f'  CHC: {self.chc:.2%}'
+        t += f'  CHD: {self.chd:.2%}'
+        t += f'  HS: {self.hs:.2%}'
+        print(t)
+        if newline:
+            print('')
+
     def formula(self, newline=True) -> None:
-        t = 'DMGx = '
+        t = 'Multipliers:\n'
+        t += '  DMGx = '
         t += f'WD[{self._wd.item():.4f}] x '
         t += f'TWD[{self._twd.item():.4f}] x '
         t += f'AMP1[{self._amp1.item():.4f}] x '
