@@ -19,11 +19,6 @@ def main() -> None:
 
     """
 
-    # 6 red cords, 40% weapon type bonus, 25% from keener's watch
-    # wd = torch.tensor(6*0.15+0.4+0.25, requires_grad=True)
-    # basic Striker full buf
-    # twd = torch.tensor(0.65, requires_grad=True)
-
     # create the graph
     build = Build(
         Weapon(
