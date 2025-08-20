@@ -42,11 +42,10 @@ class Build:
 
     # helpers
     def formula(self, newline=True) -> None:
-        print((
-            'DMGx = '
-            f'WD[{self.wd.item():.4f}] x '
-            f'TWD[{self.twd.item():.4f}]'
-        ))
+        t = 'DMGx = '
+        t += f'WD[{self.wd.item():.4f}] x '
+        t += f'TWD[{self.twd.item():.4f}]'
+        print(t)
         if newline:
             print('')
 
