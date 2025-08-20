@@ -1,4 +1,18 @@
+from abc import ABC, abstractmethod
+
 import torch
+
+
+class _Attribute(ABC):
+    @property
+    @abstractmethod
+    def name(self) -> str: ...
+    @property
+    @abstractmethod
+    def value(self) -> torch.Tensor: ...
+    @property
+    @abstractmethod
+    def expected_value(self) -> torch.Tensor: ...
 
 
 class _SimpleAttribute:
