@@ -15,12 +15,16 @@ class Build:
         gear4: Item,
         gear5: Item,
         gear6: Item,
+        *,
+        chc: float = 0.25,
+        chd: float = 0.50,
+        hs: float = 0.50,
     ) -> None:
         self.weapon = weapon
         self.gears = (gear1, gear2, gear3, gear4, gear5, gear6)
 
         # backward
-        self.dmg.backward()
+        self.dmg_x.backward()
 
     def _accumulate(self, T: type) -> torch.Tensor:
         val = torch.tensor(1.0)
@@ -34,27 +38,27 @@ class Build:
         return val
 
     @property
-    def wd(self) -> torch.Tensor:
+    def _wd(self) -> torch.Tensor:
         return self._accumulate(WD)
 
     @property
-    def twd(self) -> torch.Tensor:
+    def _twd(self) -> torch.Tensor:
         return self._accumulate(TWD)
 
     @property
-    def amp1(self) -> torch.Tensor:
+    def _amp1(self) -> torch.Tensor:
         return self._accumulate(AMP1)
 
     @property
-    def amp2(self) -> torch.Tensor:
+    def _amp2(self) -> torch.Tensor:
         return self._accumulate(AMP2)
 
     @property
-    def amp3(self) -> torch.Tensor:
+    def _amp3(self) -> torch.Tensor:
         return self._accumulate(AMP3)
 
     @property
-    def crit_hs(self) -> torch.Tensor:
+    def _crit_hs(self) -> torch.Tensor:
         chc = torch.tensor(0.0)
         chd = torch.tensor(0.0)
         for attr in self.weapon.attributes:
@@ -73,38 +77,38 @@ class Build:
         return self._accumulate(HS) + crit
 
     @property
-    def dta_dth(self) -> torch.Tensor:
+    def _dta_dth(self) -> torch.Tensor:
         return self._accumulate(_DTA_DTH)
 
     @property
-    def dttooc(self) -> torch.Tensor:
+    def _dttooc(self) -> torch.Tensor:
         return self._accumulate(DTTOOC)
 
     @property
-    def dmg(self) -> torch.Tensor:
+    def dmg_x(self) -> torch.Tensor:
         val = (
-            self.wd *
-            self.twd *
-            self.amp1 *
-            self.amp2 *
-            self.amp3 *
-            self.crit_hs *
-            self.dta_dth *
-            self.dttooc
+            self._wd *
+            self._twd *
+            self._amp1 *
+            self._amp2 *
+            self._amp3 *
+            self._crit_hs *
+            self._dta_dth *
+            self._dttooc
         )
         return val
 
     # helpers
     def formula(self, newline=True) -> None:
         t = 'DMGx = '
-        t += f'WD[{self.wd.item():.4f}] x '
-        t += f'TWD[{self.twd.item():.4f}] x '
-        t += f'AMP1[{self.amp1.item():.4f}] x '
-        t += f'AMP2[{self.amp2.item():.4f}] x '
-        t += f'AMP3[{self.amp3.item():.4f}] x '
-        t += f'Crit_HS[{self.crit_hs.item():.4f}] x '
-        t += f'DTA_DTH[{self.dta_dth.item():.4f}] x '
-        t += f'DTTOOC[{self.dttooc.item():.4f}]'
+        t += f'WD[{self._wd.item():.4f}] x '
+        t += f'TWD[{self._twd.item():.4f}] x '
+        t += f'AMP1[{self._amp1.item():.4f}] x '
+        t += f'AMP2[{self._amp2.item():.4f}] x '
+        t += f'AMP3[{self._amp3.item():.4f}] x '
+        t += f'Crit_HS[{self._crit_hs.item():.4f}] x '
+        t += f'DTA_DTH[{self._dta_dth.item():.4f}] x '
+        t += f'DTTOOC[{self._dttooc.item():.4f}]'
         print(t)
         if newline:
             print('')
