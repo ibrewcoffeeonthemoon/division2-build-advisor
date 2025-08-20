@@ -30,18 +30,18 @@ class Build:
         )
 
         # compute graph
-        self._wd = self._multiplier(WD)
-        self._twd = self._multiplier(TWD)
-        self._amp1 = self._multiplier(AMP1)
-        self._amp2 = self._multiplier(AMP2)
-        self._amp3 = self._multiplier(AMP3)
+        self._wd = tensor(1.0) + self._accumulate(WD)
+        self._twd = tensor(1.0) + self._accumulate(TWD)
+        self._amp1 = tensor(1.0) + self._accumulate(AMP1)
+        self._amp2 = tensor(1.0) + self._accumulate(AMP2)
+        self._amp3 = tensor(1.0) + self._accumulate(AMP3)
         self._chc = self._accumulate(CHC, chc_basic)
         self._chd = self._accumulate(CHD, chd_basic)
         self._hs = self._accumulate(HS, hs_basic)
         self._hsc = tensor(hsc)
         self._crit_hs = tensor(1.0) + self._chc * self._chd + self._hs * self._hsc
-        self._dta_dth = self._multiplier(_DTA_DTH)
-        self._dttooc = self._multiplier(DTTOOC)
+        self._dta_dth = tensor(1.0) + self._accumulate(_DTA_DTH)
+        self._dttooc = tensor(1.0) + self._accumulate(DTTOOC)
         self.dmg_x = (
             self._wd *
             self._twd *
@@ -77,9 +77,6 @@ class Build:
                 if isinstance(a, T):
                     val += a.expected_value
         return val
-
-    def _multiplier(self, T: type) -> Tensor:
-        return tensor(1.0) + self._accumulate(T)
 
     # helpers
 
