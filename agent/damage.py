@@ -71,10 +71,12 @@ class _ComputeGraphManager(ABC):
             self._dta_dth *
             self._dttooc
         )
+        self._rof = tensor(1.0) + accumulate(ROF)
+
         self._base_dmg = tensor(self._weapon.base_damage)
         self._dmg = self._base_dmg * self._dmg_x
-        self._rate_of_fire = tensor(self._weapon.rate_of_fire)
-        self._dps = self._rate_of_fire * self._dmg
+        self._base_rof = tensor(self._weapon.rate_of_fire)
+        self._dps = self._base_rof * self._rof * self._dmg
 
         # state
         self._compiled = False

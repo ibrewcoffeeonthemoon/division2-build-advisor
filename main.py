@@ -59,8 +59,9 @@ def main() -> None:
             Backpack(
                 'Striker',
                 WD('RedCore', 0.15),
-                TWD('Buff', 0.65, uptime=0.8),
+                TWD('Striker Buff', 0.65, uptime=0.8),
                 CHD(0.12),
+                ROF('Striker gearset bonus', 0.15),
             ),
             Chest(
                 'Lengmo',

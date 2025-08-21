@@ -113,3 +113,7 @@ class DTH(_DTA_DTH):
 
 class DTTOOC(_DynamicAttribute):
     pass
+
+
+class ROF(_StaticAttribute):
+    pass
