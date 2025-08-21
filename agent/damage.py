@@ -71,7 +71,7 @@ class _ComputeGraphManager(ABC):
 
         self._base_dmg = tensor(self._weapon.base_damage)
         self._dmg = self._base_dmg * self._dmg_x
-        self._base_rof = tensor(self._weapon.rate_of_fire)
+        self._base_rof = tensor(self._weapon.rpm / 60)
         self._dps = self._base_rof * self._rof * self._dmg
 
         # state
