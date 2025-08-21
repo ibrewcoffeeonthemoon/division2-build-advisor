@@ -36,19 +36,13 @@ class _ComputeGraphManager(ABC):
 
         def accumulate(T: type, init_val: float = 0.0) -> Tensor:
             val = tensor(init_val)
-            # weapon
-            for a in weapon.attributes:
-                if isinstance(a, T):
-                    val += a.expected_value
 
-            # inventory items
-            for items in (gears, extras):
+            for items in ((weapon, ), gears, extras):
                 for item in items:
                     for a in item.attributes:
                         if isinstance(a, T):
                             val += a.expected_value
 
-            #
             return val
 
         self._wd = tensor(1.0) + accumulate(WD)
@@ -120,13 +114,8 @@ class _ComputeGraphManager(ABC):
         def select(T: type) -> list[_Attribute]:
             ls = []
 
-            # weapon
-            for a in self._weapon.attributes:
-                if isinstance(a, T):
-                    ls.append(a)
-
             # inventory items
-            for items in (self._gears, self._extras):
+            for items in ((self._weapon, ), self._gears, self._extras):
                 for item in items:
                     for a in item.attributes:
                         if isinstance(a, T):
@@ -168,11 +157,7 @@ class _ComputeGraphManager(ABC):
             self._compile()
 
         print(f'{self.__class__.__name__} Gradients:')
-        print(f'{" "*2}{self._weapon.name}:')
-        for attr in self._weapon.attributes:
-            print(f'{" "*4}{attr.name:15s}: {attr.value.grad:{self._grad_format}}')
-
-        for items in (self._gears, self._extras):
+        for items in ((self._weapon, ), self._gears, self._extras):
             for item in items:
                 print(f'{" "*2}{item.name}:')
                 for attr in item.attributes:
