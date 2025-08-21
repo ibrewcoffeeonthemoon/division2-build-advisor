@@ -95,7 +95,7 @@ class _ComputeGraphManager(ABC):
             self._compile()
 
         t = 'Multipliers:\n'
-        t += '  DMGx = '
+        t += f'DMGx({self._dmg_x.item():.4f}) = '
         t += f'WD[{self._wd.item():.4f}] x '
         t += f'TWD[{self._twd.item():.4f}] x '
         t += f'AMP1[{self._amp1.item():.4f}] x '
