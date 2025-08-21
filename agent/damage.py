@@ -165,7 +165,7 @@ class _ComputeGraphManager(ABC):
         if not self._compiled:
             self._compile()
 
-        print(f'DMG Gradients:')
+        print(f'{self.__class__.__name__} Gradients:')
         print(f'{" "*2}{self._weapon.name}:')
         for attr in self._weapon.attributes:
             print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
