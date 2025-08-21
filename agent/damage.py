@@ -140,7 +140,7 @@ class _ComputeGraphManager(ABC):
             return f' x (1 + {content})\n'
 
         t = 'Breakdown:\n'
-        t += 'DMG = BaseDamage\n'
+        t += f'DMG = BaseDamage({self._base_dmg.item():,.0f})\n'
         t += presenting(WD)
         t += presenting(TWD)
         t += presenting(AMP1)
