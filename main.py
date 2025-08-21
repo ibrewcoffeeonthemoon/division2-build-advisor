@@ -95,7 +95,6 @@ def main() -> None:
         dmg.formula()
         dmg.breakdown()
         dmg.gradients()
-        print(f'{dmg.dmg_x=}')
 
 
 if __name__ == "__main__":
