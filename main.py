@@ -92,6 +92,7 @@ def main() -> None:
     # build.breakdown()
     for i in range(2):
         dmg = build.dmg(i)
+        dmg.breakdown()
         dmg.gradients()
         print(f'{dmg.dmg_x=}')
 

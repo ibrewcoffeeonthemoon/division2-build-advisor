@@ -3,7 +3,7 @@ from typing import override
 from torch import Tensor, tensor
 
 from agent.item.attribute import *
-from agent.item.attribute import _DTA_DTH
+from agent.item.attribute import _DTA_DTH, _Attribute
 from agent.item.gear import Gears
 from agent.item.specialization import Specialization
 from agent.item.watch import KeenersWatch
@@ -76,6 +76,56 @@ class _ComputeGraphManager(ABC):
         self._compiled = False
 
     # helpers
+    def breakdown(self) -> None:
+        if not self._compiled:
+            self._compile()
+
+        def select(T: type) -> list[_Attribute]:
+            ls = []
+
+            # weapon
+            for a in self._weapon.attributes:
+                if isinstance(a, T):
+                    ls.append(a)
+
+            # inventory items
+            for items in (self._gears, self._extras):
+                for item in items:
+                    for a in item.attributes:
+                        if isinstance(a, T):
+                            ls.append(a)
+
+            #
+            return ls
+
+        def joining(T: type) -> str:
+            return ' + '.join([
+                f'{a.name}({a.expected_value.item():.4f})'
+                for a in select(T)])
+
+        def presenting(T: type) -> str:
+            content = joining(T)
+            if len(content) == 0:
+                return ''
+            return f' x (1 + {content})\n'
+
+        t = 'Breakdown:\n'
+        t += 'DMG = BaseDamage\n'
+        t += presenting(WD)
+        t += presenting(TWD)
+        t += presenting(AMP1)
+        t += presenting(AMP2)
+        t += presenting(AMP3)
+        t += (
+            f' x (1 + CHC({self._chc.item():.4f}) x CHD({self._chd.item():.4f}) '
+            f'+ HS({self._hs.item():.4f}) x HSC({self._hsc.item():.4f}))\n'
+        )
+        t += presenting(_DTA_DTH)
+        t += presenting(DTTOOC)
+
+        print(t)
+        print('')
+
     def gradients(self) -> None:
         if not self._compiled:
             self._compile()

@@ -192,33 +192,3 @@ class Build:
         print(t)
         if newline:
             print('')
-
-    def breakdown(self, newline=True) -> None:
-        if not self._compiled:
-            self._compile()
-
-        def joining(T: type) -> str:
-            return ' + '.join([
-                f'{a.name}({a.expected_value.item():.4f})'
-                for a in self._select(T)])
-
-        def presenting(T: type) -> str:
-            content = joining(T)
-            if len(content) == 0:
-                return ''
-            return f' x (1 + {content})\n'
-
-        t = 'Breakdown:\n'
-        t += 'DMG = BaseDamage\n'
-        t += presenting(WD)
-        t += presenting(TWD)
-        t += presenting(AMP1)
-        t += presenting(AMP2)
-        t += presenting(AMP3)
-        t += f' x (1 + CHC({self.chc:.4f}) x CHD({self.chd:.4f}) + HS({self.hs:.4f}) x HSC({self.hsc:.4f}))\n'
-        t += presenting(_DTA_DTH)
-        t += presenting(DTTOOC)
-
-        print(t)
-        if newline:
-            print('')
