@@ -11,7 +11,7 @@ class KeenersWatch(Item):
         hs: float = 0.20,
     ) -> None:
         super().__init__(
-            WD(wd, name='WD'),
+            WDCore(wd, name='WD'),
             CHC(chc),
             CHD(chd),
             HS(hs),

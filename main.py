@@ -3,7 +3,7 @@ import torch
 from agent.build import Build
 from agent.item.attribute import *
 from agent.item.gear import *
-from agent.item.specialization import Specialization
+from agent.item.specialization import *
 from agent.item.watch import KeenersWatch
 from agent.item.weapon import *
 
@@ -37,43 +37,49 @@ def main() -> None:
         )
         .gears(
             Mask(
-                WD(0.15, name='Red'),
+                RedCore(),
+                CHC(0.06),
                 CHD(0.12),
-                name='Tinkerer',
+                CHD(0.12, name='Mod.CHD'),
+                CHD(0.25, uptime=0.33, name='Short.CHD'),
+                CHD(0.10, uptime=0.33, name='Mid.CHD'),
+                CHC(0.10, uptime=0.33, name='Mid.CHC'),
+                CHC(0.25, uptime=0.33, name='Long.CHC'),
+                name='Coyote',
             ),
             Backpack(
-                WD(0.15, name='Red'),
-                TWD(0.65, uptime=0.8, name='Striker'),
+                RedCore(),
+                CHC(0.06),
                 CHD(0.12),
+                CHD(0.12, name='Mod.CHD'),
+                TWD(0.65, uptime=0.8, name='Striker'),
                 ROF(0.15, name='ROF'),
                 name='Striker',
             ),
             Chest(
-                WD(0.15, name='Red'),
-                TWD(0.20, uptime=0.5, name='Obliterate'),
-                CHC(0.06),
+                RedCore(),
+                CHD(0.12),
+                CHD(0.12, name='Mod.CHD'),
                 name='Lengmo',
             ),
             Gloves(
-                WD(0.15, name='Red'),
-                CHC(0.06),
+                RedCore(),
+                CHD(0.12),
                 name='Striker',
             ),
             Holster(
-                WD(0.15, name='Red'),
-                CHC(0.06),
+                RedCore(),
+                CHD(0.12),
                 name='Striker',
             ),
             Kneepads(
-                WD(0.15, name='Red'),
+                RedCore(),
+                CHD(0.12),
                 name='Striker',
             ),
         )
         .extras(
-            Specialization(
-                WD(0.15, name='WDType'),
-                name='Gunner',
-            ),
+            Gunner(WDType(0.15)),
             KeenersWatch(),
         )
     )

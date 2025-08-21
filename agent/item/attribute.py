@@ -61,8 +61,25 @@ class _DynamicAttribute(_Attribute):
         return self._expected_value_tensor
 
 
-class WD(_DynamicAttribute):
+class WD:
     pass
+
+
+class WDCore(_StaticAttribute, WD):
+    pass
+
+
+class WDType(_StaticAttribute, WD):
+    pass
+
+
+class WDTalent(_DynamicAttribute, WD):
+    pass
+
+
+class RedCore(WDCore):
+    def __init__(self, value: float = 0.15) -> None:
+        super().__init__(value, name='RedCore')
 
 
 class TWD(_DynamicAttribute):
@@ -86,18 +103,15 @@ class AMP3(_AMP):
 
 
 class HS(_StaticAttribute):
-    def __init__(self, value: float,) -> None:
-        super().__init__(value, name='HS')
+    pass
 
 
-class CHC(_StaticAttribute):
-    def __init__(self, value: float) -> None:
-        super().__init__(value, name='CHC')
+class CHC(_DynamicAttribute):
+    pass
 
 
-class CHD(_StaticAttribute):
-    def __init__(self, value: float) -> None:
-        super().__init__(value, name='CHD')
+class CHD(_DynamicAttribute):
+    pass
 
 
 class _DTA_DTH(_DynamicAttribute):
