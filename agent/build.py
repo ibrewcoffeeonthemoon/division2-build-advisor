@@ -95,10 +95,10 @@ class Build:
         # set flag
         self._compiled = True
 
-    def dmg(self, weapon_id: int = 0) -> DMGx:
+    def dmg(self, id: int = 0) -> DMGx:
         # TODO
         return DMGx(
-            deepcopy(self._weapon),
+            deepcopy(self._weapons[id]),
             deepcopy(self._gears),
             deepcopy(self._extras),
             chc_basic=self._chc_basic,
@@ -112,8 +112,9 @@ class Build:
     def weapons(
         self,
         weapon1: Weapon,
+        weapon2: Weapon,
     ) -> Self:
-        self._weapon = weapon1
+        self._weapons = (weapon1, weapon2, )
         return self
 
     def gears(
@@ -219,23 +220,5 @@ class Build:
         t += presenting(DTTOOC)
 
         print(t)
-        if newline:
-            print('')
-
-    def gradients(self, newline=True) -> None:
-        if not self._compiled:
-            self._compile()
-
-        print(f'DMG Gradients:')
-        print(f'{" "*2}{self._weapon.name}:')
-        for attr in self._weapon.attributes:
-            print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
-
-        for items in (self._gears, self._extras):
-            for item in items:
-                print(f'{" "*2}{item.name}:')
-                for attr in item.attributes:
-                    print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
-
         if newline:
             print('')
