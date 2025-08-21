@@ -1,4 +1,4 @@
-from agent.inventory.attribute import _Attribute
+from agent.item.attribute import _Attribute
 
 
 class Item:

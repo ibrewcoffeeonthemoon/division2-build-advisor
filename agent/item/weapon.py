@@ -1,4 +1,4 @@
-from agent.inventory.item import Item
+from agent.item import Item
 
 
 class Weapon(Item):
