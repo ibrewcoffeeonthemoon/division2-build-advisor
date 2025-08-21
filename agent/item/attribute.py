@@ -61,19 +61,19 @@ class _DynamicAttribute(_Attribute):
         return self._expected_value_tensor
 
 
-class _WD:
+class WD:
     pass
 
 
-class WDCore(_StaticAttribute, _WD):
+class WDCore(_StaticAttribute, WD):
     pass
 
 
-class WDType(_StaticAttribute, _WD):
+class WDType(_StaticAttribute, WD):
     pass
 
 
-class WDTalent(_DynamicAttribute, _WD):
+class WDTalent(_DynamicAttribute, WD):
     pass
 
 
