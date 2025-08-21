@@ -61,11 +61,23 @@ class _DynamicAttribute(_Attribute):
         return self._expected_value_tensor
 
 
-class WD(_DynamicAttribute):
+class _WD:
     pass
 
 
-class RedCore(WD):
+class WDCore(_StaticAttribute, _WD):
+    pass
+
+
+class WDType(_StaticAttribute, _WD):
+    pass
+
+
+class WDTalent(_DynamicAttribute, _WD):
+    pass
+
+
+class RedCore(WDCore):
     def __init__(self, value: float = 0.15) -> None:
         super().__init__(value, name='RedCore')
 

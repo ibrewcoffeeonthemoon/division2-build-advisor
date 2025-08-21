@@ -3,7 +3,7 @@ from typing import override
 from torch import Tensor, tensor
 
 from agent.item.attribute import *
-from agent.item.attribute import _DTA_DTH, _Attribute
+from agent.item.attribute import _DTA_DTH, _WD, _Attribute
 from agent.item.gear import Gears
 from agent.item.specialization import Specialization
 from agent.item.watch import KeenersWatch
@@ -45,7 +45,7 @@ class _ComputeGraphManager(ABC):
 
             return val
 
-        self._wd = tensor(1.0) + accumulate(WD)
+        self._wd = tensor(1.0) + accumulate(_WD)
         self._twd = tensor(1.0) + accumulate(TWD)
         self._amp1 = tensor(1.0) + accumulate(AMP1)
         self._amp2 = tensor(1.0) + accumulate(AMP2)
@@ -139,7 +139,7 @@ class _ComputeGraphManager(ABC):
         t = 'Breakdown:\n'
         t += f'DMG({self._dmg.item():,.0f}) =\n'
         t += f'   BaseDamage({self._base_dmg.item():,.0f})\n'
-        t += presenting(WD)
+        t += presenting(_WD)
         t += presenting(TWD)
         t += presenting(AMP1)
         t += presenting(AMP2)

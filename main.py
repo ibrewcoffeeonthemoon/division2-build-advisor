@@ -71,7 +71,7 @@ def main() -> None:
         )
         .extras(
             Specialization(
-                WD(0.15, name='WDType'),
+                WDType(0.15),
                 name='Gunner',
             ),
             KeenersWatch(),
