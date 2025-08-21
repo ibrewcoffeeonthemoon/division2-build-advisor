@@ -29,20 +29,20 @@ def main() -> None:
         Build()
         .weapons(
             Weapon(
-                WD('ARDamage', 0.15),
-                WD('Expertise.30', 0.30),
-                DTTOOC('DTTOOC', 0.10, uptime=0.9),
-                DTA('DTA', 0.06, uptime=0.7),
-                AMP1('Sadist', 0.30, uptime=0.5),
-                AMP2('Ranger', 0.25),
+                WD(0.15, name='ARDamage'),
+                WD(0.30, name='Expertise.30'),
+                DTTOOC(0.10, uptime=0.9, name='DTTOOC'),
+                DTA(0.06, uptime=0.7, name='DTA'),
+                AMP1(0.30, uptime=0.5, name='Sadist'),
+                AMP2(0.25, name='Ranger'),
                 name='Lexington',
                 base_damage=100_000,
                 rpm=850,
             ),
             Weapon(
-                WD('Expertise.30', 0.30),
-                DTTOOC('DTTOOC', 0.10, uptime=0.9),
-                DTA('DTA', 0.06, uptime=0.7),
+                WD(0.30, name='Expertise.30'),
+                DTTOOC(0.10, uptime=0.9, name='DTTOOC'),
+                DTA(0.06, uptime=0.7, name='DTA'),
                 CHC(0.20),
                 CHD(0.20),
                 name='St.Elmo',
@@ -52,41 +52,41 @@ def main() -> None:
         )
         .gears(
             Mask(
-                WD('Red', 0.15),
+                WD(0.15, name='Red'),
                 CHD(0.12),
                 name='Tinkerer',
             ),
             Backpack(
-                WD('Red', 0.15),
-                TWD('Striker Buff', 0.65, uptime=0.8),
+                WD(0.15, name='Red'),
+                TWD(0.65, uptime=0.8, name='Striker Buff'),
                 CHD(0.12),
-                ROF('ROF', 0.15),
+                ROF(0.15, name='ROF'),
                 name='Striker',
             ),
             Chest(
-                WD('Red', 0.15),
-                TWD('Obliterate', 0.20, uptime=0.5),
+                WD(0.15, name='Red'),
+                TWD(0.20, uptime=0.5, name='Obliterate'),
                 CHC(0.06),
                 name='Lengmo',
             ),
             Gloves(
-                WD('Red', 0.15),
+                WD(0.15, name='Red'),
                 CHC(0.06),
                 name='Striker',
             ),
             Holster(
-                WD('Red', 0.15),
+                WD(0.15, name='Red'),
                 CHC(0.06),
                 name='Striker',
             ),
             Kneepads(
-                WD('Red', 0.15),
+                WD(0.15, name='Red'),
                 name='Striker',
             ),
         )
         .extras(
             Specialization(
-                WD('WDType', 0.15),
+                WD(0.15, name='WDType'),
                 name='Gunner',
             ),
             KeenersWatch(),

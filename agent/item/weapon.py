@@ -1,4 +1,5 @@
 from agent.item import Item
+from agent.item.attribute import *
 from agent.item.attribute import _Attribute
 
 
