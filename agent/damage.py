@@ -68,6 +68,7 @@ class _ComputeGraphManager(ABC):
             self._dttooc
         )
         self._rof = tensor(1.0) + accumulate(ROF)
+        self._dps_x = self._dmg_x * self._rof
 
         self._base_dmg = tensor(self._weapon.base_damage)
         self._dmg = self._base_dmg * self._dmg_x
@@ -189,6 +190,16 @@ class DMG(_ComputeGraphManager):
     @property
     def dmg(self) -> Tensor:
         return self._dmg
+
+
+class DPSx(_ComputeGraphManager):
+    @override
+    def _compile(self) -> None:
+        self._dps_x.backward(retain_graph=True)
+
+    @property
+    def dps(self) -> Tensor:
+        return self._dps_x
 
 
 class DPS(_ComputeGraphManager):

@@ -80,7 +80,7 @@ def main() -> None:
 
     # result
     for i in range(2):
-        v = build.dps(i)
+        v = build.dps_x(i)
         v.stats()
         v.formula()
         v.breakdown()
