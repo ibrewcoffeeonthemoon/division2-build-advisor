@@ -11,6 +11,8 @@ from agent.item.weapon import Weapon
 
 
 class _ComputeGraphManager(ABC):
+    _grad_format = '.4f'
+
     @abstractmethod
     def _compile(self) -> None:
         ...
@@ -168,13 +170,13 @@ class _ComputeGraphManager(ABC):
         print(f'{self.__class__.__name__} Gradients:')
         print(f'{" "*2}{self._weapon.name}:')
         for attr in self._weapon.attributes:
-            print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
+            print(f'{" "*4}{attr.name:15s}: {attr.value.grad:{self._grad_format}}')
 
         for items in (self._gears, self._extras):
             for item in items:
                 print(f'{" "*2}{item.name}:')
                 for attr in item.attributes:
-                    print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
+                    print(f'{" "*4}{attr.name:15s}: {attr.value.grad:{self._grad_format}}')
 
         print('')
 
@@ -190,6 +192,8 @@ class DMGx(_ComputeGraphManager):
 
 
 class DMG(_ComputeGraphManager):
+    _grad_format = ',.0f'
+
     @override
     def _compile(self) -> None:
         self._dmg.backward(retain_graph=True)
@@ -200,6 +204,8 @@ class DMG(_ComputeGraphManager):
 
 
 class DPS(_ComputeGraphManager):
+    _grad_format = ',.0f'
+
     @override
     def _compile(self) -> None:
         self._dps.backward(retain_graph=True)
