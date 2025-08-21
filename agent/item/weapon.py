@@ -30,7 +30,7 @@ class Lexington(Weapon):
         self.core_attr2 = DTH(dth, uptime=dth_uptime)
         self.attr = DTTOOC(0.10, uptime=0.9) if attributes is None else attributes
         super().__init__(
-            WDCore(expertise*0.01, name=f'Expertise.{expertise}'),
+            WDCore(expertise*0.01, name='Expertise'),
             self.core_attr1,
             self.core_attr2,
             self.attr,
@@ -58,7 +58,7 @@ class StElmoEngine(Weapon):
         self.mod1 = CHC(mod_chc)
         self.mod2 = CHD(mod_chd)
         super().__init__(
-            WDCore(expertise*0.01, name=f'Expertise.{expertise}'),
+            WDCore(expertise*0.01, name='Expertise'),
             self.core_attr1,
             self.core_attr2,
             self.attr,

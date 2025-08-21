@@ -79,14 +79,14 @@ def main() -> None:
             ),
         )
         .extras(
-            Gunner(WDType(0.15)),
+            Gunner(WDType(0.15, name='Gunner.WDType')),
             KeenersWatch(),
         )
     )
 
     # result
     for i in range(2):
-        v = build.dps_x(i)
+        v = build.dps(i)
         v.stats()
         v.formula()
         v.breakdown()
