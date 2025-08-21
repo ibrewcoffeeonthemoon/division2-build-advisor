@@ -3,7 +3,7 @@ import torch
 from agent.build import Build
 from agent.item.attribute import *
 from agent.item.gear import *
-from agent.item.specialization import Specialization
+from agent.item.specialization import *
 from agent.item.watch import KeenersWatch
 from agent.item.weapon import *
 
@@ -70,10 +70,7 @@ def main() -> None:
             ),
         )
         .extras(
-            Specialization(
-                WDType(0.15),
-                name='Gunner',
-            ),
+            Gunner(WDType(0.15)),
             KeenersWatch(),
         )
     )
