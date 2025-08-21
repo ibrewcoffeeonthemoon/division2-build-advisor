@@ -4,8 +4,8 @@ from agent.item.attribute import _Attribute
 class Item:
     def __init__(
         self,
-        name: str,
         *attributes: _Attribute,
+        name: str | None = None,
     ) -> None:
-        self.name = name
         self.attributes = attributes
+        self.name = name if name is not None else self.__class__.__name__
