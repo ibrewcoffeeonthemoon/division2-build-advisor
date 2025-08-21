@@ -103,18 +103,15 @@ class AMP3(_AMP):
 
 
 class HS(_StaticAttribute):
-    def __init__(self, value: float,) -> None:
-        super().__init__(value, name='HS')
+    pass
 
 
 class CHC(_StaticAttribute):
-    def __init__(self, value: float) -> None:
-        super().__init__(value, name='CHC')
+    pass
 
 
 class CHD(_StaticAttribute):
-    def __init__(self, value: float) -> None:
-        super().__init__(value, name='CHD')
+    pass
 
 
 class _DTA_DTH(_DynamicAttribute):
