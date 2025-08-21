@@ -1,3 +1,5 @@
+from typing import override
+
 from torch import Tensor, tensor
 
 from agent.item.attribute import *
@@ -8,7 +10,11 @@ from agent.item.watch import KeenersWatch
 from agent.item.weapon import Weapon
 
 
-class _ComputeGraphManager:
+class _ComputeGraphManager(ABC):
+    @abstractmethod
+    def _compile(self) -> None:
+        ...
+
     def __init__(
         self,
         weapon: Weapon,
@@ -66,6 +72,29 @@ class _ComputeGraphManager:
             self._dttooc
         )
 
+        # state
+        self._compiled = False
+
+    # helpers
+    def gradients(self) -> None:
+        if not self._compiled:
+            self._compile()
+
+        print(f'DMG Gradients:')
+        print(f'{" "*2}{self._weapon.name}:')
+        for attr in self._weapon.attributes:
+            print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
+
+        for items in (self._gears, self._extras):
+            for item in items:
+                print(f'{" "*2}{item.name}:')
+                for attr in item.attributes:
+                    print(f'{" "*4}{attr.name:15s}: {attr.value.grad:.4f}')
+
+        print('')
+
 
 class DMGx(_ComputeGraphManager):
-    pass
+    @override
+    def _compile(self) -> None:
+        self._dmg_x.backward()
