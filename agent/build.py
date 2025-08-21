@@ -1,7 +1,9 @@
+from copy import deepcopy
 from typing import Self
 
 from torch import Tensor, tensor
 
+from agent.damage import DMGx
 from agent.item.attribute import *
 from agent.item.attribute import _DTA_DTH, _Attribute
 from agent.item.gear import Backpack, Chest, Gloves, Holster, Kneepads, Mask
@@ -93,7 +95,20 @@ class Build:
         # set flag
         self._compiled = True
 
+    def dmg(self, weapon_id: int = 0) -> DMGx:
+        # TODO
+        return DMGx(
+            deepcopy(self._weapon),
+            deepcopy(self._gears),
+            deepcopy(self._extras),
+            chc_basic=self._chc_basic,
+            chd_basic=self._chd_basic,
+            hs_basic=self._hs_basic,
+            hsc_basic=self._hsc_basic,
+        )
+
     # chain methods
+
     def weapons(
         self,
         weapon1: Weapon,
