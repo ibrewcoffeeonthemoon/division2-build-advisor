@@ -88,10 +88,9 @@ def main() -> None:
 
     # result
     # build.stats()
-    # build.formula()
-    # build.breakdown()
     for i in range(2):
         dmg = build.dmg(i)
+        dmg.formula()
         dmg.breakdown()
         dmg.gradients()
         print(f'{dmg.dmg_x=}')
