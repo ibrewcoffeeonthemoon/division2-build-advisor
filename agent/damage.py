@@ -83,10 +83,10 @@ class _ComputeGraphManager(ABC):
             self._compile()
 
         t = 'Stats:\n'
-        t += f'  CHC: {self._chc.item():.2%}'
-        t += f'  CHD: {self._chd.item():.2%}'
-        t += f'  HS: {self._hs.item():.2%}'
-        t += f'  HSC: {self._hsc.item():.2%}'
+        t += f'  CHC: {self._chc.item():.0%}'
+        t += f'  CHD: {self._chd.item():.0%}'
+        t += f'  HS: {self._hs.item():.0%}'
+        t += f'  HSC: {self._hsc.item():.0%}'
         print(t)
         print('')
 
@@ -95,15 +95,15 @@ class _ComputeGraphManager(ABC):
             self._compile()
 
         t = 'Multipliers:\n'
-        t += f'DMGx({self._dmg_x.item():.4f}) = '
-        t += f'WD[{self._wd.item():.4f}] x '
-        t += f'TWD[{self._twd.item():.4f}] x '
-        t += f'AMP1[{self._amp1.item():.4f}] x '
-        t += f'AMP2[{self._amp2.item():.4f}] x '
-        t += f'AMP3[{self._amp3.item():.4f}] x '
-        t += f'Crit_HS[{self._crit_hs.item():.4f}] x '
-        t += f'DTA_DTH[{self._dta_dth.item():.4f}] x '
-        t += f'DTTOOC[{self._dttooc.item():.4f}]'
+        t += f'DMGx({self._dmg_x.item():.3f}) = '
+        t += f'\n   WD({self._wd.item():.3f})'
+        t += f'\n x TWD({self._twd.item():.3f})'
+        t += f'\n x AMP1({self._amp1.item():.3f})'
+        t += f'\n x AMP2({self._amp2.item():.3f})'
+        t += f'\n x AMP3({self._amp3.item():.3f})'
+        t += f'\n x Crit_HS({self._crit_hs.item():.3f})'
+        t += f'\n x DTA_DTH({self._dta_dth.item():.3f})'
+        t += f'\n x DTTOOC({self._dttooc.item():.3f})'
         print(t)
         print('')
 
@@ -126,7 +126,7 @@ class _ComputeGraphManager(ABC):
 
         def joining(T: type) -> str:
             return ' + '.join([
-                f'{a.name}({a.expected_value.item():.4f})'
+                f'{a.name}({a.expected_value.item():.1%})'
                 for a in select(T)])
 
         def presenting(T: type) -> str:
@@ -136,15 +136,16 @@ class _ComputeGraphManager(ABC):
             return f' x (1 + {content})\n'
 
         t = 'Breakdown:\n'
-        t += f'DMG({self._dmg.item():,.0f}) = BaseDamage({self._base_dmg.item():,.0f})\n'
+        t += f'DMG({self._dmg.item():,.0f}) =\n'
+        t += f'   BaseDamage({self._base_dmg.item():,.0f})\n'
         t += presenting(WD)
         t += presenting(TWD)
         t += presenting(AMP1)
         t += presenting(AMP2)
         t += presenting(AMP3)
         t += (
-            f' x (1 + CHC({self._chc.item():.4f}) x CHD({self._chd.item():.4f}) '
-            f'+ HS({self._hs.item():.4f}) x HSC({self._hsc.item():.4f}))\n'
+            f' x (1 + CHC({self._chc.item():.2f}) x CHD({self._chd.item():.2f}) '
+            f'+ HS({self._hs.item():.2f}) x HSC({self._hsc.item():.2f}))\n'
         )
         t += presenting(_DTA_DTH)
         t += presenting(DTTOOC)
