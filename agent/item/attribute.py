@@ -84,6 +84,21 @@ class AMP3(_AMP):
     pass
 
 
+class HS(_StaticAttribute):
+    def __init__(self, value: float,) -> None:
+        super().__init__('HS', value)
+
+
+class CHC(_StaticAttribute):
+    def __init__(self, value: float) -> None:
+        super().__init__('CHC', value)
+
+
+class CHD(_StaticAttribute):
+    def __init__(self, value: float) -> None:
+        super().__init__('CHD', value)
+
+
 class _DTA_DTH(_DynamicAttribute):
     pass
 
@@ -98,18 +113,3 @@ class DTH(_DTA_DTH):
 
 class DTTOOC(_DynamicAttribute):
     pass
-
-
-class HS(_StaticAttribute):
-    def __init__(self, value: float,) -> None:
-        super().__init__('HS', value)
-
-
-class CHC(_StaticAttribute):
-    def __init__(self, value: float) -> None:
-        super().__init__('CHC', value)
-
-
-class CHD(_StaticAttribute):
-    def __init__(self, value: float) -> None:
-        super().__init__('CHD', value)
