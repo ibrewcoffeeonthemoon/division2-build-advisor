@@ -18,7 +18,7 @@ class Build:
         *,
         chc_basic: float = 0.10,
         chd_basic: float = 0.25,
-        hs_basic: float = 0.50,
+        hs_basic: float = 0.55,
         hsc_basic: float = 0.2,
     ) -> None:
         self._chc_basic = chc_basic
