@@ -161,34 +161,3 @@ class Build:
     @property
     def hsc(self) -> float:
         return self._hsc.item()
-
-    def stats(self, newline=True) -> None:
-        if not self._compiled:
-            self._compile()
-
-        t = 'Stats:\n'
-        t += f'  CHC: {self.chc:.2%}'
-        t += f'  CHD: {self.chd:.2%}'
-        t += f'  HS: {self.hs:.2%}'
-        t += f'  HSC: {self.hsc:.2%}'
-        print(t)
-        if newline:
-            print('')
-
-    def formula(self, newline=True) -> None:
-        if not self._compiled:
-            self._compile()
-
-        t = 'Multipliers:\n'
-        t += '  DMGx = '
-        t += f'WD[{self._wd.item():.4f}] x '
-        t += f'TWD[{self._twd.item():.4f}] x '
-        t += f'AMP1[{self._amp1.item():.4f}] x '
-        t += f'AMP2[{self._amp2.item():.4f}] x '
-        t += f'AMP3[{self._amp3.item():.4f}] x '
-        t += f'Crit_HS[{self._crit_hs.item():.4f}] x '
-        t += f'DTA_DTH[{self._dta_dth.item():.4f}] x '
-        t += f'DTTOOC[{self._dttooc.item():.4f}]'
-        print(t)
-        if newline:
-            print('')

@@ -42,6 +42,8 @@ def main() -> None:
                 WD('Expertise(30)', 0.30),
                 DTTOOC('DTTOOC', 0.10, uptime=0.9),
                 DTA('DTA', 0.06, uptime=0.7),
+                CHC(0.20),
+                CHD(0.20),
             ),
         )
         .gears(
@@ -87,9 +89,9 @@ def main() -> None:
     )
 
     # result
-    # build.stats()
     for i in range(2):
         dmg = build.dmg(i)
+        dmg.stats()
         dmg.formula()
         dmg.breakdown()
         dmg.gradients()

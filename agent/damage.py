@@ -76,6 +76,18 @@ class _ComputeGraphManager(ABC):
         self._compiled = False
 
     # helpers
+    def stats(self) -> None:
+        if not self._compiled:
+            self._compile()
+
+        t = 'Stats:\n'
+        t += f'  CHC: {self._chc.item():.2%}'
+        t += f'  CHD: {self._chd.item():.2%}'
+        t += f'  HS: {self._hs.item():.2%}'
+        t += f'  HSC: {self._hsc.item():.2%}'
+        print(t)
+        print('')
+
     def formula(self) -> None:
         if not self._compiled:
             self._compile()
