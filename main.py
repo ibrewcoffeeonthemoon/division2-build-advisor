@@ -38,34 +38,39 @@ def main() -> None:
         .gears(
             Mask(
                 RedCore(),
+                CHC(0.06),
                 CHD(0.12),
-                name='Tinkerer',
+                CHD(0.12, name='Mod.CHD'),
+                name='Coyote',
             ),
             Backpack(
                 RedCore(),
-                TWD(0.65, uptime=0.8, name='Striker'),
+                CHC(0.06),
                 CHD(0.12),
+                CHD(0.12, name='Mod.CHD'),
+                TWD(0.65, uptime=0.8, name='Striker'),
                 ROF(0.15, name='ROF'),
                 name='Striker',
             ),
             Chest(
                 RedCore(),
-                TWD(0.20, uptime=0.5, name='Obliterate'),
-                CHC(0.06),
+                CHD(0.12),
+                CHD(0.12, name='Mod.CHD'),
                 name='Lengmo',
             ),
             Gloves(
                 RedCore(),
-                CHC(0.06),
+                CHD(0.12),
                 name='Striker',
             ),
             Holster(
                 RedCore(),
-                CHC(0.06),
+                CHD(0.12),
                 name='Striker',
             ),
             Kneepads(
                 RedCore(),
+                CHD(0.12),
                 name='Striker',
             ),
         )
