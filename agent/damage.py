@@ -163,7 +163,8 @@ class _ComputeGraphManager(ABC):
                 print(f'{" "*2}{item.name}:')
                 for attr in item.attributes:
                     if attr.value.grad is not None:
-                        print(f'{" "*4}{attr.name:15s}: {attr.value.grad:{self._grad_format}}')
+                        name = f'{attr.name} {attr.value.item():.1%}'
+                        print(f'{" "*4}{name:20}: {attr.value.grad:{self._grad_format}}')
 
         print('')
 

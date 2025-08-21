@@ -58,7 +58,7 @@ def main() -> None:
             ),
             Backpack(
                 WD(0.15, name='Red'),
-                TWD(0.65, uptime=0.8, name='Striker Buff'),
+                TWD(0.65, uptime=0.8, name='Striker'),
                 CHD(0.12),
                 ROF(0.15, name='ROF'),
                 name='Striker',
