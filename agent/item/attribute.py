@@ -106,11 +106,11 @@ class HS(_StaticAttribute):
     pass
 
 
-class CHC(_StaticAttribute):
+class CHC(_DynamicAttribute):
     pass
 
 
-class CHD(_StaticAttribute):
+class CHD(_DynamicAttribute):
     pass
 
 

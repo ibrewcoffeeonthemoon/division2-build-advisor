@@ -41,6 +41,10 @@ def main() -> None:
                 CHC(0.06),
                 CHD(0.12),
                 CHD(0.12, name='Mod.CHD'),
+                CHD(0.25, uptime=0.33, name='Short.CHD'),
+                CHD(0.10, uptime=0.33, name='Mid.CHD'),
+                CHC(0.10, uptime=0.33, name='Mid.CHC'),
+                CHC(0.25, uptime=0.33, name='Long.CHC'),
                 name='Coyote',
             ),
             Backpack(
