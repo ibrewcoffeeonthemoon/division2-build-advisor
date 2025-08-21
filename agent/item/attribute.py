@@ -65,6 +65,11 @@ class WD(_DynamicAttribute):
     pass
 
 
+class RedCore(WD):
+    def __init__(self, value: float = 0.15) -> None:
+        super().__init__(value, name='RedCore')
+
+
 class TWD(_DynamicAttribute):
     pass
 
