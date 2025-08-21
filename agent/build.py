@@ -183,7 +183,7 @@ class Build:
 
         def joining(T: type) -> str:
             return ' + '.join([
-                f'{a.name}({a.expected_value:.4f})'
+                f'{a.name}({a.expected_value.item():.4f})'
                 for a in self._select(T)])
 
         def presenting(T: type) -> str:

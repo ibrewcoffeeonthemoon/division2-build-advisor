@@ -10,7 +10,8 @@ class _Attribute(ABC):
         value: float,
     ) -> None:
         self._name = name
-        self._value = tensor(value, requires_grad=True)
+        self._value = value
+        self._value_tensor: Tensor | None = None
 
     @property
     def name(self) -> str:
@@ -18,7 +19,9 @@ class _Attribute(ABC):
 
     @property
     def value(self) -> Tensor:
-        return self._value
+        if self._value_tensor is None:
+            self._value_tensor = tensor(self._value, requires_grad=True)
+        return self._value_tensor
 
     @property
     @abstractmethod
@@ -40,11 +43,21 @@ class _DynamicAttribute(_Attribute):
         uptime: float = 1.0,
     ) -> None:
         super().__init__(name, value)
-        self.uptime = tensor(uptime, requires_grad=True)
+        self._uptime = uptime
+        self._uptime_tensor: Tensor | None = None
+        self._expected_value_tensor: Tensor | None = None
+
+    @property
+    def uptime(self) -> Tensor:
+        if self._uptime_tensor is None:
+            self._uptime_tensor = tensor(self._uptime, requires_grad=True)
+        return self._uptime_tensor
 
     @property
     def expected_value(self) -> Tensor:
-        return self.value * self.uptime
+        if self._expected_value_tensor is None:
+            self._expected_value_tensor = self.value * self.uptime
+        return self._expected_value_tensor
 
 
 class WD(_DynamicAttribute):
