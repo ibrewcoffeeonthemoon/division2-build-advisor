@@ -36,6 +36,16 @@ def main() -> None:
                 DTA('DTA', 0.06, uptime=0.7),
                 AMP1('Sadist', 0.30, uptime=0.5),
                 AMP2('Ranger', 0.25),
+                base_damage=100_000,
+            ),
+            Weapon(
+                'St.Elmo',
+                WD('Expertise(30)', 0.30),
+                DTTOOC('DTTOOC', 0.10, uptime=0.9),
+                DTA('DTA', 0.06, uptime=0.7),
+                CHC(0.20),
+                CHD(0.20),
+                base_damage=100_000,
             ),
         )
         .gears(
@@ -81,10 +91,12 @@ def main() -> None:
     )
 
     # result
-    build.stats()
-    build.formula()
-    build.breakdown()
-    build.gradients()
+    for i in range(2):
+        dmg = build.dmg(i)
+        dmg.stats()
+        dmg.formula()
+        dmg.breakdown()
+        dmg.gradients()
 
 
 if __name__ == "__main__":
