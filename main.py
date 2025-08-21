@@ -5,7 +5,7 @@ from agent.item.attribute import *
 from agent.item.gear import *
 from agent.item.specialization import Specialization
 from agent.item.watch import KeenersWatch
-from agent.item.weapon import Weapon
+from agent.item.weapon import *
 
 torch.set_default_device('cpu')
 
@@ -28,27 +28,12 @@ def main() -> None:
     build = (
         Build()
         .weapons(
-            Weapon(
-                WD(0.15, name='ARDamage'),
-                WD(0.30, name='Expertise.30'),
-                DTTOOC(0.10, uptime=0.9, name='DTTOOC'),
-                DTA(0.06, uptime=0.7, name='DTA'),
+            Lexington(
                 AMP1(0.30, uptime=0.5, name='Sadist'),
                 AMP2(0.25, name='Ranger'),
-                name='Lexington',
-                base_damage=100_000,
-                rpm=850,
+                expertise=30,
             ),
-            Weapon(
-                WD(0.30, name='Expertise.30'),
-                DTTOOC(0.10, uptime=0.9, name='DTTOOC'),
-                DTA(0.06, uptime=0.7, name='DTA'),
-                CHC(0.20),
-                CHD(0.20),
-                name='St.Elmo',
-                base_damage=100_000,
-                rpm=850,
-            ),
+            StElmoEngine(expertise=16),
         )
         .gears(
             Mask(
