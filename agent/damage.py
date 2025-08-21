@@ -97,7 +97,7 @@ class _ComputeGraphManager(ABC):
 class DMGx(_ComputeGraphManager):
     @override
     def _compile(self) -> None:
-        self._dmg_x.backward()
+        self._dmg_x.backward(retain_graph=True)
 
     @property
     def dmg_x(self) -> Tensor:
