@@ -6,10 +6,11 @@ from torch import Tensor, tensor
 class _Attribute(ABC):
     def __init__(
         self,
-        name: str,
         value: float,
+        *,
+        name: str | None = None,
     ) -> None:
-        self._name = name
+        self._name = name if name is not None else self.__class__.__name__
         self._value = value
         self._value_tensor: Tensor | None = None
 
@@ -37,12 +38,12 @@ class _StaticAttribute(_Attribute):
 class _DynamicAttribute(_Attribute):
     def __init__(
         self,
-        name: str,
         value: float,
         *,
         uptime: float = 1.0,
+        name: str | None = None,
     ) -> None:
-        super().__init__(name, value)
+        super().__init__(value, name=name)
         self._uptime = uptime
         self._uptime_tensor: Tensor | None = None
         self._expected_value_tensor: Tensor | None = None
@@ -86,17 +87,17 @@ class AMP3(_AMP):
 
 class HS(_StaticAttribute):
     def __init__(self, value: float,) -> None:
-        super().__init__('HS', value)
+        super().__init__(value, name='HS')
 
 
 class CHC(_StaticAttribute):
     def __init__(self, value: float) -> None:
-        super().__init__('CHC', value)
+        super().__init__(value, name='CHC')
 
 
 class CHD(_StaticAttribute):
     def __init__(self, value: float) -> None:
-        super().__init__('CHD', value)
+        super().__init__(value, name='CHD')
 
 
 class _DTA_DTH(_DynamicAttribute):

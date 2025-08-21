@@ -11,9 +11,9 @@ class KeenersWatch(Item):
         hs: float = 0.20,
     ) -> None:
         super().__init__(
-            'KeenersWatch',
-            WD('WD', wd),
+            WD(wd, name='WD'),
             CHC(chc),
             CHD(chd),
             HS(hs),
+            name='KeenersWatch',
         )
