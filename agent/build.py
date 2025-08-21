@@ -2,13 +2,12 @@ from typing import Self
 
 from torch import Tensor, tensor
 
-from agent.inventory.attribute import *
-from agent.inventory.attribute import _DTA_DTH, _Attribute
-from agent.inventory.item.gear import (Backpack, Chest, Gloves, Holster,
-                                       Kneepads, Mask)
-from agent.inventory.item.specialization import Specialization
-from agent.inventory.item.watch import KeenersWatch
-from agent.inventory.item.weapon import Weapon
+from agent.item.attribute import *
+from agent.item.attribute import _DTA_DTH, _Attribute
+from agent.item.gear import Backpack, Chest, Gloves, Holster, Kneepads, Mask
+from agent.item.specialization import Specialization
+from agent.item.watch import KeenersWatch
+from agent.item.weapon import Weapon
 
 
 class Build:

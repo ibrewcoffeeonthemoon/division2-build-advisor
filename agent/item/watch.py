@@ -1,5 +1,5 @@
-from agent.inventory.attribute import *
-from agent.inventory.item import Item
+from agent.item import Item
+from agent.item.attribute import *
 
 
 class KeenersWatch(Item):
