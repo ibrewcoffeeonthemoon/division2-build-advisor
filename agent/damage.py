@@ -161,7 +161,8 @@ class _ComputeGraphManager(ABC):
             for item in items:
                 print(f'{" "*2}{item.name}:')
                 for attr in item.attributes:
-                    print(f'{" "*4}{attr.name:15s}: {attr.value.grad:{self._grad_format}}')
+                    if attr.value.grad is not None:
+                        print(f'{" "*4}{attr.name:15s}: {attr.value.grad:{self._grad_format}}')
 
         print('')
 
