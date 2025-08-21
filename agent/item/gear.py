@@ -27,3 +27,6 @@ class Holster(Gear):
 
 class Kneepads(Gear):
     pass
+
+
+Gears = tuple[Mask, Backpack, Chest, Gloves, Holster, Kneepads]
