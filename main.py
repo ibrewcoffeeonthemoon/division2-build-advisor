@@ -33,16 +33,7 @@ def main() -> None:
                 AMP2(0.25, name='Ranger'),
                 expertise=30,
             ),
-            Weapon(
-                WD(0.30, name='Expertise.30'),
-                DTTOOC(0.10, uptime=0.9, name='DTTOOC'),
-                DTA(0.06, uptime=0.7, name='DTA'),
-                CHC(0.20),
-                CHD(0.20),
-                name='St.Elmo',
-                base_damage=100_000,
-                rpm=850,
-            ),
+            StElmoEngine(expertise=16),
         )
         .gears(
             Mask(
