@@ -36,6 +36,7 @@ def main() -> None:
                 DTA('DTA', 0.06, uptime=0.7),
                 AMP1('Sadist', 0.30, uptime=0.5),
                 AMP2('Ranger', 0.25),
+                base_damage=100_000,
             ),
             Weapon(
                 'St.Elmo',
@@ -44,6 +45,7 @@ def main() -> None:
                 DTA('DTA', 0.06, uptime=0.7),
                 CHC(0.20),
                 CHD(0.20),
+                base_damage=100_000,
             ),
         )
         .gears(
