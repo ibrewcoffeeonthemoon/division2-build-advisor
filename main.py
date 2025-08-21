@@ -37,6 +37,7 @@ def main() -> None:
                 AMP1('Sadist', 0.30, uptime=0.5),
                 AMP2('Ranger', 0.25),
                 base_damage=100_000,
+                rate_of_fire=850,
             ),
             Weapon(
                 'St.Elmo',
@@ -46,6 +47,7 @@ def main() -> None:
                 CHC(0.20),
                 CHD(0.20),
                 base_damage=100_000,
+                rate_of_fire=850,
             ),
         )
         .gears(
@@ -92,11 +94,11 @@ def main() -> None:
 
     # result
     for i in range(2):
-        dmg = build.dmg(i)
-        dmg.stats()
-        dmg.formula()
-        dmg.breakdown()
-        dmg.gradients()
+        v = build.dps(i)
+        v.stats()
+        v.formula()
+        v.breakdown()
+        v.gradients()
 
 
 if __name__ == "__main__":

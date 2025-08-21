@@ -2,7 +2,7 @@ from copy import deepcopy
 from functools import cache
 from typing import Self, Type, TypeVar
 
-from agent.damage import DMG, DMGx, _ComputeGraphManager
+from agent.damage import DMG, DPS, DMGx, _ComputeGraphManager
 from agent.item.attribute import *
 from agent.item.gear import Backpack, Chest, Gloves, Holster, Kneepads, Mask
 from agent.item.specialization import Specialization
@@ -45,6 +45,10 @@ class Build:
     @cache
     def dmg_x(self, id: int = 0) -> DMGx:
         return self._graph_manager(DMGx, id)
+
+    @cache
+    def dps(self, id: int = 0) -> DPS:
+        return self._graph_manager(DPS, id)
 
     # chain methods
 

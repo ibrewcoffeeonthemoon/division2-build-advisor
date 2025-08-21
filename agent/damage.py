@@ -71,7 +71,10 @@ class _ComputeGraphManager(ABC):
             self._dta_dth *
             self._dttooc
         )
-        self._dmg = tensor(self._weapon.base_damage) * self._dmg_x
+        self._base_dmg = tensor(self._weapon.base_damage)
+        self._dmg = self._base_dmg * self._dmg_x
+        self._rate_of_fire = tensor(self._weapon.rate_of_fire)
+        self._dps = self._rate_of_fire * self._dmg
 
         # state
         self._compiled = False
@@ -192,3 +195,13 @@ class DMG(_ComputeGraphManager):
     @property
     def dmg(self) -> Tensor:
         return self._dmg
+
+
+class DPS(_ComputeGraphManager):
+    @override
+    def _compile(self) -> None:
+        self._dps.backward(retain_graph=True)
+
+    @property
+    def dps(self) -> Tensor:
+        return self._dps
