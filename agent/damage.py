@@ -98,3 +98,7 @@ class DMGx(_ComputeGraphManager):
     @override
     def _compile(self) -> None:
         self._dmg_x.backward()
+
+    @property
+    def dmg_x(self) -> Tensor:
+        return self._dmg_x
