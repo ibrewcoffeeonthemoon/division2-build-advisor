@@ -1,4 +1,5 @@
 from copy import deepcopy
+from functools import cache
 from typing import Self
 
 from agent.damage import DMGx
@@ -23,8 +24,8 @@ class Build:
         self._hs_basic = hs_basic
         self._hsc_basic = hsc_basic
 
+    @cache
     def dmg(self, id: int = 0) -> DMGx:
-        # TODO
         return DMGx(
             deepcopy(self._weapons[id]),
             deepcopy(self._gears),
