@@ -1,3 +1,4 @@
+
 from typing import override
 
 from torch import Tensor, tensor
@@ -112,6 +113,8 @@ class _ComputeGraphManager(ABC):
                 Crit_HS=self._crit_hs.item(),
                 DTA_DTH=self._dta_dth.item(),
                 DTTOOC=self._dttooc.item(),
+                DPSx=self._dps_x.item(),
+                ROF=self._rof.item(),
             )
         )
 

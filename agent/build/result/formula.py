@@ -20,6 +20,9 @@ class Formula(_ResultHandler):
             t += f' x Crit_HS {d.Crit_HS:.3f}\n'
             t += f' x DTA_DTH {d.DTA_DTH:.3f}\n'
             t += f' x DTTOOC  {d.DTTOOC:.3f}\n'
+            t += f'   DPSx    {d.DPSx:.3f}\n'
+            t += f' = DMGx    {d.DMGx:.3f}\n'
+            t += f' x ROF     {d.ROF:.3f}\n'
             return t
 
         txt = merge_text_side_by_side(

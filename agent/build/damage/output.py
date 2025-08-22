@@ -29,6 +29,8 @@ class Formula:
         Crit_HS: float
         DTA_DTH: float
         DTTOOC: float
+        DPSx: float
+        ROF: float
     data: Data
 
 
