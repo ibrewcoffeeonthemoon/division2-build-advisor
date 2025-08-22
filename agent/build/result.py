@@ -1,3 +1,4 @@
+from __future__ import annotations
 from agent.utils import merge_text_side_by_side
 from typing import TYPE_CHECKING, Type, TypeVar
 if TYPE_CHECKING:
@@ -11,7 +12,7 @@ T = TypeVar('T', bound=_ComputeGraphManager)
 class _ResultHandler:
     def __init__(
         self,
-        build: 'Build',
+        build: Build,
         manager: Type[T],
     ) -> None:
         self._build = build
@@ -64,7 +65,7 @@ class Gradients(_ResultHandler):
 class Result:
     def __init__(
         self,
-        build: 'Build',
+        build: Build,
         cls: Type[T],
     ) -> None:
         self._build = build
