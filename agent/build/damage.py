@@ -43,23 +43,28 @@ class Output:
 
     @dataclass(kw_only=True)
     class Breakdown:
+        weapon_name: str
+
         @dataclass(kw_only=True)
-        class Attribute:
-            name: str
-            expected_value: float
-        DMG: float
-        BaseDamage: float
-        WD: list[Attribute]
-        TWD: list[Attribute]
-        AMP1: list[Attribute]
-        AMP2: list[Attribute]
-        AMP3: list[Attribute]
-        CHC: float
-        CHD: float
-        HS: float
-        HSC: float
-        _DTA_DTH: list[Attribute]
-        DTTOOC: list[Attribute]
+        class Data:
+            @dataclass(kw_only=True)
+            class Attribute:
+                name: str
+                expected_value: float
+            DMG: float
+            BaseDamage: float
+            WD: list[Attribute]
+            TWD: list[Attribute]
+            AMP1: list[Attribute]
+            AMP2: list[Attribute]
+            AMP3: list[Attribute]
+            CHC: float
+            CHD: float
+            HS: float
+            HSC: float
+            _DTA_DTH: list[Attribute]
+            DTTOOC: list[Attribute]
+        data: Data
 
     @dataclass(kw_only=True)
     class Gradients:
@@ -191,14 +196,14 @@ class _ComputeGraphManager(ABC):
         if not self._compiled:
             self._compile()
 
-        def select(T: type) -> list[Output.Breakdown.Attribute]:
+        def select(T: type) -> list[Output.Breakdown.Data.Attribute]:
             ls = []
 
             for items in ((self._weapon, ), self._gears, self._extras):
                 for item in items:
                     for a in item.attributes:
                         if isinstance(a, T):
-                            ls.append(Output.Breakdown.Attribute(
+                            ls.append(Output.Breakdown.Data.Attribute(
                                 name=a.name,
                                 expected_value=a.expected_value.item(),
                             ))
@@ -206,19 +211,22 @@ class _ComputeGraphManager(ABC):
             return ls
 
         return Output.Breakdown(
-            DMG=self._dmg.item(),
-            BaseDamage=self._base_dmg.item(),
-            WD=select(WD),
-            TWD=select(TWD),
-            AMP1=select(AMP1),
-            AMP2=select(AMP2),
-            AMP3=select(AMP3),
-            CHC=self._chc.item(),
-            CHD=self._chd.item(),
-            HS=self._hs.item(),
-            HSC=self._hsc.item(),
-            _DTA_DTH=select(_DTA_DTH),
-            DTTOOC=select(DTTOOC),
+            weapon_name=self._weapon.name,
+            data=Output.Breakdown.Data(
+                DMG=self._dmg.item(),
+                BaseDamage=self._base_dmg.item(),
+                WD=select(WD),
+                TWD=select(TWD),
+                AMP1=select(AMP1),
+                AMP2=select(AMP2),
+                AMP3=select(AMP3),
+                CHC=self._chc.item(),
+                CHD=self._chd.item(),
+                HS=self._hs.item(),
+                HSC=self._hsc.item(),
+                _DTA_DTH=select(_DTA_DTH),
+                DTTOOC=select(DTTOOC),
+            )
         )
 
     @property

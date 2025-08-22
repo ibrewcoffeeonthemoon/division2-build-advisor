@@ -71,31 +71,33 @@ class Breakdown(_ResultHandler):
     def __call__(self) -> None:
         def text(m: _ComputeGraphManager) -> str:
             b = m.breakdown
+            d = b.data
 
-            def joining(ls: list[Output.Breakdown.Attribute]) -> str:
+            def joining(ls: list[Output.Breakdown.Data.Attribute]) -> str:
                 return ' + '.join([
                     f'{a.name} {a.expected_value:.1%}'
                     for a in ls])
 
-            def presenting(ls: list[Output.Breakdown.Attribute]) -> str:
+            def presenting(ls: list[Output.Breakdown.Data.Attribute]) -> str:
                 content = joining(ls)
                 if len(content) == 0:
                     return ''
                 return f' x (1 + {content})\n'
 
             t = 'Breakdown:\n'
-            t += f'DMG {b.DMG:,.0f} = BaseDamage {b.BaseDamage:,.0f}\n'
-            t += presenting(b.WD)
-            t += presenting(b.TWD)
-            t += presenting(b.AMP1)
-            t += presenting(b.AMP2)
-            t += presenting(b.AMP3)
+            t += f'{b.weapon_name}:\n'
+            t += f'DMG {d.DMG:,.0f} = BaseDamage {d.BaseDamage:,.0f}\n'
+            t += presenting(d.WD)
+            t += presenting(d.TWD)
+            t += presenting(d.AMP1)
+            t += presenting(d.AMP2)
+            t += presenting(d.AMP3)
             t += (
-                f' x (1 + CHC {b.CHC:.1%} x CHD {b.CHD:.1%} '
-                f'+ HS {b.HS:.1%} x HSC {b.HSC:.1%})\n'
+                f' x (1 + CHC {d.CHC:.1%} x CHD {d.CHD:.1%} '
+                f'+ HS {d.HS:.1%} x HSC {d.HSC:.1%})\n'
             )
-            t += presenting(b._DTA_DTH)
-            t += presenting(b.DTTOOC)
+            t += presenting(d._DTA_DTH)
+            t += presenting(d.DTTOOC)
 
             return t
 
