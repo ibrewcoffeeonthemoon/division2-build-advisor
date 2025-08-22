@@ -1,4 +1,5 @@
 from __future__ import annotations
+from functools import cached_property
 from typing import TYPE_CHECKING, Type, TypeVar
 
 from agent.build.result.delta import Delta
@@ -23,22 +24,22 @@ class Result:
         self._build = build
         self._cls = cls
 
-    @property
+    @cached_property
     def stats(self) -> Stats:
         return Stats(self._build, self._cls)
 
-    @property
+    @cached_property
     def formula(self) -> Formula:
         return Formula(self._build, self._cls)
 
-    @property
+    @cached_property
     def breakdown(self) -> Breakdown:
         return Breakdown(self._build, self._cls)
 
-    @property
+    @cached_property
     def gradients(self) -> Gradients:
         return Gradients(self._build, self._cls)
 
-    @property
+    @cached_property
     def delta(self) -> Delta:
         return Delta(self._build, self._cls)
