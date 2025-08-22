@@ -152,20 +152,21 @@ class _ComputeGraphManager(ABC):
         print(t)
         print('')
 
-    def gradients(self) -> None:
+    @property
+    def gradients(self) -> str:
         if not self._compiled:
             self._compile()
 
-        print(f'{self.__class__.__name__} Gradients:')
+        t = f'{self.__class__.__name__} Gradients:\n'
         for items in ((self._weapon, ), self._gears, self._extras):
             for item in items:
-                print(f'{" "*2}{item.name}:')
+                t += f'{" "*2}{item.name}:\n'
                 for attr in item.attributes:
                     if attr.value.grad is not None:
                         name = f'{attr.name} {attr.value.item():.1%}'
-                        print(f'{" "*4}{name:20}: {attr.value.grad:{self._grad_format}}')
+                        t += f'{" "*4}{name:20}: {attr.value.grad:{self._grad_format}}\n'
 
-        print('')
+        return t.strip()
 
 
 class DMGx(_ComputeGraphManager):
