@@ -26,10 +26,9 @@ def main() -> None:
 
     # create the graph
     build = (
-        Build()
+        Build('Lexington Ranger')
         .weapons(
             Lexington(
-                AMP1(0.30, uptime=0.5, name='Sadist'),
                 AMP2(0.25, name='Ranger'),
                 expertise=30,
             ),

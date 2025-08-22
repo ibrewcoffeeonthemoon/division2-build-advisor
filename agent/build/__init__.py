@@ -16,12 +16,14 @@ T = TypeVar('T', bound=_ComputeGraphManager)
 class Build:
     def __init__(
         self,
+        name: str,
         *,
         chc_basic: float = 0.10,
         chd_basic: float = 0.25,
         hs_basic: float = 0.55,
         hsc_basic: float = 0.2,
     ) -> None:
+        self.name = name
         self._chc_basic = chc_basic
         self._chd_basic = chd_basic
         self._hs_basic = hs_basic
