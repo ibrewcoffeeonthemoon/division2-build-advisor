@@ -1,6 +1,7 @@
 from copy import deepcopy
 from functools import cache
 from typing import Self, Type, TypeVar
+from agent.build.result import Gradients
 
 from agent.build.damage import DMG, DPS, DMGx, DPSx, _ComputeGraphManager
 from agent.item.attribute import *
@@ -8,7 +9,6 @@ from agent.item.gear import Backpack, Chest, Gloves, Holster, Kneepads, Mask
 from agent.item.specialization import Specialization
 from agent.item.watch import KeenersWatch
 from agent.item.weapon import Weapon
-from agent.utils import merge_text_side_by_side
 
 T = TypeVar('T', bound=_ComputeGraphManager)
 
@@ -55,6 +55,12 @@ class Build:
     def dps(self, id: int = 0) -> DPS:
         return self._graph_manager(DPS, id)
 
+    # result
+
+    @property
+    def gradients(self) -> Gradients:
+        return Gradients(self)
+
     # chain methods
 
     def weapons(
@@ -91,13 +97,3 @@ class Build:
             keeners_watch,
         )
         return self
-
-    # utils
-
-    def gradients(self) -> None:
-        txt1 = self.dps_x(0).gradients
-        txt2 = self.dps_x(1).gradients
-
-        txt = merge_text_side_by_side(txt1, txt2)
-
-        print(txt)

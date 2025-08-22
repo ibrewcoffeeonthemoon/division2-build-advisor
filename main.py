@@ -85,7 +85,7 @@ def main() -> None:
     )
 
     # result
-    build.gradients()
+    build.gradients.pprint()
     # for i in range(2):
     #     v = build.dps(i)
     #     v.stats()
