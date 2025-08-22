@@ -44,6 +44,24 @@ class Formula:
         print(txt)
 
 
+class Breakdown:
+    def __init__(
+        self,
+        build: 'Build',
+        manager: Type[T],
+    ) -> None:
+        self._build = build
+        self._manager = manager
+
+    def __call__(self) -> None:
+        txt1 = self._build._graph_manager(self._manager, 0).breakdown
+        txt2 = self._build._graph_manager(self._manager, 1).breakdown
+
+        txt = '\n'.join([txt1, txt2])
+
+        print(txt)
+
+
 class Gradients:
     def __init__(
         self,
@@ -78,6 +96,10 @@ class Result:
     @property
     def formula(self) -> Formula:
         return Formula(self._build, self._cls)
+
+    @property
+    def breakdown(self) -> Breakdown:
+        return Breakdown(self._build, self._cls)
 
     @property
     def gradients(self) -> Gradients:

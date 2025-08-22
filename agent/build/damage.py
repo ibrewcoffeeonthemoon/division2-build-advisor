@@ -110,7 +110,8 @@ class _ComputeGraphManager(ABC):
 
         return t.strip()
 
-    def breakdown(self) -> None:
+    @property
+    def breakdown(self) -> str:
         if not self._compiled:
             self._compile()
 
@@ -152,8 +153,7 @@ class _ComputeGraphManager(ABC):
         t += presenting(_DTA_DTH)
         t += presenting(DTTOOC)
 
-        print(t)
-        print('')
+        return t.strip()
 
     @property
     def gradients(self) -> str:
