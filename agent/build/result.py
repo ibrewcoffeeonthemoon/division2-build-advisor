@@ -1,4 +1,5 @@
 from __future__ import annotations
+from dataclasses import asdict
 from agent.utils import merge_text_side_by_side
 from typing import TYPE_CHECKING, Type, TypeVar, cast
 if TYPE_CHECKING:
@@ -25,9 +26,18 @@ class _ResultHandler:
 class Stats(_ResultHandler):
     def __call__(self) -> None:
         print('Stats:')
-        for result in self._managers:
-            for k, v in result.stats:
-                print(f'  {k}: {v:.0%}')
+
+        def text(m: _ComputeGraphManager) -> str:
+            t = ''
+            for k, v in asdict(m.stats).items():
+                t += f'{k}: {v:.0%}\n'
+            return t
+
+        txt = merge_text_side_by_side(
+            text(self._managers[0]),
+            text(self._managers[1]),
+        )
+        print(txt)
 
 
 class Formula(_ResultHandler):

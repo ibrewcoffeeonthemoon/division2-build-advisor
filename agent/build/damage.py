@@ -12,7 +12,12 @@ from agent.item.weapon import Weapon
 
 
 class Output:
-    Stats = dict[str, float]
+    @dataclass(kw_only=True)
+    class Stats:
+        CHC: float
+        CHD: float
+        HS: float
+        HSC: float
 
     @dataclass(kw_only=True)
     class Formula:
@@ -141,7 +146,7 @@ class _ComputeGraphManager(ABC):
         if not self._compiled:
             self._compile()
 
-        return dict(
+        return Output.Stats(
             CHC=self._chc.item(),
             CHD=self._chd.item(),
             HS=self._hs.item(),
