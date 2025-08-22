@@ -25,11 +25,12 @@ class _ResultHandler:
 
 class Stats(_ResultHandler):
     def __call__(self) -> None:
-        print('Stats:')
+        print(f'Stats:')
 
         def text(m: _ComputeGraphManager) -> str:
-            t = ''
-            for k, v in asdict(m.stats).items():
+            stats = m.stats
+            t = f'{stats.weapon_name}:\n'
+            for k, v in asdict(stats.data).items():
                 t += f'{k}: {v:.0%}\n'
             return t
 

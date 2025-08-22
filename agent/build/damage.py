@@ -14,10 +14,15 @@ from agent.item.weapon import Weapon
 class Output:
     @dataclass(kw_only=True)
     class Stats:
-        CHC: float
-        CHD: float
-        HS: float
-        HSC: float
+        weapon_name: str
+
+        @dataclass(kw_only=True)
+        class Data:
+            CHC: float
+            CHD: float
+            HS: float
+            HSC: float
+        data: Data
 
     @dataclass(kw_only=True)
     class Formula:
@@ -147,10 +152,13 @@ class _ComputeGraphManager(ABC):
             self._compile()
 
         return Output.Stats(
-            CHC=self._chc.item(),
-            CHD=self._chd.item(),
-            HS=self._hs.item(),
-            HSC=self._hsc.item(),
+            weapon_name=self._weapon.name,
+            data=Output.Stats.Data(
+                CHC=self._chc.item(),
+                CHD=self._chd.item(),
+                HS=self._hs.item(),
+                HSC=self._hsc.item(),
+            )
         )
 
     @property
