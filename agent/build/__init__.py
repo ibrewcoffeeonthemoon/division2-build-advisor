@@ -2,7 +2,7 @@ from copy import deepcopy
 from functools import cache
 from typing import Self, Type, TypeVar
 
-from agent.damage import DMG, DPS, DMGx, DPSx, _ComputeGraphManager
+from agent.build.damage import DMG, DPS, DMGx, DPSx, _ComputeGraphManager
 from agent.item.attribute import *
 from agent.item.gear import Backpack, Chest, Gloves, Holster, Kneepads, Mask
 from agent.item.specialization import Specialization
