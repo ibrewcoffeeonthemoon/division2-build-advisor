@@ -9,10 +9,14 @@ class Formula(_ResultHandler):
         def text(m: _ComputeGraphManager) -> str:
             f = m.formula
             d = f.data
-            t = 'Multipliers:\n'
+            line = '<line />\n'
+
+            t = line
+            t += 'Multipliers:\n'
+            t += line
             t += f'{f.weapon_name}:\n'
-            t += f'   DMGx    {d.DMGx:.3f}\n'
-            t += f' = WD      {d.WD:.3f}\n'
+            t += line
+            t += f'   WD      {d.WD:.3f}\n'
             t += f' x TWD     {d.TWD:.3f}\n'
             t += f' x AMP1    {d.AMP1:.3f}\n'
             t += f' x AMP2    {d.AMP2:.3f}\n'
@@ -20,10 +24,17 @@ class Formula(_ResultHandler):
             t += f' x Crit_HS {d.Crit_HS:.3f}\n'
             t += f' x DTA_DTH {d.DTA_DTH:.3f}\n'
             t += f' x DTTOOC  {d.DTTOOC:.3f}\n'
-            t += f'   DPSx    {d.DPSx:.3f}\n'
+            t += line
             t += f' = DMGx    {d.DMGx:.3f}\n'
             t += f' x ROF     {d.ROF:.3f}\n'
-            return t
+            t += line
+            t += f' = DPSx    {d.DPSx:.3f}\n'
+            t += line
+
+            return t.replace(
+                '<line />',
+                '-'*max(len(s) for s in t.splitlines())
+            )
 
         txt = merge_text_side_by_side(
             text(self._managers[0]),
