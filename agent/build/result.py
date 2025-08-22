@@ -8,74 +8,55 @@ from agent.build.damage import _ComputeGraphManager
 T = TypeVar('T', bound=_ComputeGraphManager)
 
 
-class Stats:
+class _ResultHandler:
     def __init__(
         self,
         build: 'Build',
         manager: Type[T],
     ) -> None:
         self._build = build
-        self._manager = manager
+        self._managers = (
+            build._graph_manager(manager, 0),
+            build._graph_manager(manager, 1),
+        )
 
+
+class Stats(_ResultHandler):
     def __call__(self) -> None:
-        txt1 = self._build._graph_manager(self._manager, 0).stats
-        txt2 = self._build._graph_manager(self._manager, 1).stats
-
-        txt = merge_text_side_by_side(txt1, txt2)
+        txt = merge_text_side_by_side(
+            self._managers[0].stats,
+            self._managers[1].stats,
+        )
 
         print(txt)
 
 
-class Formula:
-    def __init__(
-        self,
-        build: 'Build',
-        manager: Type[T],
-    ) -> None:
-        self._build = build
-        self._manager = manager
-
+class Formula(_ResultHandler):
     def __call__(self) -> None:
-        txt1 = self._build._graph_manager(self._manager, 0).formula
-        txt2 = self._build._graph_manager(self._manager, 1).formula
-
-        txt = merge_text_side_by_side(txt1, txt2)
+        txt = merge_text_side_by_side(
+            self._managers[0].formula,
+            self._managers[1].formula,
+        )
 
         print(txt)
 
 
-class Breakdown:
-    def __init__(
-        self,
-        build: 'Build',
-        manager: Type[T],
-    ) -> None:
-        self._build = build
-        self._manager = manager
-
+class Breakdown(_ResultHandler):
     def __call__(self) -> None:
-        txt1 = self._build._graph_manager(self._manager, 0).breakdown
-        txt2 = self._build._graph_manager(self._manager, 1).breakdown
-
-        txt = '\n'.join([txt1, txt2])
+        txt = '\n'.join([
+            self._managers[0].breakdown,
+            self._managers[1].breakdown,
+        ])
 
         print(txt)
 
 
-class Gradients:
-    def __init__(
-        self,
-        build: 'Build',
-        manager: Type[T],
-    ) -> None:
-        self._build = build
-        self._manager = manager
-
+class Gradients(_ResultHandler):
     def __call__(self) -> None:
-        txt1 = self._build._graph_manager(self._manager, 0).gradients
-        txt2 = self._build._graph_manager(self._manager, 1).gradients
-
-        txt = merge_text_side_by_side(txt1, txt2)
+        txt = merge_text_side_by_side(
+            self._managers[0].gradients,
+            self._managers[1].gradients,
+        )
 
         print(txt)
 
