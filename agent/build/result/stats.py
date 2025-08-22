@@ -7,14 +7,24 @@ from agent.build.result._handler import _ResultHandler
 
 class Stats(_ResultHandler):
     def __call__(self) -> None:
-        print(f'Stats:')
 
         def text(m: _ComputeGraphManager) -> str:
-            stats = m.stats
-            t = f'{stats.weapon_name}:\n'
-            for k, v in asdict(stats.data).items():
+            s = m.stats
+            line = '<line />\n'
+
+            t = line
+            t += 'Stats:\n'
+            t += line
+            t += f'{s.weapon_name}:\n'
+            t += line
+            for k, v in asdict(s.data).items():
                 t += f'{k}: {v:.0%}\n'
-            return t
+            t += line
+
+            return t.replace(
+                '<line />',
+                '-'*max(len(s) for s in t.splitlines())
+            )
 
         txt = merge_text_side_by_side(
             text(self._managers[0]),
