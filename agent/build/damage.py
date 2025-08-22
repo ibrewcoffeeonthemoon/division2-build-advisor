@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from typing import override
 
 from torch import Tensor, tensor
@@ -12,6 +13,18 @@ from agent.item.weapon import Weapon
 
 class Output:
     Stats = dict[str, float]
+
+    @dataclass(kw_only=True)
+    class Formula:
+        DMGx: float
+        WD: float
+        TWD: float
+        AMP1: float
+        AMP2: float
+        AMP3: float
+        Crit_HS: float
+        DTA_DTH: float
+        DTTOOC: float
 
 
 class _ComputeGraphManager(ABC):
@@ -96,22 +109,21 @@ class _ComputeGraphManager(ABC):
         )
 
     @property
-    def formula(self) -> str:
+    def formula(self) -> Output.Formula:
         if not self._compiled:
             self._compile()
 
-        t = 'Multipliers:\n'
-        t += f'   DMGx    {self._dmg_x.item():.3f}\n'
-        t += f' = WD      {self._wd.item():.3f}\n'
-        t += f' x TWD     {self._twd.item():.3f}\n'
-        t += f' x AMP1    {self._amp1.item():.3f}\n'
-        t += f' x AMP2    {self._amp2.item():.3f}\n'
-        t += f' x AMP3    {self._amp3.item():.3f}\n'
-        t += f' x Crit_HS {self._crit_hs.item():.3f}\n'
-        t += f' x DTA_DTH {self._dta_dth.item():.3f}\n'
-        t += f' x DTTOOC  {self._dttooc.item():.3f}\n'
-
-        return t.strip()
+        return Output.Formula(
+            DMGx=self._dmg_x.item(),
+            WD=self._wd.item(),
+            TWD=self._twd.item(),
+            AMP1=self._amp1.item(),
+            AMP2=self._amp2.item(),
+            AMP3=self._amp3.item(),
+            Crit_HS=self._crit_hs.item(),
+            DTA_DTH=self._dta_dth.item(),
+            DTTOOC=self._dttooc.item(),
+        )
 
     @property
     def breakdown(self) -> str:
