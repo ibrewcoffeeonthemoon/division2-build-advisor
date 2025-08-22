@@ -1,13 +1,90 @@
+from dataclasses import dataclass
 from typing import override
 
 from torch import Tensor, tensor
 
 from agent.item.attribute import *
-from agent.item.attribute import _DTA_DTH, _Attribute
+from agent.item.attribute import _DTA_DTH
 from agent.item.gear import Gears
 from agent.item.specialization import Specialization
 from agent.item.watch import KeenersWatch
 from agent.item.weapon import Weapon
+
+
+class Output:
+    @dataclass(kw_only=True)
+    class Stats:
+        weapon_name: str
+
+        @dataclass(kw_only=True)
+        class Data:
+            CHC: float
+            CHD: float
+            HS: float
+            HSC: float
+        data: Data
+
+    @dataclass(kw_only=True)
+    class Formula:
+        weapon_name: str
+
+        @dataclass(kw_only=True)
+        class Data:
+            DMGx: float
+            WD: float
+            TWD: float
+            AMP1: float
+            AMP2: float
+            AMP3: float
+            Crit_HS: float
+            DTA_DTH: float
+            DTTOOC: float
+        data: Data
+
+    @dataclass(kw_only=True)
+    class Breakdown:
+        weapon_name: str
+
+        @dataclass(kw_only=True)
+        class Data:
+            @dataclass(kw_only=True)
+            class Attribute:
+                name: str
+                expected_value: float
+            DMG: float
+            BaseDamage: float
+            WD: list[Attribute]
+            TWD: list[Attribute]
+            AMP1: list[Attribute]
+            AMP2: list[Attribute]
+            AMP3: list[Attribute]
+            CHC: float
+            CHD: float
+            HS: float
+            HSC: float
+            _DTA_DTH: list[Attribute]
+            DTTOOC: list[Attribute]
+        data: Data
+
+    @dataclass(kw_only=True)
+    class Gradients:
+        name: str
+        grad_format: str
+
+        @dataclass(kw_only=True)
+        class Items:
+            @dataclass(kw_only=True)
+            class Item:
+                name: str
+
+                @dataclass(kw_only=True)
+                class Attribute:
+                    name: str
+                    value: float
+                    grad: float
+                attrs: list[Attribute]
+            items: list[Item]
+        items_ls: list[Items]
 
 
 class _ComputeGraphManager(ABC):
@@ -80,96 +157,105 @@ class _ComputeGraphManager(ABC):
 
     # helpers
     @property
-    def stats(self) -> str:
+    def stats(self) -> Output.Stats:
         if not self._compiled:
             self._compile()
 
-        t = 'Stats:\n'
-        t += f'  CHC: {self._chc.item():.0%}'
-        t += f'  CHD: {self._chd.item():.0%}'
-        t += f'  HS: {self._hs.item():.0%}'
-        t += f'  HSC: {self._hsc.item():.0%}'
-
-        return t.strip()
+        return Output.Stats(
+            weapon_name=self._weapon.name,
+            data=Output.Stats.Data(
+                CHC=self._chc.item(),
+                CHD=self._chd.item(),
+                HS=self._hs.item(),
+                HSC=self._hsc.item(),
+            )
+        )
 
     @property
-    def formula(self) -> str:
+    def formula(self) -> Output.Formula:
         if not self._compiled:
             self._compile()
 
-        t = 'Multipliers:\n'
-        t += f'   DMGx    {self._dmg_x.item():.3f}\n'
-        t += f' = WD      {self._wd.item():.3f}\n'
-        t += f' x TWD     {self._twd.item():.3f}\n'
-        t += f' x AMP1    {self._amp1.item():.3f}\n'
-        t += f' x AMP2    {self._amp2.item():.3f}\n'
-        t += f' x AMP3    {self._amp3.item():.3f}\n'
-        t += f' x Crit_HS {self._crit_hs.item():.3f}\n'
-        t += f' x DTA_DTH {self._dta_dth.item():.3f}\n'
-        t += f' x DTTOOC  {self._dttooc.item():.3f}\n'
-
-        return t.strip()
+        return Output.Formula(
+            weapon_name=self._weapon.name,
+            data=Output.Formula.Data(
+                DMGx=self._dmg_x.item(),
+                WD=self._wd.item(),
+                TWD=self._twd.item(),
+                AMP1=self._amp1.item(),
+                AMP2=self._amp2.item(),
+                AMP3=self._amp3.item(),
+                Crit_HS=self._crit_hs.item(),
+                DTA_DTH=self._dta_dth.item(),
+                DTTOOC=self._dttooc.item(),
+            )
+        )
 
     @property
-    def breakdown(self) -> str:
+    def breakdown(self) -> Output.Breakdown:
         if not self._compiled:
             self._compile()
 
-        def select(T: type) -> list[_Attribute]:
+        def select(T: type) -> list[Output.Breakdown.Data.Attribute]:
             ls = []
 
-            # inventory items
             for items in ((self._weapon, ), self._gears, self._extras):
                 for item in items:
                     for a in item.attributes:
                         if isinstance(a, T):
-                            ls.append(a)
+                            ls.append(Output.Breakdown.Data.Attribute(
+                                name=a.name,
+                                expected_value=a.expected_value.item(),
+                            ))
 
-            #
             return ls
 
-        def joining(T: type) -> str:
-            return ' + '.join([
-                f'{a.name} {a.expected_value.item():.1%}'
-                for a in select(T)])
-
-        def presenting(T: type) -> str:
-            content = joining(T)
-            if len(content) == 0:
-                return ''
-            return f' x (1 + {content})\n'
-
-        t = 'Breakdown:\n'
-        t += f'DMG {self._dmg.item():,.0f} = BaseDamage {self._base_dmg.item():,.0f}\n'
-        t += presenting(WD)
-        t += presenting(TWD)
-        t += presenting(AMP1)
-        t += presenting(AMP2)
-        t += presenting(AMP3)
-        t += (
-            f' x (1 + CHC {self._chc.item():.1%} x CHD {self._chd.item():.1%} '
-            f'+ HS {self._hs.item():.1%} x HSC {self._hsc.item():.1%})\n'
+        return Output.Breakdown(
+            weapon_name=self._weapon.name,
+            data=Output.Breakdown.Data(
+                DMG=self._dmg.item(),
+                BaseDamage=self._base_dmg.item(),
+                WD=select(WD),
+                TWD=select(TWD),
+                AMP1=select(AMP1),
+                AMP2=select(AMP2),
+                AMP3=select(AMP3),
+                CHC=self._chc.item(),
+                CHD=self._chd.item(),
+                HS=self._hs.item(),
+                HSC=self._hsc.item(),
+                _DTA_DTH=select(_DTA_DTH),
+                DTTOOC=select(DTTOOC),
+            )
         )
-        t += presenting(_DTA_DTH)
-        t += presenting(DTTOOC)
-
-        return t.strip()
 
     @property
-    def gradients(self) -> str:
+    def gradients(self) -> Output.Gradients:
         if not self._compiled:
             self._compile()
 
-        t = f'{self.__class__.__name__} Gradients:\n'
-        for items in ((self._weapon, ), self._gears, self._extras):
-            for item in items:
-                t += f'{" "*2}{item.name}:\n'
-                for attr in item.attributes:
-                    if attr.value.grad is not None:
-                        name = f'{attr.name} {attr.value.item():.1%}'
-                        t += f'{" "*4}{name:20}: {attr.value.grad:{self._grad_format}}\n'
-
-        return t.strip()
+        return Output.Gradients(
+            name=self.__class__.__name__,
+            grad_format=self._grad_format,
+            items_ls=[
+                Output.Gradients.Items(
+                    items=[
+                        Output.Gradients.Items.Item(
+                            name=item.name,
+                            attrs=[
+                                Output.Gradients.Items.Item.Attribute(
+                                    name=attr.name,
+                                    value=attr.value.item(),
+                                    grad=attr.value.grad.item(),
+                                )
+                                for attr in item.attributes
+                                if attr.value.grad is not None
+                            ])
+                        for item in items
+                    ])
+                for items in ((self._weapon, ), self._gears, self._extras)
+            ],
+        )
 
 
 class DMGx(_ComputeGraphManager):
