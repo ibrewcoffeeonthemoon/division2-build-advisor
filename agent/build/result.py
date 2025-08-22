@@ -1,6 +1,6 @@
 from __future__ import annotations
 from agent.utils import merge_text_side_by_side
-from typing import TYPE_CHECKING, Type, TypeVar
+from typing import TYPE_CHECKING, Type, TypeVar, cast
 if TYPE_CHECKING:
     from agent.build import Build
 from agent.build.damage import _ComputeGraphManager
@@ -13,12 +13,12 @@ class _ResultHandler:
     def __init__(
         self,
         build: Build,
-        manager: Type[T],
+        cls: Type[T],
     ) -> None:
         self._build = build
         self._managers = (
-            build._graph_manager(manager, 0),
-            build._graph_manager(manager, 1),
+            cast(T, build._graph_manager(cls, 0)),
+            cast(T, build._graph_manager(cls, 1)),
         )
 
 
