@@ -1,5 +1,5 @@
 from copy import deepcopy
-from functools import cache
+from functools import cache, cached_property
 from typing import Self, Type, TypeVar
 from agent.build.result import Result
 
@@ -44,19 +44,19 @@ class Build:
         )
 
     # result
-    @property
+    @cached_property
     def dmg(self) -> Result:
         return Result(self, DMG)
 
-    @property
+    @cached_property
     def dmg_x(self) -> Result:
         return Result(self, DMGx)
 
-    @property
+    @cached_property
     def dps(self) -> Result:
         return Result(self, DPS)
 
-    @property
+    @cached_property
     def dps_x(self) -> Result:
         return Result(self, DPSx)
 
