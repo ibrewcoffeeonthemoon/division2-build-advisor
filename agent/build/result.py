@@ -11,9 +11,9 @@ class Gradients:
     ) -> None:
         self._build = build
 
-    def pprint(self) -> None:
-        txt1 = self._build.dps_x(0).gradients
-        txt2 = self._build.dps_x(1).gradients
+    def __call__(self) -> None:
+        txt1 = self._build._dps_x(0).gradients
+        txt2 = self._build._dps_x(1).gradients
 
         txt = merge_text_side_by_side(txt1, txt2)
 

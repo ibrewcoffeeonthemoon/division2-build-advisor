@@ -40,19 +40,19 @@ class Build:
         )
 
     @cache
-    def dmg_x(self, id: int = 0) -> DMGx:
+    def _dmg_x(self, id: int = 0) -> DMGx:
         return self._graph_manager(DMGx, id)
 
     @cache
-    def dmg(self, id: int = 0) -> DMG:
+    def _dmg(self, id: int = 0) -> DMG:
         return self._graph_manager(DMG, id)
 
     @cache
-    def dps_x(self, id: int = 0) -> DPS:
+    def _dps_x(self, id: int = 0) -> DPS:
         return self._graph_manager(DPSx, id)
 
     @cache
-    def dps(self, id: int = 0) -> DPS:
+    def _dps(self, id: int = 0) -> DPS:
         return self._graph_manager(DPS, id)
 
     # result
