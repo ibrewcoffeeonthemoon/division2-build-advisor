@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import asdict
 from agent.utils import merge_text_side_by_side
 from agent.build.damage import _ComputeGraphManager
-from agent.build.result.handler import _ResultHandler
+from agent.build.result._handler import _ResultHandler
 
 
 class Stats(_ResultHandler):

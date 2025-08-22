@@ -1,6 +1,6 @@
 from __future__ import annotations
 from agent.build.damage import _ComputeGraphManager, Output
-from agent.build.result.handler import _ResultHandler
+from agent.build.result._handler import _ResultHandler
 
 
 class Breakdown(_ResultHandler):
