@@ -1,6 +1,7 @@
 from copy import deepcopy
 from functools import cache
 from typing import Self, Type, TypeVar
+from agent.build.result import Result
 
 from agent.build.damage import DMG, DPS, DMGx, DPSx, _ComputeGraphManager
 from agent.item.attribute import *
@@ -8,7 +9,6 @@ from agent.item.gear import Backpack, Chest, Gloves, Holster, Kneepads, Mask
 from agent.item.specialization import Specialization
 from agent.item.watch import KeenersWatch
 from agent.item.weapon import Weapon
-from agent.utils import merge_text_side_by_side
 
 T = TypeVar('T', bound=_ComputeGraphManager)
 
@@ -29,6 +29,10 @@ class Build:
 
     @cache
     def _graph_manager(self, cls: Type[T], id: int) -> T:
+        """
+        This cached function ensure one build will create independent compute graph
+        for each unique metric calculation, and will only create it once
+        """
         return cls(
             deepcopy(self._weapons[id]),
             deepcopy(self._gears),
@@ -39,21 +43,22 @@ class Build:
             hsc_basic=self._hsc_basic,
         )
 
-    @cache
-    def dmg_x(self, id: int = 0) -> DMGx:
-        return self._graph_manager(DMGx, id)
+    # result
+    @property
+    def dmg(self) -> Result:
+        return Result(self, DMG)
 
-    @cache
-    def dmg(self, id: int = 0) -> DMG:
-        return self._graph_manager(DMG, id)
+    @property
+    def dmg_x(self) -> Result:
+        return Result(self, DMGx)
 
-    @cache
-    def dps_x(self, id: int = 0) -> DPS:
-        return self._graph_manager(DPSx, id)
+    @property
+    def dps(self) -> Result:
+        return Result(self, DPS)
 
-    @cache
-    def dps(self, id: int = 0) -> DPS:
-        return self._graph_manager(DPS, id)
+    @property
+    def dps_x(self) -> Result:
+        return Result(self, DPSx)
 
     # chain methods
 
@@ -91,13 +96,3 @@ class Build:
             keeners_watch,
         )
         return self
-
-    # utils
-
-    def gradients(self) -> None:
-        txt1 = self.dps_x(0).gradients
-        txt2 = self.dps_x(1).gradients
-
-        txt = merge_text_side_by_side(txt1, txt2)
-
-        print(txt)

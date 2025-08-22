@@ -79,7 +79,8 @@ class _ComputeGraphManager(ABC):
         self._compiled = False
 
     # helpers
-    def stats(self) -> None:
+    @property
+    def stats(self) -> str:
         if not self._compiled:
             self._compile()
 
@@ -88,10 +89,11 @@ class _ComputeGraphManager(ABC):
         t += f'  CHD: {self._chd.item():.0%}'
         t += f'  HS: {self._hs.item():.0%}'
         t += f'  HSC: {self._hsc.item():.0%}'
-        print(t)
-        print('')
 
-    def formula(self) -> None:
+        return t.strip()
+
+    @property
+    def formula(self) -> str:
         if not self._compiled:
             self._compile()
 
@@ -105,9 +107,11 @@ class _ComputeGraphManager(ABC):
         t += f' x Crit_HS {self._crit_hs.item():.3f}\n'
         t += f' x DTA_DTH {self._dta_dth.item():.3f}\n'
         t += f' x DTTOOC  {self._dttooc.item():.3f}\n'
-        print(t)
 
-    def breakdown(self) -> None:
+        return t.strip()
+
+    @property
+    def breakdown(self) -> str:
         if not self._compiled:
             self._compile()
 
@@ -149,8 +153,7 @@ class _ComputeGraphManager(ABC):
         t += presenting(_DTA_DTH)
         t += presenting(DTTOOC)
 
-        print(t)
-        print('')
+        return t.strip()
 
     @property
     def gradients(self) -> str:
