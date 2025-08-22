@@ -90,16 +90,6 @@ def main() -> None:
         result.formula()
         result.breakdown()
         result.gradients()
-    # build.dmg.gradients()
-    # build.dmg_x.gradients()
-    # build.dps.gradients()
-    # build.dps_x.gradients()
-    # for i in range(2):
-    #     v = build.dps(i)
-    #     v.stats()
-    #     v.formula()
-    #     v.breakdown()
-    #     v.gradients()
 
 
 if __name__ == "__main__":
