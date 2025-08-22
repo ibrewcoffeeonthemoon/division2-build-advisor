@@ -79,7 +79,8 @@ class _ComputeGraphManager(ABC):
         self._compiled = False
 
     # helpers
-    def stats(self) -> None:
+    @property
+    def stats(self) -> str:
         if not self._compiled:
             self._compile()
 
@@ -88,8 +89,8 @@ class _ComputeGraphManager(ABC):
         t += f'  CHD: {self._chd.item():.0%}'
         t += f'  HS: {self._hs.item():.0%}'
         t += f'  HSC: {self._hsc.item():.0%}'
-        print(t)
-        print('')
+
+        return t.strip()
 
     def formula(self) -> None:
         if not self._compiled:

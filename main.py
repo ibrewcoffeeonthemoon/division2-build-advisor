@@ -85,10 +85,13 @@ def main() -> None:
     )
 
     # result
-    build.dmg.gradients()
-    build.dmg_x.gradients()
-    build.dps.gradients()
-    build.dps_x.gradients()
+    for result in (build.dmg, build.dmg_x, build.dps, build.dps_x):
+        result.stats()
+        result.gradients()
+    # build.dmg.gradients()
+    # build.dmg_x.gradients()
+    # build.dps.gradients()
+    # build.dps_x.gradients()
     # for i in range(2):
     #     v = build.dps(i)
     #     v.stats()
