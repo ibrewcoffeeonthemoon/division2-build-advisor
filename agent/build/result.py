@@ -96,9 +96,21 @@ class Breakdown(_ResultHandler):
 
 class Gradients(_ResultHandler):
     def __call__(self) -> None:
+        def text(m: _ComputeGraphManager) -> str:
+            g = m.gradients
+            t = f'{g.name} Gradients:\n'
+            for items in g.items_ls:
+                for item in items.items:
+                    t += f'{" "*2}{item.name}:\n'
+                    for attr in item.attrs:
+                        if attr.grad is not None:
+                            name = f'{attr.name} {attr.value:.1%}'
+                            t += f'{" "*4}{name:20}: {attr.grad:{g.grad_format}}\n'
+            return t
+
         txt = merge_text_side_by_side(
-            self._managers[0].gradients,
-            self._managers[1].gradients,
+            text(self._managers[0]),
+            text(self._managers[1]),
         )
 
         print(txt)

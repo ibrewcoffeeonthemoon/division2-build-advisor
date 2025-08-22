@@ -4,7 +4,7 @@ from typing import override
 from torch import Tensor, tensor
 
 from agent.item.attribute import *
-from agent.item.attribute import _DTA_DTH, _Attribute
+from agent.item.attribute import _DTA_DTH
 from agent.item.gear import Gears
 from agent.item.specialization import Specialization
 from agent.item.watch import KeenersWatch
@@ -45,6 +45,26 @@ class Output:
         HSC: float
         _DTA_DTH: list[Attribute]
         DTTOOC: list[Attribute]
+
+    @dataclass(kw_only=True)
+    class Gradients:
+        name: str
+        grad_format: str
+
+        @dataclass(kw_only=True)
+        class Items:
+            @dataclass(kw_only=True)
+            class Item:
+                name: str
+
+                @dataclass(kw_only=True)
+                class Attribute:
+                    name: str
+                    value: float
+                    grad: float
+                attrs: list[Attribute]
+            items: list[Item]
+        items_ls: list[Items]
 
 
 class _ComputeGraphManager(ABC):
@@ -181,20 +201,32 @@ class _ComputeGraphManager(ABC):
         )
 
     @property
-    def gradients(self) -> str:
+    def gradients(self) -> Output.Gradients:
         if not self._compiled:
             self._compile()
 
-        t = f'{self.__class__.__name__} Gradients:\n'
-        for items in ((self._weapon, ), self._gears, self._extras):
-            for item in items:
-                t += f'{" "*2}{item.name}:\n'
-                for attr in item.attributes:
-                    if attr.value.grad is not None:
-                        name = f'{attr.name} {attr.value.item():.1%}'
-                        t += f'{" "*4}{name:20}: {attr.value.grad:{self._grad_format}}\n'
-
-        return t.strip()
+        return Output.Gradients(
+            name=self.__class__.__name__,
+            grad_format=self._grad_format,
+            items_ls=[
+                Output.Gradients.Items(
+                    items=[
+                        Output.Gradients.Items.Item(
+                            name=item.name,
+                            attrs=[
+                                Output.Gradients.Items.Item.Attribute(
+                                    name=attr.name,
+                                    value=attr.value.item(),
+                                    grad=attr.value.grad.item(),
+                                )
+                                for attr in item.attributes
+                                if attr.value.grad is not None
+                            ])
+                        for item in items
+                    ])
+                for items in ((self._weapon, ), self._gears, self._extras)
+            ],
+        )
 
 
 class DMGx(_ComputeGraphManager):

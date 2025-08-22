@@ -87,9 +87,9 @@ def main() -> None:
     # result
     for result in (build.dmg, build.dmg_x, build.dps, build.dps_x):
         result.stats()
-        # result.formula()
-        # result.breakdown()
-        # result.gradients()
+        result.formula()
+        result.breakdown()
+        result.gradients()
 
 
 if __name__ == "__main__":
