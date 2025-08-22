@@ -92,7 +92,8 @@ class _ComputeGraphManager(ABC):
 
         return t.strip()
 
-    def formula(self) -> None:
+    @property
+    def formula(self) -> str:
         if not self._compiled:
             self._compile()
 
@@ -106,7 +107,8 @@ class _ComputeGraphManager(ABC):
         t += f' x Crit_HS {self._crit_hs.item():.3f}\n'
         t += f' x DTA_DTH {self._dta_dth.item():.3f}\n'
         t += f' x DTTOOC  {self._dttooc.item():.3f}\n'
-        print(t)
+
+        return t.strip()
 
     def breakdown(self) -> None:
         if not self._compiled:

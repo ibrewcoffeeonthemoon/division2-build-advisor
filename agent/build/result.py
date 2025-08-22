@@ -26,6 +26,24 @@ class Stats:
         print(txt)
 
 
+class Formula:
+    def __init__(
+        self,
+        build: 'Build',
+        manager: Type[T],
+    ) -> None:
+        self._build = build
+        self._manager = manager
+
+    def __call__(self) -> None:
+        txt1 = self._build._graph_manager(self._manager, 0).formula
+        txt2 = self._build._graph_manager(self._manager, 1).formula
+
+        txt = merge_text_side_by_side(txt1, txt2)
+
+        print(txt)
+
+
 class Gradients:
     def __init__(
         self,
@@ -56,6 +74,10 @@ class Result:
     @property
     def stats(self) -> Stats:
         return Stats(self._build, self._cls)
+
+    @property
+    def formula(self) -> Formula:
+        return Formula(self._build, self._cls)
 
     @property
     def gradients(self) -> Gradients:
