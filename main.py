@@ -90,6 +90,7 @@ def main() -> None:
         result.formula()
         result.breakdown()
         result.gradients()
+        result.delta()
 
 
 if __name__ == "__main__":
