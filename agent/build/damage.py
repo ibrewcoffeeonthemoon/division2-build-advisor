@@ -10,6 +10,10 @@ from agent.item.watch import KeenersWatch
 from agent.item.weapon import Weapon
 
 
+class Output:
+    Stats = dict[str, float]
+
+
 class _ComputeGraphManager(ABC):
     _grad_format = '.4f'
 
@@ -80,17 +84,16 @@ class _ComputeGraphManager(ABC):
 
     # helpers
     @property
-    def stats(self) -> str:
+    def stats(self) -> Output.Stats:
         if not self._compiled:
             self._compile()
 
-        t = 'Stats:\n'
-        t += f'  CHC: {self._chc.item():.0%}'
-        t += f'  CHD: {self._chd.item():.0%}'
-        t += f'  HS: {self._hs.item():.0%}'
-        t += f'  HSC: {self._hsc.item():.0%}'
-
-        return t.strip()
+        return dict(
+            CHC=self._chc.item(),
+            CHD=self._chd.item(),
+            HS=self._hs.item(),
+            HSC=self._hsc.item(),
+        )
 
     @property
     def formula(self) -> str:

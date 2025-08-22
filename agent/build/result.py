@@ -24,12 +24,10 @@ class _ResultHandler:
 
 class Stats(_ResultHandler):
     def __call__(self) -> None:
-        txt = merge_text_side_by_side(
-            self._managers[0].stats,
-            self._managers[1].stats,
-        )
-
-        print(txt)
+        print('Stats:')
+        for result in self._managers:
+            for k, v in result.stats:
+                print(f'  {k}: {v:.0%}')
 
 
 class Formula(_ResultHandler):
