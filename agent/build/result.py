@@ -44,8 +44,10 @@ class Stats(_ResultHandler):
 class Formula(_ResultHandler):
     def __call__(self) -> None:
         def text(m: _ComputeGraphManager) -> str:
-            d = m.formula
+            f = m.formula
+            d = f.data
             t = 'Multipliers:\n'
+            t += f'{f.weapon_name}:\n'
             t += f'   DMGx    {d.DMGx:.3f}\n'
             t += f' = WD      {d.WD:.3f}\n'
             t += f' x TWD     {d.TWD:.3f}\n'

@@ -26,15 +26,20 @@ class Output:
 
     @dataclass(kw_only=True)
     class Formula:
-        DMGx: float
-        WD: float
-        TWD: float
-        AMP1: float
-        AMP2: float
-        AMP3: float
-        Crit_HS: float
-        DTA_DTH: float
-        DTTOOC: float
+        weapon_name: str
+
+        @dataclass(kw_only=True)
+        class Data:
+            DMGx: float
+            WD: float
+            TWD: float
+            AMP1: float
+            AMP2: float
+            AMP3: float
+            Crit_HS: float
+            DTA_DTH: float
+            DTTOOC: float
+        data: Data
 
     @dataclass(kw_only=True)
     class Breakdown:
@@ -167,15 +172,18 @@ class _ComputeGraphManager(ABC):
             self._compile()
 
         return Output.Formula(
-            DMGx=self._dmg_x.item(),
-            WD=self._wd.item(),
-            TWD=self._twd.item(),
-            AMP1=self._amp1.item(),
-            AMP2=self._amp2.item(),
-            AMP3=self._amp3.item(),
-            Crit_HS=self._crit_hs.item(),
-            DTA_DTH=self._dta_dth.item(),
-            DTTOOC=self._dttooc.item(),
+            weapon_name=self._weapon.name,
+            data=Output.Formula.Data(
+                DMGx=self._dmg_x.item(),
+                WD=self._wd.item(),
+                TWD=self._twd.item(),
+                AMP1=self._amp1.item(),
+                AMP2=self._amp2.item(),
+                AMP3=self._amp3.item(),
+                Crit_HS=self._crit_hs.item(),
+                DTA_DTH=self._dta_dth.item(),
+                DTTOOC=self._dttooc.item(),
+            )
         )
 
     @property
