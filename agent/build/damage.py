@@ -26,6 +26,26 @@ class Output:
         DTA_DTH: float
         DTTOOC: float
 
+    @dataclass(kw_only=True)
+    class Breakdown:
+        @dataclass(kw_only=True)
+        class Attribute:
+            name: str
+            expected_value: float
+        DMG: float
+        BaseDamage: float
+        WD: list[Attribute]
+        TWD: list[Attribute]
+        AMP1: list[Attribute]
+        AMP2: list[Attribute]
+        AMP3: list[Attribute]
+        CHC: float
+        CHD: float
+        HS: float
+        HSC: float
+        _DTA_DTH: list[Attribute]
+        DTTOOC: list[Attribute]
+
 
 class _ComputeGraphManager(ABC):
     _grad_format = '.4f'
@@ -126,49 +146,39 @@ class _ComputeGraphManager(ABC):
         )
 
     @property
-    def breakdown(self) -> str:
+    def breakdown(self) -> Output.Breakdown:
         if not self._compiled:
             self._compile()
 
-        def select(T: type) -> list[_Attribute]:
+        def select(T: type) -> list[Output.Breakdown.Attribute]:
             ls = []
 
-            # inventory items
             for items in ((self._weapon, ), self._gears, self._extras):
                 for item in items:
                     for a in item.attributes:
                         if isinstance(a, T):
-                            ls.append(a)
+                            ls.append(Output.Breakdown.Attribute(
+                                name=a.name,
+                                expected_value=a.expected_value.item(),
+                            ))
 
-            #
             return ls
 
-        def joining(T: type) -> str:
-            return ' + '.join([
-                f'{a.name} {a.expected_value.item():.1%}'
-                for a in select(T)])
-
-        def presenting(T: type) -> str:
-            content = joining(T)
-            if len(content) == 0:
-                return ''
-            return f' x (1 + {content})\n'
-
-        t = 'Breakdown:\n'
-        t += f'DMG {self._dmg.item():,.0f} = BaseDamage {self._base_dmg.item():,.0f}\n'
-        t += presenting(WD)
-        t += presenting(TWD)
-        t += presenting(AMP1)
-        t += presenting(AMP2)
-        t += presenting(AMP3)
-        t += (
-            f' x (1 + CHC {self._chc.item():.1%} x CHD {self._chd.item():.1%} '
-            f'+ HS {self._hs.item():.1%} x HSC {self._hsc.item():.1%})\n'
+        return Output.Breakdown(
+            DMG=self._dmg.item(),
+            BaseDamage=self._base_dmg.item(),
+            WD=select(WD),
+            TWD=select(TWD),
+            AMP1=select(AMP1),
+            AMP2=select(AMP2),
+            AMP3=select(AMP3),
+            CHC=self._chc.item(),
+            CHD=self._chd.item(),
+            HS=self._hs.item(),
+            HSC=self._hsc.item(),
+            _DTA_DTH=select(_DTA_DTH),
+            DTTOOC=select(DTTOOC),
         )
-        t += presenting(_DTA_DTH)
-        t += presenting(DTTOOC)
-
-        return t.strip()
 
     @property
     def gradients(self) -> str:
