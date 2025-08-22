@@ -1,7 +1,7 @@
 from copy import deepcopy
 from functools import cache
 from typing import Self, Type, TypeVar
-from agent.build.result import Gradients
+from agent.build.result import Result
 
 from agent.build.damage import DMG, DPS, DMGx, DPSx, _ComputeGraphManager
 from agent.item.attribute import *
@@ -29,6 +29,10 @@ class Build:
 
     @cache
     def _graph_manager(self, cls: Type[T], id: int) -> T:
+        """
+        This cached function ensure one build will create independent compute graph
+        for each unique metric calculation, and will only create it once
+        """
         return cls(
             deepcopy(self._weapons[id]),
             deepcopy(self._gears),
@@ -39,27 +43,22 @@ class Build:
             hsc_basic=self._hsc_basic,
         )
 
-    @cache
-    def _dmg_x(self, id: int = 0) -> DMGx:
-        return self._graph_manager(DMGx, id)
-
-    @cache
-    def _dmg(self, id: int = 0) -> DMG:
-        return self._graph_manager(DMG, id)
-
-    @cache
-    def _dps_x(self, id: int = 0) -> DPS:
-        return self._graph_manager(DPSx, id)
-
-    @cache
-    def _dps(self, id: int = 0) -> DPS:
-        return self._graph_manager(DPS, id)
-
     # result
+    @property
+    def dmg(self) -> Result:
+        return Result(self, DMG)
 
     @property
-    def gradients(self) -> Gradients:
-        return Gradients(self)
+    def dmg_x(self) -> Result:
+        return Result(self, DMGx)
+
+    @property
+    def dps(self) -> Result:
+        return Result(self, DPS)
+
+    @property
+    def dps_x(self) -> Result:
+        return Result(self, DPSx)
 
     # chain methods
 
