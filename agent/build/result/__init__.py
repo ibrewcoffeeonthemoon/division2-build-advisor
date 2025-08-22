@@ -1,7 +1,8 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING, Type, TypeVar
 
-from agent.build.result.handler import Stats, Formula, Breakdown, Gradients, Delta
+from agent.build.result.handler import Formula, Breakdown, Gradients, Delta
+from agent.build.result.stats import Stats
 if TYPE_CHECKING:
     from agent.build import Build
 from agent.build.damage import _ComputeGraphManager
