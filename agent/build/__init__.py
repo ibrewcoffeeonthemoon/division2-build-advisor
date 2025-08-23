@@ -10,7 +10,7 @@ from agent.item.gear import Backpack, Chest, Gloves, Holster, Kneepads, Mask
 from agent.item.specialization import Specialization
 from agent.item.watch import KeenersWatch
 from agent.item.weapon import Weapon
-from agent.utils import merge_text_side_by_side
+from agent.utils import merge_multiple_text_side_by_side
 
 T = TypeVar('T', bound=_ComputeGraphManager)
 
@@ -107,7 +107,7 @@ class Build:
         *handlers: _ResultHandler,
         weapon_id: int = 0,
     ) -> None:
-        print(merge_text_side_by_side(
+        print(merge_multiple_text_side_by_side(
             *[handler.text(weapon_id)
               for handler in handlers]
         ))

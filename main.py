@@ -87,6 +87,8 @@ def main() -> None:
     Build.compare(
         build.dmg_x.delta,
         build.dps_x.delta,
+        build.dmg.stats,
+        build.dps.formula,
     )
     # for result in (build.dmg, build.dmg_x, build.dps, build.dps_x):
     #     result.stats()
