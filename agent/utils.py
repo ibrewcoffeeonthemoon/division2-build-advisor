@@ -8,25 +8,16 @@ def merge_text_side_by_side(*texts: str, sep: str = ' ') -> str:
     if len(texts) == 1:
         return texts[0]
 
-    def merge_two_texts(txt1: str, txt2: str) -> str:
-        lines1 = txt1.splitlines()
-        lines2 = txt2.splitlines()
-
-        max_len1 = max(len(line) for line in lines1)
-
-        data = zip_longest(lines1, lines2, fillvalue='')
-
-        t = ''
-        for row in data:
-            left, right = row
-            t += f'{left:<{max_len1}}{sep}{right}\n'
-
-        return t.strip()
-
-    first_two = merge_two_texts(texts[0], texts[1])
+    lines0 = texts[0].splitlines()
+    lines1 = texts[1].splitlines()
+    maxlen0 = max(len(l) for l in lines0)
+    maxlen1 = max(len(l) for l in lines1)
+    merged = ''
+    for left, right in zip_longest(lines0, lines1, fillvalue=''):
+        merged += f'{left:<{maxlen0}}{sep}{right:<{maxlen1}}\n'
 
     if len(texts) == 2:
-        return first_two
+        return merged
 
     # recursion
-    return merge_text_side_by_side(first_two, *texts[2:])
+    return merge_text_side_by_side(merged, *texts[2:])
