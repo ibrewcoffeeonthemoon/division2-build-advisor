@@ -11,7 +11,8 @@ class Formula(_ResultHandler):
         t = self.SEP
         t += 'Multipliers:\n'
         t += self.SEP
-        t += f'{f.weapon_name}:\n'
+        t += f'Build: {self._build.name}\n'
+        t += f'Weapon: {f.weapon_name}\n'
         t += self.SEP
         t += f'   WD      {d.WD:.3f}\n'
         t += f' x TWD     {d.TWD:.3f}\n'
