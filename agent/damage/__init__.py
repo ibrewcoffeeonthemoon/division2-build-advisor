@@ -13,7 +13,7 @@ from agent.item.weapon import Weapon
 
 
 class _ComputeGraphManager(ABC):
-    _grad_format = '.4f'
+    _grad_format = '7.4f'
 
     @abstractmethod
     def _compile(self) -> None:
@@ -197,7 +197,7 @@ class DMGx(_ComputeGraphManager):
 
 
 class DMG(_ComputeGraphManager):
-    _grad_format = ',.0f'
+    _grad_format = '10,.0f'
 
     @override
     def _compile(self) -> None:
@@ -219,7 +219,7 @@ class DPSx(_ComputeGraphManager):
 
 
 class DPS(_ComputeGraphManager):
-    _grad_format = ',.0f'
+    _grad_format = '10,.0f'
 
     @override
     def _compile(self) -> None:
