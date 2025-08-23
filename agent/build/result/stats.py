@@ -11,7 +11,8 @@ class Stats(_ResultHandler):
         t = self.SEP
         t += 'Stats:\n'
         t += self.SEP
-        t += f'{s.weapon_name}:\n'
+        t += f'Build: {self._build.name}\n'
+        t += f'Weapon: {s.weapon_name}:\n'
         t += self.SEP
         for k, v in asdict(s.data).items():
             t += f'{k}: {v:.0%}\n'

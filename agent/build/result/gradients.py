@@ -9,6 +9,8 @@ class Gradients(_ResultHandler):
 
         t = self.SEP
         t += f'{g.name} Gradients:\n'
+        t += self.SEP
+        t += f'Build: {self._build.name}\n'
         for items in g.items_ls:
             for item in items.items:
                 t += self.SEP
