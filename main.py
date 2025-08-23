@@ -148,12 +148,12 @@ def main() -> None:
         build0.dmg.gradients,
         build1.dmg.delta,
     )
-    # for result in (build.dmg, build.dmg_x, build.dps, build.dps_x):
-    #     result.stats()
-    #     result.formula()
-    #     result.breakdown()
-    #     result.gradients()
-    #     result.delta()
+    for result in (build0.dmg, build0.dmg_x, build0.dps, build0.dps_x):
+        result.stats()
+        result.formula()
+        result.breakdown()
+        result.gradients()
+        result.delta()
 
 
 if __name__ == "__main__":
