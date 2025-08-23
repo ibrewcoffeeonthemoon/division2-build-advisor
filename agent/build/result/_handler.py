@@ -9,6 +9,9 @@ T = TypeVar('T', bound=_ComputeGraphManager)
 
 
 class _ResultHandler:
+    SEP_TAG = '<line />'
+    SEP = f'{SEP_TAG}\n'
+
     def __init__(
         self,
         build: Build,

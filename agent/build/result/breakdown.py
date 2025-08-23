@@ -9,7 +9,6 @@ class Breakdown(_ResultHandler):
         def text(m: _ComputeGraphManager) -> str:
             b = m.breakdown
             d = b.data
-            line = '<line />\n'
 
             def joining(ls: list[Output.Breakdown.Data.Attribute], char: str) -> str:
                 return char.join([
@@ -22,11 +21,11 @@ class Breakdown(_ResultHandler):
                     return ''
                 return f' x (1 + {content})\n'
 
-            t = line
+            t = self.SEP
             t += 'Breakdown:\n'
-            t += line
+            t += self.SEP
             t += f'{b.weapon_name}:\n'
-            t += line
+            t += self.SEP
             t += f' BaseDamage {d.BaseDamage:,.0f}\n'
             t += presenting(d.WD)
             t += presenting(d.TWD)
@@ -37,12 +36,12 @@ class Breakdown(_ResultHandler):
             t += f'      + HS {d.HS:.1%} x HSC {d.HSC:.1%})\n'
             t += presenting(d._DTA_DTH)
             t += presenting(d.DTTOOC)
-            t += line
+            t += self.SEP
             t += f' = DMG {d.DMG:,.0f}\n'
-            t += line
+            t += self.SEP
 
             return t.replace(
-                '<line />',
+                self.SEP_TAG,
                 '-'*max(len(s) for s in t.splitlines())
             )
 

@@ -8,23 +8,22 @@ class Delta(_ResultHandler):
     def __call__(self) -> None:
         def text(m: _ComputeGraphManager) -> str:
             g = m.gradients
-            line = '<line />\n'
 
-            t = line
+            t = self.SEP
             t += f'{g.name} Delta:\n'
             for items in g.items_ls:
                 for item in items.items:
-                    t += line
+                    t += self.SEP
                     t += f'{" "*2}{item.name}:\n'
                     for attr in item.attrs:
                         if attr.grad is not None:
                             name = f'{attr.name} {attr.value:.1%}'
                             delta = attr.value * attr.grad
                             t += f'{" "*4}{name:20}: {delta:{g.grad_format}}\n'
-            t += line
+            t += self.SEP
 
             return t.replace(
-                '<line />',
+                self.SEP_TAG,
                 '-'*max(len(s) for s in t.splitlines())
             )
 

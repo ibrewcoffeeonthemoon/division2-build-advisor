@@ -10,19 +10,18 @@ class Stats(_ResultHandler):
 
         def text(m: _ComputeGraphManager) -> str:
             s = m.stats
-            line = '<line />\n'
 
-            t = line
+            t = self.SEP
             t += 'Stats:\n'
-            t += line
+            t += self.SEP
             t += f'{s.weapon_name}:\n'
-            t += line
+            t += self.SEP
             for k, v in asdict(s.data).items():
                 t += f'{k}: {v:.0%}\n'
-            t += line
+            t += self.SEP
 
             return t.replace(
-                '<line />',
+                self.SEP_TAG,
                 '-'*max(len(s) for s in t.splitlines())
             )
 
