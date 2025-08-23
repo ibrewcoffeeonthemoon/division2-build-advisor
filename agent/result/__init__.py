@@ -1,16 +1,18 @@
 from __future__ import annotations
+
 from functools import cached_property
 from typing import TYPE_CHECKING, Type, TypeVar
 
-from agent.build.result.gradients.delta import Delta
-from agent.build.result.stats import Stats
-from agent.build.result.formula import Formula
-from agent.build.result.breakdown import Breakdown
-from agent.build.result.gradients.gradients import Gradients
-if TYPE_CHECKING:
-    from agent.build import Build
-from agent.build.damage import _ComputeGraphManager
+from agent.result.breakdown import Breakdown
+from agent.result.formula import Formula
+from agent.result.gradients.delta import Delta
+from agent.result.gradients.gradients import Gradients
+from agent.result.stats import Stats
 
+if TYPE_CHECKING:
+    from agent import Build
+
+from agent.damage import _ComputeGraphManager
 
 T = TypeVar('T', bound=_ComputeGraphManager)
 

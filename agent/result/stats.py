@@ -1,6 +1,8 @@
 from __future__ import annotations
+
 from dataclasses import asdict
-from agent.build.result._handler import _ResultHandler
+
+from agent.result._handler import _ResultHandler
 
 
 class Stats(_ResultHandler):

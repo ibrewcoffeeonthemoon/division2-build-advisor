@@ -1,5 +1,6 @@
 from __future__ import annotations
-from agent.build.result._handler import _ResultHandler
+
+from agent.result._handler import _ResultHandler
 
 
 class Formula(_ResultHandler):
