@@ -1,15 +1,15 @@
 from copy import deepcopy
 from functools import cache, cached_property
 from typing import Self, Type, TypeVar
-from agent.build.result import Result
 
-from agent.build.damage import DMG, DPS, DMGx, DPSx, _ComputeGraphManager
-from agent.build.result._handler import _ResultHandler
+from agent.damage import DMG, DPS, DMGx, DPSx, _ComputeGraphManager
 from agent.item.attribute import *
 from agent.item.gear import Backpack, Chest, Gloves, Holster, Kneepads, Mask
 from agent.item.specialization import Specialization
 from agent.item.watch import KeenersWatch
 from agent.item.weapon import Weapon
+from agent.result import Result
+from agent.result._handler import _ResultHandler
 from agent.utils import merge_text_side_by_side
 
 T = TypeVar('T', bound=_ComputeGraphManager)
