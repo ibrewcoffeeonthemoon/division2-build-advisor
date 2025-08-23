@@ -3,13 +3,13 @@ from typing import override
 
 from torch import Tensor, tensor
 
+import agent.damage.output as Output
 from agent.item.attribute import *
 from agent.item.attribute import _DTA_DTH
 from agent.item.gear import Gears
 from agent.item.specialization import Specialization
 from agent.item.watch import KeenersWatch
 from agent.item.weapon import Weapon
-import agent.build.damage.output as Output
 
 
 class _ComputeGraphManager(ABC):
