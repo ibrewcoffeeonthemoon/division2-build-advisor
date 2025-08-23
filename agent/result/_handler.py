@@ -1,12 +1,14 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING, Type, TypeVar, cast
 
 from agent.utils import merge_text_side_by_side
-if TYPE_CHECKING:
-    from agent.build import Build
-from agent.build.damage import _ComputeGraphManager
 
+if TYPE_CHECKING:
+    from agent import Build
+
+from agent.damage import _ComputeGraphManager
 
 T = TypeVar('T', bound=_ComputeGraphManager)
 

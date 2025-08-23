@@ -1,6 +1,7 @@
 from __future__ import annotations
-from agent.build.damage import Output
-from agent.build.result._handler import _ResultHandler
+
+from agent.damage import Output
+from agent.result._handler import _ResultHandler
 
 
 class Breakdown(_ResultHandler):
