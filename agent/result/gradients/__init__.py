@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
-from agent.build.result._handler import _ResultHandler
-import agent.build.damage.output as Output
+
+import agent.damage.output as Output
+from agent.result._handler import _ResultHandler
 
 
 class _GradientsHandler(_ResultHandler, ABC):

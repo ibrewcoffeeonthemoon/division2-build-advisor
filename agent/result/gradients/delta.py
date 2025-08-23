@@ -1,6 +1,7 @@
 from __future__ import annotations
-from agent.build.result.gradients import _GradientsHandler
-import agent.build.damage.output as Output
+
+import agent.damage.output as Output
+from agent.result.gradients import _GradientsHandler
 
 
 class Delta(_GradientsHandler):
