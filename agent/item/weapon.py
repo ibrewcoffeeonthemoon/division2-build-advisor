@@ -15,6 +15,10 @@ class Weapon(Item):
         self.base_damage = base_damage
         self.rpm = rpm
 
+    @property
+    def type(self) -> str:
+        return 'Weapon'
+
 
 class Lexington(Weapon):
     def __init__(

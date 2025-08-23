@@ -1,7 +1,10 @@
+from abc import ABC, abstractmethod, abstractproperty
+
 from agent.item.attribute import _Attribute
 
 
-class Item:
+class Item(ABC):
+
     def __init__(
         self,
         *attributes: _Attribute,
@@ -9,3 +12,7 @@ class Item:
     ) -> None:
         self.attributes = attributes
         self.name = name if name is not None else self.__class__.__name__
+
+    @property
+    @abstractmethod
+    def type(self) -> str: ...

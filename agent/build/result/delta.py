@@ -14,7 +14,7 @@ class Delta(_ResultHandler):
         for items in g.items_ls:
             for item in items.items:
                 t += self.SEP
-                t += f'{item.name}:\n'
+                t += f'{item.type}: {item.name}\n'
                 for attr in item.attrs:
                     if attr.grad is not None:
                         name = f'{attr.name} {attr.value:.1%}'

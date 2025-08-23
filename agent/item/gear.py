@@ -6,27 +6,39 @@ class Gear(Item):
 
 
 class Mask(Gear):
-    pass
+    @property
+    def type(self) -> str:
+        return 'Mask'
 
 
 class Backpack(Gear):
-    pass
+    @property
+    def type(self) -> str:
+        return 'Backpack'
 
 
 class Chest(Gear):
-    pass
+    @property
+    def type(self) -> str:
+        return 'Chest'
 
 
 class Gloves(Gear):
-    pass
+    @property
+    def type(self) -> str:
+        return 'Gloves'
 
 
 class Holster(Gear):
-    pass
+    @property
+    def type(self) -> str:
+        return 'Holster'
 
 
 class Kneepads(Gear):
-    pass
+    @property
+    def type(self) -> str:
+        return 'Kneepads'
 
 
 Gears = tuple[Mask, Backpack, Chest, Gloves, Holster, Kneepads]

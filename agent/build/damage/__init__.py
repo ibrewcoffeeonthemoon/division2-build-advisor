@@ -169,6 +169,7 @@ class _ComputeGraphManager(ABC):
                     items=[
                         Output.Gradients.Items.Item(
                             name=item.name,
+                            type=item.type,
                             attrs=[
                                 Output.Gradients.Items.Item.Attribute(
                                     name=attr.name,

@@ -17,3 +17,7 @@ class KeenersWatch(Item):
             HS(hs),
             name='KeenersWatch',
         )
+
+    @property
+    def type(self) -> str:
+        return 'Watch'

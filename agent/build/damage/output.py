@@ -70,6 +70,7 @@ class Gradients:
         @dataclass(kw_only=True)
         class Item:
             name: str
+            type: str
 
             @dataclass(kw_only=True)
             class Attribute:
