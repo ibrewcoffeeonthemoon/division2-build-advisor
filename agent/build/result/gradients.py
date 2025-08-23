@@ -14,11 +14,11 @@ class Gradients(_ResultHandler):
         for items in g.items_ls:
             for item in items.items:
                 t += self.SEP
-                t += f'{" "*2}{item.name}:\n'
+                t += f'{item.name}:\n'
                 for attr in item.attrs:
                     if attr.grad is not None:
                         name = f'{attr.name} {attr.value:.1%}'
-                        t += f'{" "*4}{name:20}: {attr.grad:{g.grad_format}}\n'
+                        t += f'  {name:20}: {attr.grad:{g.grad_format}}\n'
         t += self.SEP
 
         return t.replace(

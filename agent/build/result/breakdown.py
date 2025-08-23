@@ -26,7 +26,7 @@ class Breakdown(_ResultHandler):
         t += f'Build: {self._build.name}\n'
         t += f'Weapon: {b.weapon_name}\n'
         t += self.SEP
-        t += f' BaseDamage {d.BaseDamage:,.0f}\n'
+        t += f'BaseDamage {d.BaseDamage:,.0f}\n'
         t += presenting(d.WD)
         t += presenting(d.TWD)
         t += presenting(d.AMP1)
