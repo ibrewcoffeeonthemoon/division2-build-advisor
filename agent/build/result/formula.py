@@ -1,5 +1,4 @@
 from __future__ import annotations
-from agent.utils import merge_text_side_by_side
 from agent.build.damage import _ComputeGraphManager
 from agent.build.result._handler import _ResultHandler
 
@@ -33,9 +32,3 @@ class Formula(_ResultHandler):
             self.SEP_TAG,
             '-'*max(len(s) for s in t.splitlines())
         )
-
-    def __call__(self) -> None:
-        print(merge_text_side_by_side(
-            self.text(self._managers[0]),
-            self.text(self._managers[1]),
-        ))

@@ -1,6 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING, Type, TypeVar, cast
+
+from agent.utils import merge_text_side_by_side
 if TYPE_CHECKING:
     from agent.build import Build
 from agent.build.damage import _ComputeGraphManager
@@ -27,3 +29,9 @@ class _ResultHandler(ABC):
     @abstractmethod
     def text(self, m: _ComputeGraphManager) -> str:
         ...
+
+    def __call__(self) -> None:
+        print(merge_text_side_by_side(
+            self.text(self._managers[0]),
+            self.text(self._managers[1]),
+        ))
