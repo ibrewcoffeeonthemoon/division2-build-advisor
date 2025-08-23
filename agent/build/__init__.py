@@ -108,6 +108,5 @@ class Build:
         weapon_id: int = 0,
     ) -> None:
         print(merge_text_side_by_side(
-            *[handler.text(weapon_id)
-              for handler in handlers]
+            *[h.text(weapon_id) for h in handlers]
         ))

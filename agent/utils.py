@@ -1,8 +1,14 @@
 from itertools import zip_longest
 
 
-def merge_text_side_by_side(*texts: str) -> str:
-    def merge_two_texts(txt1: str, txt2: str,) -> str:
+def merge_text_side_by_side(*texts: str, sep: str = ' ') -> str:
+    if len(texts) == 0:
+        return ''
+
+    if len(texts) == 1:
+        return texts[0]
+
+    def merge_two_texts(txt1: str, txt2: str) -> str:
         lines1 = txt1.splitlines()
         lines2 = txt2.splitlines()
 
@@ -13,15 +19,9 @@ def merge_text_side_by_side(*texts: str) -> str:
         t = ''
         for row in data:
             left, right = row
-            t += f'{left:<{max_len1}}\t{right}\n'
+            t += f'{left:<{max_len1}}{sep}{right}\n'
 
         return t.strip()
-
-    if len(texts) == 0:
-        return ''
-
-    if len(texts) == 1:
-        return texts[0]
 
     first_two = merge_two_texts(texts[0], texts[1])
 
