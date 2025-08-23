@@ -29,9 +29,6 @@ class _GradientsHandler(_ResultHandler, ABC):
                 t += f'{item.type}: {item.name}\n'
                 for attr in item.attrs:
                     if attr.grad is not None:
-                        # name = f'{attr.name} {attr.value:.1%}'
-                        # delta = attr.value * attr.grad
-                        # t += f'  {name:20}: {delta:{g.grad_format}}\n'
                         t += self._item_row_text(attr, g.grad_format)
         t += self.SEP
 
