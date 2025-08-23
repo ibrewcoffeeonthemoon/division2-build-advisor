@@ -1,14 +1,14 @@
 from __future__ import annotations
-from agent.build.result._handler import _ResultHandler
+from agent.build.result.gradients import _GradientsHandler
 
 
-class Gradients(_ResultHandler):
+class Delta(_GradientsHandler):
     def text(self, weapon_id: int = 0) -> str:
         m = self._managers[weapon_id]
         g = m.gradients
 
         t = self.SEP
-        t += f'{g.name} Gradients:\n'
+        t += f'{g.name} Delta:\n'
         t += self.SEP
         t += f'Build: {self._build.name}\n'
         for items in g.items_ls:
@@ -18,7 +18,8 @@ class Gradients(_ResultHandler):
                 for attr in item.attrs:
                     if attr.grad is not None:
                         name = f'{attr.name} {attr.value:.1%}'
-                        t += f'  {name:20}: {attr.grad:{g.grad_format}}\n'
+                        delta = attr.value * attr.grad
+                        t += f'  {name:20}: {delta:{g.grad_format}}\n'
         t += self.SEP
 
         return t.replace(
