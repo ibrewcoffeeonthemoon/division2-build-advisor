@@ -1,10 +1,11 @@
 from __future__ import annotations
-from agent.build.damage import _ComputeGraphManager, Output
+from agent.build.damage import Output
 from agent.build.result._handler import _ResultHandler
 
 
 class Breakdown(_ResultHandler):
-    def text(self, m: _ComputeGraphManager) -> str:
+    def text(self, weapon_id: int = 0) -> str:
+        m = self._managers[weapon_id]
         b = m.breakdown
         d = b.data
 

@@ -1,10 +1,10 @@
 from __future__ import annotations
-from agent.build.damage import _ComputeGraphManager
 from agent.build.result._handler import _ResultHandler
 
 
 class Gradients(_ResultHandler):
-    def text(self, m: _ComputeGraphManager) -> str:
+    def text(self, weapon_id: int = 0) -> str:
+        m = self._managers[weapon_id]
         g = m.gradients
 
         t = self.SEP

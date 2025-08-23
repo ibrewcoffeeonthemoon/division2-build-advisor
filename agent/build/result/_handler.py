@@ -27,15 +27,15 @@ class _ResultHandler(ABC):
         )
 
     @abstractmethod
-    def text(self, m: _ComputeGraphManager) -> str:
+    def text(self, weapon_id: int) -> str:
         ...
 
     def __call__(self, weapon_id: int | None = None) -> None:
         if weapon_id is not None:
-            print(self.text(self._managers[weapon_id]))
+            print(self.text(weapon_id))
             return
         #
         print(merge_text_side_by_side(
-            self.text(self._managers[0]),
-            self.text(self._managers[1]),
+            self.text(0),
+            self.text(1),
         ))

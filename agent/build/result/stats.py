@@ -1,11 +1,11 @@
 from __future__ import annotations
 from dataclasses import asdict
-from agent.build.damage import _ComputeGraphManager
 from agent.build.result._handler import _ResultHandler
 
 
 class Stats(_ResultHandler):
-    def text(self, m: _ComputeGraphManager) -> str:
+    def text(self, weapon_id: int = 0) -> str:
+        m = self._managers[weapon_id]
         s = m.stats
 
         t = self.SEP
