@@ -1,8 +1,14 @@
+from datetime import datetime
+from pathlib import Path
+
 import pytest
 
 from agent import *
 from agent.result import Result
 from agent.result._handler import _ResultHandler
+
+LOG_FILE = Path("logs/test_main_compare.log")
+LOG_FILE.parent.mkdir(exist_ok=True)
 
 
 @pytest.mark.parametrize(
@@ -59,4 +65,16 @@ def test_main_compare(
     #     build1.dps_x.gradients,
     # )
     Build.compare(handlers[0], handlers[1], weapon_id=weapon_id)
-    assert capsys.readouterr()
+    captured = capsys.readouterr()
+    assert captured
+
+    # create a readable timestamp
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
+
+    # append with header
+    with open(LOG_FILE, "a", encoding="utf-8") as f:
+        f.write("\n" + "=" * 80 + "\n")
+        f.write(f"[{timestamp}] Test: build={build.name}, result={result}, handler={result_handler}\n")
+        f.write("=" * 80 + "\n")
+        f.write(captured.out)
+        f.write("\n")
