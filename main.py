@@ -1,4 +1,4 @@
-from agent import Build
+from agent.build import Build
 from agent.item.attribute import *
 from agent.item.gear import *
 from agent.item.specialization import *

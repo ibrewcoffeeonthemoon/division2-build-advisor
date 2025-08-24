@@ -10,7 +10,7 @@ from agent.result.gradients.gradients import Gradients
 from agent.result.stats import Stats
 
 if TYPE_CHECKING:
-    from agent import Build
+    from agent.build import Build
 
 from agent.damage import _ComputeGraphManager
 
