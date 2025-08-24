@@ -21,6 +21,8 @@ class Weapon(Item):
 
 
 class Lexington(Weapon):
+    _name = 'Lexington'
+
     def __init__(
         self,
         *extras: _Attribute,
@@ -41,11 +43,12 @@ class Lexington(Weapon):
             *extras,
             base_damage=48_700,
             rpm=850,
-            name='Lexington',
         )
 
 
 class StElmoEngine(Weapon):
+    _name = "St. Elmo's Engine"
+
     def __init__(
         self,
         expertise: int = 0,
@@ -70,5 +73,4 @@ class StElmoEngine(Weapon):
             self.mod2,
             base_damage=46_918,
             rpm=850,
-            name="St. Elmo's Engine",
         )
