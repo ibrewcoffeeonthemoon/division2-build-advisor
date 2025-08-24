@@ -4,6 +4,7 @@ from agent.item.attribute import _Attribute
 
 
 class Item(ABC):
+    _name: str | None = None
 
     def __init__(
         self,
@@ -11,7 +12,7 @@ class Item(ABC):
         name: str | None = None,
     ) -> None:
         self.attributes = attributes
-        self.name = name if name is not None else self.__class__.__name__
+        self.name = name or self._name or self.__class__.__name__
 
     @property
     @abstractmethod
