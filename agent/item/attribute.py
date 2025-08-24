@@ -4,7 +4,7 @@ from torch import Tensor, tensor
 
 
 class _Attribute(ABC):
-    _default_name: str | None = None
+    _name: str | None = None
 
     def __init__(
         self,
@@ -12,13 +12,9 @@ class _Attribute(ABC):
         *,
         name: str | None = None,
     ) -> None:
-        self._name = name or self._default_name or self.__class__.__name__
+        self.name = name or self._name or self.__class__.__name__
         self._value = value
         self._value_tensor: Tensor | None = None
-
-    @property
-    def name(self) -> str:
-        return self._name
 
     @property
     def value(self) -> Tensor:
@@ -138,13 +134,13 @@ class ROF(_StaticAttribute):
 
 class Mod:
     class CHC(CHC):
-        _default_name = 'Mod.CHC'
+        _name = 'Mod.CHC'
 
     class CHD(CHD):
-        _default_name = 'Mod.CHD'
+        _name = 'Mod.CHD'
 
     class HS(HS):
-        _default_name = 'Mod.HS'
+        _name = 'Mod.HS'
 
     class ROF(ROF):
-        _default_name = 'Mod.ROF'
+        _name = 'Mod.ROF'
