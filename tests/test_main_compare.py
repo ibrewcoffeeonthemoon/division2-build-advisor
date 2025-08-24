@@ -1,8 +1,14 @@
+from pathlib import Path
+
 import pytest
 
 from agent import *
 from agent.result import Result
 from agent.result._handler import _ResultHandler
+from tests.utils import log_test_output
+
+LOG_FILE = Path("logs/test_main_compare.log")
+LOG_FILE.parent.mkdir(exist_ok=True)
 
 
 @pytest.mark.parametrize(
@@ -59,4 +65,14 @@ def test_main_compare(
     #     build1.dps_x.gradients,
     # )
     Build.compare(handlers[0], handlers[1], weapon_id=weapon_id)
-    assert capsys.readouterr()
+    test_output = capsys.readouterr()
+    assert test_output
+
+    # logs
+    log_test_output(
+        LOG_FILE,
+        test_output,
+        build=build.name,
+        result=result,
+        handler=result_handler
+    )

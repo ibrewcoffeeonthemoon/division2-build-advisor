@@ -1,8 +1,14 @@
+from pathlib import Path
+
 import pytest
 
 from agent import *
 from agent.result import Result
 from agent.result._handler import _ResultHandler
+from tests.utils import log_test_output
+
+LOG_FILE = Path("logs/test_main_.log")
+LOG_FILE.parent.mkdir(exist_ok=True)
 
 
 @pytest.mark.parametrize(
@@ -47,4 +53,14 @@ def test_main(
     assert isinstance(_result_handler, _ResultHandler)
     # e.g. build.dps_x.gradients()
     _result_handler()
-    assert capsys.readouterr()
+    test_output = capsys.readouterr()
+    assert test_output
+
+    # logs
+    log_test_output(
+        LOG_FILE,
+        test_output,
+        build=build.name,
+        result=result,
+        handler=result_handler
+    )
