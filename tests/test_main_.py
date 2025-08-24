@@ -1,4 +1,3 @@
-from datetime import datetime
 from pathlib import Path
 
 import pytest
@@ -6,6 +5,7 @@ import pytest
 from agent import *
 from agent.result import Result
 from agent.result._handler import _ResultHandler
+from tests.utils import log_test_output
 
 LOG_FILE = Path("logs/test_main_.log")
 LOG_FILE.parent.mkdir(exist_ok=True)
@@ -53,16 +53,14 @@ def test_main(
     assert isinstance(_result_handler, _ResultHandler)
     # e.g. build.dps_x.gradients()
     _result_handler()
-    captured = capsys.readouterr()
-    assert captured
+    test_output = capsys.readouterr()
+    assert test_output
 
-    # create a readable timestamp
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
-
-    # append with header
-    with open(LOG_FILE, "a", encoding="utf-8") as f:
-        f.write("\n" + "=" * 80 + "\n")
-        f.write(f"[{timestamp}] Test: build={build.name}, result={result}, handler={result_handler}\n")
-        f.write("=" * 80 + "\n")
-        f.write(captured.out)
-        f.write("\n")
+    # logs
+    log_test_output(
+        LOG_FILE,
+        test_output,
+        build=build.name,
+        result=result,
+        handler=result_handler
+    )
