@@ -6,22 +6,22 @@ from agent.result._handler import _ResultHandler
 
 
 @pytest.mark.parametrize(
-    "result",
+    'result',
     [
-        "dmg",
-        "dmg_x",
-        "dps",
-        "dps_x"
+        'dmg',
+        'dmg_x',
+        'dps',
+        'dps_x'
     ]
 )
 @pytest.mark.parametrize(
-    "result_handler",
+    'result_handler',
     [
-        "stats",
-        "formula",
-        "breakdown",
-        "gradients",
-        "delta"
+        'stats',
+        'formula',
+        'breakdown',
+        'gradients',
+        'delta'
     ]
 )
 def test_main(
@@ -88,6 +88,8 @@ def test_main(
     )
 
     _result: Result = getattr(build0, result)
+    assert isinstance(_result, Result)
     _result_handler: _ResultHandler = getattr(_result, result_handler)
+    assert isinstance(_result_handler, _ResultHandler)
     _result_handler()
     assert capsys.readouterr()

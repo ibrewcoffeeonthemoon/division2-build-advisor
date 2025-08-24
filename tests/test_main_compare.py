@@ -1,25 +1,27 @@
 import pytest
 
 from agent import *
+from agent.result import Result
+from agent.result._handler import _ResultHandler
 
 
 @pytest.mark.parametrize(
-    "result",
+    'result',
     [
-        "dmg",
-        "dmg_x",
-        "dps",
-        "dps_x"
+        'dmg',
+        'dmg_x',
+        'dps',
+        'dps_x'
     ]
 )
 @pytest.mark.parametrize(
-    "result_handler",
+    'result_handler',
     [
-        "stats",
-        "formula",
-        "breakdown",
-        "gradients",
-        "delta"
+        'stats',
+        'formula',
+        'breakdown',
+        'gradients',
+        'delta'
     ]
 )
 @pytest.mark.parametrize('weapon_id', [0, 1])
@@ -88,7 +90,14 @@ def test_main_compare(
     )
     build1 = build0.copy()
 
-    left = getattr(getattr(build0, result), result_handler)
-    right = getattr(getattr(build1, result), result_handler)
-    Build.compare(left, right, weapon_id=weapon_id)
+    handlers: list[_ResultHandler] = []
+    for build in (build0, build1):
+        _result = getattr(build, result)
+        _result: Result = getattr(build0, result)
+        assert isinstance(_result, Result)
+        _result_handler: _ResultHandler = getattr(_result, result_handler)
+        assert isinstance(_result_handler, _ResultHandler)
+        handlers.append(_result_handler)
+
+    Build.compare(handlers[0], handlers[1], weapon_id=weapon_id)
     assert capsys.readouterr()
