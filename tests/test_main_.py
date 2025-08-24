@@ -87,9 +87,12 @@ def test_main(
         )
     )
 
+    # e.g. build.dps_x
     _result: Result = getattr(build0, result)
     assert isinstance(_result, Result)
+    # e.g. build.dps_x.gradients
     _result_handler: _ResultHandler = getattr(_result, result_handler)
     assert isinstance(_result_handler, _ResultHandler)
+    # e.g. build.dps_x.gradients()
     _result_handler()
     assert capsys.readouterr()
