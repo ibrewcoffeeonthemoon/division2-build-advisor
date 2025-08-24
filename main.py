@@ -1,13 +1,9 @@
-import torch
-
 from agent import Build
 from agent.item.attribute import *
 from agent.item.gear import *
 from agent.item.specialization import *
 from agent.item.watch import KeenersWatch
 from agent.item.weapon import *
-
-torch.set_default_device('cpu')
 
 
 def main() -> None:
@@ -84,7 +80,7 @@ def main() -> None:
     )
 
     build1 = (
-        Build('3 Red Lexington')
+        Build('0 Red Lexington')
         .weapons(
             Lexington(
                 AMP2(0.25, name='Ranger'),
@@ -94,10 +90,10 @@ def main() -> None:
         )
         .gears(
             Mask(
-                RedCore(),
+                # RedCore(),
                 CHC(0.06),
                 CHD(0.12),
-                CHD(0.12, name='Mod.CHD'),
+                Mod.CHD(0.12),
                 CHD(0.25, uptime=0.33, name='Short.CHD'),
                 CHD(0.10, uptime=0.33, name='Mid.CHD'),
                 CHC(0.10, uptime=0.33, name='Mid.CHC'),
@@ -105,7 +101,7 @@ def main() -> None:
                 name='Coyote',
             ),
             Backpack(
-                RedCore(),
+                # RedCore(),
                 CHC(0.06),
                 CHD(0.12),
                 CHD(0.12, name='Mod.CHD'),
@@ -114,9 +110,9 @@ def main() -> None:
                 name='Striker',
             ),
             Chest(
-                RedCore(),
+                # RedCore(),
                 CHD(0.12),
-                CHD(0.12, name='Mod.CHD'),
+                Mod.CHD(0.12),
                 name='Lengmo',
             ),
             Gloves(
@@ -141,19 +137,22 @@ def main() -> None:
         )
     )
 
+    build2 = build0.copy()
+
     # result
     Build.compare(
         build0.dps_x.gradients,
         build1.dps_x.delta,
-        build0.dmg.gradients,
-        build1.dmg.delta,
+        build2.dmg.gradients,
+        build2.dmg.delta,
+        weapon_id=1,
     )
-    for result in (build0.dmg, build0.dmg_x, build0.dps, build0.dps_x):
-        result.stats()
-        result.formula()
-        result.breakdown()
-        result.gradients()
-        result.delta()
+    # for result in (build0.dmg, build0.dmg_x, build0.dps, build0.dps_x):
+    #     result.stats()
+    #     result.formula()
+    #     result.breakdown()
+    #     result.gradients()
+    #     result.delta()
 
 
 if __name__ == "__main__":
