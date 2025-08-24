@@ -101,6 +101,11 @@ class Build:
         )
         return self
 
+    # utils
+
+    def copy(self) -> Self:
+        return deepcopy(self)
+
     @classmethod
     def compare(
         cls,
