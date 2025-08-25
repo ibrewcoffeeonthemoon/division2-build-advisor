@@ -34,42 +34,6 @@ class Build:
         # state
         self._finalized = False
 
-    @cache
-    def _graph_manager(self, cls: Type[T], id: int) -> T:
-        """
-        This cached function ensure one build will create independent compute graph
-        for each unique metric calculation, and will only create it once
-        """
-        # once this flag has been set, should not modify any build items anymore
-        self._finalized = True
-
-        return cls(
-            self._weapons[id],
-            self._gears,
-            self._extras,
-            chc_basic=self._chc_basic,
-            chd_basic=self._chd_basic,
-            hs_basic=self._hs_basic,
-            hsc_basic=self._hsc_basic,
-        )
-
-    # result
-    @cached_property
-    def dmg(self) -> Result:
-        return Result(self, DMG)
-
-    @cached_property
-    def dmg_x(self) -> Result:
-        return Result(self, DMGx)
-
-    @cached_property
-    def dps(self) -> Result:
-        return Result(self, DPS)
-
-    @cached_property
-    def dps_x(self) -> Result:
-        return Result(self, DPSx)
-
     # chain methods
 
     def weapons(
@@ -106,6 +70,42 @@ class Build:
             keeners_watch,
         )
         return self
+
+    @cache
+    def _graph_manager(self, cls: Type[T], id: int) -> T:
+        """
+        This cached function ensure one build will create independent compute graph
+        for each unique metric calculation, and will only create it once
+        """
+        # once this flag has been set, should not modify any build items anymore
+        self._finalized = True
+
+        return cls(
+            self._weapons[id],
+            self._gears,
+            self._extras,
+            chc_basic=self._chc_basic,
+            chd_basic=self._chd_basic,
+            hs_basic=self._hs_basic,
+            hsc_basic=self._hsc_basic,
+        )
+
+    # result
+    @cached_property
+    def dmg(self) -> Result:
+        return Result(self, DMG)
+
+    @cached_property
+    def dmg_x(self) -> Result:
+        return Result(self, DMGx)
+
+    @cached_property
+    def dps(self) -> Result:
+        return Result(self, DPS)
+
+    @cached_property
+    def dps_x(self) -> Result:
+        return Result(self, DPSx)
 
     # utils
 
