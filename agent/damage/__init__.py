@@ -1,4 +1,5 @@
 
+from functools import cached_property
 from typing import override
 
 from torch import Tensor, tensor
@@ -81,7 +82,7 @@ class _ComputeGraphManager(ABC):
         self._compiled = False
 
     # helpers
-    @property
+    @cached_property
     def stats(self) -> Output.Stats:
         if not self._compiled:
             self._compile()
@@ -96,7 +97,7 @@ class _ComputeGraphManager(ABC):
             )
         )
 
-    @property
+    @cached_property
     def formula(self) -> Output.Formula:
         if not self._compiled:
             self._compile()
@@ -118,7 +119,7 @@ class _ComputeGraphManager(ABC):
             )
         )
 
-    @property
+    @cached_property
     def breakdown(self) -> Output.Breakdown:
         if not self._compiled:
             self._compile()
@@ -156,7 +157,7 @@ class _ComputeGraphManager(ABC):
             )
         )
 
-    @property
+    @cached_property
     def gradients(self) -> Output.Gradients:
         if not self._compiled:
             self._compile()
@@ -190,6 +191,7 @@ class DMGx(_ComputeGraphManager):
     @override
     def _compile(self) -> None:
         self._dmg_x.backward(retain_graph=True)
+        self._compiled = True
 
     @property
     def dmg_x(self) -> Tensor:
@@ -202,6 +204,7 @@ class DMG(_ComputeGraphManager):
     @override
     def _compile(self) -> None:
         self._dmg.backward(retain_graph=True)
+        self._compiled = True
 
     @property
     def dmg(self) -> Tensor:
@@ -212,6 +215,7 @@ class DPSx(_ComputeGraphManager):
     @override
     def _compile(self) -> None:
         self._dps_x.backward(retain_graph=True)
+        self._compiled = True
 
     @property
     def dps(self) -> Tensor:
@@ -224,6 +228,7 @@ class DPS(_ComputeGraphManager):
     @override
     def _compile(self) -> None:
         self._dps.backward(retain_graph=True)
+        self._compiled = True
 
     @property
     def dps(self) -> Tensor:
