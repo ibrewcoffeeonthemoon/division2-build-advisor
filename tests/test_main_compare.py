@@ -51,7 +51,6 @@ def test_main_compare(
     handlers: list[_ResultHandler] = []
     for build in (build, build1):
         # e.g. build.dps_x
-        _result = getattr(build, result)
         _result: Result = getattr(build, result)
         assert isinstance(_result, Result)
         # e.g. build.dps_x.gradients
