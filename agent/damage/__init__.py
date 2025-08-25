@@ -38,11 +38,11 @@ class _ComputeGraphManager(ABC):
 
         # tensors
         @dataclass
-        class _Node:
+        class Node:
             value: Tensor
             expected_value: Tensor
 
-        self._nodes: dict[_Attribute, _Node] = {}
+        self._nodes: dict[_Attribute, Node] = {}
 
         # compute graph
 
@@ -51,13 +51,13 @@ class _ComputeGraphManager(ABC):
 
             for items in ((weapon, ), gears, extras):
                 for item in items:
-                    for a in item.attributes:
-                        if isinstance(a, T):
-                            value = tensor(a.value, requires_grad=True)
-                            expected_value = value * tensor(a.uptime, requires_grad=True) \
-                                if isinstance(a, _DynamicAttribute) else value
+                    for attr in item.attributes:
+                        if isinstance(attr, T):
+                            value = tensor(attr.value, requires_grad=True)
+                            expected_value = value * tensor(attr.uptime, requires_grad=True) \
+                                if isinstance(attr, _DynamicAttribute) else value
                             val += expected_value
-                            self._nodes[a] = _Node(value, expected_value)
+                            self._nodes[attr] = Node(value, expected_value)
 
             return val
 
@@ -142,11 +142,11 @@ class _ComputeGraphManager(ABC):
 
             for items in ((self._weapon, ), self._gears, self._extras):
                 for item in items:
-                    for a in item.attributes:
-                        if isinstance(a, T):
+                    for attr in item.attributes:
+                        if isinstance(attr, T):
                             ls.append(Output.Breakdown.Data.Attribute(
-                                name=a.name,
-                                expected_value=self._nodes[a].expected_value.item(),
+                                name=attr.name,
+                                expected_value=self._nodes[attr].expected_value.item(),
                             ))
 
             return ls
