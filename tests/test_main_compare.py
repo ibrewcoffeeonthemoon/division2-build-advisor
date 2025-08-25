@@ -53,9 +53,11 @@ def test_main_compare(
         # e.g. build.dps_x
         _result: Result = getattr(build, result)
         assert isinstance(_result, Result)
+        assert build._finalized == False
         # e.g. build.dps_x.gradients
         _result_handler: _ResultHandler = getattr(_result, result_handler)
         assert isinstance(_result_handler, _ResultHandler)
+        assert build._finalized == True
         handlers.append(_result_handler)
 
     # e.g.

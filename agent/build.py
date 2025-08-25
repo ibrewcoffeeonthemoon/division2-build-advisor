@@ -31,12 +31,18 @@ class Build:
         self._hs_basic = hs_basic
         self._hsc_basic = hsc_basic
 
+        # state
+        self._finalized = False
+
     @cache
     def _graph_manager(self, cls: Type[T], id: int) -> T:
         """
         This cached function ensure one build will create independent compute graph
         for each unique metric calculation, and will only create it once
         """
+        # once this flag has been set, should not modify any build items anymore
+        self._finalized = True
+
         return cls(
             deepcopy(self._weapons[id]),
             deepcopy(self._gears),
