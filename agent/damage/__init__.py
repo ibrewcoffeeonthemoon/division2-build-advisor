@@ -54,11 +54,8 @@ class _ComputeGraphManager(ABC):
                     for a in item.attributes:
                         if isinstance(a, T):
                             value = tensor(a.value, requires_grad=True)
-                            if isinstance(a, _DynamicAttribute):
-                                uptime = tensor(a.uptime, requires_grad=True)
-                                expected_value = value * uptime
-                            else:
-                                expected_value = value
+                            expected_value = value * tensor(a.uptime, requires_grad=True) \
+                                if isinstance(a, _DynamicAttribute) else value
                             val += expected_value
                             self._nodes[a] = _Node(value, expected_value)
 
