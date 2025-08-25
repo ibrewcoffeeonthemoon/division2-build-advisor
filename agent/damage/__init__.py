@@ -190,6 +190,7 @@ class DMGx(_ComputeGraphManager):
     @override
     def _compile(self) -> None:
         self._dmg_x.backward(retain_graph=True)
+        self._compiled = True
 
     @property
     def dmg_x(self) -> Tensor:
@@ -202,6 +203,7 @@ class DMG(_ComputeGraphManager):
     @override
     def _compile(self) -> None:
         self._dmg.backward(retain_graph=True)
+        self._compiled = True
 
     @property
     def dmg(self) -> Tensor:
@@ -212,6 +214,7 @@ class DPSx(_ComputeGraphManager):
     @override
     def _compile(self) -> None:
         self._dps_x.backward(retain_graph=True)
+        self._compiled = True
 
     @property
     def dps(self) -> Tensor:
@@ -224,6 +227,7 @@ class DPS(_ComputeGraphManager):
     @override
     def _compile(self) -> None:
         self._dps.backward(retain_graph=True)
+        self._compiled = True
 
     @property
     def dps(self) -> Tensor:
