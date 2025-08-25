@@ -25,7 +25,7 @@ class Build:
         hs_basic: float = 0.55,
         hsc_basic: float = 0.2,
     ) -> None:
-        self.name = name
+        self._name = name
         self._chc_basic = chc_basic
         self._chd_basic = chd_basic
         self._hs_basic = hs_basic
@@ -33,6 +33,16 @@ class Build:
 
         # state
         self._finalized = False
+
+    # properties
+
+    @property
+    def name(self) -> str:
+        return self._name
+
+    @name.setter
+    def name(self, name: str) -> None:
+        self._name = name
 
     # chain methods
 
