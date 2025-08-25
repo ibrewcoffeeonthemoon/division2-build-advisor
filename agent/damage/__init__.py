@@ -1,4 +1,5 @@
-
+from abc import abstractmethod
+from dataclasses import dataclass
 from functools import cached_property
 from typing import override
 
@@ -6,7 +7,7 @@ from torch import Tensor, tensor
 
 import agent.damage.output as Output
 from agent.item.attribute import *
-from agent.item.attribute import _DTA_DTH
+from agent.item.attribute import _DTA_DTH, _Attribute, _DynamicAttribute
 from agent.item.gear import Gears
 from agent.item.specialization import Specialization
 from agent.item.watch import KeenersWatch
@@ -35,6 +36,14 @@ class _ComputeGraphManager(ABC):
         self._gears = gears
         self._extras = extras
 
+        # tensors
+        @dataclass
+        class _Node:
+            value: Tensor
+            expected_value: Tensor
+
+        self._nodes: dict[_Attribute, _Node] = {}
+
         # compute graph
 
         def accumulate(T: type, init_val: float = 0.0) -> Tensor:
@@ -44,7 +53,14 @@ class _ComputeGraphManager(ABC):
                 for item in items:
                     for a in item.attributes:
                         if isinstance(a, T):
-                            val += a.expected_value
+                            value = tensor(a.value, requires_grad=True)
+                            if isinstance(a, _DynamicAttribute):
+                                uptime = tensor(a.uptime, requires_grad=True)
+                                expected_value = value * uptime
+                            else:
+                                expected_value = value
+                            val += expected_value
+                            self._nodes[a] = _Node(value, expected_value)
 
             return val
 
@@ -133,7 +149,7 @@ class _ComputeGraphManager(ABC):
                         if isinstance(a, T):
                             ls.append(Output.Breakdown.Data.Attribute(
                                 name=a.name,
-                                expected_value=a.expected_value.item(),
+                                expected_value=self._nodes[a].expected_value.item(),
                             ))
 
             return ls
@@ -174,11 +190,12 @@ class _ComputeGraphManager(ABC):
                             attrs=[
                                 Output.Gradients.Items.Item.Attribute(
                                     name=attr.name,
-                                    value=attr.value.item(),
-                                    grad=attr.value.grad.item(),
+                                    value=value.item(),
+                                    grad=value.grad.item(),
                                 )
                                 for attr in item.attributes
-                                if attr.value.grad is not None
+                                if (value := self._nodes[attr].value) is not None
+                                and value.grad is not None
                             ])
                         for item in items
                     ])
