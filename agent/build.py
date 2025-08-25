@@ -110,6 +110,9 @@ class Build:
     # utils
 
     def copy(self) -> Self:
+        assert not self._finalized, \
+            'This build has already finalized. Only copy non-finalized build, or calculation results may be wrong.'
+
         return deepcopy(self)
 
     @classmethod
