@@ -26,6 +26,8 @@ class Build:
         hsc_basic: float = 0.2,
     ) -> None:
         self._name = name
+        self._primary_weapon = Weapon(base_damage=48_500, rpm=850, name='Default')
+        self._secondary_weapon = Weapon(base_damage=48_500, rpm=850, name='Default')
         self._chc_basic = chc_basic
         self._chd_basic = chd_basic
         self._hs_basic = hs_basic
@@ -44,14 +46,35 @@ class Build:
     def name(self, name: str) -> None:
         self._name = name
 
+    @property
+    def primary_weapon(self) -> Weapon:
+        return self._primary_weapon
+
+    @primary_weapon.setter
+    def primary_weapon(self, weapon: Weapon) -> None:
+        self._primary_weapon = weapon
+
+    @property
+    def secondary_weapon(self) -> Weapon:
+        return self._secondary_weapon
+
+    @secondary_weapon.setter
+    def secondary_weapon(self, weapon: Weapon) -> None:
+        self._secondary_weapon = weapon
+
+    @property
+    def _weapons(self) -> tuple[Weapon, Weapon]:
+        return (self._primary_weapon, self._secondary_weapon)
+
     # chain methods
 
     def weapons(
         self,
-        weapon1: Weapon,
-        weapon2: Weapon,
+        primary_weapon: Weapon,
+        secondary_weapon: Weapon,
     ) -> Self:
-        self._weapons = (weapon1, weapon2, )
+        self._primary_weapon = primary_weapon
+        self._secondary_weapon = secondary_weapon
         return self
 
     def gears(
