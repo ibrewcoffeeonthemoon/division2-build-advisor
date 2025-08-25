@@ -44,9 +44,9 @@ class Build:
         self._finalized = True
 
         return cls(
-            deepcopy(self._weapons[id]),
-            deepcopy(self._gears),
-            deepcopy(self._extras),
+            self._weapons[id],
+            self._gears,
+            self._extras,
             chc_basic=self._chc_basic,
             chd_basic=self._chd_basic,
             hs_basic=self._hs_basic,
