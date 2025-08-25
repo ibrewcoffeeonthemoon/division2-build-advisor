@@ -1,4 +1,5 @@
-
+from abc import abstractmethod
+from dataclasses import dataclass
 from functools import cached_property
 from typing import override
 
@@ -6,7 +7,7 @@ from torch import Tensor, tensor
 
 import agent.damage.output as Output
 from agent.item.attribute import *
-from agent.item.attribute import _DTA_DTH
+from agent.item.attribute import _DTA_DTH, _Attribute, _DynamicAttribute
 from agent.item.gear import Gears
 from agent.item.specialization import Specialization
 from agent.item.watch import KeenersWatch
@@ -35,6 +36,14 @@ class _ComputeGraphManager(ABC):
         self._gears = gears
         self._extras = extras
 
+        # tensors
+        @dataclass
+        class Node:
+            value: Tensor
+            expected_value: Tensor
+
+        self._nodes: dict[_Attribute, Node] = {}
+
         # compute graph
 
         def accumulate(T: type, init_val: float = 0.0) -> Tensor:
@@ -42,9 +51,13 @@ class _ComputeGraphManager(ABC):
 
             for items in ((weapon, ), gears, extras):
                 for item in items:
-                    for a in item.attributes:
-                        if isinstance(a, T):
-                            val += a.expected_value
+                    for attr in item.attributes:
+                        if isinstance(attr, T):
+                            value = tensor(attr.value, requires_grad=True)
+                            expected_value = value * tensor(attr.uptime, requires_grad=True) \
+                                if isinstance(attr, _DynamicAttribute) else value
+                            val += expected_value
+                            self._nodes[attr] = Node(value, expected_value)
 
             return val
 
@@ -129,11 +142,11 @@ class _ComputeGraphManager(ABC):
 
             for items in ((self._weapon, ), self._gears, self._extras):
                 for item in items:
-                    for a in item.attributes:
-                        if isinstance(a, T):
+                    for attr in item.attributes:
+                        if isinstance(attr, T):
                             ls.append(Output.Breakdown.Data.Attribute(
-                                name=a.name,
-                                expected_value=a.expected_value.item(),
+                                name=attr.name,
+                                expected_value=self._nodes[attr].expected_value.item(),
                             ))
 
             return ls
@@ -174,11 +187,12 @@ class _ComputeGraphManager(ABC):
                             attrs=[
                                 Output.Gradients.Items.Item.Attribute(
                                     name=attr.name,
-                                    value=attr.value.item(),
-                                    grad=attr.value.grad.item(),
+                                    value=value.item(),
+                                    grad=value.grad.item(),
                                 )
                                 for attr in item.attributes
-                                if attr.value.grad is not None
+                                if (value := self._nodes[attr].value) is not None
+                                and value.grad is not None
                             ])
                         for item in items
                     ])
@@ -193,10 +207,6 @@ class DMGx(_ComputeGraphManager):
         self._dmg_x.backward(retain_graph=True)
         self._compiled = True
 
-    @property
-    def dmg_x(self) -> Tensor:
-        return self._dmg_x
-
 
 class DMG(_ComputeGraphManager):
     _grad_format = '10,.0f'
@@ -206,20 +216,12 @@ class DMG(_ComputeGraphManager):
         self._dmg.backward(retain_graph=True)
         self._compiled = True
 
-    @property
-    def dmg(self) -> Tensor:
-        return self._dmg
-
 
 class DPSx(_ComputeGraphManager):
     @override
     def _compile(self) -> None:
         self._dps_x.backward(retain_graph=True)
         self._compiled = True
-
-    @property
-    def dps(self) -> Tensor:
-        return self._dps_x
 
 
 class DPS(_ComputeGraphManager):
@@ -229,7 +231,3 @@ class DPS(_ComputeGraphManager):
     def _compile(self) -> None:
         self._dps.backward(retain_graph=True)
         self._compiled = True
-
-    @property
-    def dps(self) -> Tensor:
-        return self._dps

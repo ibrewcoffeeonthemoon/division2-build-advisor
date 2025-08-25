@@ -1,6 +1,4 @@
-from abc import ABC, abstractmethod
-
-from torch import Tensor, tensor
+from abc import ABC
 
 
 class _Attribute(ABC):
@@ -13,24 +11,11 @@ class _Attribute(ABC):
         name: str | None = None,
     ) -> None:
         self.name = name or self._name or self.__class__.__name__
-        self._value = value
-        self._value_tensor: Tensor | None = None
-
-    @property
-    def value(self) -> Tensor:
-        if self._value_tensor is None:
-            self._value_tensor = tensor(self._value, requires_grad=True)
-        return self._value_tensor
-
-    @property
-    @abstractmethod
-    def expected_value(self) -> Tensor: ...
+        self.value = value
 
 
 class _StaticAttribute(_Attribute):
-    @property
-    def expected_value(self) -> Tensor:
-        return self.value
+    pass
 
 
 class _DynamicAttribute(_Attribute):
@@ -42,21 +27,7 @@ class _DynamicAttribute(_Attribute):
         name: str | None = None,
     ) -> None:
         super().__init__(value, name=name)
-        self._uptime = uptime
-        self._uptime_tensor: Tensor | None = None
-        self._expected_value_tensor: Tensor | None = None
-
-    @property
-    def uptime(self) -> Tensor:
-        if self._uptime_tensor is None:
-            self._uptime_tensor = tensor(self._uptime, requires_grad=True)
-        return self._uptime_tensor
-
-    @property
-    def expected_value(self) -> Tensor:
-        if self._expected_value_tensor is None:
-            self._expected_value_tensor = self.value * self.uptime
-        return self._expected_value_tensor
+        self.uptime = uptime
 
 
 class WD:

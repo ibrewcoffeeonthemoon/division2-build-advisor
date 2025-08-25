@@ -26,6 +26,7 @@ class Result:
         self._build = build
         self._cls = cls
 
+    # result handlers
     @cached_property
     def stats(self) -> Stats:
         return Stats(self._build, self._cls)
