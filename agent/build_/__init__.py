@@ -2,139 +2,16 @@ from copy import deepcopy
 from functools import cache, cached_property
 from typing import Self, Type, TypeVar
 
+from agent.build_.extras import _Extras
+from agent.build_.gears import _Gears
+from agent.build_.weapons import _Weapons
 from agent.damage import DMG, DPS, DMGx, DPSx, _ComputeGraphManager
 from agent.item.attribute import *
-from agent.item.gear import (Backpack, Chest, Gears, Gloves, Holster, Kneepads,
-                             Mask)
-from agent.item.specialization import Specialization
-from agent.item.watch import KeenersWatch
-from agent.item.weapon import Weapon
 from agent.result import Result
 from agent.result._handler import _ResultHandler
 from agent.utils import merge_text_side_by_side
 
 T = TypeVar('T', bound=_ComputeGraphManager)
-
-
-class _Weapons:
-    def __init__(self) -> None:
-        self._primary_weapon = Weapon(base_damage=48_500, rpm=850, name='Default')
-        self._secondary_weapon = Weapon(base_damage=48_500, rpm=850, name='Default')
-
-    @property
-    def primary_weapon(self) -> Weapon:
-        return self._primary_weapon
-
-    @primary_weapon.setter
-    def primary_weapon(self, weapon: Weapon) -> None:
-        self._primary_weapon = weapon
-
-    @property
-    def secondary_weapon(self) -> Weapon:
-        return self._secondary_weapon
-
-    @secondary_weapon.setter
-    def secondary_weapon(self, weapon: Weapon) -> None:
-        self._secondary_weapon = weapon
-
-    @property
-    def _weapons(self) -> tuple[Weapon, Weapon]:
-        return (self._primary_weapon, self._secondary_weapon)
-
-
-class _Gears:
-    def __init__(self) -> None:
-        self._mask: Mask
-        self._backpack: Backpack
-        self._chest: Chest
-        self._gloves: Gloves
-        self._holster: Holster
-        self._kneepads: Kneepads
-
-    @property
-    def mask(self) -> Mask:
-        return self._mask
-
-    @mask.setter
-    def mask(self, mask: Mask) -> None:
-        self._mask = mask
-
-    @property
-    def backpack(self) -> Backpack:
-        return self._backpack
-
-    @backpack.setter
-    def backpack(self, backpack: Backpack) -> None:
-        self._backpack = backpack
-
-    @property
-    def chest(self) -> Chest:
-        return self._chest
-
-    @chest.setter
-    def chest(self, chest: Chest) -> None:
-        self._chest = chest
-
-    @property
-    def gloves(self) -> Gloves:
-        return self._gloves
-
-    @gloves.setter
-    def gloves(self, gloves: Gloves) -> None:
-        self._gloves = gloves
-
-    @property
-    def holster(self) -> Holster:
-        return self._holster
-
-    @holster.setter
-    def holster(self, holster: Holster) -> None:
-        self._holster = holster
-
-    @property
-    def kneepads(self) -> Kneepads:
-        return self._kneepads
-
-    @kneepads.setter
-    def kneepads(self, kneepads: Kneepads) -> None:
-        self._kneepads = kneepads
-
-    @property
-    def _gears(self) -> Gears:
-        return (
-            self._mask, self._backpack,
-            self._chest, self._gloves,
-            self._holster, self._kneepads,
-        )
-
-
-class _Extras:
-    def __init__(self) -> None:
-        self._specialization: Specialization
-        self._keeners_watch: KeenersWatch
-
-    @property
-    def specialization(self) -> Specialization:
-        return self._specialization
-
-    @specialization.setter
-    def specialization(self, specialization: Specialization) -> None:
-        self._specialization = specialization
-
-    @property
-    def keeners_watch(self) -> KeenersWatch:
-        return self._keeners_watch
-
-    @keeners_watch.setter
-    def keeners_watch(self, keeners_watch: KeenersWatch) -> None:
-        self._keeners_watch = keeners_watch
-
-    @property
-    def _extras(self) -> tuple[Specialization, KeenersWatch]:
-        return (
-            self._specialization,
-            self._keeners_watch,
-        )
 
 
 class Build(_Weapons, _Gears, _Extras):
@@ -168,43 +45,6 @@ class Build(_Weapons, _Gears, _Extras):
     @name.setter
     def name(self, name: str) -> None:
         self._name = name
-
-    # chain methods
-
-    def weapons(
-        self,
-        primary_weapon: Weapon,
-        secondary_weapon: Weapon,
-    ) -> Self:
-        self._primary_weapon = primary_weapon
-        self._secondary_weapon = secondary_weapon
-        return self
-
-    def gears(
-        self,
-        mask: Mask,
-        backpack: Backpack,
-        chest: Chest,
-        gloves: Gloves,
-        holster: Holster,
-        kneepads: Kneepads,
-    ) -> Self:
-        self._mask = mask
-        self._backpack = backpack
-        self._chest = chest
-        self._gloves = gloves
-        self._holster = holster
-        self._kneepads = kneepads
-        return self
-
-    def extras(
-        self,
-        specialization: Specialization,
-        keeners_watch: KeenersWatch,
-    ) -> Self:
-        self._specialization = specialization
-        self._keeners_watch = keeners_watch
-        return self
 
     @cache
     def _graph_manager(self, cls: Type[T], id: int) -> T:
