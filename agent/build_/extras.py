@@ -9,6 +9,9 @@ class _Extras:
         self._specialization: Specialization
         self._keeners_watch: KeenersWatch
 
+        # call the next mixin in the MRO
+        super().__init__()
+
     @property
     def specialization(self) -> Specialization:
         return self._specialization

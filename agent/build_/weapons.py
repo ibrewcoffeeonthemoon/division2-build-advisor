@@ -8,6 +8,9 @@ class _Weapons:
         self._primary_weapon = Weapon(base_damage=48_500, rpm=850, name='Default')
         self._secondary_weapon = Weapon(base_damage=48_500, rpm=850, name='Default')
 
+        # call the next mixin in the MRO
+        super().__init__()
+
     @property
     def primary_weapon(self) -> Weapon:
         return self._primary_weapon

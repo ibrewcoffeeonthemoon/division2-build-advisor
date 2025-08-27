@@ -13,6 +13,9 @@ class _Gears:
         self._holster: Holster
         self._kneepads: Kneepads
 
+        # call the next mixin in the MRO
+        super().__init__()
+
     @property
     def mask(self) -> Mask:
         return self._mask

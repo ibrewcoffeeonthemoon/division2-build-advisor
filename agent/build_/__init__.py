@@ -25,9 +25,7 @@ class Build(_Weapons, _Gears, _Extras):
         hsc_basic: float = 0.2,
     ) -> None:
         self._name = name
-        super(_Weapons).__init__()
-        super(_Gears).__init__()
-        super(_Extras).__init__()
+        super().__init__()
         self._chc_basic = chc_basic
         self._chd_basic = chd_basic
         self._hs_basic = hs_basic
