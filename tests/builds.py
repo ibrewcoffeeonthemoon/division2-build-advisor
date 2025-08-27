@@ -29,13 +29,6 @@ def make_build_by_raw_attributes(name: str = 'Raw') -> Build:
                 name='Weapon2',
             ),
         )
-        .weapons(
-            Lexington(
-                AMP2(0.25, name='Ranger'),
-                expertise=30,
-            ),
-            StElmoEngine(expertise=16),
-        )
         .gears(
             Mask(
                 RedCore(),
@@ -84,6 +77,14 @@ def make_build_by_raw_attributes(name: str = 'Raw') -> Build:
             KeenersWatch(),
         )
     )
+
+
+# def make_build_by_item_helpers(name: str = 'Helper') -> Build:
+#     return (
+#         Build(name)
+#         .PrimaryWeapon(
+#         )
+#     )
 
 
 build_creators = (
