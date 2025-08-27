@@ -15,36 +15,10 @@ from agent.utils import merge_text_side_by_side
 T = TypeVar('T', bound=_ComputeGraphManager)
 
 
-class Build:
-    def __init__(
-        self,
-        name: str,
-        *,
-        chc_basic: float = 0.10,
-        chd_basic: float = 0.25,
-        hs_basic: float = 0.55,
-        hsc_basic: float = 0.2,
-    ) -> None:
-        self._name = name
+class _Weapons:
+    def __init__(self) -> None:
         self._primary_weapon = Weapon(base_damage=48_500, rpm=850, name='Default')
         self._secondary_weapon = Weapon(base_damage=48_500, rpm=850, name='Default')
-        self._chc_basic = chc_basic
-        self._chd_basic = chd_basic
-        self._hs_basic = hs_basic
-        self._hsc_basic = hsc_basic
-
-        # state
-        self._finalized = False
-
-    # properties
-
-    @property
-    def name(self) -> str:
-        return self._name
-
-    @name.setter
-    def name(self, name: str) -> None:
-        self._name = name
 
     @property
     def primary_weapon(self) -> Weapon:
@@ -65,6 +39,37 @@ class Build:
     @property
     def _weapons(self) -> tuple[Weapon, Weapon]:
         return (self._primary_weapon, self._secondary_weapon)
+
+
+class Build(_Weapons):
+    def __init__(
+        self,
+        name: str,
+        *,
+        chc_basic: float = 0.10,
+        chd_basic: float = 0.25,
+        hs_basic: float = 0.55,
+        hsc_basic: float = 0.2,
+    ) -> None:
+        self._name = name
+        super(_Weapons).__init__()
+        self._chc_basic = chc_basic
+        self._chd_basic = chd_basic
+        self._hs_basic = hs_basic
+        self._hsc_basic = hsc_basic
+
+        # state
+        self._finalized = False
+
+    # properties
+
+    @property
+    def name(self) -> str:
+        return self._name
+
+    @name.setter
+    def name(self, name: str) -> None:
+        self._name = name
 
     # chain methods
 
