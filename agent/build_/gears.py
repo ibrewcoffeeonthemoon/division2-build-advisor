@@ -6,12 +6,12 @@ from agent.item.gear import (Backpack, Chest, Gears, Gloves, Holster, Kneepads,
 
 class _Gears:
     def __init__(self) -> None:
-        self._mask: Mask
-        self._backpack: Backpack
-        self._chest: Chest
-        self._gloves: Gloves
-        self._holster: Holster
-        self._kneepads: Kneepads
+        self._mask: Mask = Mask()
+        self._backpack: Backpack = Backpack()
+        self._chest: Chest = Chest()
+        self._gloves: Gloves = Gloves()
+        self._holster: Holster = Holster()
+        self._kneepads: Kneepads = Kneepads()
 
         # call the next mixin in the MRO
         super().__init__()

@@ -1,13 +1,13 @@
 from typing import Self
 
-from agent.item.specialization import Specialization
+from agent.item.specialization import Gunner, Specialization
 from agent.item.watch import KeenersWatch
 
 
 class _Extras:
     def __init__(self) -> None:
-        self._specialization: Specialization
-        self._keeners_watch: KeenersWatch
+        self._specialization: Specialization = Gunner()
+        self._keeners_watch: KeenersWatch = KeenersWatch()
 
         # call the next mixin in the MRO
         super().__init__()
