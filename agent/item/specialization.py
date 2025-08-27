@@ -3,7 +3,9 @@ from agent.item.attribute import _Attribute
 
 
 class Specialization(Item):
-    pass
+    @property
+    def type(self) -> str:
+        return 'Specialization'
 
 
 class Gunner(Specialization):
@@ -12,7 +14,3 @@ class Gunner(Specialization):
         *attributes: _Attribute,
     ) -> None:
         super().__init__(*attributes, name='Gunner')
-
-    @property
-    def type(self) -> str:
-        return 'Specialization'

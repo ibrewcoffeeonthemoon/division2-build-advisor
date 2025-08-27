@@ -142,6 +142,10 @@ def make_build_by_item_helpers(name: str = 'Helper') -> Build:
             CHD(0.12),
             name='Striker',
         )
+        .Specialization(
+            WDType(0.15, name='Gunner.WDType')
+        )
+        .KeenersWatch()
     )
 
 

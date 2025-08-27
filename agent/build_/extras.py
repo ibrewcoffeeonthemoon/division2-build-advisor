@@ -1,44 +1,52 @@
 from typing import Self
 
-from agent.item.specialization import Gunner, Specialization
-from agent.item.watch import KeenersWatch
+from agent.item.specialization import Specialization as Specialization_
+from agent.item.watch import KeenersWatch as KeenersWatch_
 
 
 class _Extras:
     def __init__(self) -> None:
-        self._specialization: Specialization = Gunner()
-        self._keeners_watch: KeenersWatch = KeenersWatch()
+        self._specialization: Specialization_ = Specialization_()
+        self._keeners_watch: KeenersWatch_ = KeenersWatch_()
 
         # call the next mixin in the MRO
         super().__init__()
 
     @property
-    def specialization(self) -> Specialization:
+    def specialization(self) -> Specialization_:
         return self._specialization
 
     @specialization.setter
-    def specialization(self, specialization: Specialization) -> None:
+    def specialization(self, specialization: Specialization_) -> None:
         self._specialization = specialization
 
     @property
-    def keeners_watch(self) -> KeenersWatch:
+    def keeners_watch(self) -> KeenersWatch_:
         return self._keeners_watch
 
     @keeners_watch.setter
-    def keeners_watch(self, keeners_watch: KeenersWatch) -> None:
+    def keeners_watch(self, keeners_watch: KeenersWatch_) -> None:
         self._keeners_watch = keeners_watch
 
     @property
-    def _extras(self) -> tuple[Specialization, KeenersWatch]:
+    def _extras(self) -> tuple[Specialization_, KeenersWatch_]:
         return (
             self._specialization,
             self._keeners_watch,
         )
 
+    def Specialization(self, *args, **kwargs) -> Self:
+        self._specialization = Specialization_(*args, **kwargs)
+        return self
+
+    def KeenersWatch(self, *args, **kwargs) -> Self:
+        self._keeners_watch = KeenersWatch_(*args, **kwargs)
+        return self
+
     def extras(
         self,
-        specialization: Specialization,
-        keeners_watch: KeenersWatch,
+        specialization: Specialization_,
+        keeners_watch: KeenersWatch_,
     ) -> Self:
         self._specialization = specialization
         self._keeners_watch = keeners_watch
