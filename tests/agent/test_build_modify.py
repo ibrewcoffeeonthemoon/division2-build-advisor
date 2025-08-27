@@ -1,9 +1,10 @@
 import pytest
 
 from agent import *
+from tests.builds import build_creators
 
 
-@pytest.mark.parametrize('build', ['Name1', 'Name2'], indirect=True)
+@pytest.mark.parametrize('build', build_creators, indirect=True)
 @pytest.mark.parametrize('new_name', ['AAAAA', 'BBBBB'])
 def test_build_change_name(
     build: Build,
@@ -13,7 +14,7 @@ def test_build_change_name(
     assert build.name == new_name
 
 
-@pytest.mark.parametrize('build', ['Name1', 'Name2'], indirect=True)
+@pytest.mark.parametrize('build', build_creators, indirect=True)
 def test_build_change_weapons(
     build: Build,
 ):
@@ -27,7 +28,7 @@ def test_build_change_weapons(
     assert build.secondary_weapon.name == 'BBBBB'
 
 
-@pytest.mark.parametrize('build', ['Name1', 'Name2'], indirect=True)
+@pytest.mark.parametrize('build', build_creators, indirect=True)
 def test_build_change_gears(
     build: Build,
 ):
