@@ -1,8 +1,9 @@
 from typing import Self, Unpack
 
+from agent.item.attribute import _Attribute
 from agent.item.gear import Backpack as Backpack_
 from agent.item.gear import Chest as Chest_
-from agent.item.gear import GearArgs, GearKwargs, Gears
+from agent.item.gear import GearKwargs, Gears
 from agent.item.gear import Gloves as Gloves_
 from agent.item.gear import Holster as Holster_
 from agent.item.gear import Kneepads as Kneepads_
@@ -77,27 +78,27 @@ class _Gears:
             self._holster, self._kneepads,
         )
 
-    def Mask(self, *args: GearArgs, **kwargs: Unpack[GearKwargs]) -> Self:
+    def Mask(self, *args: _Attribute, **kwargs: Unpack[GearKwargs]) -> Self:
         self._mask = Mask_(*args, **kwargs)
         return self
 
-    def Backpack(self, *args: GearArgs, **kwargs: Unpack[GearKwargs]) -> Self:
+    def Backpack(self, *args: _Attribute, **kwargs: Unpack[GearKwargs]) -> Self:
         self._backpack = Backpack_(*args, **kwargs)
         return self
 
-    def Chest(self, *args: GearArgs, **kwargs: Unpack[GearKwargs]) -> Self:
+    def Chest(self, *args: _Attribute, **kwargs: Unpack[GearKwargs]) -> Self:
         self._chest = Chest_(*args, **kwargs)
         return self
 
-    def Gloves(self, *args: GearArgs, **kwargs: Unpack[GearKwargs]) -> Self:
+    def Gloves(self, *args: _Attribute, **kwargs: Unpack[GearKwargs]) -> Self:
         self._gloves = Gloves_(*args, **kwargs)
         return self
 
-    def Holster(self, *args: GearArgs, **kwargs: Unpack[GearKwargs]) -> Self:
+    def Holster(self, *args: _Attribute, **kwargs: Unpack[GearKwargs]) -> Self:
         self._holster = Holster_(*args, **kwargs)
         return self
 
-    def Kneepads(self, *args: GearArgs, **kwargs: Unpack[GearKwargs]) -> Self:
+    def Kneepads(self, *args: _Attribute, **kwargs: Unpack[GearKwargs]) -> Self:
         self._kneepads = Kneepads_(*args, **kwargs)
         return self
 

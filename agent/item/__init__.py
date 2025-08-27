@@ -3,8 +3,6 @@ from typing import NotRequired, TypedDict
 
 from agent.item.attribute import _Attribute
 
-ItemArgs = _Attribute
-
 
 class ItemKwargs(TypedDict):
     name: NotRequired[str | None]

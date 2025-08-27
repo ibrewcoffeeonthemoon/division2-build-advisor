@@ -1,6 +1,5 @@
-from agent.item import Item, ItemArgs, ItemKwargs
+from agent.item import Item, ItemKwargs
 
-GearArgs = ItemArgs
 GearKwargs = ItemKwargs
 
 
