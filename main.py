@@ -18,131 +18,85 @@ def main() -> None:
     # create the graph
     build0 = (
         Build('6 Red Lexington Ranger')
-        .weapons(
-            Lexington(
-                AMP2(0.25, name='Ranger'),
-                expertise=30,
-            ),
-            StElmoEngine(expertise=16),
+        .PrimaryWeapon(
+            WDCore(0.01, name='Expertise'),
+            WDType(0.15, name='AR'),
+            DTH(0.21, uptime=0.3),
+            DTTOOC(0.10, uptime=0.9),
+            AMP2(0.25, name='Ranger'),
+            base_damage=48_700,
+            rpm=850,
+            name='Weapon1',
         )
-        .gears(
-            Mask(
-                RedCore(),
-                CHC(0.06),
-                CHD(0.12),
-                CHD(0.12, name='Mod.CHD'),
-                CHD(0.25, uptime=0.33, name='Short.CHD'),
-                CHD(0.10, uptime=0.33, name='Mid.CHD'),
-                CHC(0.10, uptime=0.33, name='Mid.CHC'),
-                CHC(0.25, uptime=0.33, name='Long.CHC'),
-                name='Coyote',
-            ),
-            Backpack(
-                RedCore(),
-                CHC(0.06),
-                CHD(0.12),
-                CHD(0.12, name='Mod.CHD'),
-                TWD(0.65, uptime=0.8, name='Striker'),
-                ROF(0.15, name='ROF'),
-                name='Striker',
-            ),
-            Chest(
-                RedCore(),
-                CHD(0.12),
-                CHD(0.12, name='Mod.CHD'),
-                name='Lengmo',
-            ),
-            Gloves(
-                RedCore(),
-                CHD(0.12),
-                name='Striker',
-            ),
-            Holster(
-                RedCore(),
-                CHD(0.12),
-                name='Striker',
-            ),
-            Kneepads(
-                RedCore(),
-                CHD(0.12),
-                name='Striker',
-            ),
+        .SecondaryWeapon(
+            WDCore(0.01, name='Expertise'),
+            WDType(0.15, name='AR'),
+            DTH(0.21, uptime=0.3),
+            DTTOOC(0.10, uptime=0.9),
+            base_damage=46_900,
+            rpm=850,
+            name='Weapon2',
         )
-        .extras(
-            Gunner(WDType(0.15, name='Gunner.WDType')),
-            KeenersWatch(),
+        .Mask(
+            RedCore(),
+            CHC(0.06),
+            CHD(0.12),
+            CHD(0.12, name='Mod.CHD'),
+            CHD(0.25, uptime=0.33, name='Short.CHD'),
+            CHD(0.10, uptime=0.33, name='Mid.CHD'),
+            CHC(0.10, uptime=0.33, name='Mid.CHC'),
+            CHC(0.25, uptime=0.33, name='Long.CHC'),
+            name='Coyote',
         )
+        .Backpack(
+            RedCore(),
+            CHC(0.06),
+            CHD(0.12),
+            CHD(0.12, name='Mod.CHD'),
+            TWD(0.65, uptime=0.8, name='Striker'),
+            ROF(0.15, name='ROF'),
+            name='Striker',
+        )
+        .Chest(
+            RedCore(),
+            CHD(0.12),
+            CHD(0.12, name='Mod.CHD'),
+            name='Lengmo',
+        )
+        .Gloves(
+            RedCore(),
+            CHD(0.12),
+            name='Striker',
+        )
+        .Holster(
+            RedCore(),
+            CHD(0.12),
+            name='Striker',
+        )
+        .Kneepads(
+            RedCore(),
+            CHD(0.12),
+            name='Striker',
+        )
+        .Specialization(
+            WDType(0.15, name='Gunner.WDType')
+        )
+        .KeenersWatch()
     )
-
-    build1 = (
-        Build('0 Red Lexington')
-        .weapons(
-            Lexington(
-                AMP2(0.25, name='Ranger'),
-                expertise=30,
-            ),
-            StElmoEngine(expertise=16),
-        )
-        .gears(
-            Mask(
-                # RedCore(),
-                CHC(0.06),
-                CHD(0.12),
-                Mod.CHD(0.12),
-                CHD(0.25, uptime=0.33, name='Short.CHD'),
-                CHD(0.10, uptime=0.33, name='Mid.CHD'),
-                CHC(0.10, uptime=0.33, name='Mid.CHC'),
-                CHC(0.25, uptime=0.33, name='Long.CHC'),
-                name='Coyote',
-            ),
-            Backpack(
-                # RedCore(),
-                CHC(0.06),
-                CHD(0.12),
-                CHD(0.12, name='Mod.CHD'),
-                TWD(0.65, uptime=0.8, name='Striker'),
-                ROF(0.15, name='ROF'),
-                name='Striker',
-            ),
-            Chest(
-                # RedCore(),
-                CHD(0.12),
-                Mod.CHD(0.12),
-                name='Lengmo',
-            ),
-            Gloves(
-                # RedCore(),
-                CHD(0.12),
-                name='Striker',
-            ),
-            Holster(
-                # RedCore(),
-                CHD(0.12),
-                name='Striker',
-            ),
-            Kneepads(
-                # RedCore(),
-                CHD(0.12),
-                name='Striker',
-            ),
-        )
-        .extras(
-            Gunner(WDType(0.15, name='Gunner.WDType')),
-            KeenersWatch(),
-        )
-    )
-
-    build2 = build0.copy()
+    build1 = build0.copy()
+    # build1.name = 'Copy And Paste!!!'
+    # build1.secondary_weapon = Weapon(name='Shit gun!!!', base_damage=100, rpm=100)
 
     # result
     Build.compare(
-        build0.dps_x.gradients,
+        build0.dps_x.stats,
+        build0.dps_x.formula,
+        build1.dps_x.breakdown,
+        build1.dps_x.gradients,
         build1.dps_x.delta,
-        build2.dmg.gradients,
-        build2.dmg.delta,
         weapon_id=1,
     )
-    # for result in (build0.dmg, build0.dmg_x, build0.dps, build0.dps_x):
+    # for result in (build1.dmg, build1.dmg_x, build1.dps, build1.dps_x):
     #     result.stats()
     #     result.formula()
     #     result.breakdown()

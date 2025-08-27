@@ -1,67 +1,72 @@
 from typing import Self
 
-from agent.item.gear import (Backpack, Chest, Gears, Gloves, Holster, Kneepads,
-                             Mask)
+from agent.item.gear import Backpack as Backpack_
+from agent.item.gear import Chest as Chest_
+from agent.item.gear import Gears
+from agent.item.gear import Gloves as Gloves_
+from agent.item.gear import Holster as Holster_
+from agent.item.gear import Kneepads as Kneepads_
+from agent.item.gear import Mask as Mask_
 
 
 class _Gears:
     def __init__(self) -> None:
-        self._mask: Mask = Mask()
-        self._backpack: Backpack = Backpack()
-        self._chest: Chest = Chest()
-        self._gloves: Gloves = Gloves()
-        self._holster: Holster = Holster()
-        self._kneepads: Kneepads = Kneepads()
+        self._mask: Mask_ = Mask_()
+        self._backpack: Backpack_ = Backpack_()
+        self._chest: Chest_ = Chest_()
+        self._gloves: Gloves_ = Gloves_()
+        self._holster: Holster_ = Holster_()
+        self._kneepads: Kneepads_ = Kneepads_()
 
         # call the next mixin in the MRO
         super().__init__()
 
     @property
-    def mask(self) -> Mask:
+    def mask(self) -> Mask_:
         return self._mask
 
     @mask.setter
-    def mask(self, mask: Mask) -> None:
+    def mask(self, mask: Mask_) -> None:
         self._mask = mask
 
     @property
-    def backpack(self) -> Backpack:
+    def backpack(self) -> Backpack_:
         return self._backpack
 
     @backpack.setter
-    def backpack(self, backpack: Backpack) -> None:
+    def backpack(self, backpack: Backpack_) -> None:
         self._backpack = backpack
 
     @property
-    def chest(self) -> Chest:
+    def chest(self) -> Chest_:
         return self._chest
 
     @chest.setter
-    def chest(self, chest: Chest) -> None:
+    def chest(self, chest: Chest_) -> None:
         self._chest = chest
 
     @property
-    def gloves(self) -> Gloves:
+    def gloves(self) -> Gloves_:
         return self._gloves
 
     @gloves.setter
-    def gloves(self, gloves: Gloves) -> None:
+    def gloves(self, gloves: Gloves_) -> None:
         self._gloves = gloves
 
     @property
-    def holster(self) -> Holster:
+    def holster(self) -> Holster_:
         return self._holster
 
     @holster.setter
-    def holster(self, holster: Holster) -> None:
+    def holster(self, holster: Holster_) -> None:
         self._holster = holster
 
     @property
-    def kneepads(self) -> Kneepads:
+    def kneepads(self) -> Kneepads_:
         return self._kneepads
 
     @kneepads.setter
-    def kneepads(self, kneepads: Kneepads) -> None:
+    def kneepads(self, kneepads: Kneepads_) -> None:
         self._kneepads = kneepads
 
     @property
@@ -72,14 +77,38 @@ class _Gears:
             self._holster, self._kneepads,
         )
 
+    def Mask(self, *args, **kwargs) -> Self:
+        self._mask = Mask_(*args, **kwargs)
+        return self
+
+    def Backpack(self, *args, **kwargs) -> Self:
+        self._backpack = Backpack_(*args, **kwargs)
+        return self
+
+    def Chest(self, *args, **kwargs) -> Self:
+        self._chest = Chest_(*args, **kwargs)
+        return self
+
+    def Gloves(self, *args, **kwargs) -> Self:
+        self._gloves = Gloves_(*args, **kwargs)
+        return self
+
+    def Holster(self, *args, **kwargs) -> Self:
+        self._holster = Holster_(*args, **kwargs)
+        return self
+
+    def Kneepads(self, *args, **kwargs) -> Self:
+        self._kneepads = Kneepads_(*args, **kwargs)
+        return self
+
     def gears(
         self,
-        mask: Mask,
-        backpack: Backpack,
-        chest: Chest,
-        gloves: Gloves,
-        holster: Holster,
-        kneepads: Kneepads,
+        mask: Mask_,
+        backpack: Backpack_,
+        chest: Chest_,
+        gloves: Gloves_,
+        holster: Holster_,
+        kneepads: Kneepads_,
     ) -> Self:
         self._mask = mask
         self._backpack = backpack

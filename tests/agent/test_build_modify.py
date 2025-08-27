@@ -20,8 +20,8 @@ def test_build_change_weapons(
 ):
     w1 = build.primary_weapon
     w2 = build.secondary_weapon
-    build.primary_weapon = Weapon(name='AAAAA', base_damage=100, rpm=100)
-    build.secondary_weapon = Weapon(name='BBBBB', base_damage=100, rpm=100)
+    build.primary_weapon = Weapon(name='AAAAA')
+    build.secondary_weapon = Weapon(name='BBBBB')
     assert id(w1) != id(build.primary_weapon)
     assert id(w2) != id(build.secondary_weapon)
     assert build.primary_weapon.name == 'AAAAA'

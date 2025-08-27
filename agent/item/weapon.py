@@ -8,8 +8,8 @@ class Weapon(Item):
         self,
         *attributes: _Attribute,
         name: str | None = None,
-        base_damage: int,
-        rpm: int,
+        base_damage: int = 48_700,
+        rpm: int = 850,
     ) -> None:
         super().__init__(*attributes, name=name)
         self.base_damage = base_damage
