@@ -90,3 +90,16 @@ build_creators = (
     # make_build_by_defaualt,
     make_build_by_raw_attributes,
 )
+build_results = [
+    'dmg',
+    'dmg_x',
+    'dps',
+    'dps_x'
+]
+build_result_handlers = [
+    'stats',
+    'formula',
+    'breakdown',
+    'gradients',
+    'delta'
+]
