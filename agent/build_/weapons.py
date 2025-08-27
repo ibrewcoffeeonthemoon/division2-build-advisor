@@ -1,6 +1,6 @@
-from typing import Self
+from typing import Self, Unpack
 
-from agent.item.weapon import Weapon
+from agent.item.weapon import Weapon, WeaponArgs, WeaponKwargs
 
 
 class _Weapons:
@@ -31,11 +31,11 @@ class _Weapons:
     def _weapons(self) -> tuple[Weapon, Weapon]:
         return (self._primary_weapon, self._secondary_weapon)
 
-    def PrimaryWeapon(self, *args, **kwargs) -> Self:
+    def PrimaryWeapon(self, *args: WeaponArgs, **kwargs: Unpack[WeaponKwargs]) -> Self:
         self._primary_weapon = Weapon(*args, **kwargs)
         return self
 
-    def SecondaryWeapon(self, *args, **kwargs) -> Self:
+    def SecondaryWeapon(self, *args: WeaponArgs, **kwargs: Unpack[WeaponKwargs]) -> Self:
         self._secondary_weapon = Weapon(*args, **kwargs)
         return self
 

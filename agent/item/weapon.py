@@ -1,6 +1,15 @@
-from agent.item import Item
+from typing import NotRequired
+
+from agent.item import Item, ItemArgs, ItemKwargs
 from agent.item.attribute import *
 from agent.item.attribute import _Attribute
+
+WeaponArgs = ItemArgs
+
+
+class WeaponKwargs(ItemKwargs):
+    base_damage: NotRequired[int]
+    rpm: NotRequired[int]
 
 
 class Weapon(Item):

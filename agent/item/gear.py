@@ -1,4 +1,7 @@
-from agent.item import Item
+from agent.item import Item, ItemArgs, ItemKwargs
+
+GearArgs = ItemArgs
+GearKwargs = ItemKwargs
 
 
 class Gear(Item):

@@ -1,5 +1,14 @@
+from typing import NotRequired, TypedDict
+
 from agent.item import Item
 from agent.item.attribute import *
+
+
+class KeenersWatchKwargs(TypedDict):
+    wd: NotRequired[float]
+    chc: NotRequired[float]
+    chd: NotRequired[float]
+    hs: NotRequired[float]
 
 
 class KeenersWatch(Item):
