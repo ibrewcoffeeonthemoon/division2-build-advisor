@@ -32,7 +32,7 @@ class _Extras:
         self._keeners_watch = keeners_watch
 
     @property
-    def _extras(self) -> tuple[Specialization_, KeenersWatch_]:
+    def extras(self) -> tuple[Specialization_, KeenersWatch_]:
         return (
             self._specialization,
             self._keeners_watch,

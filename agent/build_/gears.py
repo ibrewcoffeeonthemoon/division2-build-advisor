@@ -71,7 +71,7 @@ class _Gears:
         self._kneepads = kneepads
 
     @property
-    def _gears(self) -> Gears:
+    def gears(self) -> Gears:
         return (
             self._mask, self._backpack,
             self._chest, self._gloves,
