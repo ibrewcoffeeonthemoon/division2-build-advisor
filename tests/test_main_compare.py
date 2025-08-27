@@ -5,39 +5,16 @@ import pytest
 from agent import *
 from agent.result import Result
 from agent.result._handler import _ResultHandler
+from tests.builds import build_creators, build_result_handlers, build_results
 from tests.utils import log_test_output
 
 LOG_FILE = Path("logs/test_main_compare.log")
 LOG_FILE.parent.mkdir(exist_ok=True)
 
 
-@pytest.mark.parametrize(
-    'build',
-    [
-        '6 Red Lexington Ranger',
-        "6 Red St. Elmo's Engine",
-    ],
-    indirect=True,
-)
-@pytest.mark.parametrize(
-    'result',
-    [
-        'dmg',
-        'dmg_x',
-        'dps',
-        'dps_x'
-    ]
-)
-@pytest.mark.parametrize(
-    'result_handler',
-    [
-        'stats',
-        'formula',
-        'breakdown',
-        'gradients',
-        'delta'
-    ]
-)
+@pytest.mark.parametrize('build', build_creators, indirect=True)
+@pytest.mark.parametrize('result', build_results)
+@pytest.mark.parametrize('result_handler', build_result_handlers)
 @pytest.mark.parametrize('weapon_id', [0, 1])
 def test_main_compare(
     build: Build,
