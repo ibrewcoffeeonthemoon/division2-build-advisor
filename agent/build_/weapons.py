@@ -29,7 +29,7 @@ class _Weapons:
         self._secondary_weapon = weapon
 
     @property
-    def _weapons(self) -> tuple[Weapon, Weapon]:
+    def weapons(self) -> tuple[Weapon, Weapon]:
         return (self._primary_weapon, self._secondary_weapon)
 
     def PrimaryWeapon(self, *args: _Attribute, **kwargs: Unpack[WeaponKwargs]) -> Self:
@@ -40,11 +40,19 @@ class _Weapons:
         self._secondary_weapon = Weapon(*args, **kwargs)
         return self
 
-    def weapons(
+    def add_weapons(
         self,
         primary_weapon: Weapon,
         secondary_weapon: Weapon,
     ) -> Self:
         self._primary_weapon = primary_weapon
         self._secondary_weapon = secondary_weapon
+        return self
+
+    def add_primary_weapons(self, weapon: Weapon) -> Self:
+        self._primary_weapon = weapon
+        return self
+
+    def add_secondary_weapons(self, weapon: Weapon) -> Self:
+        self._secondary_weapon = weapon
         return self

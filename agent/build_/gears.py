@@ -3,7 +3,7 @@ from typing import Self, Unpack
 from agent.item.attribute import _Attribute
 from agent.item.gear import Backpack as Backpack_
 from agent.item.gear import Chest as Chest_
-from agent.item.gear import GearKwargs, Gears
+from agent.item.gear import Gear, GearKwargs, Gears
 from agent.item.gear import Gloves as Gloves_
 from agent.item.gear import Holster as Holster_
 from agent.item.gear import Kneepads as Kneepads_
@@ -71,7 +71,7 @@ class _Gears:
         self._kneepads = kneepads
 
     @property
-    def _gears(self) -> Gears:
+    def gears(self) -> Gears:
         return (
             self._mask, self._backpack,
             self._chest, self._gloves,
@@ -102,19 +102,21 @@ class _Gears:
         self._kneepads = Kneepads_(*args, **kwargs)
         return self
 
-    def gears(
-        self,
-        mask: Mask_,
-        backpack: Backpack_,
-        chest: Chest_,
-        gloves: Gloves_,
-        holster: Holster_,
-        kneepads: Kneepads_,
-    ) -> Self:
-        self._mask = mask
-        self._backpack = backpack
-        self._chest = chest
-        self._gloves = gloves
-        self._holster = holster
-        self._kneepads = kneepads
+    def add_gears(self, *gears: Gear) -> Self:
+        for gear in gears:
+            match gear:
+                case Mask_():
+                    self._mask = gear
+                case Backpack_():
+                    self._backpack = gear
+                case Chest_():
+                    self._chest = gear
+                case Gloves_():
+                    self._gloves = gear
+                case Holster_():
+                    self._holster = gear
+                case Kneepads_():
+                    self._kneepads = gear
+                case _:
+                    raise TypeError(f"Unexpected gear type: {type(gear).__name__}")
         return self

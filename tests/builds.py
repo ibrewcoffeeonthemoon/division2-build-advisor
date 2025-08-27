@@ -8,7 +8,7 @@ def make_build_by_defaualt(name: str = 'Default') -> Build:
 def make_build_by_raw_attributes(name: str = 'Raw') -> Build:
     return (
         Build(name)
-        .weapons(
+        .add_primary_weapons(
             Weapon(
                 WDCore(0.01, name='Expertise'),
                 WDType(0.15, name='AR'),
@@ -19,6 +19,8 @@ def make_build_by_raw_attributes(name: str = 'Raw') -> Build:
                 rpm=850,
                 name='Weapon1',
             ),
+        )
+        .add_secondary_weapons(
             Weapon(
                 WDCore(0.01, name='Expertise'),
                 WDType(0.15, name='AR'),
@@ -29,7 +31,7 @@ def make_build_by_raw_attributes(name: str = 'Raw') -> Build:
                 name='Weapon2',
             ),
         )
-        .gears(
+        .add_gears(
             Mask(
                 RedCore(),
                 CHC(0.06),
@@ -72,8 +74,10 @@ def make_build_by_raw_attributes(name: str = 'Raw') -> Build:
                 name='Striker',
             ),
         )
-        .extras(
+        .add_specialization(
             Gunner(WDType(0.15, name='Gunner.WDType')),
+        )
+        .add_keeners_watch(
             KeenersWatch(),
         )
     )
