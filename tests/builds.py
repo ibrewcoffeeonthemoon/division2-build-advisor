@@ -101,6 +101,47 @@ def make_build_by_item_helpers(name: str = 'Helper') -> Build:
             rpm=850,
             name='Weapon2',
         )
+        .Mask(
+            RedCore(),
+            CHC(0.06),
+            CHD(0.12),
+            CHD(0.12, name='Mod.CHD'),
+            CHD(0.25, uptime=0.33, name='Short.CHD'),
+            CHD(0.10, uptime=0.33, name='Mid.CHD'),
+            CHC(0.10, uptime=0.33, name='Mid.CHC'),
+            CHC(0.25, uptime=0.33, name='Long.CHC'),
+            name='Coyote',
+        )
+        .Backpack(
+            RedCore(),
+            CHC(0.06),
+            CHD(0.12),
+            CHD(0.12, name='Mod.CHD'),
+            TWD(0.65, uptime=0.8, name='Striker'),
+            ROF(0.15, name='ROF'),
+            name='Striker',
+        )
+        .Chest(
+            RedCore(),
+            CHD(0.12),
+            CHD(0.12, name='Mod.CHD'),
+            name='Lengmo',
+        )
+        .Gloves(
+            RedCore(),
+            CHD(0.12),
+            name='Striker',
+        )
+        .Holster(
+            RedCore(),
+            CHD(0.12),
+            name='Striker',
+        )
+        .Kneepads(
+            RedCore(),
+            CHD(0.12),
+            name='Striker',
+        )
     )
 
 
