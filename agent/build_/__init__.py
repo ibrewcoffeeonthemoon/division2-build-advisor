@@ -2,6 +2,7 @@ from copy import deepcopy
 from functools import cache, cached_property
 from typing import Self, Type, TypeVar
 
+from agent.build_.weapons import _Weapons
 from agent.damage import DMG, DPS, DMGx, DPSx, _ComputeGraphManager
 from agent.item.attribute import *
 from agent.item.gear import (Backpack, Chest, Gears, Gloves, Holster, Kneepads,
@@ -14,32 +15,6 @@ from agent.result._handler import _ResultHandler
 from agent.utils import merge_text_side_by_side
 
 T = TypeVar('T', bound=_ComputeGraphManager)
-
-
-class _Weapons:
-    def __init__(self) -> None:
-        self._primary_weapon = Weapon(base_damage=48_500, rpm=850, name='Default')
-        self._secondary_weapon = Weapon(base_damage=48_500, rpm=850, name='Default')
-
-    @property
-    def primary_weapon(self) -> Weapon:
-        return self._primary_weapon
-
-    @primary_weapon.setter
-    def primary_weapon(self, weapon: Weapon) -> None:
-        self._primary_weapon = weapon
-
-    @property
-    def secondary_weapon(self) -> Weapon:
-        return self._secondary_weapon
-
-    @secondary_weapon.setter
-    def secondary_weapon(self, weapon: Weapon) -> None:
-        self._secondary_weapon = weapon
-
-    @property
-    def _weapons(self) -> tuple[Weapon, Weapon]:
-        return (self._primary_weapon, self._secondary_weapon)
 
 
 class _Gears:
