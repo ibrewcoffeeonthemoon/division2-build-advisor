@@ -2,6 +2,7 @@ from copy import deepcopy
 from functools import cache, cached_property
 from typing import Self, Type, TypeVar
 
+from agent.build_.extras import _Extras
 from agent.build_.gears import _Gears
 from agent.build_.weapons import _Weapons
 from agent.damage import DMG, DPS, DMGx, DPSx, _ComputeGraphManager
@@ -15,35 +16,6 @@ from agent.result._handler import _ResultHandler
 from agent.utils import merge_text_side_by_side
 
 T = TypeVar('T', bound=_ComputeGraphManager)
-
-
-class _Extras:
-    def __init__(self) -> None:
-        self._specialization: Specialization
-        self._keeners_watch: KeenersWatch
-
-    @property
-    def specialization(self) -> Specialization:
-        return self._specialization
-
-    @specialization.setter
-    def specialization(self, specialization: Specialization) -> None:
-        self._specialization = specialization
-
-    @property
-    def keeners_watch(self) -> KeenersWatch:
-        return self._keeners_watch
-
-    @keeners_watch.setter
-    def keeners_watch(self, keeners_watch: KeenersWatch) -> None:
-        self._keeners_watch = keeners_watch
-
-    @property
-    def _extras(self) -> tuple[Specialization, KeenersWatch]:
-        return (
-            self._specialization,
-            self._keeners_watch,
-        )
 
 
 class Build(_Weapons, _Gears, _Extras):
