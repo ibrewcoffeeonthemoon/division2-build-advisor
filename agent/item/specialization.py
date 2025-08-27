@@ -1,5 +1,8 @@
-from agent.item import Item
+from agent.item import Item, ItemArgs, ItemKwargs
 from agent.item.attribute import _Attribute
+
+SpecializationArgs = ItemArgs
+SpecializationKwargs = ItemKwargs
 
 
 class Specialization(Item):
