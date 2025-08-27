@@ -40,7 +40,7 @@ class _Weapons:
         self._secondary_weapon = Weapon(*args, **kwargs)
         return self
 
-    def weapons(
+    def add_weapons(
         self,
         primary_weapon: Weapon,
         secondary_weapon: Weapon,

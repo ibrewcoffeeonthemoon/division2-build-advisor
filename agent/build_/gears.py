@@ -102,7 +102,7 @@ class _Gears:
         self._kneepads = Kneepads_(*args, **kwargs)
         return self
 
-    def gears(
+    def add_gears(
         self,
         mask: Mask_,
         backpack: Backpack_,

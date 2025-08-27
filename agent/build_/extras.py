@@ -46,7 +46,7 @@ class _Extras:
         self._keeners_watch = KeenersWatch_(**kwargs)
         return self
 
-    def extras(
+    def add_extras(
         self,
         specialization: Specialization_,
         keeners_watch: KeenersWatch_,
