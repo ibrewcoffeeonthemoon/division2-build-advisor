@@ -48,3 +48,11 @@ class _Weapons:
         self._primary_weapon = primary_weapon
         self._secondary_weapon = secondary_weapon
         return self
+
+    def add_primary_weapons(self, weapon: Weapon) -> Self:
+        self._primary_weapon = weapon
+        return self
+
+    def add_secondary_weapons(self, weapon: Weapon) -> Self:
+        self._secondary_weapon = weapon
+        return self

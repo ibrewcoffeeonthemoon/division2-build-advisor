@@ -54,3 +54,11 @@ class _Extras:
         self._specialization = specialization
         self._keeners_watch = keeners_watch
         return self
+
+    def add_specialization(self, specialization: Specialization_) -> Self:
+        self._specialization = specialization
+        return self
+
+    def add_keeners_watch(self, keeners_watch: KeenersWatch_) -> Self:
+        self._keeners_watch = keeners_watch
+        return self
