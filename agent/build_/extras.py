@@ -1,6 +1,7 @@
-from typing import Self
+from typing import Self, Unpack
 
 from agent.item.specialization import Specialization as Specialization_
+from agent.item.specialization import SpecializationArgs, SpecializationKwargs
 from agent.item.watch import KeenersWatch as KeenersWatch_
 
 
@@ -35,7 +36,7 @@ class _Extras:
             self._keeners_watch,
         )
 
-    def Specialization(self, *args, **kwargs) -> Self:
+    def Specialization(self, *args: SpecializationArgs, **kwargs: Unpack[SpecializationKwargs]) -> Self:
         self._specialization = Specialization_(*args, **kwargs)
         return self
 
