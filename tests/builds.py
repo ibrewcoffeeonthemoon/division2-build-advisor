@@ -149,10 +149,26 @@ def make_build_by_item_helpers(name: str = 'Helper') -> Build:
     )
 
 
+def make_build_by_assignment(name: str = 'Assignment') -> Build:
+    b = Build(name)
+    b.primary_weapon = Weapon()
+    b.secondary_weapon = Weapon()
+    b.mask = Mask()
+    b.backpack = Backpack()
+    b.chest = Chest()
+    b.gloves = Gloves()
+    b.holster = Holster()
+    b.kneepads = Kneepads()
+    b.specialization = Specialization()
+    b.keeners_watch = KeenersWatch()
+    return b
+
+
 build_creators = (
     make_build_by_defaualt,
     make_build_by_raw_attributes,
     make_build_by_item_helpers,
+    make_build_by_assignment,
 )
 build_results = [
     'dmg',
