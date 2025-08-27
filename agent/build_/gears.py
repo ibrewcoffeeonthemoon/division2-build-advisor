@@ -1,3 +1,5 @@
+from typing import Self
+
 from agent.item.gear import (Backpack, Chest, Gears, Gloves, Holster, Kneepads,
                              Mask)
 
@@ -66,3 +68,20 @@ class _Gears:
             self._chest, self._gloves,
             self._holster, self._kneepads,
         )
+
+    def gears(
+        self,
+        mask: Mask,
+        backpack: Backpack,
+        chest: Chest,
+        gloves: Gloves,
+        holster: Holster,
+        kneepads: Kneepads,
+    ) -> Self:
+        self._mask = mask
+        self._backpack = backpack
+        self._chest = chest
+        self._gloves = gloves
+        self._holster = holster
+        self._kneepads = kneepads
+        return self

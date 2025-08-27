@@ -1,3 +1,5 @@
+from typing import Self
+
 from agent.item.specialization import Specialization
 from agent.item.watch import KeenersWatch
 
@@ -29,3 +31,12 @@ class _Extras:
             self._specialization,
             self._keeners_watch,
         )
+
+    def extras(
+        self,
+        specialization: Specialization,
+        keeners_watch: KeenersWatch,
+    ) -> Self:
+        self._specialization = specialization
+        self._keeners_watch = keeners_watch
+        return self

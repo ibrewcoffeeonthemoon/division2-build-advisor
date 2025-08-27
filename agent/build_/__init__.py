@@ -7,10 +7,6 @@ from agent.build_.gears import _Gears
 from agent.build_.weapons import _Weapons
 from agent.damage import DMG, DPS, DMGx, DPSx, _ComputeGraphManager
 from agent.item.attribute import *
-from agent.item.gear import Backpack, Chest, Gloves, Holster, Kneepads, Mask
-from agent.item.specialization import Specialization
-from agent.item.watch import KeenersWatch
-from agent.item.weapon import Weapon
 from agent.result import Result
 from agent.result._handler import _ResultHandler
 from agent.utils import merge_text_side_by_side
@@ -49,43 +45,6 @@ class Build(_Weapons, _Gears, _Extras):
     @name.setter
     def name(self, name: str) -> None:
         self._name = name
-
-    # chain methods
-
-    def weapons(
-        self,
-        primary_weapon: Weapon,
-        secondary_weapon: Weapon,
-    ) -> Self:
-        self._primary_weapon = primary_weapon
-        self._secondary_weapon = secondary_weapon
-        return self
-
-    def gears(
-        self,
-        mask: Mask,
-        backpack: Backpack,
-        chest: Chest,
-        gloves: Gloves,
-        holster: Holster,
-        kneepads: Kneepads,
-    ) -> Self:
-        self._mask = mask
-        self._backpack = backpack
-        self._chest = chest
-        self._gloves = gloves
-        self._holster = holster
-        self._kneepads = kneepads
-        return self
-
-    def extras(
-        self,
-        specialization: Specialization,
-        keeners_watch: KeenersWatch,
-    ) -> Self:
-        self._specialization = specialization
-        self._keeners_watch = keeners_watch
-        return self
 
     @cache
     def _graph_manager(self, cls: Type[T], id: int) -> T:

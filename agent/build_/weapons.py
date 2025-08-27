@@ -1,3 +1,5 @@
+from typing import Self
+
 from agent.item.weapon import Weapon
 
 
@@ -25,3 +27,12 @@ class _Weapons:
     @property
     def _weapons(self) -> tuple[Weapon, Weapon]:
         return (self._primary_weapon, self._secondary_weapon)
+
+    def weapons(
+        self,
+        primary_weapon: Weapon,
+        secondary_weapon: Weapon,
+    ) -> Self:
+        self._primary_weapon = primary_weapon
+        self._secondary_weapon = secondary_weapon
+        return self
