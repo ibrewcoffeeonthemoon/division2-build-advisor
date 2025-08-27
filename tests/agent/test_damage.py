@@ -1,36 +1,21 @@
 import pytest
 
 from agent import *
+from tests.builds import build_creators, build_result_handlers, build_results
 
 
-@pytest.mark.parametrize(
-    'result',
-    [
-        'dmg',
-        'dmg_x',
-        'dps',
-        'dps_x'
-    ]
-)
-@pytest.mark.parametrize(
-    'result_handler',
-    [
-        'stats',
-        'formula',
-        'breakdown',
-        'gradients',
-        'delta'
-    ]
-)
+@pytest.mark.parametrize('build', build_creators, indirect=True)
+@pytest.mark.parametrize('result', build_results)
+@pytest.mark.parametrize('result_handler', build_result_handlers)
 @pytest.mark.parametrize('weapon_id', [0, 1])
 def test_computer_graph_manager_creation(
-    build_lexington: Build,
+    build: Build,
     result: str,
     result_handler: str,
     weapon_id: int,
 ):
-    build0 = build_lexington
-    build1 = build_lexington.copy()
+    build0 = build
+    build1 = build.copy()
     r0 = getattr(build0, result)
     r1 = getattr(build1, result)
     h0 = getattr(r0, result_handler)
