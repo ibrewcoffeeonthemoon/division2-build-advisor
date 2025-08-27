@@ -5,8 +5,8 @@ from agent.item.weapon import Weapon
 
 class _Weapons:
     def __init__(self) -> None:
-        self._primary_weapon = Weapon(base_damage=48_500, rpm=850, name='Default')
-        self._secondary_weapon = Weapon(base_damage=48_500, rpm=850, name='Default')
+        self._primary_weapon = Weapon()
+        self._secondary_weapon = Weapon()
 
         # call the next mixin in the MRO
         super().__init__()
