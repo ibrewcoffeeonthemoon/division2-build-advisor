@@ -87,7 +87,7 @@ def make_build_by_raw_attributes(name: str = 'Raw') -> Build:
 
 
 build_creators = (
-    # make_build_by_defaualt,
+    make_build_by_defaualt,
     make_build_by_raw_attributes,
 )
 build_results = [
