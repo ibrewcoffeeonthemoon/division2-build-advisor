@@ -8,7 +8,7 @@ export default function Home() {
       className={`
         flex flex-col 
         text-center 
-        h-screen
+        min-h-screen
       `}
     >
       <Top />

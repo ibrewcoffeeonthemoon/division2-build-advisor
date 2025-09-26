@@ -1,7 +1,18 @@
 export default function Top() {
   return (
-    <div className="text-center bg-orange-600">
-      <span className="text-5xl">Top</span>
+    <div
+      className={`
+        flex flex-row justify-between items-center
+        text-center bg-orange-600 font-bold
+        px-5 py-3
+      `}
+    >
+      <h1 className="text-4xl">Division 2</h1>
+      <nav className="flex gap-4">
+        <a href="#">Build</a>
+        <a href="#">Stats</a>
+        <a href="#">Light/Dark</a>
+      </nav>
     </div>
   );
 }
