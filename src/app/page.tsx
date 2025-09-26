@@ -6,9 +6,9 @@ export default function Home() {
   return (
     <div
       className={`
+        h-full w-full fixed self-auto
         flex flex-col 
         text-center 
-        min-h-screen
       `}
     >
       <Top />
