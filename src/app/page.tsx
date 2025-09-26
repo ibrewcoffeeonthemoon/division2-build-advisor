@@ -1,3 +1,7 @@
+import Bottom from "@/components/Bottom";
+import Main from "@/components/Main";
+import Top from "@/components/Top";
+
 export default function Home() {
   return (
     <div
@@ -7,15 +11,9 @@ export default function Home() {
         h-screen
       `}
     >
-      <span className=" text-4xl text-center bg-orange-500 ">Top</span>
-      <div className="flex-1 flex flex-col justify-center">
-        <p>1</p>
-        <p>2</p>
-        <p>3</p>
-        <p>4</p>
-        <p>5</p>
-      </div>
-      <span className="text-3xl bg-orange-500">Bottom</span>
+      <Top />
+      <Main />
+      <Bottom />
     </div>
   );
 }
