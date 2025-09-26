@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 const Slot = ({ name }: { name: string }) => {
   return (
     <div
@@ -12,21 +14,32 @@ const Slot = ({ name }: { name: string }) => {
   );
 };
 
+const Section = ({ name, children }: { name: string; children: ReactNode }) => {
+  return (
+    <div className="bg-orange-950">
+      <h1 className="text-4xl text-left px-4 py-2">{name}</h1>
+      <div className="grid grid-cols-2 items-center content-start">
+        {children}
+      </div>
+    </div>
+  );
+};
+
 export default function Main() {
   return (
-    <div
-      className={`
-        flex-1
-        grid grid-cols-2 items-center content-start
-        overflow-auto
-      `}
-    >
-      <Slot name="Mask" />
-      <Slot name="Backpack" />
-      <Slot name="Chest" />
-      <Slot name="Gloves" />
-      <Slot name="Holster" />
-      <Slot name="Kneepads" />
+    <div className="flex-grow overflow-auto">
+      <Section name="Weapons">
+        <Slot name="Weapon1" />
+        <Slot name="Weapon2" />
+      </Section>
+      <Section name="Gears">
+        <Slot name="Mask" />
+        <Slot name="Backpack" />
+        <Slot name="Chest" />
+        <Slot name="Gloves" />
+        <Slot name="Holster" />
+        <Slot name="Kneepads" />
+      </Section>
     </div>
   );
 }
