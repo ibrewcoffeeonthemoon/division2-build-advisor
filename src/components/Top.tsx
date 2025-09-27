@@ -1,3 +1,5 @@
+"use client";
+
 export default function Top() {
   return (
     <div
@@ -11,7 +13,11 @@ export default function Top() {
       <nav className="flex gap-4">
         <a href="#">Build</a>
         <a href="#">Stats</a>
-        <a href="#">Light/Dark</a>
+        <button
+          onClick={() => document.documentElement.classList.toggle("dark")}
+        >
+          Light/Dark
+        </button>
       </nav>
     </div>
   );
