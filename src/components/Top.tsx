@@ -1,6 +1,16 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 export default function Top() {
+  const [dark, setDark] = useState(true);
+  const toggleDark = () => setDark(!dark);
+
+  useEffect(() => {
+    if (dark) document.documentElement.classList.add("dark");
+    else document.documentElement.classList.remove("dark");
+  }, [dark]);
+
   return (
     <div
       className={`
@@ -13,11 +23,7 @@ export default function Top() {
       <nav className="flex gap-4">
         <a href="#">Build</a>
         <a href="#">Stats</a>
-        <button
-          onClick={() => document.documentElement.classList.toggle("dark")}
-        >
-          Light/Dark
-        </button>
+        <button onClick={toggleDark}>{dark ? "Dark" : "Light"}</button>
       </nav>
     </div>
   );
