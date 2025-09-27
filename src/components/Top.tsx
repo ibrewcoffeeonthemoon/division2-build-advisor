@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
 
 export default function Top() {
   const [dark, setDark] = useState(true);
@@ -20,10 +21,20 @@ export default function Top() {
       `}
     >
       <h1 className="text-4xl">Division 2</h1>
-      <nav className="flex gap-4">
+      <nav className="flex flex-row items-center gap-4">
         <a href="#">Build</a>
         <a href="#">Stats</a>
-        <button onClick={toggleDark}>{dark ? "Dark" : "Light"}</button>
+        <button
+          onClick={toggleDark}
+          className="p-1 rounded-full hover:bg-orange-400 dark:hover:bg-orange-700 flex items-center justify-center"
+          aria-label="Toggle theme"
+        >
+          {dark ? (
+            <MoonIcon className="w-7 h-7 text-zinc-600" />
+          ) : (
+            <SunIcon className="w-7 h-7 text-yellow-200" />
+          )}
+        </button>
       </nav>
     </div>
   );
