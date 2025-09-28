@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const APP_NAME = "division2-build-advisor";
-const APP_DEFAULT_TITLE = "Division 2 Build Advisor";
+const APP_NAME = "Build Advisor";
+const APP_DEFAULT_TITLE = "Build Advisor";
 const APP_TITLE_TEMPLATE = "%s - PWA App";
 const APP_DESCRIPTION = "A build advisor for The Division 2 game";
 
