@@ -1,0 +1,34 @@
+import type { MetadataRoute } from "next";
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: "Division 2 Build Advisor",
+    short_name: "division2-build-advisor",
+    description: "The Division 2 Build Advisor App",
+    background_color: "#ffffff",
+    theme_color: "#000000",
+    display: "standalone",
+    orientation: "portrait",
+    scope: "/",
+    start_url: "/",
+    icons: [
+      {
+        src: "favicon.ico",
+        sizes: "48x48 32x32 16x16",
+        type: "image/x-icon",
+      },
+      {
+        purpose: "maskable",
+        sizes: "192x192",
+        src: "maskable_icon_x192.png",
+        type: "image/png",
+      },
+      {
+        purpose: "maskable",
+        sizes: "512x512",
+        src: "maskable_icon_x512.png",
+        type: "image/png",
+      },
+    ],
+  };
+}
