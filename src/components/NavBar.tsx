@@ -41,13 +41,16 @@ export default function NavBar() {
       <div className="flex-1 flex flex-row justify-end items-center">
         <button
           onClick={toggleDark}
-          className="rounded-full hover:bg-orange-400 dark:hover:bg-orange-700 flex items-center justify-center"
+          className="
+            rounded-full hover:bg-primary-content dark:hover:bg-primary
+            flex items-center justify-center
+          "
           aria-label="Toggle theme"
         >
           {dark ? (
-            <MoonIcon className="w-7 h-7 text-zinc-600" />
+            <MoonIcon className="w-7 h-7" />
           ) : (
-            <SunIcon className="w-7 h-7 text-yellow-200" />
+            <SunIcon className="w-7 h-7" />
           )}
         </button>
       </div>
