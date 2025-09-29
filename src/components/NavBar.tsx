@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
+import { SunIcon, MoonIcon, Bars3Icon } from "@heroicons/react/24/solid";
 
 export default function NavBar() {
   const [dark, setDark] = useState(true);
@@ -23,9 +23,13 @@ export default function NavBar() {
       className="
         navbar bg-base-100 shadow-sm
         grid grid-cols-3
+        px-4
       "
     >
       <div className="flex-1 flex flex-row justify-start items-center">
+        <Bars3Icon className="h-7 w-7" />
+      </div>
+      <div className="flex-1 flex flex-row justify-center items-center">
         <button onClick={() => alert(currentUrl)}>
           <img
             src="/icon-192.png"
@@ -33,9 +37,6 @@ export default function NavBar() {
             className="h-7 w-7 rounded-full"
           />
         </button>
-      </div>
-      <div className="flex-1 flex flex-row justify-center items-center">
-        <h1 className="text-xl font-bold">Build Title</h1>
       </div>
       <div className="flex-1 flex flex-row justify-end items-center">
         <button
