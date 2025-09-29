@@ -10,8 +10,8 @@ export default function Top() {
   const [currentUrl, setCurrentUrl] = useState("");
 
   useEffect(() => {
-    if (dark) document.documentElement.classList.add("dark");
-    else document.documentElement.classList.remove("dark");
+    if (dark) document.documentElement.setAttribute("data-theme", "dark");
+    else document.documentElement.setAttribute("data-theme", "light");
   }, [dark]);
 
   useEffect(() => {
