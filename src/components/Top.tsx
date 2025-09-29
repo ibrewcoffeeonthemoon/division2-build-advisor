@@ -17,10 +17,10 @@ export default function Top() {
       className={`
         flex flex-row justify-between items-center
         text-center bg-orange-600 font-bold
-        px-5 py-3
+        px-4 py-2
       `}
     >
-      <h1 className="text-4xl">Division 2</h1>
+      <h1 className="text-2xl">Division 2</h1>
       <nav className="flex flex-row items-center gap-4">
         <a href="#">Build</a>
         <a href="#">Stats</a>

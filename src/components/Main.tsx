@@ -4,9 +4,9 @@ const Slot = ({ name }: { name: string }) => {
   return (
     <div
       className={`
-        h-40 py-2 px-1 m-2
+        h-40 py-2 px-1 m-0.5
         rounded-2xl
-        bg-orange-400 text-2xl font-bold
+        bg-orange-400 text-xl font-bold
       `}
     >
       {name}
@@ -16,8 +16,8 @@ const Slot = ({ name }: { name: string }) => {
 
 const Section = ({ name, children }: { name: string; children: ReactNode }) => {
   return (
-    <div className="bg-white dark:bg-orange-950">
-      <h1 className="text-4xl text-left px-4 py-2">{name}</h1>
+    <div className="bg-orange-700 dark:bg-orange-950">
+      <h1 className="text-2xl text-left px-4 py-2">{name}</h1>
       <div className="grid grid-cols-2 items-center content-start">
         {children}
       </div>
