@@ -1,21 +1,33 @@
 "use client";
 
-import { ChartBarIcon } from "@heroicons/react/24/solid";
+import {
+  ArchiveBoxIcon,
+  WrenchScrewdriverIcon,
+  ChartBarIcon,
+} from "@heroicons/react/24/solid";
+import { ReactNode } from "react";
 
-const Button = ({ name, target }: { name: string; target: string }) => {
+const Button = ({
+  name,
+  target,
+  icon,
+}: {
+  name: string;
+  target: string;
+  icon: ReactNode;
+}) => {
   return (
-    <div className="flex flex-col items-center">
-      <ChartBarIcon className="w-8 h-8" />
-      <a
-        href={target}
-        className="
+    <a
+      href={target}
+      className="
+        flex flex-col items-center
         text-sm hover:text-gray-300 
         transition-colors duration-300
       "
-      >
-        {name}
-      </a>
-    </div>
+    >
+      <span className="w-7 h-7">{icon}</span>
+      {name}
+    </a>
   );
 };
 
@@ -28,9 +40,9 @@ export default function Bottom() {
         px-1 py-1
       "
     >
-      <Button name="Loadout" target="#" />
-      <Button name="Build" target="#" />
-      <Button name="Stats" target="#" />
+      <Button name="Loadout" target="#" icon={<ArchiveBoxIcon />} />
+      <Button name="Build" target="#" icon={<WrenchScrewdriverIcon />} />
+      <Button name="Stats" target="#" icon={<ChartBarIcon />} />
     </nav>
   );
 }
