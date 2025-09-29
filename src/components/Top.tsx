@@ -7,10 +7,16 @@ export default function Top() {
   const [dark, setDark] = useState(true);
   const toggleDark = () => setDark(!dark);
 
+  const [currentUrl, setCurrentUrl] = useState("");
+
   useEffect(() => {
     if (dark) document.documentElement.classList.add("dark");
     else document.documentElement.classList.remove("dark");
   }, [dark]);
+
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
+  }, []);
 
   return (
     <div
@@ -20,7 +26,9 @@ export default function Top() {
         px-4 py-2
       `}
     >
-      <img src="/icon-192.png" alt="Logo" className="h-7 w-7 rounded-full" />
+      <button onClick={() => alert(currentUrl)}>
+        <img src="/icon-192.png" alt="Logo" className="h-7 w-7 rounded-full" />
+      </button>
       <nav className="flex flex-row items-center gap-4">
         <a href="#">Build</a>
         <a href="#">Stats</a>
