@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
 
-export default function Top() {
+export default function NavBar() {
   const [dark, setDark] = useState(true);
   const toggleDark = () => setDark(!dark);
 
@@ -21,9 +21,8 @@ export default function Top() {
   return (
     <div
       className="
+        navbar bg-base-100 shadow-sm
         grid grid-cols-3
-        text-center bg-orange-600 font-bold
-        px-4 py-3
       "
     >
       <div className="flex-1 flex flex-row justify-start items-center">
