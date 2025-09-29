@@ -8,7 +8,6 @@ export default function Home() {
       className="
         h-full w-full fixed self-auto
         grid-cols-1 place-items-center
-        text-center 
       "
     >
       <div
