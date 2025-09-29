@@ -1,6 +1,24 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+
+export const metadata: Metadata = {
+  applicationName: "Build Advisor",
+  authors: [
+    {
+      name: "ibrewcoffeeonthemoon",
+      url: "https://github.com/ibrewcoffeeonthemoon",
+    },
+  ],
+  title: "Build Advisor",
+  description: "A build advisor for The Division 2 game",
+  keywords: ["Tom Clancy's", "Division 2", "Build", "Advisor", "DPS"],
+  robots: "all",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#431407",
+};
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,18 +30,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Division 2 Build Advisor",
-  description: "A build advisor for The Division 2 game",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" dir="ltr">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
