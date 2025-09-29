@@ -7,13 +7,20 @@ export default function Home() {
     <div
       className={`
         h-full w-full fixed self-auto
-        flex flex-col 
+        grid-cols-1 place-items-center
         text-center 
       `}
     >
-      <Top />
-      <Main />
-      <Bottom />
+      <div
+        className={`
+          h-full w-full md:max-w-xl
+          flex flex-col
+      `}
+      >
+        <Top />
+        <Main />
+        <Bottom />
+      </div>
     </div>
   );
 }
