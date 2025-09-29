@@ -1,4 +1,5 @@
 import Bottom from "@/components/Bottom";
+import Dock from "@/components/Dock";
 import Main from "@/components/Main";
 import Top from "@/components/Top";
 
@@ -19,7 +20,7 @@ export default function Home() {
       >
         <Top />
         <Main />
-        <Bottom />
+        <Dock />
       </div>
     </div>
   );
