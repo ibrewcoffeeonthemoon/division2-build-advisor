@@ -20,7 +20,7 @@ export default function Top() {
         px-4 py-2
       `}
     >
-      <h1 className="text-2xl">Division 2</h1>
+      <img src="/icon-192.png" alt="Logo" className="h-7 w-7 rounded-full" />
       <nav className="flex flex-row items-center gap-4">
         <a href="#">Build</a>
         <a href="#">Stats</a>
