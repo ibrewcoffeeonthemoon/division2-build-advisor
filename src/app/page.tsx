@@ -1,8 +1,6 @@
-import Bottom from "@/components/Bottom";
 import Dock from "@/components/Dock";
 import Main from "@/components/Main";
 import NavBar from "@/components/NavBar";
-import Top from "@/components/Top";
 
 export default function Home() {
   return (
