@@ -1,4 +1,14 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+
 export default function Bottom() {
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
+  }, []);
+
   return (
     <div
       className={`
@@ -6,7 +16,7 @@ export default function Bottom() {
         px-1 py-1
       `}
     >
-      <span className="text-sm">@ 2025 division2-build-advisor v0.1.0</span>
+      <p className="text-sm">{currentUrl}</p>
     </div>
   );
 }
