@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { SunIcon, MoonIcon, Bars3Icon } from "@heroicons/react/24/solid";
+import Image from "next/image";
 
 export default function NavBar() {
   const [dark, setDark] = useState(true);
@@ -31,8 +32,10 @@ export default function NavBar() {
       </div>
       <div className="flex-1 flex flex-row justify-center items-center">
         <button onClick={() => alert(currentUrl)}>
-          <img
+          <Image
             src="/icon-192.png"
+            width="192"
+            height="192"
             alt="Logo"
             className="h-7 w-7 rounded-full"
           />
