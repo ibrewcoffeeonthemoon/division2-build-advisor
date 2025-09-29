@@ -21,20 +21,27 @@ export default function Top() {
   return (
     <div
       className="
-        flex flex-row justify-between items-center
+        grid grid-cols-3
         text-center bg-orange-600 font-bold
-        px-4 py-2
+        px-4 py-3
       "
     >
-      <button onClick={() => alert(currentUrl)}>
-        <img src="/icon-192.png" alt="Logo" className="h-7 w-7 rounded-full" />
-      </button>
-      <nav className="flex flex-row items-center gap-4">
-        <a href="#">Build</a>
-        <a href="#">Stats</a>
+      <div className="flex-1 flex flex-row justify-start items-center">
+        <button onClick={() => alert(currentUrl)}>
+          <img
+            src="/icon-192.png"
+            alt="Logo"
+            className="h-7 w-7 rounded-full"
+          />
+        </button>
+      </div>
+      <div className="flex-1 flex flex-row justify-center items-center">
+        <h1 className="text-xl font-bold">Build Title</h1>
+      </div>
+      <div className="flex-1 flex flex-row justify-end items-center">
         <button
           onClick={toggleDark}
-          className="p-1 rounded-full hover:bg-orange-400 dark:hover:bg-orange-700 flex items-center justify-center"
+          className="rounded-full hover:bg-orange-400 dark:hover:bg-orange-700 flex items-center justify-center"
           aria-label="Toggle theme"
         >
           {dark ? (
@@ -43,7 +50,7 @@ export default function Top() {
             <SunIcon className="w-7 h-7 text-yellow-200" />
           )}
         </button>
-      </nav>
+      </div>
     </div>
   );
 }
