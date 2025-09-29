@@ -2,48 +2,22 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const APP_NAME = "Build Advisor";
-const APP_DEFAULT_TITLE = "Build Advisor";
-const APP_TITLE_TEMPLATE = "%s - PWA App";
-const APP_DESCRIPTION = "A build advisor for The Division 2 game";
-
 export const metadata: Metadata = {
-  applicationName: APP_NAME,
-  title: {
-    default: APP_DEFAULT_TITLE,
-    template: APP_TITLE_TEMPLATE,
-  },
-  description: APP_DESCRIPTION,
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: APP_DEFAULT_TITLE,
-    // startUpImage: [],
-  },
-  formatDetection: {
-    telephone: false,
-  },
-  openGraph: {
-    type: "website",
-    siteName: APP_NAME,
-    title: {
-      default: APP_DEFAULT_TITLE,
-      template: APP_TITLE_TEMPLATE,
+  applicationName: "Build Advisor",
+  authors: [
+    {
+      name: "ibrewcoffeeonthemoon",
+      url: "https://github.com/ibrewcoffeeonthemoon",
     },
-    description: APP_DESCRIPTION,
-  },
-  twitter: {
-    card: "summary",
-    title: {
-      default: APP_DEFAULT_TITLE,
-      template: APP_TITLE_TEMPLATE,
-    },
-    description: APP_DESCRIPTION,
-  },
+  ],
+  title: "Build Advisor",
+  description: "A build advisor for The Division 2 game",
+  keywords: ["Tom Clancy's", "Division 2", "Build", "Advisor", "DPS"],
+  robots: "all",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FFFFFF",
+  themeColor: "#431407",
 };
 
 const geistSans = Geist({
