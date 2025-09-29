@@ -4,8 +4,8 @@ const Slot = ({ name }: { name: string }) => {
   return (
     <div
       className="
-        card card-sm bg-base-100 shadow-sm
-        h-40
+        card card-sm bg-accent/20 shadow-sm
+        h-40 m-1
         text-xl font-bold
       "
     >
@@ -18,7 +18,7 @@ const Slot = ({ name }: { name: string }) => {
 
 const Section = ({ name, children }: { name: string; children: ReactNode }) => {
   return (
-    <div className="card card-sm bg-base-100 shadow-sm">
+    <div className="card card-sm bg-base-300 shadow-sm">
       <div className="card-body">
         <h1 className="card-title">{name}</h1>
         <div className="grid grid-cols-2 items-center content-start">
