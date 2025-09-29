@@ -5,17 +5,17 @@ import Top from "@/components/Top";
 export default function Home() {
   return (
     <div
-      className={`
+      className="
         h-full w-full fixed self-auto
         grid-cols-1 place-items-center
         text-center 
-      `}
+      "
     >
       <div
-        className={`
+        className="
           h-full w-full md:max-w-xl
           flex flex-col
-      `}
+        "
       >
         <Top />
         <Main />

@@ -20,11 +20,11 @@ export default function Top() {
 
   return (
     <div
-      className={`
+      className="
         flex flex-row justify-between items-center
         text-center bg-orange-600 font-bold
         px-4 py-2
-      `}
+      "
     >
       <button onClick={() => alert(currentUrl)}>
         <img src="/icon-192.png" alt="Logo" className="h-7 w-7 rounded-full" />

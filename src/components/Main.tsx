@@ -3,11 +3,11 @@ import { ReactNode } from "react";
 const Slot = ({ name }: { name: string }) => {
   return (
     <div
-      className={`
+      className="
         h-40 py-2 px-1 m-0.5
         rounded-2xl
         bg-orange-400 text-xl font-bold
-      `}
+      "
     >
       {name}
     </div>
