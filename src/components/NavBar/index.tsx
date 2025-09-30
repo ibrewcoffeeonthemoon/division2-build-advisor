@@ -1,14 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { SunIcon, MoonIcon, Bars3Icon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { store } from "@/store";
 import { Alert } from "./Alert";
 
 export default function NavBar() {
-  const [dark, setDark] = useState(true);
-  const toggleDark = () => setDark(!dark);
+  const { dark, toggleDark } = store.app.useStore();
   const { showAlert, toggleShowAlert } = store.ui.NavBar.useStore();
   const { setCurrentUrl } = store.app.useStore();
 
