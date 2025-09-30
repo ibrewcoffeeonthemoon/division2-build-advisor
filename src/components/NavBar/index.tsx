@@ -5,6 +5,7 @@ import { store } from "@/store";
 import { Alert } from "./Alert";
 import { DarkToggleButton } from "./DarkToggleButton";
 import DrawerToggleButton from "./DrawerToggleButton";
+import ThemeButton from "./ThemeButton";
 
 export default function NavBar() {
   const showAlert = store.ui.NavBar.showAlert();
@@ -33,7 +34,8 @@ export default function NavBar() {
             />
           </button>
         </div>
-        <div className="flex-1 flex flex-row justify-end items-center">
+        <div className="flex-1 flex flex-row justify-end items-center gap-2">
+          <ThemeButton />
           <DarkToggleButton />
         </div>
       </div>
