@@ -5,7 +5,8 @@ import { InformationCircleIcon } from "@heroicons/react/24/solid";
 import { useEffect } from "react";
 
 export const Alert = () => {
-  const { currentUrl, setCurrentUrl } = store.app.useStore();
+  const currentUrl = store.app.currentUrl();
+  const setCurrentUrl = store.app.setCurrentUrl();
   const showAlert = store.ui.NavBar.showAlert();
   const setShowAlert = store.ui.NavBar.setShowAlert();
 
