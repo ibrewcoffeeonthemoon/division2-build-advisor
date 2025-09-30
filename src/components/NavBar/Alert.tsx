@@ -6,7 +6,8 @@ import { useEffect } from "react";
 
 export const Alert = () => {
   const { currentUrl, setCurrentUrl } = store.app.useStore();
-  const { showAlert, setShowAlert } = store.ui.NavBar.useStore();
+  const showAlert = store.ui.NavBar.showAlert();
+  const setShowAlert = store.ui.NavBar.setShowAlert();
 
   useEffect(() => {
     if (showAlert) {
