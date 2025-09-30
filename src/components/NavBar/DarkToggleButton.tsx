@@ -5,7 +5,8 @@ import { store } from "@/store";
 import { useEffect } from "react";
 
 export const DarkToggleButton = () => {
-  const { dark, toggleDark } = store.app.useStore();
+  const dark = store.app.dark();
+  const toggleDark = store.app.toggleDark();
 
   useEffect(() => {
     if (dark) document.documentElement.setAttribute("data-theme", "dark");

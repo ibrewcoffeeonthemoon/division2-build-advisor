@@ -1,11 +1,9 @@
-import { useStore as ui_NavBar } from "@/store/ui/NavBar";
-import { useStore as app } from "@/store/app";
+import NavBar from "@/store/ui/NavBar";
+import app from "@/store/app";
 
 export const store = {
   ui: {
-    NavBar: { useStore: ui_NavBar },
+    NavBar,
   },
-  app: {
-    useStore: app,
-  },
+  app,
 };

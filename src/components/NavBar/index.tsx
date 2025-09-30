@@ -7,7 +7,8 @@ import { Alert } from "./Alert";
 import { DarkToggleButton } from "./DarkToggleButton";
 
 export default function NavBar() {
-  const { showAlert, toggleShowAlert } = store.ui.NavBar.useStore();
+  const showAlert = store.ui.NavBar.showAlert();
+  const toggleShowAlert = store.ui.NavBar.toggleShowAlert();
 
   return (
     <div>
