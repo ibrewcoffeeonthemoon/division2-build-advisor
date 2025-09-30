@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { immer } from "zustand/middleware/immer";
 import { createSelectors } from "../utils";
 import { persist } from "zustand/middleware";
 
@@ -12,13 +13,22 @@ type Store = {
 
 export const useStore = create<Store>()(
   persist(
-    (set) => ({
+    immer((set) => ({
       currentUrl: "",
-      setCurrentUrl: (val) => set(() => ({ currentUrl: val })),
+      setCurrentUrl: (val) =>
+        set((s) => {
+          s.currentUrl = val;
+        }),
       dark: true,
-      setDark: (val) => set(() => ({ dark: val })),
-      toggleDark: () => set((s) => ({ dark: !s.dark })),
-    }),
+      setDark: (val) =>
+        set((s) => {
+          s.dark = val;
+        }),
+      toggleDark: () =>
+        set((s) => {
+          s.dark = !s.dark;
+        }),
+    })),
     {
       name: "store.app",
       partialize: (state) => ({ dark: state.dark }),
