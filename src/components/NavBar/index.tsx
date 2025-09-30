@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
-import { SunIcon, MoonIcon, Bars3Icon } from "@heroicons/react/24/solid";
+import { Bars3Icon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { store } from "@/store";
 import { Alert } from "./Alert";
+import { DarkToggleButton } from "./DarkToggleButton";
 
 export default function NavBar() {
   const { dark, toggleDark } = store.app.useStore();
@@ -44,20 +45,7 @@ export default function NavBar() {
           </button>
         </div>
         <div className="flex-1 flex flex-row justify-end items-center">
-          <button
-            onClick={toggleDark}
-            className="
-            rounded-full hover:bg-primary-content dark:hover:bg-primary
-            flex items-center justify-center
-          "
-            aria-label="Toggle theme"
-          >
-            {dark ? (
-              <MoonIcon className="w-7 h-7" />
-            ) : (
-              <SunIcon className="w-7 h-7" />
-            )}
-          </button>
+          <DarkToggleButton />
         </div>
       </div>
       {showAlert && <Alert />}
