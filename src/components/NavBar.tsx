@@ -10,7 +10,8 @@ import {
 import Image from "next/image";
 import { store } from "@/store";
 
-export const Alert = ({ currentUrl }: { currentUrl: string }) => {
+export const Alert = () => {
+  const { currentUrl } = store.app.useStore();
   const { showAlert, setShowAlert } = store.ui.NavBar.useStore();
   useEffect(() => {
     if (showAlert) {
@@ -38,7 +39,7 @@ export default function NavBar() {
   const [dark, setDark] = useState(true);
   const toggleDark = () => setDark(!dark);
   const { showAlert, toggleShowAlert } = store.ui.NavBar.useStore();
-  const [currentUrl, setCurrentUrl] = useState("");
+  const { setCurrentUrl } = store.app.useStore();
 
   useEffect(() => {
     if (dark) document.documentElement.setAttribute("data-theme", "dark");
@@ -89,7 +90,7 @@ export default function NavBar() {
           </button>
         </div>
       </div>
-      {showAlert && <Alert {...{ currentUrl }} />}
+      {showAlert && <Alert />}
     </div>
   );
 }
