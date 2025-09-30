@@ -9,6 +9,8 @@ type Store = {
   dark: boolean;
   setDark: (val: boolean) => void;
   toggleDark: () => void;
+  theme: string;
+  setTheme: (val: string) => void;
 };
 
 export const useStore = create<Store>()(
@@ -28,10 +30,18 @@ export const useStore = create<Store>()(
         set((s) => {
           s.dark = !s.dark;
         }),
+      theme: "light",
+      setTheme: (val) =>
+        set((s) => {
+          s.theme = val;
+        }),
     })),
     {
       name: "store.app",
-      partialize: (state) => ({ dark: state.dark }),
+      partialize: (state) => ({
+        dark: state.dark,
+        theme: state.theme,
+      }),
     },
   ),
 );
