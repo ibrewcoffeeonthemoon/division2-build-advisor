@@ -8,14 +8,8 @@ import { Alert } from "./Alert";
 import { DarkToggleButton } from "./DarkToggleButton";
 
 export default function NavBar() {
-  const { dark, toggleDark } = store.app.useStore();
   const { showAlert, toggleShowAlert } = store.ui.NavBar.useStore();
   const { setCurrentUrl } = store.app.useStore();
-
-  useEffect(() => {
-    if (dark) document.documentElement.setAttribute("data-theme", "dark");
-    else document.documentElement.setAttribute("data-theme", "light");
-  }, [dark]);
 
   useEffect(() => {
     setCurrentUrl(window.location.href);
