@@ -8,16 +8,10 @@ import {
   InformationCircleIcon,
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import { useStore } from "@/store/ui/NavBar";
 
-export const Alert = ({
-  currentUrl,
-  showAlert,
-  setShowAlert,
-}: {
-  currentUrl: string;
-  showAlert: boolean;
-  setShowAlert: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+export const Alert = ({ currentUrl }: { currentUrl: string }) => {
+  const { showAlert, setShowAlert } = useStore();
   useEffect(() => {
     if (showAlert) {
       const timer = setTimeout(() => {
@@ -43,7 +37,7 @@ export const Alert = ({
 export default function NavBar() {
   const [dark, setDark] = useState(true);
   const toggleDark = () => setDark(!dark);
-  const [showAlert, setShowAlert] = useState(false);
+  const { showAlert, toggleShowAlert } = useStore();
   const [currentUrl, setCurrentUrl] = useState("");
 
   useEffect(() => {
@@ -68,7 +62,7 @@ export default function NavBar() {
           <Bars3Icon className="h-7 w-7" />
         </div>
         <div className="flex-1 flex flex-row justify-center items-center">
-          <button onClick={() => setShowAlert(!showAlert)}>
+          <button onClick={toggleShowAlert}>
             <Image
               src="/icon-192.png"
               width="192"
@@ -95,7 +89,7 @@ export default function NavBar() {
           </button>
         </div>
       </div>
-      {showAlert && <Alert {...{ currentUrl, showAlert, setShowAlert }} />}
+      {showAlert && <Alert {...{ currentUrl }} />}
     </div>
   );
 }
