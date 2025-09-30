@@ -5,7 +5,15 @@ import {
   ChartBarIcon,
 } from "@heroicons/react/24/solid";
 
-const Button = ({ name, icon }: { name: string; icon: ReactNode }) => {
+const Button = ({
+  id,
+  name,
+  icon,
+}: {
+  id: number;
+  name: string;
+  icon: ReactNode;
+}) => {
   return (
     <button>
       <span className="w-7 h-7">{icon}</span>
@@ -15,11 +23,16 @@ const Button = ({ name, icon }: { name: string; icon: ReactNode }) => {
 };
 
 export default function Dock() {
+  const buttons = [
+    { name: "Loadout", icon: <ArchiveBoxIcon /> },
+    { name: "Build", icon: <WrenchScrewdriverIcon /> },
+    { name: "Stats", icon: <ChartBarIcon /> },
+  ];
   return (
     <div className="dock static">
-      <Button name="Loadout" icon={<ArchiveBoxIcon />} />
-      <Button name="Build" icon={<WrenchScrewdriverIcon />} />
-      <Button name="Stats" icon={<ChartBarIcon />} />
+      {buttons.map(({ name, icon }, id) => (
+        <Button key={id} {...{ name, icon, id }} />
+      ))}
     </div>
   );
 }
