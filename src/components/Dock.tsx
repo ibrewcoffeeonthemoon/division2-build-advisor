@@ -25,7 +25,7 @@ const Button = ({
       className={`${activeButton === id ? "dock-active" : ""}`}
       onClick={() => setActiveButton(id)}
     >
-      <span className="w-7 h-7">{icon}</span>
+      <span className="w-6 h-6">{icon}</span>
       <span className="dock-label">{name}</span>
     </button>
   );
