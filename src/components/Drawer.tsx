@@ -53,7 +53,13 @@ export default function Drawer() {
           {/* Sidebar content here */}
           {themes.map((name, i) => (
             <li key={i}>
-              <button>{name}</button>
+              <button
+                onClick={() => {
+                  document.documentElement.setAttribute("data-theme", name);
+                }}
+              >
+                {name}
+              </button>
             </li>
           ))}
         </ul>
