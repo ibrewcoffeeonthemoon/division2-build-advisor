@@ -1,4 +1,5 @@
 import Dock from "@/components/Dock";
+import Drawer from "@/components/Drawer";
 import Main from "@/components/Main";
 import NavBar from "@/components/NavBar";
 
@@ -17,6 +18,7 @@ export default function Home() {
         "
       >
         <NavBar />
+        <Drawer />
         <Main />
         <Dock />
       </div>
