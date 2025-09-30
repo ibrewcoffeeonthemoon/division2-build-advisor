@@ -1,19 +1,24 @@
+"use client";
+
 import { store } from "@/store";
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
 import { useEffect } from "react";
 
 export const Alert = () => {
-  const { currentUrl } = store.app.useStore();
+  const { currentUrl, setCurrentUrl } = store.app.useStore();
   const { showAlert, setShowAlert } = store.ui.NavBar.useStore();
+
   useEffect(() => {
     if (showAlert) {
+      setCurrentUrl(window.location.href);
+
       const timer = setTimeout(() => {
         setShowAlert(false);
       }, 5000);
 
       return () => clearTimeout(timer);
     }
-  }, [showAlert, setShowAlert]);
+  }, [setCurrentUrl, showAlert, setShowAlert]);
 
   return (
     <div

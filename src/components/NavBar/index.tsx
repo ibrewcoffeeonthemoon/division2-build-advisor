@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { store } from "@/store";
@@ -9,11 +8,6 @@ import { DarkToggleButton } from "./DarkToggleButton";
 
 export default function NavBar() {
   const { showAlert, toggleShowAlert } = store.ui.NavBar.useStore();
-  const { setCurrentUrl } = store.app.useStore();
-
-  useEffect(() => {
-    setCurrentUrl(window.location.href);
-  }, []);
 
   return (
     <div>
