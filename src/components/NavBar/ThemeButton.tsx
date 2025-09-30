@@ -41,7 +41,24 @@ const themes = [
 ];
 
 export const PreviewBox = ({ name }: { name: string }) => {
-  return <div data-theme={name} className="w-4 h-4 rounded bg-base-100" />;
+  const Dot = ({ color }: { color: string }) => (
+    <div className={`${color} size-2 rounded-full`} />
+  );
+
+  return (
+    <div
+      data-theme={name}
+      className="
+        flex gap-1 rounded-md p-2
+        bg-base-100
+      "
+    >
+      <Dot color="bg-base-content" />
+      <Dot color="bg-primary" />
+      <Dot color="bg-secondary" />
+      <Dot color="bg-accent" />
+    </div>
+  );
 };
 
 export default function ThemeButton() {
