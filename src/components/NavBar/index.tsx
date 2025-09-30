@@ -1,10 +1,10 @@
 "use client";
 
-import { Bars3Icon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { store } from "@/store";
 import { Alert } from "./Alert";
 import { DarkToggleButton } from "./DarkToggleButton";
+import DrawerToggleButton from "./DrawerToggleButton";
 
 export default function NavBar() {
   const showAlert = store.ui.NavBar.showAlert();
@@ -20,7 +20,7 @@ export default function NavBar() {
       "
       >
         <div className="flex-1 flex flex-row justify-start items-center">
-          <Bars3Icon className="h-7 w-7" />
+          <DrawerToggleButton />
         </div>
         <div className="flex-1 flex flex-row justify-center items-center">
           <button onClick={toggleShowAlert}>
