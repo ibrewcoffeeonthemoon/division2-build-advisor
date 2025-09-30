@@ -1,39 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  SunIcon,
-  MoonIcon,
-  Bars3Icon,
-  InformationCircleIcon,
-} from "@heroicons/react/24/solid";
+import { SunIcon, MoonIcon, Bars3Icon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { store } from "@/store";
-
-export const Alert = () => {
-  const { currentUrl } = store.app.useStore();
-  const { showAlert, setShowAlert } = store.ui.NavBar.useStore();
-  useEffect(() => {
-    if (showAlert) {
-      const timer = setTimeout(() => {
-        setShowAlert(false);
-      }, 5000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [showAlert, setShowAlert]);
-
-  return (
-    <div
-      role="alert"
-      className="alert alert-success alert-soft"
-      onClick={() => setShowAlert(false)}
-    >
-      <InformationCircleIcon className="w-6 h-6" />
-      <span>{currentUrl}</span>
-    </div>
-  );
-};
+import { Alert } from "./Alert";
 
 export default function NavBar() {
   const [dark, setDark] = useState(true);
