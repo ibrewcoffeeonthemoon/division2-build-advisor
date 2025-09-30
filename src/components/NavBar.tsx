@@ -9,6 +9,37 @@ import {
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
 
+export const Alert = ({
+  currentUrl,
+  showAlert,
+  setShowAlert,
+}: {
+  currentUrl: string;
+  showAlert: boolean;
+  setShowAlert: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+  useEffect(() => {
+    if (showAlert) {
+      const timer = setTimeout(() => {
+        setShowAlert(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showAlert, setShowAlert]);
+
+  return (
+    <div
+      role="alert"
+      className="alert alert-success alert-soft"
+      onClick={() => setShowAlert(false)}
+    >
+      <InformationCircleIcon className="w-6 h-6" />
+      <span>{currentUrl}</span>
+    </div>
+  );
+};
+
 export default function NavBar() {
   const [dark, setDark] = useState(true);
   const toggleDark = () => setDark(!dark);
@@ -64,16 +95,7 @@ export default function NavBar() {
           </button>
         </div>
       </div>
-      {showAlert && (
-        <div
-          role="alert"
-          className="alert alert-success alert-soft"
-          onClick={() => setShowAlert(false)}
-        >
-          <InformationCircleIcon className="w-6 h-6" />
-          <span>{currentUrl}</span>
-        </div>
-      )}
+      {showAlert && <Alert {...{ currentUrl, showAlert, setShowAlert }} />}
     </div>
   );
 }
