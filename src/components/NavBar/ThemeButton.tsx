@@ -40,6 +40,10 @@ const themes = [
   "silk",
 ];
 
+export const PreviewBox = ({ name }: { name: string }) => {
+  return <div data-theme={name} className="w-4 h-4 rounded bg-base-100" />;
+};
+
 export default function ThemeButton() {
   const theme = store.app.theme();
   const setTheme = store.app.setTheme();
@@ -71,7 +75,10 @@ export default function ThemeButton() {
         >
           {themes.map((name, i) => (
             <li key={i}>
-              <button onClick={() => setTheme(name)}>{name}</button>
+              <button onClick={() => setTheme(name)}>
+                <PreviewBox name={name} />
+                {name}
+              </button>
             </li>
           ))}
         </ul>
