@@ -8,10 +8,10 @@ import {
   InformationCircleIcon,
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
-import { useStore } from "@/store/ui/NavBar";
+import { store } from "@/store";
 
 export const Alert = ({ currentUrl }: { currentUrl: string }) => {
-  const { showAlert, setShowAlert } = useStore();
+  const { showAlert, setShowAlert } = store.ui.NavBar.useStore();
   useEffect(() => {
     if (showAlert) {
       const timer = setTimeout(() => {
@@ -37,7 +37,7 @@ export const Alert = ({ currentUrl }: { currentUrl: string }) => {
 export default function NavBar() {
   const [dark, setDark] = useState(true);
   const toggleDark = () => setDark(!dark);
-  const { showAlert, toggleShowAlert } = useStore();
+  const { showAlert, toggleShowAlert } = store.ui.NavBar.useStore();
   const [currentUrl, setCurrentUrl] = useState("");
 
   useEffect(() => {
