@@ -1,5 +1,8 @@
 "use client";
 
+import { store } from "@/store";
+import { useEffect } from "react";
+
 const themes = [
   "light",
   "dark",
@@ -39,6 +42,13 @@ const themes = [
 ];
 
 export default function Drawer() {
+  const theme = store.app.theme();
+  const setTheme = store.app.setTheme();
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
   return (
     <div className="drawer">
       <input id="drawer" type="checkbox" className="drawer-toggle" />
@@ -53,13 +63,7 @@ export default function Drawer() {
           {/* Sidebar content here */}
           {themes.map((name, i) => (
             <li key={i}>
-              <button
-                onClick={() => {
-                  document.documentElement.setAttribute("data-theme", name);
-                }}
-              >
-                {name}
-              </button>
+              <button onClick={() => setTheme(name)}>{name}</button>
             </li>
           ))}
         </ul>
