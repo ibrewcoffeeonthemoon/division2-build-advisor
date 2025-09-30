@@ -1,6 +1,53 @@
+import { store } from "@/store";
 import { SparklesIcon } from "@heroicons/react/24/outline";
+import { useEffect } from "react";
+
+const themes = [
+  "light",
+  "dark",
+  "cupcake",
+  "bumblebee",
+  "emerald",
+  "corporate",
+  "synthwave",
+  "retro",
+  "cyberpunk",
+  "valentine",
+  "halloween",
+  "garden",
+  "forest",
+  "aqua",
+  "lofi",
+  "pastel",
+  "fantasy",
+  "wireframe",
+  "black",
+  "luxury",
+  "dracula",
+  "cmyk",
+  "autumn",
+  "business",
+  "acid",
+  "lemonade",
+  "night",
+  "coffee",
+  "winter",
+  "dim",
+  "nord",
+  "sunset",
+  "caramellatte",
+  "abyss",
+  "silk",
+];
 
 export default function ThemeButton() {
+  const theme = store.app.theme();
+  const setTheme = store.app.setTheme();
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
   return (
     <div className="dropdown dropdown-bottom dropdown-end">
       <button
@@ -12,17 +59,23 @@ export default function ThemeButton() {
       >
         <SparklesIcon className="w-7 h-7" />
       </button>
-      <ul
-        tabIndex={0}
-        className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+      <div
+        className="
+          dropdown-content 
+          h-[80vh] overflow-x-hidden overflow-y-auto
+        "
       >
-        <li>
-          <a>Item 1</a>
-        </li>
-        <li>
-          <a>Item 2</a>
-        </li>
-      </ul>
+        <ul
+          tabIndex={0}
+          className="menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+        >
+          {themes.map((name, i) => (
+            <li key={i}>
+              <button onClick={() => setTheme(name)}>{name}</button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
