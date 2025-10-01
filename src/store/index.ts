@@ -1,17 +1,7 @@
-import NavBar from "@/store/ui/NavBar";
-import Weapons from "@/store/ui/Main/Weapons";
-import Gears from "@/store/ui/Main/Gears";
-import Dock from "@/store/ui/Dock";
 import app from "@/store/app";
+import { store as ui } from "@/store/ui";
 
 export const store = {
-  ui: {
-    NavBar,
-    Main: {
-      Weapons,
-      Gears,
-    },
-    Dock,
-  },
+  ui,
   app,
 };
