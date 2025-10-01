@@ -1,6 +1,6 @@
-import NavBar from "@/store/ui/NavBar";
+import { store as NavBar } from "@/store/ui/NavBar";
 import { stores as Main } from "@/store/ui/Main";
-import Dock from "@/store/ui/Dock";
+import { store as Dock } from "@/store/ui/Dock";
 
 export const stores = {
   NavBar,

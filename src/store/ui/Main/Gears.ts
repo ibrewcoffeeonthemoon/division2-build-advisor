@@ -26,4 +26,4 @@ export const useStore = create<Store>()(
 
 export const useStoreSelectors = createSelectors(useStore);
 
-export default useStoreSelectors.use;
+export const store = useStoreSelectors.use;
