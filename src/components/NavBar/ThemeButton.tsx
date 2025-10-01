@@ -124,7 +124,10 @@ export default function ThemeButton() {
                 onClick={(e) => {
                   setTheme(name);
                   // close dropdown on selected
-                  e.currentTarget.blur();
+                  const button = e.currentTarget;
+                  setTimeout(() => {
+                    button.blur();
+                  }, 500);
                 }}
               >
                 <PreviewBox theme={name} />
