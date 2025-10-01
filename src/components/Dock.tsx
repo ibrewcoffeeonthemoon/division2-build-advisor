@@ -6,7 +6,7 @@ import {
   WrenchScrewdriverIcon,
   ChartBarIcon,
 } from "@heroicons/react/24/solid";
-import { store } from "@/store";
+import { stores } from "@/store";
 
 const Button = ({
   id,
@@ -17,8 +17,8 @@ const Button = ({
   name: string;
   icon: ReactNode;
 }) => {
-  const activeButton = store.ui.Dock.activeButton();
-  const setActiveButton = store.ui.Dock.setActiveButton();
+  const activeButton = stores.ui.Dock.activeButton();
+  const setActiveButton = stores.ui.Dock.setActiveButton();
 
   return (
     <button

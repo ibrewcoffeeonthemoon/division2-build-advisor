@@ -1,4 +1,4 @@
-import { store } from "@/store";
+import { stores } from "@/store";
 import { SparklesIcon } from "@heroicons/react/24/outline";
 import { useEffect } from "react";
 
@@ -53,7 +53,7 @@ const Dot = ({ fg, bg, char }: { char: string; fg: string; bg: string }) => (
 );
 
 export const PreviewBox = ({ theme }: { theme: string }) => {
-  const appTheme = store.app.theme();
+  const appTheme = stores.app.theme();
 
   return (
     <>
@@ -89,8 +89,8 @@ export const PreviewBox = ({ theme }: { theme: string }) => {
 };
 
 export default function ThemeButton() {
-  const theme = store.app.theme();
-  const setTheme = store.app.setTheme();
+  const theme = stores.app.theme();
+  const setTheme = stores.app.setTheme();
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);

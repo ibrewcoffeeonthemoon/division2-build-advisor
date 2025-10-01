@@ -2,11 +2,11 @@
 
 import { Section } from "../Section";
 import Card from "./Card";
-import { store } from "@/store";
+import { stores } from "@/store";
 
 export default function Gears() {
-  const collapseOpen = store.ui.Main.Gears.collapseOpen();
-  const setCollapseOpen = store.ui.Main.Gears.setCollapseOpen();
+  const collapseOpen = stores.ui.Main.Gears.collapseOpen();
+  const setCollapseOpen = stores.ui.Main.Gears.setCollapseOpen();
 
   return (
     <Section

@@ -2,11 +2,11 @@
 
 import { Section } from "../Section";
 import Card from "./Card";
-import { store } from "@/store";
+import { stores } from "@/store";
 
 export default function Weapons() {
-  const collapseOpen = store.ui.Main.Weapons.collapseOpen();
-  const setCollapseOpen = store.ui.Main.Weapons.setCollapseOpen();
+  const collapseOpen = stores.ui.Main.Weapons.collapseOpen();
+  const setCollapseOpen = stores.ui.Main.Weapons.setCollapseOpen();
 
   return (
     <Section
