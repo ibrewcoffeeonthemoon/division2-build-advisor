@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import GearCard from "./GearCard";
+import WeaponCard from "./WeaponCard";
 
 const Slot = ({ name }: { name: string }) => {
   return (
@@ -45,8 +46,8 @@ export default function Main() {
   return (
     <div className="flex-grow overflow-auto">
       <Section name="Weapons">
-        <Slot name="Weapon1" />
-        <Slot name="Weapon2" />
+        <WeaponCard name="Weapon1" />
+        <WeaponCard name="Weapon2" />
       </Section>
       <Section name="Gears">
         <GearCard name="Mask" />
