@@ -14,7 +14,8 @@ export const ItemCard = ({ itemAttrs, itemDesc }: Props) => {
         text-xl font-bold
       "
     >
-      <div className="card-body">{itemAttrs}</div>
+      <div className="card-body flex-none">{itemAttrs}</div>
+      <div className="flex-grow" />
       <div className="card-body flex-none">{itemDesc}</div>
     </div>
   );
