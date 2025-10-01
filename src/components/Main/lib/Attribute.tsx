@@ -1,16 +1,17 @@
 import { ReactNode } from "react";
 
 type Props = {
-  name: string;
+  icon: ReactNode;
   field: string;
   val: string;
 };
-export const ItemAttribute = ({ name, field, val }: Props) => {
+
+export const ItemAttribute = ({ icon, field, val }: Props) => {
   return (
-    <div className="grid grid-cols-3 gap-3">
-      <div>{name}</div>
-      <div>{field}</div>
-      <div>{val}</div>
-    </div>
+    <tr className="">
+      <td className="w-5 h-5">{icon}</td>
+      <td className="pl-2">{val}</td>
+      <td className="pl-2">{field}</td>
+    </tr>
   );
 };
