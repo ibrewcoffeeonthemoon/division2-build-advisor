@@ -1,8 +1,8 @@
-type GearCardProps = {
+type Props = {
   name: string;
 };
 
-export default function GearCard({ name }: GearCardProps) {
+export default function Card({ name }: Props) {
   return (
     <div
       className="

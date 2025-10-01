@@ -1,8 +1,8 @@
-type WeaponCardProps = {
+type Props = {
   name: string;
 };
 
-export default function WeaponCard({ name }: WeaponCardProps) {
+export default function Card({ name }: Props) {
   return (
     <div
       className="
