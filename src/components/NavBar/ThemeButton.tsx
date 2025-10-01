@@ -91,7 +91,7 @@ export default function ThemeButton() {
       <button
         tabIndex={0}
         className="
-          rounded-full hover:bg-primary-content
+          btn btn-circle
           flex items-center justify-center
         "
       >
