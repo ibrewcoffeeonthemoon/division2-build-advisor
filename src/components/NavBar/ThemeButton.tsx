@@ -53,28 +53,38 @@ const Dot = ({ fg, bg, char }: { char: string; fg: string; bg: string }) => (
 );
 
 export const PreviewBox = ({ theme }: { theme: string }) => {
+  const appTheme = store.app.theme();
+
   return (
-    <div
-      data-theme={theme}
-      className="
-        flex flex-row gap-4 items-center justify-between 
-        w-60 rounded-md
-      "
-    >
+    <>
       <div
-        className="
+        className={`
+          h-full w-2.5 rounded-full
+          ${theme === appTheme ? "bg-primary" : "bg-transparent"}
+        `}
+      />
+      <div
+        data-theme={theme}
+        className={`
+        flex flex-row gap-4 items-center justify-between 
+        w-60 p-1 rounded-md
+      `}
+      >
+        <div
+          className="
           flex flex-row gap-1 rounded-md p-2
           bg-base-100 text-base-content
         "
-      >
-        {/* use full daisyui or tailwindcss names for the class to be detected or included */}
-        <Dot char="P" fg="bg-primary" bg="text-primary-content" />
-        <Dot char="S" fg="bg-secondary" bg="tebg-secondary-content" />
-        <Dot char="A" fg="bg-accent" bg="text-accent-content" />
-        <Dot char="N" fg="bg-neutral" bg="text-neutral-content" />
+        >
+          {/* use full daisyui or tailwindcss names for the class to be detected or included */}
+          <Dot char="P" fg="bg-primary" bg="text-primary-content" />
+          <Dot char="S" fg="bg-secondary" bg="tebg-secondary-content" />
+          <Dot char="A" fg="bg-accent" bg="text-accent-content" />
+          <Dot char="N" fg="bg-neutral" bg="text-neutral-content" />
+        </div>
+        <div className="font-bold p-1">{theme}</div>
       </div>
-      <div className="font-bold p-1">{theme}</div>
-    </div>
+    </>
   );
 };
 
@@ -99,7 +109,7 @@ export default function ThemeButton() {
       </button>
       <div
         className="
-          h-[75vh] 
+          h-[60vh] 
           dropdown-content rounded-box
           overflow-x-hidden overflow-y-auto
         "
@@ -110,7 +120,13 @@ export default function ThemeButton() {
         >
           {themes.map((name, i) => (
             <li key={i}>
-              <button onClick={() => setTheme(name)}>
+              <button
+                onClick={(e) => {
+                  setTheme(name);
+                  // close dropdown on selected
+                  e.currentTarget.blur();
+                }}
+              >
                 <PreviewBox theme={name} />
               </button>
             </li>
