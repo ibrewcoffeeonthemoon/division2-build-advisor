@@ -32,7 +32,7 @@ const Section = ({ name, children }: { name: string; children: ReactNode }) => {
     <div className="card card-sm bg-base-300 shadow-sm">
       <div className="card-body">
         <h1 className="card-title">{name}</h1>
-        <div className="grid grid-cols-2 items-center content-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center content-start">
           {children}
         </div>
       </div>
