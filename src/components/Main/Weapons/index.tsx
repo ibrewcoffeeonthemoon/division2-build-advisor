@@ -1,12 +1,12 @@
 "use client";
 
+import { store } from "@/store/ui/Main/Weapons";
 import { Section } from "../Section";
 import Card from "./Card";
-import { stores } from "@/store";
 
 export default function Weapons() {
-  const collapseOpen = stores.ui.Main.Weapons.collapseOpen();
-  const setCollapseOpen = stores.ui.Main.Weapons.setCollapseOpen();
+  const collapseOpen = store.collapseOpen();
+  const setCollapseOpen = store.setCollapseOpen();
 
   return (
     <Section

@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { stores } from "@/store";
 import { Alert } from "./Alert";
 import DrawerToggleButton from "./DrawerToggleButton";
 import ThemeButton from "./ThemeButton";
+import { store } from "@/store/ui/NavBar";
 
 export default function NavBar() {
-  const showAlert = stores.ui.NavBar.showAlert();
-  const toggleShowAlert = stores.ui.NavBar.toggleShowAlert();
+  const showAlert = store.showAlert();
+  const toggleShowAlert = store.toggleShowAlert();
 
   return (
     <div>
