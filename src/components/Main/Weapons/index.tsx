@@ -1,7 +1,7 @@
 "use client";
 
 import { store } from "@/store/ui/Main/Weapons";
-import { Section } from "../Section";
+import { Section } from "../lib/Section";
 import Card from "./Card";
 
 export default function Weapons() {
