@@ -120,7 +120,13 @@ export default function ThemeButton() {
         >
           {themes.map((name, i) => (
             <li key={i}>
-              <button onClick={() => setTheme(name)}>
+              <button
+                onClick={(e) => {
+                  setTheme(name);
+                  // close dropdown on selected
+                  e.currentTarget.blur();
+                }}
+              >
                 <PreviewBox theme={name} />
               </button>
             </li>
