@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { Alert } from "./Alert";
-import DrawerToggleButton from "./DrawerToggleButton";
 import ThemeButton from "./ThemeButton";
 import { store } from "@/store/ui/NavBar";
 
@@ -19,10 +18,7 @@ export default function NavBar() {
         px-4
       "
       >
-        <div className="flex-1 flex flex-row justify-start items-center">
-          <DrawerToggleButton />
-        </div>
-        <div className="flex-1 flex flex-row justify-center items-center">
+        <div className="flex-1 flex flex-row items-center">
           <button onClick={toggleShowAlert}>
             <Image
               src="/icon-192.png"
@@ -32,6 +28,11 @@ export default function NavBar() {
               className="h-7 w-7 rounded-full"
             />
           </button>
+        </div>
+        <div className="flex-1 justify-center items-center">
+          <h1 className="font-xl font-bold text-center align-middle">
+            Awesome Build
+          </h1>
         </div>
         <div className="flex-1 flex flex-row justify-end items-center gap-2">
           <ThemeButton />
