@@ -19,8 +19,8 @@ export default function Weapons() {
         />
       }
     >
-      <Card name="Weapon1" />
-      <Card name="Weapon2" />
+      <Card category="Weapon1" name="name" />
+      <Card category="Weapon2" name="name" />
     </Section>
   );
 }
