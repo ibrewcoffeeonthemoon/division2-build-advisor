@@ -40,23 +40,40 @@ const themes = [
   "silk",
 ];
 
-export const PreviewBox = ({ name }: { name: string }) => {
-  const Dot = ({ color }: { color: string }) => (
-    <div className={`${color} size-2 rounded-full`} />
-  );
+const Dot = ({ fg, bg, char }: { char: string; fg: string; bg: string }) => (
+  <div
+    className={`
+      ${fg} ${bg}
+      flex items-center justify-center aspect-square w-5
+      text-sm font-bold rounded-full
+    `}
+  >
+    {char}
+  </div>
+);
 
+export const PreviewBox = ({ theme }: { theme: string }) => {
   return (
     <div
-      data-theme={name}
+      data-theme={theme}
       className="
-        flex gap-1 rounded-md p-2
-        bg-base-100
+        flex flex-row gap-4 items-center justify-between 
+        w-60 rounded-md
       "
     >
-      <Dot color="bg-base-content" />
-      <Dot color="bg-primary" />
-      <Dot color="bg-secondary" />
-      <Dot color="bg-accent" />
+      <div
+        className="
+          flex flex-row gap-1 rounded-md p-2
+          bg-base-100 text-base-content
+        "
+      >
+        {/* use full daisyui or tailwindcss names for the class to be detected or included */}
+        <Dot char="P" fg="bg-primary" bg="text-primary-content" />
+        <Dot char="S" fg="bg-secondary" bg="tebg-secondary-content" />
+        <Dot char="A" fg="bg-accent" bg="text-accent-content" />
+        <Dot char="N" fg="bg-neutral" bg="text-neutral-content" />
+      </div>
+      <div className="font-bold p-1">{theme}</div>
     </div>
   );
 };
@@ -74,7 +91,7 @@ export default function ThemeButton() {
       <button
         tabIndex={0}
         className="
-          rounded-full hover:bg-primary-content
+          btn btn-circle
           flex items-center justify-center
         "
       >
@@ -82,19 +99,19 @@ export default function ThemeButton() {
       </button>
       <div
         className="
-          dropdown-content 
-          h-[80vh] overflow-x-hidden overflow-y-auto
+          h-[75vh] 
+          dropdown-content rounded-box
+          overflow-x-hidden overflow-y-auto
         "
       >
         <ul
           tabIndex={0}
-          className="menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+          className="menu bg-base-200 rounded-box z-1 p-2 shadow-sm"
         >
           {themes.map((name, i) => (
             <li key={i}>
               <button onClick={() => setTheme(name)}>
-                <PreviewBox name={name} />
-                {name}
+                <PreviewBox theme={name} />
               </button>
             </li>
           ))}
