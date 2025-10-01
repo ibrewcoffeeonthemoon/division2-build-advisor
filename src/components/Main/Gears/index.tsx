@@ -19,12 +19,12 @@ export default function Gears() {
         />
       }
     >
-      <Card name="Mask" />
-      <Card name="Backpack" />
-      <Card name="Chest" />
-      <Card name="Gloves" />
-      <Card name="Holster" />
-      <Card name="Kneepads" />
+      <Card category="Mask" name="name" />
+      <Card category="Backpack" name="name" />
+      <Card category="Chest" name="name" />
+      <Card category="Gloves" name="name" />
+      <Card category="Holster" name="name" />
+      <Card category="Kneepads" name="name" />
     </Section>
   );
 }
