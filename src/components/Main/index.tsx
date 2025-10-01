@@ -4,14 +4,13 @@ import WeaponCard from "./WeaponCard";
 
 const Section = ({ name, children }: { name: string; children: ReactNode }) => {
   return (
-    <div className="card card-sm bg-base-300 shadow-sm">
-      <div className="card-body">
-        <h1 className="card-title">{name}</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center content-start">
-          {children}
-        </div>
-      </div>
-    </div>
+    <details
+      className="collapse collapse-arrow bg-base-100 border-base-300 border"
+      open
+    >
+      <summary className="collapse-title font-semibold">{name}</summary>
+      <div className="collapse-content text-sm">{children}</div>
+    </details>
   );
 };
 
