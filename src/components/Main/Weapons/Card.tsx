@@ -5,7 +5,6 @@ import {
 } from "@heroicons/react/24/solid";
 import { ItemAttribute } from "../lib/Attribute";
 import { ItemCard } from "../lib/Card";
-import { StopIcon } from "@heroicons/react/24/outline";
 
 type Props = {
   category: string;
