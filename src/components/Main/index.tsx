@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import GearCard from "./GearCard";
 
 const Slot = ({ name }: { name: string }) => {
   return (
@@ -48,12 +49,12 @@ export default function Main() {
         <Slot name="Weapon2" />
       </Section>
       <Section name="Gears">
-        <Slot name="Mask" />
-        <Slot name="Backpack" />
-        <Slot name="Chest" />
-        <Slot name="Gloves" />
-        <Slot name="Holster" />
-        <Slot name="Kneepads" />
+        <GearCard name="Mask" />
+        <GearCard name="Backpack" />
+        <GearCard name="Chest" />
+        <GearCard name="Gloves" />
+        <GearCard name="Holster" />
+        <GearCard name="Kneepads" />
       </Section>
     </div>
   );
