@@ -34,9 +34,10 @@ export const Input = () => {
         defaultValue="WD"
       >
         <option disabled={true}>Attribute</option>
-        <option>CHC</option>
-        <option>CHD</option>
-        <option>HS</option>
+        <option>Weapon Damage</option>
+        <option>Critical Hit Chance</option>
+        <option>Critical Hit Damage</option>
+        <option>Headshot Damage</option>
       </select>
 
       <label className="grow input input-ghost input-md w-full items-center col-span-2">
