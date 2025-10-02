@@ -1,5 +1,39 @@
 import { ReactNode, useState } from "react";
 
+type TitleProps = {
+  category: string;
+  name: string;
+};
+
+const Title = ({ category, name }: TitleProps) => {
+  return (
+    <>
+      <div className="flex-grow" />
+      <div className="text-right">
+        <h2 className="card-title">{category}</h2>
+        <h2>{name}</h2>
+      </div>
+    </>
+  );
+};
+
+type SummaryProps = TitleProps & {
+  itemAttrs: ReactNode;
+};
+
+const Summary = ({ category, name, itemAttrs }: SummaryProps) => {
+  return (
+    <>
+      <div className="">{itemAttrs}</div>
+      <div className="flex-grow" />
+      <div className="text-right">
+        <h2 className="card-title">{category}</h2>
+        <h2>{name}</h2>
+      </div>
+    </>
+  );
+};
+
 type Props = {
   category: string;
   name: string;
@@ -24,22 +58,9 @@ export const ItemCard = ({ category, name, itemAttrs }: Props) => {
             "
           >
             {open ? (
-              <>
-                <div className="flex-grow" />
-                <div className="text-right">
-                  <h2 className="card-title">{category}</h2>
-                  <h2>{name}</h2>
-                </div>
-              </>
+              <Title {...{ category, name }} />
             ) : (
-              <>
-                <div className="">{itemAttrs}</div>
-                <div className="flex-grow" />
-                <div className="text-right">
-                  <h2 className="card-title">{category}</h2>
-                  <h2>{name}</h2>
-                </div>
-              </>
+              <Summary {...{ category, name, itemAttrs }} />
             )}
           </div>
         </div>
