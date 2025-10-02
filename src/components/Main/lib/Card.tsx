@@ -1,11 +1,12 @@
 import { ReactNode, useState } from "react";
 
 type Props = {
+  category: string;
+  name: string;
   itemAttrs: ReactNode;
-  itemDesc: ReactNode;
 };
 
-export const ItemCard = ({ itemAttrs, itemDesc }: Props) => {
+export const ItemCard = ({ category, name, itemAttrs }: Props) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -25,13 +26,19 @@ export const ItemCard = ({ itemAttrs, itemDesc }: Props) => {
             {open ? (
               <>
                 <div className="flex-grow" />
-                <div className="">{itemDesc}</div>
+                <div className="text-right">
+                  <h2 className="card-title">{category}</h2>
+                  <h2>{name}</h2>
+                </div>
               </>
             ) : (
               <>
                 <div className="">{itemAttrs}</div>
                 <div className="flex-grow" />
-                <div className="">{itemDesc}</div>
+                <div className="text-right">
+                  <h2 className="card-title">{category}</h2>
+                  <h2>{name}</h2>
+                </div>
               </>
             )}
           </div>
