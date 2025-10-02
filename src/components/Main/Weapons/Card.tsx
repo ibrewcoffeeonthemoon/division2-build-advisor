@@ -4,7 +4,7 @@ import {
   CubeIcon,
 } from "@heroicons/react/24/solid";
 import { ItemAttribute } from "../lib/Attribute";
-import { ItemCard } from "../lib/Card";
+import { ItemCard } from "../lib/ItemCard";
 
 type Props = {
   category: string;
