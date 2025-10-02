@@ -1,4 +1,5 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
+import { StopCircleIcon } from "@heroicons/react/24/solid";
 
 export const NameInput = () => {
   return (
@@ -73,7 +74,16 @@ export const Input = () => {
         </div>
       </div>
       <div className="collapse-content !p-0 pb-0 ps-0 pe-0 grid grid-cols-12">
-        <label className="input input-ghost w-full col-span-12">
+        <select
+          className="select select-ghost col-span-3"
+          defaultValue="Attribute"
+        >
+          <option disabled={true}>Type</option>
+          <option>Attribute</option>
+          <option>Mod</option>
+          <option>Talent</option>
+        </select>
+        <label className="input input-ghost w-full col-span-9">
           Name
           <input
             type="text"
