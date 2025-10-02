@@ -24,6 +24,7 @@ export const Header = () => {
     <>
       {headers.map(([header, style], i) => (
         <span
+          key={i}
           className={`${style} pt-2 size-full text-center text-accent-content`}
         >
           {header}
