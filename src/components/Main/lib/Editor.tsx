@@ -14,11 +14,18 @@ export const NameInput = () => {
 };
 
 export const Header = () => {
-  const headers = ["Amplifier", "Attribute", "Value", "Uptime"];
+  const headers = [
+    ["Name", "col-span-4"],
+    ["Attribute", "col-span-4"],
+    ["Value", "col-span-2"],
+    ["Uptime", "col-span-2"],
+  ];
   return (
     <>
-      {headers.map((header, i) => (
-        <span className="col-span-3 pt-2 size-full text-center text-accent-content">
+      {headers.map(([header, style], i) => (
+        <span
+          className={`${style} pt-2 size-full text-center text-accent-content`}
+        >
           {header}
         </span>
       ))}
@@ -29,17 +36,21 @@ export const Header = () => {
 const Input = () => {
   return (
     <div className="col-span-12 grid grid-cols-12 items-center">
+      <input
+        className="input input-ghost col-span-4"
+        type="text"
+        placeholder="Name"
+        list="common-names"
+      />
+      <datalist id="common-names">
+        <option value="RedCore"></option>
+        <option value="Firefox"></option>
+        <option value="Safari"></option>
+        <option value="Opera"></option>
+        <option value="Edge"></option>
+      </datalist>
       <select
-        className="select select-ghost w-auto col-span-3"
-        defaultValue="WD"
-      >
-        <option disabled={true}>Amplifier</option>
-        <option>WD</option>
-        <option>TWD</option>
-        <option>Amp</option>
-      </select>
-      <select
-        className="select select-ghost w-auto col-span-3"
+        className="select select-ghost w-auto col-span-4"
         defaultValue="WD"
       >
         <option disabled={true}>Attribute</option>
@@ -48,10 +59,10 @@ const Input = () => {
         <option>HS</option>
       </select>
 
-      <label className="grow input input-ghost input-md w-full items-center col-span-3">
+      <label className="grow input input-ghost input-md w-full items-center col-span-2">
         <input type="text" className="grow" placeholder="Value" />
       </label>
-      <label className="grow input input-ghost input-md w-full items-center col-span-3">
+      <label className="grow input input-ghost input-md w-full items-center col-span-2">
         <input
           type="text"
           className="grow"
