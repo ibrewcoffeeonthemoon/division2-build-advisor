@@ -8,6 +8,9 @@ export default function Main() {
       <Weapons />
       <Gears />
       <Watch />
+      <div className="w-full p-2 flex flex-row justify-center">
+        <button className="btn btn-primary btn-outline">Save to Loadout</button>
+      </div>
     </div>
   );
 }
