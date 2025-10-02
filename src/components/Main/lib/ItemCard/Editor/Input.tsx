@@ -24,7 +24,7 @@ export const Header = () => {
       {headers.map(([header, style], i) => (
         <span
           key={i}
-          className={`${style} pt-2 size-full text-center text-accent-content`}
+          className={`${style} pt-2 size-full text-center font-bold`}
         >
           {header}
         </span>
@@ -35,29 +35,39 @@ export const Header = () => {
 
 export const Input = () => {
   return (
-    <div className="col-span-12 grid grid-cols-12 items-center">
-      <select
-        className="select select-ghost w-auto col-span-7"
-        defaultValue="WD"
-      >
-        <option disabled={true}>Attribute</option>
-        <option>Weapon Damage</option>
-        <option>Critical Hit Chance</option>
-        <option>Critical Hit Damage</option>
-        <option>Headshot Damage</option>
-      </select>
+    <div tabIndex={0} className="collapse col-span-12 p-0 overflow-visible">
+      <div className="collapse-title p-0 ps-0 pe-0">
+        <div className="col-span-12 grid grid-cols-12 items-center">
+          <select
+            className="select select-ghost col-span-7 z-10"
+            defaultValue="Weapon Damage"
+          >
+            <option disabled={true}>Attribute</option>
+            <option>Weapon Damage</option>
+            <option>Critical Hit Chance</option>
+            <option>Critical Hit Damage</option>
+            <option>Headshot Damage</option>
+          </select>
 
-      <label className="grow input input-ghost input-md w-full items-center col-span-3">
-        <input type="text" className="grow" placeholder="Value" />
-      </label>
-      <label className="grow input input-ghost input-md w-full items-center col-span-2">
-        <input
-          type="text"
-          className="grow"
-          placeholder="Uptime"
-          defaultValue={1.0}
-        />
-      </label>
+          <label className="input input-ghost input-md w-full items-center col-span-3">
+            <input type="number" className="grow" placeholder="Value" />
+          </label>
+          <label className="input input-ghost input-md w-full items-center col-span-2">
+            <input
+              type="number"
+              className="grow"
+              placeholder="Uptime"
+              defaultValue={1.0}
+            />
+          </label>
+        </div>
+      </div>
+      <div className="collapse-content p-0 ps-0 pe-0">
+        <label className="input input-ghost w-full">
+          Name
+          <input type="text" className="grow" placeholder="Remarks" />
+        </label>
+      </div>
     </div>
   );
 };
