@@ -45,12 +45,7 @@ export default function Card({ category, name }: Props) {
           </tbody>
         </table>
       }
-      itemDesc={
-        <div className="text-right">
-          <h2 className="card-title">{category}</h2>
-          <h2>{name}</h2>
-        </div>
-      }
+      {...{ category, name }}
     />
   );
 }
