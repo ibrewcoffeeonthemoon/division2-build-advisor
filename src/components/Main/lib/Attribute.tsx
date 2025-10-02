@@ -1,5 +1,12 @@
 import { ReactNode } from "react";
 
+export type Attribute = {
+  type: "Attribute" | "Mod" | "Talent";
+  name: string;
+  value: number;
+  uptime: number;
+};
+
 type Props = {
   icon: ReactNode;
   field: string;
