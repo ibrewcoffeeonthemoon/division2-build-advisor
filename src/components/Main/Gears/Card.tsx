@@ -3,7 +3,7 @@ import {
   Cog8ToothIcon,
   CubeIcon,
 } from "@heroicons/react/24/solid";
-import { ItemCard } from "../lib/Card";
+import { ItemCard } from "../lib/ItemCard";
 import { ItemAttribute } from "../lib/Attribute";
 
 type Props = {
