@@ -1,16 +1,16 @@
 "use client";
 
-import { store } from "@/store/ui/Main/Weapons";
+import { store } from "@/store/ui/Main/Watch";
 import { Section } from "../lib/Section";
 import Card from "./Card";
 
-export default function Weapons() {
+export default function Watch() {
   const collapseOpen = store.collapseOpen();
   const setCollapseOpen = store.setCollapseOpen();
 
   return (
     <Section
-      name="Weapons"
+      name="Watch"
       control={
         <input
           type="checkbox"
@@ -19,10 +19,7 @@ export default function Weapons() {
         />
       }
     >
-      <Card category="Primary" name="name" />
-      <Card category="Secondary" name="name" />
-      <Card category="Sidearm" name="name" />
-      <Card category="Signature" name="name" />
+      <Card category="Watch" name="name" />
     </Section>
   );
 }
