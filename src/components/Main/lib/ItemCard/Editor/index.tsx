@@ -10,6 +10,9 @@ export const Editor = () => {
       <Input />
       <Input />
       <Input />
+      <div className="col-span-12 p-2 flex flex-row justify-center">
+        <button className="btn btn-primary btn-outline">Add Attribute</button>
+      </div>
     </div>
   );
 };
