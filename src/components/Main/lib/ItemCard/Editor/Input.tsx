@@ -16,8 +16,8 @@ export const NameInput = () => {
 export const Header = () => {
   const headers = [
     ["Attribute", "col-span-7"],
-    ["Value(%)", "col-span-3"],
-    ["Uptime(%)", "col-span-2"],
+    ["Value %", "col-span-3"],
+    ["Uptime %", "col-span-2"],
   ];
   return (
     <>
@@ -55,7 +55,7 @@ export const Input = () => {
           <label className="input input-ghost input-md w-full items-center col-span-3">
             <input
               type="number"
-              className="grow"
+              className="grow text-center"
               placeholder="Value"
               onFocus={(e) => e.currentTarget.select()}
             />
@@ -63,7 +63,7 @@ export const Input = () => {
           <label className="input input-ghost input-md w-full items-center col-span-2">
             <input
               type="number"
-              className="grow"
+              className="grow text-center"
               placeholder="Uptime"
               defaultValue={1.0}
               onFocus={(e) => e.currentTarget.select()}
