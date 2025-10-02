@@ -37,7 +37,7 @@ export const Input = () => {
   return (
     <div
       tabIndex={0}
-      className="collapse col-span-12 p-0 overflow-visible border-1 border-base-300 duration-1000"
+      className="collapse col-span-12 p-1.5 m-0 overflow-visible border-1 border-base-300 duration-1000"
     >
       <div className="collapse-title p-0 ps-0 pe-0">
         <div className="col-span-12 grid grid-cols-12 items-center">
@@ -51,7 +51,6 @@ export const Input = () => {
             <option>Critical Hit Damage</option>
             <option>Headshot Damage</option>
           </select>
-
           <label className="input input-ghost input-md w-full items-center col-span-3">
             <input
               type="number"
@@ -71,7 +70,7 @@ export const Input = () => {
           </label>
         </div>
       </div>
-      <div className="collapse-content p-0 ps-0 pe-0">
+      <div className="collapse-content !p-0 pb-0 ps-0 pe-0">
         <label className="input input-ghost w-full">
           Name
           <input
