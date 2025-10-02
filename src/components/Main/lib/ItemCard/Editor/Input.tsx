@@ -53,7 +53,12 @@ export const Input = () => {
           </select>
 
           <label className="input input-ghost input-md w-full items-center col-span-3">
-            <input type="number" className="grow" placeholder="Value" />
+            <input
+              type="number"
+              className="grow"
+              placeholder="Value"
+              onFocus={(e) => e.currentTarget.select()}
+            />
           </label>
           <label className="input input-ghost input-md w-full items-center col-span-2">
             <input
@@ -61,6 +66,7 @@ export const Input = () => {
               className="grow"
               placeholder="Uptime"
               defaultValue={1.0}
+              onFocus={(e) => e.currentTarget.select()}
             />
           </label>
         </div>
@@ -68,7 +74,12 @@ export const Input = () => {
       <div className="collapse-content p-0 ps-0 pe-0">
         <label className="input input-ghost w-full">
           Name
-          <input type="text" className="grow" placeholder="Remarks" />
+          <input
+            type="text"
+            className="grow"
+            placeholder="Remarks"
+            onFocus={(e) => e.currentTarget.select()}
+          />
         </label>
       </div>
     </div>
