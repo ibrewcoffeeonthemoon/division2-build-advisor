@@ -1,4 +1,5 @@
 import { ReactNode, useState } from "react";
+import { Editor } from "./Editor";
 
 type TitleProps = {
   category: string;
@@ -51,7 +52,7 @@ export const ItemCard = ({ category, name, itemAttrs }: ItemCardProps) => {
           <Summary {...{ category, name, itemAttrs }} />
         )}
       </div>
-      <div className="collapse-content px-3">Attribute editor here.</div>
+      <Editor />
     </div>
   );
 };
