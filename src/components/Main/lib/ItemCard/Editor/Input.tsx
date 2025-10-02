@@ -35,7 +35,10 @@ export const Header = () => {
 
 export const Input = () => {
   return (
-    <div tabIndex={0} className="collapse col-span-12 p-0 overflow-visible">
+    <div
+      tabIndex={0}
+      className="collapse col-span-12 p-0 overflow-visible duration-1000"
+    >
       <div className="collapse-title p-0 ps-0 pe-0">
         <div className="col-span-12 grid grid-cols-12 items-center">
           <select
