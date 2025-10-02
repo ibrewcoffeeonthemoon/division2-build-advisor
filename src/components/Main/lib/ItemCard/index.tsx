@@ -40,7 +40,7 @@ export const ItemCard = ({ category, name, itemAttrs }: ItemCardProps) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="collapse rounded-md mb-2 duration-1000">
+    <div className="collapse rounded-md border-1 border-base-300 duration-1000">
       <input
         type="checkbox"
         checked={open}
