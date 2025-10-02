@@ -13,7 +13,7 @@ export default function NavBar() {
     <div>
       <div
         className="
-        navbar bg-base-100 shadow-sm
+        navbar bg-base-200 shadow-sm
         grid grid-cols-3
         px-4
       "

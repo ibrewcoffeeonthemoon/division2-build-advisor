@@ -38,7 +38,7 @@ export default function Dock() {
     { name: "Stats", icon: <ChartBarIcon /> },
   ];
   return (
-    <div className="dock static">
+    <div className="dock static bg-base-200">
       {buttons.map(({ name, icon }, id) => (
         <Button key={id} {...{ name, icon, id }} />
       ))}

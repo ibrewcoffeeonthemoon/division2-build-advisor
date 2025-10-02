@@ -13,8 +13,12 @@ export const Section = ({
   return (
     <div className="collapse collapse-arrow bg-base-100 border-base-300 border">
       {control}
-      <div className="collapse-title p-3 text-center font-semibold">{name}</div>
-      <div className="collapse-content px-1 text-sm">{children}</div>
+      <div className="collapse-title p-3 bg-base-200 text-center font-semibold">
+        {name}
+      </div>
+      <div className="collapse-content bg-base-100 px-0 shadow-accent">
+        {children}
+      </div>
     </div>
   );
 };
