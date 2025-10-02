@@ -13,24 +13,31 @@ export const NameInput = () => {
   );
 };
 
+export const Header = () => {
+  const headers = [
+    ["Attribute", "col-span-7"],
+    ["Value(%)", "col-span-3"],
+    ["Uptime(%)", "col-span-2"],
+  ];
+  return (
+    <>
+      {headers.map(([header, style], i) => (
+        <span
+          key={i}
+          className={`${style} pt-2 size-full text-center text-accent-content`}
+        >
+          {header}
+        </span>
+      ))}
+    </>
+  );
+};
+
 export const Input = () => {
   return (
     <div className="col-span-12 grid grid-cols-12 items-center">
-      <input
-        className="input input-ghost col-span-4"
-        type="text"
-        placeholder="Name"
-        list="common-names"
-      />
-      <datalist id="common-names">
-        <option value="RedCore"></option>
-        <option value="Firefox"></option>
-        <option value="Safari"></option>
-        <option value="Opera"></option>
-        <option value="Edge"></option>
-      </datalist>
       <select
-        className="select select-ghost w-auto col-span-4"
+        className="select select-ghost w-auto col-span-7"
         defaultValue="WD"
       >
         <option disabled={true}>Attribute</option>
@@ -40,7 +47,7 @@ export const Input = () => {
         <option>Headshot Damage</option>
       </select>
 
-      <label className="grow input input-ghost input-md w-full items-center col-span-2">
+      <label className="grow input input-ghost input-md w-full items-center col-span-3">
         <input type="text" className="grow" placeholder="Value" />
       </label>
       <label className="grow input input-ghost input-md w-full items-center col-span-2">

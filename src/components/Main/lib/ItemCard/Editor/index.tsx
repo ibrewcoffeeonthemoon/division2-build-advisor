@@ -1,25 +1,4 @@
-import { Input, NameInput } from "./Input";
-
-export const Header = () => {
-  const headers = [
-    ["Name", "col-span-4"],
-    ["Attribute", "col-span-4"],
-    ["Value", "col-span-2"],
-    ["Uptime", "col-span-2"],
-  ];
-  return (
-    <>
-      {headers.map(([header, style], i) => (
-        <span
-          key={i}
-          className={`${style} pt-2 size-full text-center text-accent-content`}
-        >
-          {header}
-        </span>
-      ))}
-    </>
-  );
-};
+import { Header, Input, NameInput } from "./Input";
 
 export const Editor = () => {
   return (
