@@ -1,3 +1,6 @@
+import { TrashIcon } from "@heroicons/react/24/outline";
+import { StopCircleIcon } from "@heroicons/react/24/solid";
+
 export const NameInput = () => {
   return (
     <label className="input input-neutral w-full col-span-12">
@@ -70,8 +73,17 @@ export const Input = () => {
           </label>
         </div>
       </div>
-      <div className="collapse-content !p-0 pb-0 ps-0 pe-0">
-        <label className="input input-ghost w-full">
+      <div className="collapse-content !p-0 pb-0 ps-0 pe-0 grid grid-cols-12">
+        <select
+          className="select select-ghost col-span-3"
+          defaultValue="Attribute"
+        >
+          <option disabled={true}>Type</option>
+          <option>Attribute</option>
+          <option>Mod</option>
+          <option>Talent</option>
+        </select>
+        <label className="input input-ghost w-full col-span-9">
           Name
           <input
             type="text"
@@ -80,6 +92,17 @@ export const Input = () => {
             onFocus={(e) => e.currentTarget.select()}
           />
         </label>
+        <div className="col-span-12 flex justify-center">
+          <button
+            tabIndex={0}
+            className="
+            btn btn-circle btn-ghost text-error
+            flex items-center justify-center
+          "
+          >
+            <TrashIcon className="w-7 h-7" />
+          </button>
+        </div>
       </div>
     </div>
   );

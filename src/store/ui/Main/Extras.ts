@@ -18,7 +18,7 @@ export const useStore = create<Store>()(
         }),
     })),
     {
-      name: "store.ui.Main.Watch",
+      name: "store.ui.Main.Extras",
       partialize: (state) => ({ collapseOpen: state.collapseOpen }),
     },
   ),
