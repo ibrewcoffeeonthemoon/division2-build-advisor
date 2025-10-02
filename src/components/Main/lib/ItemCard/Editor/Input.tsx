@@ -1,3 +1,5 @@
+import { TrashIcon } from "@heroicons/react/24/outline";
+
 export const NameInput = () => {
   return (
     <label className="input input-neutral w-full col-span-12">
@@ -70,8 +72,8 @@ export const Input = () => {
           </label>
         </div>
       </div>
-      <div className="collapse-content !p-0 pb-0 ps-0 pe-0">
-        <label className="input input-ghost w-full">
+      <div className="collapse-content !p-0 pb-0 ps-0 pe-0 grid grid-cols-12">
+        <label className="input input-ghost w-full col-span-12">
           Name
           <input
             type="text"
@@ -80,6 +82,17 @@ export const Input = () => {
             onFocus={(e) => e.currentTarget.select()}
           />
         </label>
+        <div className="col-span-12 flex justify-center">
+          <button
+            tabIndex={0}
+            className="
+            btn btn-circle btn-ghost text-error
+            flex items-center justify-center
+          "
+          >
+            <TrashIcon className="w-7 h-7" />
+          </button>
+        </div>
       </div>
     </div>
   );
