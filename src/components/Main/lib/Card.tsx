@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 
 type Props = {
   itemAttrs: ReactNode;
@@ -6,17 +6,40 @@ type Props = {
 };
 
 export const ItemCard = ({ itemAttrs, itemDesc }: Props) => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div
-      className="
-        card card-sm bg-accent/20 shadow-sm
-        m-1 flex-row
-        text-xl font-bold
-      "
-    >
-      <div className="card-body flex-none">{itemAttrs}</div>
-      <div className="flex-grow" />
-      <div className="card-body flex-none">{itemDesc}</div>
-    </div>
+    <>
+      <div className="collapse bg-accent/20 rounded-md mb-2">
+        <input
+          type="checkbox"
+          checked={open}
+          onChange={(e) => setOpen(e.currentTarget.checked)}
+        />
+        <div className="collapse-title p-3">
+          <div
+            className="
+              flex flex-row
+            "
+          >
+            {open ? (
+              <>
+                <div className="flex-grow" />
+                <div className="">{itemDesc}</div>
+              </>
+            ) : (
+              <>
+                <div className="">{itemAttrs}</div>
+                <div className="flex-grow" />
+                <div className="">{itemDesc}</div>
+              </>
+            )}
+          </div>
+        </div>
+        <div className="collapse-content">
+          <div className="">Attribute editor here.</div>
+        </div>
+      </div>
+    </>
   );
 };
