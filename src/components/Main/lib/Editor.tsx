@@ -15,22 +15,28 @@ const Input = ({
   placeholder: string;
 }) => {
   return (
-    <div className="flex flex-row justify-start items-center">
-      {icon}
-      <select className="select select-ghost w-auto" defaultValue="WD">
+    <div className="grid grid-cols-12 items-center">
+      <div className="col-span-1">{icon}</div>
+      <select
+        className="select select-ghost w-auto col-span-2"
+        defaultValue="WD"
+      >
         <option disabled={true}>Amplifier</option>
         <option>WD</option>
         <option>TWD</option>
         <option>Amp</option>
       </select>
-      <select className="select select-ghost w-auto" defaultValue="WD">
+      <select
+        className="select select-ghost w-auto col-span-2"
+        defaultValue="WD"
+      >
         <option disabled={true}>Attribute</option>
         <option>CHC</option>
         <option>CHD</option>
         <option>HS</option>
       </select>
 
-      <label className="grow input input-ghost input-md w-full items-center">
+      <label className="grow input input-ghost input-md w-full items-center col-span-7">
         <input type="text" className="grow" placeholder={placeholder} />
         <span>{field}</span>
       </label>
