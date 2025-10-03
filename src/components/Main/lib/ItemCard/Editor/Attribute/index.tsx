@@ -2,6 +2,7 @@ import { Attribute } from "@/lib/type";
 import { store } from "@/store/data";
 import { TypeInput } from "./TypeInput";
 import { AttributeInput } from "./AttributeInput";
+import { ValueInput } from "./ValueInput";
 
 export const Header = () => {
   const headers = [
@@ -46,15 +47,7 @@ export const Input = <S extends string, C extends string>({
       <div className="collapse-title p-0 ps-0 pe-0">
         <div className="col-span-12 grid grid-cols-12 items-center">
           <AttributeInput {...{ section, category, attribute, index }} />
-          <label className="input input-ghost input-md w-full items-center col-span-3">
-            <input
-              type="number"
-              className="grow text-center"
-              placeholder="Value"
-              onFocus={(e) => e.currentTarget.select()}
-              defaultValue={0.0}
-            />
-          </label>
+          <ValueInput />
           <label className="input input-ghost input-md w-full items-center col-span-2">
             <input
               type="number"
