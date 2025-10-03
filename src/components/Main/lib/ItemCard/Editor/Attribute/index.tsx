@@ -13,6 +13,8 @@ type Props<S, C> = {
   category: C;
   attribute: Attribute;
   index: number;
+  openedIndex: number | null;
+  setOpenedIndex: (val: number | null) => void;
 };
 
 export const Input = <S extends string, C extends string>({
@@ -20,8 +22,10 @@ export const Input = <S extends string, C extends string>({
   category,
   attribute,
   index,
+  openedIndex,
+  setOpenedIndex,
 }: Props<S, C>) => {
-  const [open, setOpen] = useState(false);
+  const open = index === openedIndex;
   const removeAttribute = store.removeAttribute();
 
   return (
@@ -29,7 +33,7 @@ export const Input = <S extends string, C extends string>({
       <input
         type="checkbox"
         checked={open}
-        onClick={(e) => setOpen(e.currentTarget.checked)}
+        onClick={() => setOpenedIndex(openedIndex === index ? null : index)}
       />
       <div className="collapse-title p-0 ps-0 pe-0 grid grid-cols-12">
         <Title {...{ open, attribute }} />

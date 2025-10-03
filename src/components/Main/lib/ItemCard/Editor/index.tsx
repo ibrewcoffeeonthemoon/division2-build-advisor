@@ -1,3 +1,4 @@
+import { useState } from "react";
 import * as AttributeField from "./Attribute";
 import { Header } from "./Header";
 import * as NameField from "./Name";
@@ -13,6 +14,7 @@ export const Editor = <S extends string, C extends string>({
   section,
   category,
 }: Props<S, C>) => {
+  const [openedIndex, setOpenedIndex] = useState<number | null>(null);
   const attributes = store.state()?.[section]?.[category]?.attributes;
   const appendAttribute = store.appendAttribute();
 
@@ -24,7 +26,7 @@ export const Editor = <S extends string, C extends string>({
         <AttributeField.Input
           key={i}
           index={i}
-          {...{ section, category, attribute }}
+          {...{ section, category, attribute, openedIndex, setOpenedIndex }}
         />
       ))}
       <div className="col-span-12 p-2 flex flex-row justify-center">
