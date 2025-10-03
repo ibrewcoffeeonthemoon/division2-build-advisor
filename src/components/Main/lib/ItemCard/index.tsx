@@ -1,52 +1,7 @@
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import { Editor } from "./Editor";
-import { XMarkIcon } from "@heroicons/react/24/solid";
-import { Attribute } from "../Attribute";
-
-type TitleProps = {
-  category: string;
-};
-
-const Title = ({ category }: TitleProps) => {
-  return (
-    <div className="flex flex-row items-center">
-      <XMarkIcon className="size-5" />
-      <div className="flex-grow" />
-      <h2 className="text-lg font-semibold gap-0.5">{category}</h2>
-    </div>
-  );
-};
-
-type SummaryProps = TitleProps & {
-  name: string;
-  attributes: Attribute[];
-};
-
-const Summary = ({ category, name, attributes }: SummaryProps) => {
-  return (
-    <div className="flex flex-row">
-      <div className="">
-        <table className="table-auto">
-          <tbody>
-            {attributes.map(({ type, name, value, uptime }, i) => (
-              <tr key={i} className="">
-                <td className="pl-2">{type}</td>
-                <td className="pl-2">{value}</td>
-                <td className="pl-2">{name}</td>
-                <td className="pl-2">{uptime}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div className="flex-grow" />
-      <div className="text-right">
-        <h2 className="text-lg font-semibold">{category}</h2>
-        <h2 className="text-primary font-semibold">{name}</h2>
-      </div>
-    </div>
-  );
-};
+import { Summary, SummaryProps } from "./Summary";
+import { Title } from "./Title";
 
 type ItemCardProps = SummaryProps & {};
 
