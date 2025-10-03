@@ -5,7 +5,7 @@ import Card from "./Card";
 import { Section } from "../lib/Section";
 
 export default function Gears() {
-  const collapseOpen = store.state()?.["Gears"]?.collapseOpen;
+  const collapseOpen = store.state().Gears.collapseOpen;
   const setCollapseOpen = store.setCollapseOpen();
 
   return (

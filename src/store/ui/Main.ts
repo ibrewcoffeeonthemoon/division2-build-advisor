@@ -4,13 +4,13 @@ import { persist } from "zustand/middleware";
 import { createSelectors } from "@/store/utils";
 import Sections from "@/lib/type/sections";
 
+type SectionState = { collapseOpen: boolean };
 type Store = {
-  state: Record<
-    Sections,
-    {
-      collapseOpen: boolean;
-    }
-  >;
+  state: {
+    Weapons: SectionState;
+    Gears: SectionState;
+    Extras: SectionState;
+  };
   setCollapseOpen: (section: Sections, val: boolean) => void;
 };
 
