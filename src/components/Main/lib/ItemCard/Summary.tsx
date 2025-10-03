@@ -25,9 +25,9 @@ export const Summary = ({ attributes }: SummaryProps) => {
             {attributes?.map(({ type, name, value, uptime }, i) => (
               <tr key={i} className="">
                 <td className="w-5 h-5">{icons[type]}</td>
-                <td className="pl-2">{value}</td>
+                <td className="pl-2">{(value * 100).toFixed(1)}%</td>
                 <td className="pl-2">{name}</td>
-                <td className="pl-2">{uptime}</td>
+                <td className="pl-2">{(uptime * 100).toFixed(0)}%</td>
               </tr>
             ))}
           </tbody>
