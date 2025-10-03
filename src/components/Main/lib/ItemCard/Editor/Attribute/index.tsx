@@ -6,26 +6,6 @@ import { ValueInput } from "./ValueInput";
 import { UptimeInput } from "./UptimeInput";
 import { NoteInput } from "./NoteInput";
 
-export const Header = () => {
-  const headers = [
-    ["Attribute", "col-span-7"],
-    ["Value %", "col-span-3"],
-    ["Uptime %", "col-span-2"],
-  ];
-  return (
-    <>
-      {headers.map(([header, style], i) => (
-        <span
-          key={i}
-          className={`${style} pt-2 size-full text-center font-bold`}
-        >
-          {header}
-        </span>
-      ))}
-    </>
-  );
-};
-
 type Props<S, C> = {
   section: S;
   category: C;
