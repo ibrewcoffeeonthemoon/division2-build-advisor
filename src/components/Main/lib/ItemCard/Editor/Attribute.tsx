@@ -1,3 +1,4 @@
+import { Attribute, AttributeType } from "@/lib/type";
 import { store } from "@/store/data";
 
 export const Header = () => {
@@ -23,15 +24,18 @@ export const Header = () => {
 type Props<S, C> = {
   section: S;
   category: C;
+  attribute: Attribute;
   index: number;
 };
 
 export const Input = <S extends string, C extends string>({
   section,
   category,
+  attribute,
   index,
 }: Props<S, C>) => {
   const removeAttribute = store.removeAttribute();
+  const changeType = store.changeType();
 
   return (
     <div
@@ -74,6 +78,15 @@ export const Input = <S extends string, C extends string>({
         <select
           className="select select-ghost col-span-3"
           defaultValue="Attribute"
+          value={attribute.type}
+          onChange={(e) =>
+            changeType(
+              section,
+              category,
+              index,
+              e.currentTarget.value as AttributeType,
+            )
+          }
         >
           <option disabled={true}>Type</option>
           <option>Attribute</option>

@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { persist } from "zustand/middleware";
 import { createSelectors } from "./utils";
-import { Attribute } from "@/lib/type";
+import { Attribute, AttributeType } from "@/lib/type";
 
 type CategoryState = {
   name: string;
@@ -13,6 +13,12 @@ type Store = {
   setName: (sec: string, cat: string, val: string) => void;
   appendAttribute: (sec: string, cat: string, attr: Attribute) => void;
   removeAttribute: (sec: string, cat: string, index: number) => void;
+  changeType: (
+    sec: string,
+    cat: string,
+    index: number,
+    val: AttributeType,
+  ) => void;
 };
 
 const init: () => CategoryState = () => ({ name: "", attributes: [] });
@@ -55,6 +61,14 @@ export const useStore = create<Store>()(
             (_, i) => i !== index,
           );
         }),
+      changeType: (sec, cat, index, val) =>
+        set((s) => {
+          s.state[sec][cat].attributes[index].type = val;
+        }),
+      // modifyAttribute: (sec, cat, index, field, val) =>
+      //   set((s) => {
+      //     s.state[sec][cat].attributes[index][field] = val;
+      //   }),
     })),
     {
       name: "store.data",
