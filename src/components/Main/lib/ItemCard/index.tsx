@@ -7,14 +7,12 @@ import { Attribute } from "@/lib/type";
 type ItemCardProps<S, C> = {
   section: S;
   category: C;
-  name: string;
   attributes: Attribute[];
 };
 
 export const ItemCard = <S extends string, C extends string>({
   section,
   category,
-  name,
   attributes,
 }: ItemCardProps<S, C>) => {
   const [open, setOpen] = useState(false);
@@ -30,7 +28,7 @@ export const ItemCard = <S extends string, C extends string>({
         {open ? (
           <Title {...{ category }} />
         ) : (
-          <Summary {...{ category, name, attributes }} />
+          <Summary {...{ section, category, attributes }} />
         )}
       </div>
       <Editor {...{ section, category }} />
