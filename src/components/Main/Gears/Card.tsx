@@ -7,7 +7,7 @@ type Props = {
 };
 
 export default function Card({ category }: Props) {
-  const section = "Weapons" as Sections;
+  const section = "Gears" as Sections;
 
   return <ItemCard {...{ section, category }} />;
 }
