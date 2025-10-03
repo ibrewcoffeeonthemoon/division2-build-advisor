@@ -1,16 +1,16 @@
 "use client";
 
-import { store } from "@/store/ui/Main/Gears";
-import Card from "./Card";
+import { store } from "@/store/ui/Main/Extras";
 import { Section } from "../lib/Section";
+import Card from "./Card";
 
-export default function Gears() {
+export default function Extras() {
   const collapseOpen = store.collapseOpen();
   const setCollapseOpen = store.setCollapseOpen();
 
   return (
     <Section
-      name="Gears"
+      name="Extras"
       control={
         <input
           type="checkbox"
@@ -19,12 +19,8 @@ export default function Gears() {
         />
       }
     >
-      <Card category="Mask" />
-      <Card category="Backpack" />
-      <Card category="Chest" />
-      <Card category="Gloves" />
-      <Card category="Holster" />
-      <Card category="Kneepads" />
+      <Card category="Watch" />
+      <Card category="Specialization" />
     </Section>
   );
 }

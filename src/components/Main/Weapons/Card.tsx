@@ -1,30 +1,47 @@
+import { Attribute } from "@/lib/type";
+import Sections from "@/lib/type/sections";
+import * as Categories from "@/lib/type/categories";
+import { ItemCard } from "../lib/ItemCard";
+
 type Props = {
-  name: string;
+  category: Categories.Weapons;
 };
 
-export default function Card({ name }: Props) {
-  return (
-    <div
-      className="
-        card card-sm bg-accent/20 shadow-sm
-        m-1
-        text-xl font-bold
-      "
-    >
-      <div className="card-body">
-        <h2 className="card-title">{name}</h2>
-        <p>
-          Core Attributes: WD 15%
-          <br />
-          Minor Attributes CHD 15%
-          <br />
-          Minor Attributes CHC 6%
-          <br />
-          Mods HS 6%
-          <br />
-          Talents HS 6%
-        </p>
-      </div>
-    </div>
-  );
+export default function Card({ category }: Props) {
+  const section = "Weapons" as Sections;
+
+  const attributes: Attribute[] = [
+    {
+      type: "Attribute",
+      name: "Weapon Damage",
+      value: 0.15,
+      uptime: 1.0,
+    },
+    {
+      type: "Attribute",
+      name: "Critical Hit Damage",
+      value: 0.15,
+      uptime: 1.0,
+    },
+    {
+      type: "Attribute",
+      name: "Critical Hit Chance",
+      value: 0.06,
+      uptime: 1.0,
+    },
+    {
+      type: "Mod",
+      name: "Headshot Damage",
+      value: 0.1,
+      uptime: 1.0,
+    },
+    {
+      type: "Talent",
+      name: "Headshot Damage",
+      value: 0.1,
+      uptime: 1.0,
+    },
+  ];
+
+  return <ItemCard {...{ section, category, attributes }} />;
 }

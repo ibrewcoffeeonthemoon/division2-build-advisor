@@ -4,7 +4,7 @@ import * as Categories from "@/lib/type/categories";
 import { ItemCard } from "../lib/ItemCard";
 
 type Props = {
-  category: Categories.Gears;
+  category: Categories.Extras;
 };
 
 export default function Card({ category }: Props) {

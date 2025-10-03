@@ -1,7 +1,7 @@
 "use client";
 
 import { store } from "@/store/ui/Main/Weapons";
-import { Section } from "../Section";
+import { Section } from "../lib/Section";
 import Card from "./Card";
 
 export default function Weapons() {
@@ -19,8 +19,10 @@ export default function Weapons() {
         />
       }
     >
-      <Card name="Weapon1" />
-      <Card name="Weapon2" />
+      <Card category="Primary" />
+      <Card category="Secondary" />
+      <Card category="Sidearm" />
+      <Card category="Signature" />
     </Section>
   );
 }
