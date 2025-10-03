@@ -1,4 +1,4 @@
-import { Attribute } from "../lib/Attribute";
+import { Attribute } from "@/lib/type";
 import { ItemCard } from "../lib/ItemCard";
 
 type Props = {

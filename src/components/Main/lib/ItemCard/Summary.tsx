@@ -1,9 +1,9 @@
+import { Attribute, AttributeType } from "@/lib/type";
 import {
   StopCircleIcon,
   Cog8ToothIcon,
   CubeIcon,
 } from "@heroicons/react/24/solid";
-import { Attribute, AttributeType } from "../Attribute";
 import { JSX } from "react";
 
 export type SummaryProps = {
