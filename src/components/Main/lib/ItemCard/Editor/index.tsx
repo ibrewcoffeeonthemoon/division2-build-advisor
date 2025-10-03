@@ -8,14 +8,17 @@ type Props<S, C> = {
   category: C;
 };
 
-export const Editor = <S, C>({ section, category }: Props<S, C>) => {
+export const Editor = <S extends string, C extends string>({
+  section,
+  category,
+}: Props<S, C>) => {
   const [inputs, setInputs] = useState<Attribute[]>([]);
 
   const addNewInput = () => setInputs([...inputs, DEFAULT_ATTRIBUTE]);
 
   return (
     <div className="grid grid-cols-12 collapse-content px-3">
-      <NameField.Input />
+      <NameField.Input {...{ section, category }} />
       <AttributeField.Header />
       {inputs.map(({}, i) => (
         <AttributeField.Input key={i} />
