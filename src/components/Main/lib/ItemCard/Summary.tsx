@@ -6,13 +6,17 @@ import {
 } from "@heroicons/react/24/solid";
 import { JSX } from "react";
 
-export type SummaryProps = {
-  category: string;
+export type SummaryProps<C> = {
+  category: C;
   name: string;
   attributes: Attribute[];
 };
 
-export const Summary = ({ category, name, attributes }: SummaryProps) => {
+export const Summary = <C extends string>({
+  category,
+  name,
+  attributes,
+}: SummaryProps<C>) => {
   const icons: Record<AttributeType, JSX.Element> = {
     Attribute: <StopCircleIcon className="w-5 h-5 text-red-500" />,
     Mod: <Cog8ToothIcon className="w-5 h-5 text-red-500" />,

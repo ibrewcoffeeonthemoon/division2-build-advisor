@@ -1,10 +1,10 @@
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
-export type TitleProps = {
-  category: string;
+export type TitleProps<C> = {
+  category: C;
 };
 
-export const Title = ({ category }: TitleProps) => {
+export const Title = <C extends string>({ category }: TitleProps<C>) => {
   return (
     <div className="flex flex-row items-center">
       <XMarkIcon className="size-5" />
