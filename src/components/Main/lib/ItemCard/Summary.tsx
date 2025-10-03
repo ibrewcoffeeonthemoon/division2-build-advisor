@@ -27,8 +27,12 @@ export const Summary = <S extends string, C extends string>({
   };
 
   return (
-    <div className="grid grid-cols-12">
-      <div className="col-span-8">
+    <div className="grid grid-cols-12 items-center">
+      <h2 className="col-span-4 text-lg font-semibold gap-0.5">{category}</h2>
+      <h2 className="col-span-8 text-lg text-right text-primary font-semibold overflow-hidden overflow-ellipsis text-nowrap">
+        {name}
+      </h2>
+      <div className="col-span-12">
         <table className="table-auto">
           <tbody>
             {attributes.map(({ type, name, value, uptime }, i) => (
@@ -41,12 +45,6 @@ export const Summary = <S extends string, C extends string>({
             ))}
           </tbody>
         </table>
-      </div>
-      <div className="col-span-4 text-right">
-        <h2 className="text-lg font-semibold">{category}</h2>
-        <h2 className="text-primary font-semibold overflow-hidden overflow-ellipsis text-nowrap">
-          {name}
-        </h2>
       </div>
     </div>
   );
