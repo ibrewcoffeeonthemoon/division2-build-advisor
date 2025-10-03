@@ -1,5 +1,7 @@
+export type AttributeType = "Attribute" | "Mod" | "Talent";
+
 export type Attribute = {
-  type: "Attribute" | "Mod" | "Talent";
+  type: AttributeType;
   name: string;
   value: number;
   uptime: number;
