@@ -1,12 +1,14 @@
-import { Attribute } from "@/lib/type";
+import { Attribute, Categories } from "@/lib/type";
 import { ItemCard } from "../lib/ItemCard";
+import { store } from "@/store/ui/Main/Weapons";
 
 type Props = {
-  category: string;
-  name: string;
+  category: Categories.Weapons;
 };
 
-export default function Card({ category, name }: Props) {
+export default function Card({ category }: Props) {
+  const name = store.name()[category];
+
   const attributes: Attribute[] = [
     {
       type: "Attribute",
