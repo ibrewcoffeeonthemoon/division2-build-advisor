@@ -1,22 +1,20 @@
 import { useState } from "react";
 import { Editor } from "./Editor";
 import { Summary } from "./Summary";
-import { Attribute } from "@/lib/type";
 import { store } from "@/store/data";
 
 type ItemCardProps<S, C> = {
   section: S;
   category: C;
-  attributes: Attribute[];
 };
 
 export const ItemCard = <S extends string, C extends string>({
   section,
   category,
-  attributes,
 }: ItemCardProps<S, C>) => {
   const [open, setOpen] = useState(false);
   const name = store.state()?.[section]?.[category]?.name;
+  const attributes = store.state()?.[section]?.[category]?.attributes;
 
   return (
     <div className="collapse rounded-md border-1 border-base-300 duration-1000">

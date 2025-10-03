@@ -9,7 +9,7 @@ export type Attribute = {
 
 export const DEFAULT_ATTRIBUTE: Attribute = {
   type: "Attribute",
-  name: "",
+  name: "Weapon Damage",
   value: 0,
   uptime: 1.0,
 };
