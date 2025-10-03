@@ -1,5 +1,6 @@
-import { Attribute, AttributeType } from "@/lib/type";
+import { Attribute } from "@/lib/type";
 import { store } from "@/store/data";
+import { TypeInput } from "./TypeInput";
 
 export const Header = () => {
   const headers = [
@@ -35,7 +36,6 @@ export const Input = <S extends string, C extends string>({
   index,
 }: Props<S, C>) => {
   const removeAttribute = store.removeAttribute();
-  const changeType = store.changeType();
 
   return (
     <div
@@ -75,24 +75,7 @@ export const Input = <S extends string, C extends string>({
         </div>
       </div>
       <div className="collapse-content !p-0 pb-0 ps-0 pe-0 grid grid-cols-12">
-        <select
-          className="select select-ghost col-span-3"
-          defaultValue="Attribute"
-          value={attribute.type}
-          onChange={(e) =>
-            changeType(
-              section,
-              category,
-              index,
-              e.currentTarget.value as AttributeType,
-            )
-          }
-        >
-          <option disabled={true}>Type</option>
-          <option>Attribute</option>
-          <option>Mod</option>
-          <option>Talent</option>
-        </select>
+        <TypeInput {...{ section, category, attribute, index }} />
         <label className="input input-ghost w-full col-span-9">
           Name
           <input
