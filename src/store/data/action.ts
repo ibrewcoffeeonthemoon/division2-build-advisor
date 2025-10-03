@@ -10,6 +10,12 @@ export type Action = {
     index: number,
     val: string,
   ) => void;
+  changeAttributeValue: (
+    sec: string,
+    cat: string,
+    index: number,
+    val: number,
+  ) => void;
   changeAttributeType: (
     sec: string,
     cat: string,

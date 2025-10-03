@@ -25,13 +25,17 @@ export const useStore = create<Store>()(
             (_, i) => i !== index,
           );
         }),
-      changeAttributeType: (sec, cat, index, val) =>
-        set((s) => {
-          s.state[sec][cat].attributes[index].type = val;
-        }),
       changeAttributeName: (sec, cat, index, val) =>
         set((s) => {
           s.state[sec][cat].attributes[index].name = val;
+        }),
+      changeAttributeValue: (sec, cat, index, val) =>
+        set((s) => {
+          s.state[sec][cat].attributes[index].value = val;
+        }),
+      changeAttributeType: (sec, cat, index, val) =>
+        set((s) => {
+          s.state[sec][cat].attributes[index].type = val;
         }),
     })),
     {
