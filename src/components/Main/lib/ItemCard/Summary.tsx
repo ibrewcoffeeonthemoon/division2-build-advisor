@@ -1,4 +1,5 @@
 import { Attribute, AttributeType } from "@/lib/type";
+import { store } from "@/store/data";
 import {
   StopCircleIcon,
   Cog8ToothIcon,
@@ -6,17 +7,19 @@ import {
 } from "@heroicons/react/24/solid";
 import { JSX } from "react";
 
-export type SummaryProps<C> = {
+export type SummaryProps<S, C> = {
+  section: S;
   category: C;
-  name: string;
   attributes: Attribute[];
 };
 
-export const Summary = <C extends string>({
+export const Summary = <S extends string, C extends string>({
+  section,
   category,
-  name,
   attributes,
-}: SummaryProps<C>) => {
+}: SummaryProps<S, C>) => {
+  const name = store.data()?.[section]?.[category]?.name;
+
   const icons: Record<AttributeType, JSX.Element> = {
     Attribute: <StopCircleIcon className="w-5 h-5 text-red-500" />,
     Mod: <Cog8ToothIcon className="w-5 h-5 text-red-500" />,
