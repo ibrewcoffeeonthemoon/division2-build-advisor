@@ -2,12 +2,10 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { persist } from "zustand/middleware";
 import { createSelectors } from "@/store/utils";
-import * as Categories from "@/lib/type/categories";
 
 type Store = {
   collapseOpen: boolean;
   setCollapseOpen: (val: boolean) => void;
-  name: Record<Categories.Weapons, string>;
 };
 
 export const useStore = create<Store>()(
@@ -18,12 +16,6 @@ export const useStore = create<Store>()(
         set((s) => {
           s.collapseOpen = val;
         }),
-      name: {
-        Primary: "",
-        Secondary: "",
-        Sidearm: "",
-        Signature: "",
-      },
     })),
     {
       name: "store.ui.Main.Weapons",
