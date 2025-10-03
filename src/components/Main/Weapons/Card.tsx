@@ -1,9 +1,4 @@
-import {
-  StopCircleIcon,
-  Cog8ToothIcon,
-  CubeIcon,
-} from "@heroicons/react/24/solid";
-import { ItemAttribute } from "../lib/Attribute";
+import { Attribute } from "../lib/Attribute";
 import { ItemCard } from "../lib/ItemCard";
 
 type Props = {
@@ -12,40 +7,38 @@ type Props = {
 };
 
 export default function Card({ category, name }: Props) {
-  return (
-    <ItemCard
-      itemAttrs={
-        <table className="table-auto">
-          <tbody>
-            <ItemAttribute
-              icon={<StopCircleIcon className="text-red-500" />}
-              field="Weapon Damage"
-              val="15%"
-            />
-            <ItemAttribute
-              icon={<StopCircleIcon className="text-red-500" />}
-              field="Critical Hit Damage"
-              val="15%"
-            />
-            <ItemAttribute
-              icon={<StopCircleIcon className="text-red-500" />}
-              field="Critical Hit Chance"
-              val="6%"
-            />
-            <ItemAttribute
-              icon={<Cog8ToothIcon className="text-red-500" />}
-              field="Headshot Damage"
-              val="6%"
-            />
-            <ItemAttribute
-              icon={<CubeIcon className="text-base-content" />}
-              field="Headshot Damage"
-              val="6%"
-            />
-          </tbody>
-        </table>
-      }
-      {...{ category, name }}
-    />
-  );
+  const attributes: Attribute[] = [
+    {
+      type: "Attribute",
+      name: "Weapon Damage",
+      value: 0.15,
+      uptime: 1.0,
+    },
+    {
+      type: "Attribute",
+      name: "Critical Hit Damage",
+      value: 0.15,
+      uptime: 1.0,
+    },
+    {
+      type: "Attribute",
+      name: "Critical Hit Chance",
+      value: 0.06,
+      uptime: 1.0,
+    },
+    {
+      type: "Mod",
+      name: "Headshot Damage",
+      value: 0.1,
+      uptime: 1.0,
+    },
+    {
+      type: "Talent",
+      name: "Headshot Damage",
+      value: 0.1,
+      uptime: 1.0,
+    },
+  ];
+
+  return <ItemCard {...{ category, name, attributes }} />;
 }

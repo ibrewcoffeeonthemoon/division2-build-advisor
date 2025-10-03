@@ -1,6 +1,7 @@
 import { ReactNode, useState } from "react";
 import { Editor } from "./Editor";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import { Attribute } from "../Attribute";
 
 type TitleProps = {
   category: string;
@@ -18,13 +19,26 @@ const Title = ({ category }: TitleProps) => {
 
 type SummaryProps = TitleProps & {
   name: string;
-  itemAttrs: ReactNode;
+  attributes: Attribute[];
 };
 
-const Summary = ({ category, name, itemAttrs }: SummaryProps) => {
+const Summary = ({ category, name, attributes }: SummaryProps) => {
   return (
     <div className="flex flex-row">
-      <div className="">{itemAttrs}</div>
+      <div className="">
+        <table className="table-auto">
+          <tbody>
+            {attributes.map(({ type, name, value, uptime }, i) => (
+              <tr key={i} className="">
+                <td className="pl-2">{type}</td>
+                <td className="pl-2">{value}</td>
+                <td className="pl-2">{name}</td>
+                <td className="pl-2">{uptime}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div className="flex-grow" />
       <div className="text-right">
         <h2 className="text-lg font-semibold">{category}</h2>
@@ -36,7 +50,7 @@ const Summary = ({ category, name, itemAttrs }: SummaryProps) => {
 
 type ItemCardProps = SummaryProps & {};
 
-export const ItemCard = ({ category, name, itemAttrs }: ItemCardProps) => {
+export const ItemCard = ({ category, name, attributes }: ItemCardProps) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -50,7 +64,7 @@ export const ItemCard = ({ category, name, itemAttrs }: ItemCardProps) => {
         {open ? (
           <Title {...{ category }} />
         ) : (
-          <Summary {...{ category, name, itemAttrs }} />
+          <Summary {...{ category, name, attributes }} />
         )}
       </div>
       <Editor />
