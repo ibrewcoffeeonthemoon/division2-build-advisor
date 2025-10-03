@@ -9,7 +9,7 @@ export const Input = <S extends string, C extends string>({
   section,
   category,
 }: Props<S, C>) => {
-  const name = store.data()?.[section]?.[category]?.name;
+  const name = store.state()?.[section]?.[category]?.name;
   const setName = store.setName();
 
   return (

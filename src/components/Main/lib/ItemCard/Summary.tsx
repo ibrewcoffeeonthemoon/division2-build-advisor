@@ -18,7 +18,7 @@ export const Summary = <S extends string, C extends string>({
   category,
   attributes,
 }: SummaryProps<S, C>) => {
-  const name = store.data()?.[section]?.[category]?.name;
+  const name = store.state()?.[section]?.[category]?.name;
 
   const icons: Record<AttributeType, JSX.Element> = {
     Attribute: <StopCircleIcon className="w-5 h-5 text-red-500" />,

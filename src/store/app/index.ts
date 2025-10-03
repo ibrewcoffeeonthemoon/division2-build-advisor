@@ -38,9 +38,9 @@ export const useStore = create<Store>()(
     })),
     {
       name: "store.app",
-      partialize: (state) => ({
-        dark: state.dark,
-        theme: state.theme,
+      partialize: (s) => ({
+        dark: s.dark,
+        theme: s.theme,
       }),
     },
   ),
