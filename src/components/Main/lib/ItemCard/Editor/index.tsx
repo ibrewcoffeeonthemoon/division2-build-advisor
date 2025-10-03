@@ -1,17 +1,23 @@
+import { useState } from "react";
 import { Header, Input, NameInput } from "./Input";
+import { Attribute, DEFAULT_ATTRIBUTE } from "@/lib/type";
 
 export const Editor = () => {
+  const [inputs, setInputs] = useState<Attribute[]>([]);
+
+  const addNewInput = () => setInputs([...inputs, DEFAULT_ATTRIBUTE]);
+
   return (
     <div className="grid grid-cols-12 collapse-content px-3">
       <NameInput />
       <Header />
-      <Input />
-      <Input />
-      <Input />
-      <Input />
-      <Input />
+      {inputs.map(({}, i) => (
+        <Input key={i} />
+      ))}
       <div className="col-span-12 p-2 flex flex-row justify-center">
-        <button className="btn btn-primary btn-outline">Add Attribute</button>
+        <button className="btn btn-primary btn-outline" onClick={addNewInput}>
+          Add Attribute
+        </button>
       </div>
     </div>
   );
