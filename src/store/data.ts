@@ -13,6 +13,12 @@ type Store = {
   setName: (sec: string, cat: string, val: string) => void;
   appendAttribute: (sec: string, cat: string, attr: Attribute) => void;
   removeAttribute: (sec: string, cat: string, index: number) => void;
+  changeAttributeName: (
+    sec: string,
+    cat: string,
+    index: number,
+    val: string,
+  ) => void;
   changeType: (
     sec: string,
     cat: string,
@@ -65,10 +71,10 @@ export const useStore = create<Store>()(
         set((s) => {
           s.state[sec][cat].attributes[index].type = val;
         }),
-      // modifyAttribute: (sec, cat, index, field, val) =>
-      //   set((s) => {
-      //     s.state[sec][cat].attributes[index][field] = val;
-      //   }),
+      changeAttributeName: (sec, cat, index, val) =>
+        set((s) => {
+          s.state[sec][cat].attributes[index].name = val;
+        }),
     })),
     {
       name: "store.data",

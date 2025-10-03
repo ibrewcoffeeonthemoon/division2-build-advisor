@@ -45,7 +45,7 @@ export const Input = <S extends string, C extends string>({
     >
       <div className="collapse-title p-0 ps-0 pe-0">
         <div className="col-span-12 grid grid-cols-12 items-center">
-          <AttributeInput />
+          <AttributeInput {...{ section, category, attribute, index }} />
           <label className="input input-ghost input-md w-full items-center col-span-3">
             <input
               type="number"
