@@ -59,6 +59,7 @@ export const Input = () => {
               className="grow text-center"
               placeholder="Value"
               onFocus={(e) => e.currentTarget.select()}
+              defaultValue={0.0}
             />
           </label>
           <label className="input input-ghost input-md w-full items-center col-span-2">
@@ -66,8 +67,8 @@ export const Input = () => {
               type="number"
               className="grow text-center"
               placeholder="Uptime"
-              defaultValue={1.0}
               onFocus={(e) => e.currentTarget.select()}
+              defaultValue={1.0}
             />
           </label>
         </div>
@@ -89,6 +90,7 @@ export const Input = () => {
             className="grow"
             placeholder="Remarks"
             onFocus={(e) => e.currentTarget.select()}
+            defaultValue=""
           />
         </label>
         <div className="col-span-12 flex justify-center">
