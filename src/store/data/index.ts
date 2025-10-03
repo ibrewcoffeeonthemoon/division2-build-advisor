@@ -2,52 +2,10 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { persist } from "zustand/middleware";
 import { createSelectors } from "../utils";
-import { Attribute, AttributeType } from "@/lib/type";
+import { initState, State } from "./state";
+import { Action } from "./action";
 
-type CategoryState = {
-  name: string;
-  attributes: Attribute[];
-};
-type Store = {
-  state: Record<string, Record<string, CategoryState>>;
-  setName: (sec: string, cat: string, val: string) => void;
-  appendAttribute: (sec: string, cat: string, attr: Attribute) => void;
-  removeAttribute: (sec: string, cat: string, index: number) => void;
-  changeAttributeName: (
-    sec: string,
-    cat: string,
-    index: number,
-    val: string,
-  ) => void;
-  changeAttributeType: (
-    sec: string,
-    cat: string,
-    index: number,
-    val: AttributeType,
-  ) => void;
-};
-
-const init: () => CategoryState = () => ({ name: "", attributes: [] });
-const initState = () => ({
-  Weapons: {
-    Primary: init(),
-    Secondary: init(),
-    Sidearm: init(),
-    Signature: init(),
-  },
-  Gears: {
-    Mask: init(),
-    Backpack: init(),
-    Chest: init(),
-    Gloves: init(),
-    Holster: init(),
-    Kneepads: init(),
-  },
-  Extras: {
-    Watch: init(),
-    Specialization: init(),
-  },
-});
+type Store = State & Action;
 
 export const useStore = create<Store>()(
   persist(
