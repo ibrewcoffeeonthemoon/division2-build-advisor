@@ -4,6 +4,7 @@ import { TypeInput } from "./TypeInput";
 import { AttributeInput } from "./AttributeInput";
 import { ValueInput } from "./ValueInput";
 import { UptimeInput } from "./UptimeInput";
+import { NoteInput } from "./NoteInput";
 
 export const Header = () => {
   const headers = [
@@ -54,16 +55,7 @@ export const Input = <S extends string, C extends string>({
       </div>
       <div className="collapse-content !p-0 pb-0 ps-0 pe-0 grid grid-cols-12">
         <TypeInput {...{ section, category, attribute, index }} />
-        <label className="input input-ghost w-full col-span-9">
-          Note
-          <input
-            type="text"
-            className="grow"
-            placeholder="Remarks"
-            onFocus={(e) => e.currentTarget.select()}
-            defaultValue=""
-          />
-        </label>
+        <NoteInput />
         <div className="col-span-12 flex justify-center p-3">
           <button
             tabIndex={0}
