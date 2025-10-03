@@ -1,4 +1,5 @@
-import { Attribute, Categories } from "@/lib/type";
+import { Attribute } from "@/lib/type";
+import * as Categories from "@/lib/type/categories";
 import { ItemCard } from "../lib/ItemCard";
 import { store } from "@/store/ui/Main/Weapons";
 

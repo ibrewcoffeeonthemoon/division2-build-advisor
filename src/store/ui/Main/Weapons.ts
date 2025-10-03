@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { persist } from "zustand/middleware";
 import { createSelectors } from "@/store/utils";
-import { Categories } from "@/lib/type";
+import * as Categories from "@/lib/type/categories";
 
 type Store = {
   collapseOpen: boolean;

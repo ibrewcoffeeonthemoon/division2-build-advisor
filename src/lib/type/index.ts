@@ -13,7 +13,3 @@ export const DEFAULT_ATTRIBUTE: Attribute = {
   value: 0,
   uptime: 1.0,
 };
-
-export namespace Categories {
-  export type Weapons = "Primary" | "Secondary" | "Sidearm" | "Signature";
-}
