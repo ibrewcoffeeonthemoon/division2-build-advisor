@@ -34,7 +34,7 @@ export const ItemCard = <S extends string, C extends string>({
             {name}
           </div>
         </div>
-        {open || <Summary {...{ section, category, attributes }} />}
+        {open || <Summary {...{ attributes }} />}
       </div>
       <Editor {...{ section, category }} />
     </div>
