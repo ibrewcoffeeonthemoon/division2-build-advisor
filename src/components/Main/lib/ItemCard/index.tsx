@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Editor } from "./Editor";
 import { Summary } from "./Summary";
-import { Title } from "./Title";
 import { Attribute } from "@/lib/type";
+import { store } from "@/store/data";
 
 type ItemCardProps<S, C> = {
   section: S;
@@ -16,6 +16,7 @@ export const ItemCard = <S extends string, C extends string>({
   attributes,
 }: ItemCardProps<S, C>) => {
   const [open, setOpen] = useState(false);
+  const name = store.state()?.[section]?.[category]?.name;
 
   return (
     <div className="collapse rounded-md border-1 border-base-300 duration-1000">
@@ -25,11 +26,15 @@ export const ItemCard = <S extends string, C extends string>({
         onChange={(e) => setOpen(e.currentTarget.checked)}
       />
       <div className="collapse-title p-3">
-        {open ? (
-          <Title {...{ section, category }} />
-        ) : (
-          <Summary {...{ section, category, attributes }} />
-        )}
+        <div className="grid grid-cols-12 items-center">
+          <h2 className="col-span-4 text-lg font-semibold gap-0.5">
+            {category}
+          </h2>
+          <div className="col-span-8 text-lg text-right text-primary font-semibold overflow-hidden overflow-ellipsis text-nowrap">
+            {name}
+          </div>
+        </div>
+        {open || <Summary {...{ section, category, attributes }} />}
       </div>
       <Editor {...{ section, category }} />
     </div>
