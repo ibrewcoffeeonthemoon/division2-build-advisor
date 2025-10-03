@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-import { createSelectors } from "../utils";
+import { createSelectors } from "./utils";
 import { persist } from "zustand/middleware";
 
 type Store = {
