@@ -47,15 +47,16 @@ export const Input = <S extends string, C extends string>({
       className="collapse col-span-12 p-1.5 m-0 overflow-visible border-1 border-base-300 duration-1000"
     >
       <div className="collapse-title p-0 ps-0 pe-0">
-        <div className="col-span-12 grid grid-cols-12 items-center">
-          <AttributeInput {...{ section, category, attribute, index }} />
-          <ValueInput {...{ section, category, attribute, index }} />
-          <UptimeInput {...{ section, category, attribute, index }} />
-        </div>
+        <h2 className="col-span-12 w-full text-center">Title</h2>
       </div>
       <div className="collapse-content !p-0 pb-0 ps-0 pe-0 grid grid-cols-12">
+        <AttributeInput {...{ section, category, attribute, index }} />
+        <ValueInput {...{ section, category, attribute, index }} />
+        <UptimeInput {...{ section, category, attribute, index }} />
+
         <TypeInput {...{ section, category, attribute, index }} />
         <NoteInput {...{ section, category, attribute, index }} />
+
         <div className="col-span-12 flex justify-center p-3">
           <button
             tabIndex={0}
