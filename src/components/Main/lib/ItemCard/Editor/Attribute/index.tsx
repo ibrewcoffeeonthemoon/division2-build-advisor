@@ -48,7 +48,7 @@ export const Input = <S extends string, C extends string>({
       <div className="collapse-title p-0 ps-0 pe-0">
         <div className="col-span-12 grid grid-cols-12 items-center">
           <AttributeInput {...{ section, category, attribute, index }} />
-          <ValueInput />
+          <ValueInput {...{ section, category, attribute, index }} />
           <UptimeInput />
         </div>
       </div>
