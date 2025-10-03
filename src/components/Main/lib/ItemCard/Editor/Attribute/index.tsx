@@ -1,6 +1,7 @@
 import { Attribute } from "@/lib/type";
 import { store } from "@/store/data";
 import { TypeInput } from "./TypeInput";
+import { AttributeInput } from "./AttributeInput";
 
 export const Header = () => {
   const headers = [
@@ -44,16 +45,7 @@ export const Input = <S extends string, C extends string>({
     >
       <div className="collapse-title p-0 ps-0 pe-0">
         <div className="col-span-12 grid grid-cols-12 items-center">
-          <select
-            className="select select-ghost col-span-7 z-10"
-            defaultValue="Weapon Damage"
-          >
-            <option disabled={true}>Attribute</option>
-            <option>Weapon Damage</option>
-            <option>Critical Hit Chance</option>
-            <option>Critical Hit Damage</option>
-            <option>Headshot Damage</option>
-          </select>
+          <AttributeInput />
           <label className="input input-ghost input-md w-full items-center col-span-3">
             <input
               type="number"
