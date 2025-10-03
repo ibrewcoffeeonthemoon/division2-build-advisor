@@ -5,7 +5,7 @@ import { Section } from "../lib/Section";
 import Card from "./Card";
 
 export default function Extras() {
-  const collapseOpen = store.state()?.["Extras"]?.collapseOpen;
+  const collapseOpen = store.state().Extras.collapseOpen;
   const setCollapseOpen = store.setCollapseOpen();
 
   return (

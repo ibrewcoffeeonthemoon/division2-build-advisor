@@ -5,7 +5,7 @@ import { Section } from "../lib/Section";
 import Card from "./Card";
 
 export default function Weapons() {
-  const collapseOpen = store.state()?.["Weapons"]?.collapseOpen;
+  const collapseOpen = store.state().Weapons.collapseOpen;
   const setCollapseOpen = store.setCollapseOpen();
 
   return (
