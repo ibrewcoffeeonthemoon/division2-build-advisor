@@ -6,6 +6,7 @@ import { ValueInput } from "./ValueInput";
 import { UptimeInput } from "./UptimeInput";
 import { NoteInput } from "./NoteInput";
 import { Title } from "./Title";
+import { useState } from "react";
 
 type Props<S, C> = {
   section: S;
@@ -20,13 +21,18 @@ export const Input = <S extends string, C extends string>({
   attribute,
   index,
 }: Props<S, C>) => {
+  const [open, setOpen] = useState(false);
   const removeAttribute = store.removeAttribute();
 
   return (
     <div className="collapse col-span-12 p-1.5 m-0 overflow-visible border-1 border-base-300 duration-1000">
-      <input type="checkbox" />
+      <input
+        type="checkbox"
+        checked={open}
+        onClick={(e) => setOpen(e.currentTarget.checked)}
+      />
       <div className="collapse-title p-0 ps-0 pe-0 grid grid-cols-12">
-        <Title {...{ attribute }} />
+        <Title {...{ open, attribute }} />
       </div>
       <div className="collapse-content !p-0 pb-0 ps-0 pe-0 grid grid-cols-12">
         <AttributeInput {...{ section, category, attribute, index }} />

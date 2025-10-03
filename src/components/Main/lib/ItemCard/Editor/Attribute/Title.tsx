@@ -1,15 +1,23 @@
 import { Attribute } from "@/lib/type";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 
-export const Title = ({ attribute }: { attribute: Attribute }) => {
+type Props = {
+  attribute: Attribute;
+  open: boolean;
+};
+
+export const Title = ({ attribute, open }: Props) => {
   return (
-    <>
-      <h2 className="col-span-7 w-full text-center">{attribute.name}</h2>
-      <h2 className="col-span-3 w-full text-center">
-        {(attribute.value * 100).toFixed(1)}
-      </h2>
-      <h2 className="col-span-2 w-full text-center">
-        {(attribute.uptime * 100).toFixed(0)}
-      </h2>
-    </>
+    <div className="col-span-12 grid grid-cols-12 items-center text-center">
+      {open ? (
+        <XMarkIcon className="col-span-12 w-full h-5" />
+      ) : (
+        <>
+          <h2 className="col-span-7">{attribute.name}</h2>
+          <h2 className="col-span-3">{(attribute.value * 100).toFixed(1)}</h2>
+          <h2 className="col-span-2">{(attribute.uptime * 100).toFixed(0)}</h2>
+        </>
+      )}
+    </div>
   );
 };
