@@ -16,6 +16,12 @@ export type Action = {
     index: number,
     val: number,
   ) => void;
+  changeAttributeUptime: (
+    sec: string,
+    cat: string,
+    index: number,
+    val: number,
+  ) => void;
   changeAttributeType: (
     sec: string,
     cat: string,
