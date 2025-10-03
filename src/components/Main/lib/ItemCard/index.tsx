@@ -1,11 +1,22 @@
 import { useState } from "react";
 import { Editor } from "./Editor";
-import { Summary, SummaryProps } from "./Summary";
+import { Summary } from "./Summary";
 import { Title } from "./Title";
+import { Attribute } from "@/lib/type";
 
-type ItemCardProps = SummaryProps & {};
+type ItemCardProps<S, C> = {
+  section: S;
+  category: C;
+  name: string;
+  attributes: Attribute[];
+};
 
-export const ItemCard = ({ category, name, attributes }: ItemCardProps) => {
+export const ItemCard = <S extends string, C extends string>({
+  section,
+  category,
+  name,
+  attributes,
+}: ItemCardProps<S, C>) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -22,7 +33,7 @@ export const ItemCard = ({ category, name, attributes }: ItemCardProps) => {
           <Summary {...{ category, name, attributes }} />
         )}
       </div>
-      <Editor />
+      <Editor {...{ section, category }} />
     </div>
   );
 };

@@ -2,7 +2,12 @@ import { useState } from "react";
 import { Header, Input, NameInput } from "./Input";
 import { Attribute, DEFAULT_ATTRIBUTE } from "@/lib/type";
 
-export const Editor = () => {
+type Props<S, C> = {
+  section: S;
+  category: C;
+};
+
+export const Editor = <S, C>({ section, category }: Props<S, C>) => {
   const [inputs, setInputs] = useState<Attribute[]>([]);
 
   const addNewInput = () => setInputs([...inputs, DEFAULT_ATTRIBUTE]);
