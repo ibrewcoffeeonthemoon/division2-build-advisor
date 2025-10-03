@@ -3,6 +3,7 @@ import { store } from "@/store/data";
 import { TypeInput } from "./TypeInput";
 import { AttributeInput } from "./AttributeInput";
 import { ValueInput } from "./ValueInput";
+import { UptimeInput } from "./UptimeInput";
 
 export const Header = () => {
   const headers = [
@@ -48,15 +49,7 @@ export const Input = <S extends string, C extends string>({
         <div className="col-span-12 grid grid-cols-12 items-center">
           <AttributeInput {...{ section, category, attribute, index }} />
           <ValueInput />
-          <label className="input input-ghost input-md w-full items-center col-span-2">
-            <input
-              type="number"
-              className="grow text-center"
-              placeholder="Uptime"
-              onFocus={(e) => e.currentTarget.select()}
-              defaultValue={1.0}
-            />
-          </label>
+          <UptimeInput />
         </div>
       </div>
       <div className="collapse-content !p-0 pb-0 ps-0 pe-0 grid grid-cols-12">
