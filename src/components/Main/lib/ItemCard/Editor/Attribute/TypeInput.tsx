@@ -14,7 +14,7 @@ export const TypeInput = <S extends string, C extends string>({
   attribute,
   index,
 }: Props<S, C>) => {
-  const changeType = store.changeType();
+  const changeType = store.changeAttributeType();
 
   return (
     <select

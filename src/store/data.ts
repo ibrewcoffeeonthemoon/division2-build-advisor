@@ -19,7 +19,7 @@ type Store = {
     index: number,
     val: string,
   ) => void;
-  changeType: (
+  changeAttributeType: (
     sec: string,
     cat: string,
     index: number,
@@ -67,7 +67,7 @@ export const useStore = create<Store>()(
             (_, i) => i !== index,
           );
         }),
-      changeType: (sec, cat, index, val) =>
+      changeAttributeType: (sec, cat, index, val) =>
         set((s) => {
           s.state[sec][cat].attributes[index].type = val;
         }),
