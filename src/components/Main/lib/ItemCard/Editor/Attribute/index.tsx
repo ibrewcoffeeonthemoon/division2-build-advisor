@@ -69,7 +69,7 @@ export const Input = <S extends string, C extends string>({
       <div className="collapse-content !p-0 pb-0 ps-0 pe-0 grid grid-cols-12">
         <TypeInput {...{ section, category, attribute, index }} />
         <label className="input input-ghost w-full col-span-9">
-          Name
+          Note
           <input
             type="text"
             className="grow"
