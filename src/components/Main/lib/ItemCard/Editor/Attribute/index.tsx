@@ -22,10 +22,8 @@ export const Input = <S extends string, C extends string>({
   const removeAttribute = store.removeAttribute();
 
   return (
-    <div
-      tabIndex={0}
-      className="collapse col-span-12 p-1.5 m-0 overflow-visible border-1 border-base-300 duration-1000"
-    >
+    <div className="collapse col-span-12 p-1.5 m-0 overflow-visible border-1 border-base-300 duration-1000">
+      <input type="checkbox" />
       <div className="collapse-title p-0 ps-0 pe-0">
         <h2 className="col-span-12 w-full text-center">Title</h2>
       </div>
