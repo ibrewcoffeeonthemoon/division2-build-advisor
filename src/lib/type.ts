@@ -6,3 +6,10 @@ export type Attribute = {
   value: number;
   uptime: number;
 };
+
+export const DEFAULT_ATTRIBUTE: Attribute = {
+  type: "Attribute",
+  name: "",
+  value: 0,
+  uptime: 1.0,
+};
