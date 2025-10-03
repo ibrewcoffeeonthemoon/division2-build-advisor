@@ -19,7 +19,7 @@ export const useStore = create<Store>()(
     })),
     {
       name: "store.ui.Dock",
-      partialize: (state) => ({ activeButton: state.activeButton }),
+      partialize: (s) => ({ activeButton: s.activeButton }),
     },
   ),
 );

@@ -4,7 +4,7 @@ import { persist } from "zustand/middleware";
 import { createSelectors } from "../utils";
 
 type Store = {
-  data: Record<
+  state: Record<
     string,
     Record<
       string,
@@ -19,18 +19,20 @@ type Store = {
 export const useStore = create<Store>()(
   persist(
     immer((set) => ({
-      data: {},
+      state: {},
       setName: (section, category, val) =>
         set((s) => {
-          s.data[section] = s.data[section] || {};
-          s.data[section][category] = s.data[section][category] || { name: "" };
-          s.data[section][category].name = val;
+          s.state[section] = s.state[section] || {};
+          s.state[section][category] = s.state[section][category] || {
+            name: "",
+          };
+          s.state[section][category].name = val;
         }),
     })),
     {
       name: "store.data",
-      partialize: (state) => ({
-        data: state.data,
+      partialize: (s) => ({
+        state: s.state,
       }),
     },
   ),

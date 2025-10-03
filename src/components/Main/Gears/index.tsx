@@ -1,11 +1,11 @@
 "use client";
 
-import { store } from "@/store/ui/Main/Gears";
+import { store } from "@/store/ui/Main";
 import Card from "./Card";
 import { Section } from "../lib/Section";
 
 export default function Gears() {
-  const collapseOpen = store.collapseOpen();
+  const collapseOpen = store.state()?.["Gears"]?.collapseOpen;
   const setCollapseOpen = store.setCollapseOpen();
 
   return (
@@ -15,7 +15,7 @@ export default function Gears() {
         <input
           type="checkbox"
           checked={collapseOpen}
-          onChange={(e) => setCollapseOpen(e.currentTarget.checked)}
+          onChange={(e) => setCollapseOpen("Gears", e.currentTarget.checked)}
         />
       }
     >

@@ -4,22 +4,28 @@ import { persist } from "zustand/middleware";
 import { createSelectors } from "@/store/utils";
 
 type Store = {
-  collapseOpen: boolean;
-  setCollapseOpen: (val: boolean) => void;
+  state: Record<
+    string,
+    {
+      collapseOpen: boolean;
+    }
+  >;
+  setCollapseOpen: (section: string, val: boolean) => void;
 };
 
 export const useStore = create<Store>()(
   persist(
     immer((set) => ({
-      collapseOpen: true,
-      setCollapseOpen: (val) =>
+      state: {},
+      setCollapseOpen: (section, val) =>
         set((s) => {
-          s.collapseOpen = val;
+          s.state[section] = s.state[section] || { collapseOpen: false };
+          s.state[section].collapseOpen = val;
         }),
     })),
     {
-      name: "store.ui.Main.Weapons",
-      partialize: (state) => ({ collapseOpen: state.collapseOpen }),
+      name: "store.ui.Main",
+      partialize: (s) => ({ state: s.state }),
     },
   ),
 );

@@ -10,7 +10,7 @@ export const Title = <S extends string, C extends string>({
   section,
   category,
 }: TitleProps<S, C>) => {
-  const name = store.data()?.[section]?.[category]?.name;
+  const name = store.state()?.[section]?.[category]?.name;
 
   return (
     <div className="grid grid-cols-12">

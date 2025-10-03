@@ -6,9 +6,6 @@ import { persist } from "zustand/middleware";
 type Store = {
   currentUrl: string;
   setCurrentUrl: (val: string) => void;
-  dark: boolean;
-  setDark: (val: boolean) => void;
-  toggleDark: () => void;
   theme: string;
   setTheme: (val: string) => void;
 };
@@ -21,15 +18,6 @@ export const useStore = create<Store>()(
         set((s) => {
           s.currentUrl = val;
         }),
-      dark: true,
-      setDark: (val) =>
-        set((s) => {
-          s.dark = val;
-        }),
-      toggleDark: () =>
-        set((s) => {
-          s.dark = !s.dark;
-        }),
       theme: "light",
       setTheme: (val) =>
         set((s) => {
@@ -38,9 +26,8 @@ export const useStore = create<Store>()(
     })),
     {
       name: "store.app",
-      partialize: (state) => ({
-        dark: state.dark,
-        theme: state.theme,
+      partialize: (s) => ({
+        theme: s.theme,
       }),
     },
   ),

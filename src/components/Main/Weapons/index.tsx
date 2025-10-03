@@ -1,11 +1,11 @@
 "use client";
 
-import { store } from "@/store/ui/Main/Weapons";
+import { store } from "@/store/ui/Main";
 import { Section } from "../lib/Section";
 import Card from "./Card";
 
 export default function Weapons() {
-  const collapseOpen = store.collapseOpen();
+  const collapseOpen = store.state()?.["Weapons"]?.collapseOpen;
   const setCollapseOpen = store.setCollapseOpen();
 
   return (
@@ -15,7 +15,7 @@ export default function Weapons() {
         <input
           type="checkbox"
           checked={collapseOpen}
-          onChange={(e) => setCollapseOpen(e.currentTarget.checked)}
+          onChange={(e) => setCollapseOpen("Weapons", e.currentTarget.checked)}
         />
       }
     >
