@@ -1,4 +1,4 @@
-import { TrashIcon } from "@heroicons/react/24/outline";
+import { store } from "@/store/data";
 
 export const Header = () => {
   const headers = [
@@ -20,7 +20,19 @@ export const Header = () => {
   );
 };
 
-export const Input = () => {
+type Props<S, C> = {
+  section: S;
+  category: C;
+  index: number;
+};
+
+export const Input = <S extends string, C extends string>({
+  section,
+  category,
+  index,
+}: Props<S, C>) => {
+  const removeAttribute = store.removeAttribute();
+
   return (
     <div
       tabIndex={0}
@@ -78,15 +90,16 @@ export const Input = () => {
             defaultValue=""
           />
         </label>
-        <div className="col-span-12 flex justify-center">
+        <div className="col-span-12 flex justify-center p-3">
           <button
             tabIndex={0}
             className="
-            btn btn-circle btn-ghost text-error
-            flex items-center justify-center
-          "
+              btn btn-error 
+              flex items-center justify-center
+            "
+            onClick={() => removeAttribute(section, category, index)}
           >
-            <TrashIcon className="w-7 h-7" />
+            DELETE
           </button>
         </div>
       </div>

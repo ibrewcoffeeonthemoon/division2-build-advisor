@@ -20,7 +20,7 @@ export const Editor = <S extends string, C extends string>({
       <NameField.Input {...{ section, category }} />
       <AttributeField.Header />
       {attributes?.map(({}, i) => (
-        <AttributeField.Input key={i} />
+        <AttributeField.Input key={i} index={i} {...{ section, category }} />
       ))}
       <div className="col-span-12 p-2 flex flex-row justify-center">
         <button

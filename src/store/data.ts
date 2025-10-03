@@ -12,6 +12,7 @@ type Store = {
   state: Record<string, Record<string, CategoryState>>;
   setName: (section: string, category: string, val: string) => void;
   appendAttribute: (section: string, category: string, attr: Attribute) => void;
+  removeAttribute: (section: string, category: string, index: number) => void;
 };
 
 const init: () => CategoryState = () => ({ name: "", attributes: [] });
@@ -47,6 +48,12 @@ export const useStore = create<Store>()(
       appendAttribute: (section, category, attr) =>
         set((s) => {
           s.state[section][category].attributes.push(attr);
+        }),
+      removeAttribute: (sec, cat, index) =>
+        set((s) => {
+          s.state[sec][cat].attributes = s.state[sec][cat].attributes.filter(
+            (_, i) => i !== index,
+          );
         }),
     })),
     {
