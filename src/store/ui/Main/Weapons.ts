@@ -8,6 +8,7 @@ type Store = {
   collapseOpen: boolean;
   setCollapseOpen: (val: boolean) => void;
   name: Record<Categories.Weapons, string>;
+  setName: (category: Categories.Weapons, val: string) => void;
 };
 
 export const useStore = create<Store>()(
@@ -24,6 +25,10 @@ export const useStore = create<Store>()(
         Sidearm: "",
         Signature: "",
       },
+      setName: (category, val) =>
+        set((s) => {
+          s.name[category] = val;
+        }),
     })),
     {
       name: "store.ui.Main.Weapons",
