@@ -26,7 +26,7 @@ export const ItemCard = <S extends string, C extends string>({
       />
       <div className="collapse-title p-3">
         {open ? (
-          <Title {...{ category }} />
+          <Title {...{ section, category }} />
         ) : (
           <Summary {...{ section, category, attributes }} />
         )}
