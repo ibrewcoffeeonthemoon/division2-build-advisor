@@ -55,7 +55,7 @@ export const Input = <S extends string, C extends string>({
       </div>
       <div className="collapse-content !p-0 pb-0 ps-0 pe-0 grid grid-cols-12">
         <TypeInput {...{ section, category, attribute, index }} />
-        <NoteInput />
+        <NoteInput {...{ section, category, attribute, index }} />
         <div className="col-span-12 flex justify-center p-3">
           <button
             tabIndex={0}
