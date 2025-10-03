@@ -1,5 +1,4 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
-import { StopCircleIcon } from "@heroicons/react/24/solid";
 
 export const NameInput = () => {
   return (
