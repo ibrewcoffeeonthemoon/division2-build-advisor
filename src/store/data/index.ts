@@ -41,6 +41,10 @@ export const useStore = create<Store>()(
         set((s) => {
           s.state[sec][cat].attributes[index].type = val;
         }),
+      changeAttributeNote: (sec, cat, index, val) =>
+        set((s) => {
+          s.state[sec][cat].attributes[index].note = val;
+        }),
     })),
     {
       name: "store.data",

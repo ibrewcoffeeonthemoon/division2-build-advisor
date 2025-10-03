@@ -2,6 +2,9 @@ import { Attribute } from "@/lib/type";
 import { store } from "@/store/data";
 import { TypeInput } from "./TypeInput";
 import { AttributeInput } from "./AttributeInput";
+import { ValueInput } from "./ValueInput";
+import { UptimeInput } from "./UptimeInput";
+import { NoteInput } from "./NoteInput";
 
 export const Header = () => {
   const headers = [
@@ -46,38 +49,13 @@ export const Input = <S extends string, C extends string>({
       <div className="collapse-title p-0 ps-0 pe-0">
         <div className="col-span-12 grid grid-cols-12 items-center">
           <AttributeInput {...{ section, category, attribute, index }} />
-          <label className="input input-ghost input-md w-full items-center col-span-3">
-            <input
-              type="number"
-              className="grow text-center"
-              placeholder="Value"
-              onFocus={(e) => e.currentTarget.select()}
-              defaultValue={0.0}
-            />
-          </label>
-          <label className="input input-ghost input-md w-full items-center col-span-2">
-            <input
-              type="number"
-              className="grow text-center"
-              placeholder="Uptime"
-              onFocus={(e) => e.currentTarget.select()}
-              defaultValue={1.0}
-            />
-          </label>
+          <ValueInput {...{ section, category, attribute, index }} />
+          <UptimeInput {...{ section, category, attribute, index }} />
         </div>
       </div>
       <div className="collapse-content !p-0 pb-0 ps-0 pe-0 grid grid-cols-12">
         <TypeInput {...{ section, category, attribute, index }} />
-        <label className="input input-ghost w-full col-span-9">
-          Note
-          <input
-            type="text"
-            className="grow"
-            placeholder="Remarks"
-            onFocus={(e) => e.currentTarget.select()}
-            defaultValue=""
-          />
-        </label>
+        <NoteInput {...{ section, category, attribute, index }} />
         <div className="col-span-12 flex justify-center p-3">
           <button
             tabIndex={0}

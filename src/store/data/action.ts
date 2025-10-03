@@ -28,4 +28,10 @@ export type Action = {
     index: number,
     val: AttributeType,
   ) => void;
+  changeAttributeNote: (
+    sec: string,
+    cat: string,
+    index: number,
+    val: string,
+  ) => void;
 };
