@@ -1,12 +1,16 @@
 import { Attribute } from "@/lib/type";
+import Sections from "@/lib/type/sections";
+import * as Categories from "@/lib/type/categories";
 import { ItemCard } from "../lib/ItemCard";
 
 type Props = {
-  category: string;
-  name: string;
+  category: Categories.Gears;
 };
 
-export default function Card({ category, name }: Props) {
+export default function Card({ category }: Props) {
+  const section = "Weapons" as Sections;
+  const name = "temp";
+
   const attributes: Attribute[] = [
     {
       type: "Attribute",
@@ -40,5 +44,5 @@ export default function Card({ category, name }: Props) {
     },
   ];
 
-  return <ItemCard {...{ category, name, attributes }} />;
+  return <ItemCard {...{ section, category, name, attributes }} />;
 }
