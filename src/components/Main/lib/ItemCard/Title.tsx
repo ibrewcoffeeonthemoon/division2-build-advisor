@@ -13,12 +13,10 @@ export const Title = <S extends string, C extends string>({
   const name = store.state()?.[section]?.[category]?.name;
 
   return (
-    <div className="grid grid-cols-12">
-      <XMarkIcon className="col-span-3 size-5" />
-      <div className="col-span-6 text-center text-primary font-semibold">
-        {name}
-      </div>
-      <h2 className="col-span-3 text-right text-lg font-semibold gap-0.5">
+    <div className="grid grid-cols-12 items-center">
+      <XMarkIcon className="col-span-1 size-5" />
+      <div className="col-span-7 text-primary font-semibold">{name}</div>
+      <h2 className="col-span-4 text-right text-lg font-semibold gap-0.5">
         {category}
       </h2>
     </div>
