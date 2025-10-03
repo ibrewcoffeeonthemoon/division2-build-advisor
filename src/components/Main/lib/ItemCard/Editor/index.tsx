@@ -19,8 +19,12 @@ export const Editor = <S extends string, C extends string>({
     <div className="grid grid-cols-12 collapse-content px-3">
       <NameField.Input {...{ section, category }} />
       <AttributeField.Header />
-      {attributes?.map(({}, i) => (
-        <AttributeField.Input key={i} />
+      {attributes?.map((attribute, i) => (
+        <AttributeField.Input
+          key={i}
+          index={i}
+          {...{ section, category, attribute }}
+        />
       ))}
       <div className="col-span-12 p-2 flex flex-row justify-center">
         <button

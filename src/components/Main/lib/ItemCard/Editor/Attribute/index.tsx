@@ -1,4 +1,7 @@
-import { TrashIcon } from "@heroicons/react/24/outline";
+import { Attribute } from "@/lib/type";
+import { store } from "@/store/data";
+import { TypeInput } from "./TypeInput";
+import { AttributeInput } from "./AttributeInput";
 
 export const Header = () => {
   const headers = [
@@ -20,7 +23,21 @@ export const Header = () => {
   );
 };
 
-export const Input = () => {
+type Props<S, C> = {
+  section: S;
+  category: C;
+  attribute: Attribute;
+  index: number;
+};
+
+export const Input = <S extends string, C extends string>({
+  section,
+  category,
+  attribute,
+  index,
+}: Props<S, C>) => {
+  const removeAttribute = store.removeAttribute();
+
   return (
     <div
       tabIndex={0}
@@ -28,16 +45,7 @@ export const Input = () => {
     >
       <div className="collapse-title p-0 ps-0 pe-0">
         <div className="col-span-12 grid grid-cols-12 items-center">
-          <select
-            className="select select-ghost col-span-7 z-10"
-            defaultValue="Weapon Damage"
-          >
-            <option disabled={true}>Attribute</option>
-            <option>Weapon Damage</option>
-            <option>Critical Hit Chance</option>
-            <option>Critical Hit Damage</option>
-            <option>Headshot Damage</option>
-          </select>
+          <AttributeInput {...{ section, category, attribute, index }} />
           <label className="input input-ghost input-md w-full items-center col-span-3">
             <input
               type="number"
@@ -59,17 +67,9 @@ export const Input = () => {
         </div>
       </div>
       <div className="collapse-content !p-0 pb-0 ps-0 pe-0 grid grid-cols-12">
-        <select
-          className="select select-ghost col-span-3"
-          defaultValue="Attribute"
-        >
-          <option disabled={true}>Type</option>
-          <option>Attribute</option>
-          <option>Mod</option>
-          <option>Talent</option>
-        </select>
+        <TypeInput {...{ section, category, attribute, index }} />
         <label className="input input-ghost w-full col-span-9">
-          Name
+          Note
           <input
             type="text"
             className="grow"
@@ -78,15 +78,16 @@ export const Input = () => {
             defaultValue=""
           />
         </label>
-        <div className="col-span-12 flex justify-center">
+        <div className="col-span-12 flex justify-center p-3">
           <button
             tabIndex={0}
             className="
-            btn btn-circle btn-ghost text-error
-            flex items-center justify-center
-          "
+              btn btn-error 
+              flex items-center justify-center
+            "
+            onClick={() => removeAttribute(section, category, index)}
           >
-            <TrashIcon className="w-7 h-7" />
+            DELETE
           </button>
         </div>
       </div>

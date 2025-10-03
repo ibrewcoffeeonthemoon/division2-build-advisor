@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { persist } from "zustand/middleware";
 import { createSelectors } from "./utils";
-import { Attribute } from "@/lib/type";
+import { Attribute, AttributeType } from "@/lib/type";
 
 type CategoryState = {
   name: string;
@@ -10,8 +10,21 @@ type CategoryState = {
 };
 type Store = {
   state: Record<string, Record<string, CategoryState>>;
-  setName: (section: string, category: string, val: string) => void;
-  appendAttribute: (section: string, category: string, attr: Attribute) => void;
+  setName: (sec: string, cat: string, val: string) => void;
+  appendAttribute: (sec: string, cat: string, attr: Attribute) => void;
+  removeAttribute: (sec: string, cat: string, index: number) => void;
+  changeAttributeName: (
+    sec: string,
+    cat: string,
+    index: number,
+    val: string,
+  ) => void;
+  changeAttributeType: (
+    sec: string,
+    cat: string,
+    index: number,
+    val: AttributeType,
+  ) => void;
 };
 
 const init: () => CategoryState = () => ({ name: "", attributes: [] });
@@ -40,13 +53,27 @@ export const useStore = create<Store>()(
   persist(
     immer((set) => ({
       state: initState(),
-      setName: (section, category, val) =>
+      setName: (sec, cat, val) =>
         set((s) => {
-          s.state[section][category].name = val;
+          s.state[sec][cat].name = val;
         }),
-      appendAttribute: (section, category, attr) =>
+      appendAttribute: (sec, cat, attr) =>
         set((s) => {
-          s.state[section][category].attributes.push(attr);
+          s.state[sec][cat].attributes.push(attr);
+        }),
+      removeAttribute: (sec, cat, index) =>
+        set((s) => {
+          s.state[sec][cat].attributes = s.state[sec][cat].attributes.filter(
+            (_, i) => i !== index,
+          );
+        }),
+      changeAttributeType: (sec, cat, index, val) =>
+        set((s) => {
+          s.state[sec][cat].attributes[index].type = val;
+        }),
+      changeAttributeName: (sec, cat, index, val) =>
+        set((s) => {
+          s.state[sec][cat].attributes[index].name = val;
         }),
     })),
     {
