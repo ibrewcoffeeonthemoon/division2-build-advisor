@@ -19,8 +19,8 @@ export default function Extras() {
         />
       }
     >
-      <Card category="Watch" name="name" />
-      <Card category="Specialization" name="name" />
+      <Card category="Watch" />
+      <Card category="Specialization" />
     </Section>
   );
 }
