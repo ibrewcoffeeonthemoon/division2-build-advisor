@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { persist } from "zustand/middleware";
-import { createSelectors } from "./utils";
+import { createSelectors } from "../utils";
 import { Attribute, AttributeType } from "@/lib/type";
 
 type CategoryState = {
