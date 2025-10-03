@@ -17,7 +17,7 @@ export const Input = <S extends string, C extends string>({
       <span className="font-bold">Name</span>
       <input
         type="text"
-        className="grow text-primary font-bold pl-1"
+        className="grow text-primary pl-1"
         placeholder=">>>"
         onFocus={(e) => e.currentTarget.select()}
         value={name ?? ""}
