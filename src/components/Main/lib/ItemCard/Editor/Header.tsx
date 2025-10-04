@@ -3,7 +3,7 @@ export const Header = () => {
   return (
     <>
       <span className={`col-span-7 ${className}`}>Attribute</span>
-      <span className={`col-span-3 ${className}`}>Value %</span>
+      <span className={`col-span-2 ${className}`}>Value %</span>
       <span className={`col-span-2 ${className}`}>Uptime %</span>
     </>
   );

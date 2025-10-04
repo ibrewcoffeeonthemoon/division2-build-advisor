@@ -28,7 +28,7 @@ export const Input = <S extends string, C extends string>({
   const removeAttribute = stores.data.removeAttribute();
 
   return (
-    <div className="collapse col-span-12 p-1.5 m-0 overflow-visible border-1 border-base-300 duration-1000">
+    <div className="collapse collapse-arrow col-span-12 p-1.5 m-0 overflow-visible border-1 border-base-300 duration-1000">
       <input
         type="checkbox"
         checked={open}
