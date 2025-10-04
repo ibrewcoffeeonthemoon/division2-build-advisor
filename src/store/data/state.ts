@@ -1,4 +1,5 @@
 import { Attribute } from "@/lib/type";
+import { createCategoryRecord } from "../utils";
 
 type CategoryState = {
   name: string;
@@ -9,24 +10,8 @@ export type State = {
   state: Record<string, Record<string, CategoryState>>;
 };
 
-const init: () => CategoryState = () => ({ name: "", attributes: [] });
-export const initState = () => ({
-  Weapons: {
-    Primary: init(),
-    Secondary: init(),
-    Sidearm: init(),
-    Signature: init(),
-  },
-  Gears: {
-    Mask: init(),
-    Backpack: init(),
-    Chest: init(),
-    Gloves: init(),
-    Holster: init(),
-    Kneepads: init(),
-  },
-  Extras: {
-    Watch: init(),
-    Specialization: init(),
-  },
-});
+export const state: () => State["state"] = () =>
+  createCategoryRecord(() => ({
+    name: "",
+    attributes: [],
+  }));

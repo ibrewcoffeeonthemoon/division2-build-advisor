@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { persist } from "zustand/middleware";
 import { createSelectors } from "../utils";
-import { initState, State } from "./state";
+import { state, State } from "./state";
 import { Action } from "./action";
 
 type Store = State & Action;
@@ -10,7 +10,7 @@ type Store = State & Action;
 export const useStore = create<Store>()(
   persist(
     immer((set) => ({
-      state: initState(),
+      state: state(),
       setName: (sec, cat, val) =>
         set((s) => {
           s.state[sec][cat].name = val;

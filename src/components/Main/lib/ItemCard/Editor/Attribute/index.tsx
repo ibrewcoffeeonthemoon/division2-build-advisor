@@ -1,20 +1,17 @@
 import { Attribute } from "@/lib/type";
-import { store } from "@/store/data";
+import { stores } from "@/store";
 import { TypeInput } from "./TypeInput";
 import { AttributeInput } from "./AttributeInput";
 import { ValueInput } from "./ValueInput";
 import { UptimeInput } from "./UptimeInput";
 import { NoteInput } from "./NoteInput";
 import { Title } from "./Title";
-import { useState } from "react";
 
 type Props<S, C> = {
   section: S;
   category: C;
   attribute: Attribute;
   index: number;
-  openedIndex: number | null;
-  setOpenedIndex: (val: number | null) => void;
 };
 
 export const Input = <S extends string, C extends string>({
@@ -22,18 +19,20 @@ export const Input = <S extends string, C extends string>({
   category,
   attribute,
   index,
-  openedIndex,
-  setOpenedIndex,
 }: Props<S, C>) => {
-  const open = index === openedIndex;
-  const removeAttribute = store.removeAttribute();
+  const openIndex =
+    stores.ui.Main.state().section.category.attributes[section][category]
+      .openedIndex;
+  const open = openIndex === index;
+  const setOpenedIndex = stores.ui.Main.setOpenedIndex();
+  const removeAttribute = stores.data.removeAttribute();
 
   return (
     <div className="collapse col-span-12 p-1.5 m-0 overflow-visible border-1 border-base-300 duration-1000">
       <input
         type="checkbox"
         checked={open}
-        onClick={() => setOpenedIndex(openedIndex === index ? null : index)}
+        onChange={() => setOpenedIndex(section, category, open ? null : index)}
       />
       <div className="collapse-title p-0 ps-0 pe-0 grid grid-cols-12">
         <Title {...{ open, attribute }} />
