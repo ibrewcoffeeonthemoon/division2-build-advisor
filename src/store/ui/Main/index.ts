@@ -17,7 +17,7 @@ export const useStore = create<Store>()(
         }),
       setCategoryOpen: (sec, cat, val) =>
         set((s) => {
-          s.state.section.category.collapseOpen[sec][cat] = val;
+          s.state.section.category.open[sec][cat] = val;
         }),
       setOpenedIndex: (sec, cat, val) =>
         set((s) => {
