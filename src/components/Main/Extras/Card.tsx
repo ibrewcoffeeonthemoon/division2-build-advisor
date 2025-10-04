@@ -1,13 +1,13 @@
 import Sections from "@/lib/type/sections";
-import * as Categories from "@/lib/type/categories";
+import * as Items from "@/lib/type/items";
 import { ItemCard } from "../lib/ItemCard";
 
 type Props = {
-  category: Categories.Extras;
+  item: Items.Extras;
 };
 
-export default function Card({ category }: Props) {
+export default function Card({ item }: Props) {
   const section = "Extras" as Sections;
 
-  return <ItemCard {...{ section, category }} />;
+  return <ItemCard {...{ section, item }} />;
 }

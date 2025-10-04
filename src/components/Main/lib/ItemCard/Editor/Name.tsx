@@ -2,14 +2,14 @@ import { store } from "@/store/data";
 
 type Props<S, C> = {
   section: S;
-  category: C;
+  item: C;
 };
 
 export const Input = <S extends string, C extends string>({
   section,
-  category,
+  item,
 }: Props<S, C>) => {
-  const name = store.state()?.[section]?.[category]?.name;
+  const name = store.state()?.[section]?.[item]?.name;
   const setName = store.setName();
 
   return (
@@ -22,7 +22,7 @@ export const Input = <S extends string, C extends string>({
         onFocus={(e) => e.currentTarget.select()}
         value={name ?? ""}
         onChange={(e) => {
-          setName(section, category, e.currentTarget.value);
+          setName(section, item, e.currentTarget.value);
         }}
       />
       <span className="badge badge-ghost badge-xs">Required</span>

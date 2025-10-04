@@ -3,14 +3,14 @@ import { store } from "@/store/data";
 
 type Props<S, C> = {
   section: S;
-  category: C;
+  item: C;
   attribute: Attribute;
   index: number;
 };
 
 export const AttributeInput = <S extends string, C extends string>({
   section,
-  category,
+  item,
   attribute,
   index,
 }: Props<S, C>) => {
@@ -21,7 +21,7 @@ export const AttributeInput = <S extends string, C extends string>({
       className="select select-ghost col-span-7 z-10 text-primary"
       value={attribute.name ?? ""}
       onChange={(e) =>
-        changeAttributeName(section, category, index, e.currentTarget.value)
+        changeAttributeName(section, item, index, e.currentTarget.value)
       }
     >
       <option disabled={true}>Attribute</option>

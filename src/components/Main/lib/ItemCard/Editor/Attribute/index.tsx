@@ -9,19 +9,19 @@ import { Title } from "./Title";
 
 type Props<S, C> = {
   section: S;
-  category: C;
+  item: C;
   attribute: Attribute;
   index: number;
 };
 
 export const Input = <S extends string, C extends string>({
   section,
-  category,
+  item,
   attribute,
   index,
 }: Props<S, C>) => {
   const openIndex =
-    stores.ui.Main.state().section.category.attributes[section][category]
+    stores.ui.Main.state().section.item.attributes[section][item]
       .openedIndex;
   const open = openIndex === index;
   const setOpenIndex = stores.ui.Main.setAttributeOpenIndex();
@@ -32,18 +32,18 @@ export const Input = <S extends string, C extends string>({
       <input
         type="checkbox"
         checked={open}
-        onChange={() => setOpenIndex(section, category, open ? null : index)}
+        onChange={() => setOpenIndex(section, item, open ? null : index)}
       />
       <div className="collapse-title p-0 ps-0 pe-0 grid grid-cols-12">
         <Title {...{ open, attribute }} />
       </div>
       <div className="collapse-content !p-0 pb-0 ps-0 pe-0 grid grid-cols-12">
-        <AttributeInput {...{ section, category, attribute, index }} />
-        <ValueInput {...{ section, category, attribute, index }} />
-        <UptimeInput {...{ section, category, attribute, index }} />
+        <AttributeInput {...{ section, item, attribute, index }} />
+        <ValueInput {...{ section, item, attribute, index }} />
+        <UptimeInput {...{ section, item, attribute, index }} />
 
-        <TypeInput {...{ section, category, attribute, index }} />
-        <NoteInput {...{ section, category, attribute, index }} />
+        <TypeInput {...{ section, item, attribute, index }} />
+        <NoteInput {...{ section, item, attribute, index }} />
 
         <div className="col-span-12 flex justify-center p-3">
           <button
@@ -53,8 +53,8 @@ export const Input = <S extends string, C extends string>({
               flex items-center justify-center
             "
             onClick={() => {
-              removeAttribute(section, category, index);
-              setOpenIndex(section, category, null);
+              removeAttribute(section, item, index);
+              setOpenIndex(section, item, null);
             }}
           >
             DELETE

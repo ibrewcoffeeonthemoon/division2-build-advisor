@@ -1,17 +1,17 @@
 import { Attribute } from "@/lib/type";
-import { createCategoryRecord } from "../utils";
+import { createItemRecord } from "../utils";
 
-type CategoryState = {
+type ItemState = {
   name: string;
   attributes: Attribute[];
 };
 
 export type State = {
-  state: Record<string, Record<string, CategoryState>>;
+  state: Record<string, Record<string, ItemState>>;
 };
 
 export const state: () => State["state"] = () =>
-  createCategoryRecord(() => ({
+  createItemRecord(() => ({
     name: "",
     attributes: [],
   }));
