@@ -26,10 +26,8 @@ export const ItemCard = <S extends string, C extends string>({
       />
       <div className="collapse-title p-3">
         <div className="grid grid-cols-12 items-center">
-          <h2 className="col-span-4 text-lg font-semibold gap-0.5">
-            {category}
-          </h2>
-          <div className="col-span-8 text-lg text-right text-primary font-semibold overflow-hidden overflow-ellipsis text-nowrap">
+          <h2 className="col-span-4 font-semibold gap-0.5">{category}</h2>
+          <div className="col-span-8 text-right text-primary font-semibold overflow-hidden overflow-ellipsis text-nowrap">
             {name}
           </div>
         </div>
