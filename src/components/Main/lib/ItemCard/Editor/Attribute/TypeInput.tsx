@@ -18,7 +18,7 @@ export const TypeInput = <S extends string, C extends string>({
 
   return (
     <select
-      className="select select-ghost col-span-3"
+      className="select select-ghost col-span-4 text-primary"
       value={attribute.type}
       onChange={(e) =>
         changeType(

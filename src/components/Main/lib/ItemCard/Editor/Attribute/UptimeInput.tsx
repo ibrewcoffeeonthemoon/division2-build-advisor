@@ -20,7 +20,7 @@ export const UptimeInput = <S extends string, C extends string>({
     <label className="input input-ghost input-md w-full items-center col-span-2">
       <input
         type="number"
-        className="grow text-center"
+        className="grow text-center text-primary"
         placeholder="Uptime"
         onFocus={(e) => e.currentTarget.select()}
         value={attribute.uptime * 100}

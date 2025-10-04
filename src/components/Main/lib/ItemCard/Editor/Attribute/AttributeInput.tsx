@@ -18,7 +18,7 @@ export const AttributeInput = <S extends string, C extends string>({
 
   return (
     <select
-      className="select select-ghost col-span-7 z-10"
+      className="select select-ghost col-span-7 z-10 text-primary"
       value={attribute.name ?? ""}
       onChange={(e) =>
         changeAttributeName(section, category, index, e.currentTarget.value)

@@ -20,7 +20,7 @@ export const ValueInput = <S extends string, C extends string>({
     <label className="input input-ghost input-md w-full items-center col-span-3">
       <input
         type="number"
-        className="grow text-center"
+        className="grow text-center text-primary"
         placeholder="Value"
         onFocus={(e) => e.currentTarget.select()}
         value={attribute.value * 100}
