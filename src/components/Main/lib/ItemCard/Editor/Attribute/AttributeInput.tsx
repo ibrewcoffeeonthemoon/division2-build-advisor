@@ -1,5 +1,6 @@
 import { Attribute } from "@/lib/type";
 import { store } from "@/store/data";
+import { ATTRIBUTES } from "./lib/const";
 
 type Props<S, C> = {
   section: S;
@@ -25,10 +26,9 @@ export const AttributeInput = <S extends string, C extends string>({
       }
     >
       <option disabled={true}>Attribute</option>
-      <option>Weapon Damage</option>
-      <option>Critical Hit Chance</option>
-      <option>Critical Hit Damage</option>
-      <option>Headshot Damage</option>
+      {ATTRIBUTES.map((name, i) => (
+        <option key={i}>{name}</option>
+      ))}
     </select>
   );
 };
