@@ -13,8 +13,8 @@ export const ItemCard = <S extends string, C extends string>({
   category,
 }: ItemCardProps<S, C>) => {
   const [open, setOpen] = useState(false);
-  const name = store.state()?.[section]?.[category]?.name;
-  const attributes = store.state()?.[section]?.[category]?.attributes;
+  const name = store.state()[section][category].name;
+  const attributes = store.state()[section][category].attributes;
 
   return (
     <div className="collapse rounded-md border-1 border-base-300 duration-1000">
