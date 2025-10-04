@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { persist } from "zustand/middleware";
 import { createSelectors } from "@/store/utils";
-import { State } from "./state";
+import { state, State } from "./state";
 import { Action } from "./action";
 
 type Store = State & Action;
@@ -10,36 +10,14 @@ type Store = State & Action;
 export const useStore = create<Store>()(
   persist(
     immer((set) => ({
-      state: {
-        Weapons: {
-          collapseOpen: false,
-          Primary: {},
-          Secondary: {},
-          Sidearm: {},
-          Signature: {},
-        },
-        Gears: {
-          collapseOpen: false,
-          Mask: {},
-          Backpack: {},
-          Chest: {},
-          Gloves: {},
-          Holster: {},
-          Kneepads: {},
-        },
-        Extras: {
-          collapseOpen: false,
-          Watch: {},
-          Specialization: {},
-        },
-      },
-      setCollapseOpen: (section, val) =>
+      state: state(),
+      setCollapseOpen: (sec, val) =>
         set((s) => {
-          s.state[section].collapseOpen = val;
+          s.state.section.collapseOpen[sec] = val;
         }),
-      setOpenedIndex: (section, category, val) =>
+      setOpenedIndex: (sec, cat, val) =>
         set((s) => {
-          s.state[section][category].openedIndex = val;
+          s.state.section.category.attributes[sec][cat].openedIndex = val;
         }),
     })),
     {
