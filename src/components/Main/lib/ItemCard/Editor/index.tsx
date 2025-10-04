@@ -31,7 +31,7 @@ export const Editor = <S extends string, C extends string>({
       ))}
       <div className="col-span-12 p-2 flex flex-row justify-center">
         <button
-          className="btn btn-primary btn-outline"
+          className="btn btn-ghost text-primary"
           onClick={() => {
             appendAttribute(section, category, DEFAULT_ATTRIBUTE);
           }}

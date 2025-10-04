@@ -49,7 +49,7 @@ export const Input = <S extends string, C extends string>({
           <button
             tabIndex={0}
             className="
-              btn btn-error 
+              btn btn-ghost text-error
               flex items-center justify-center
             "
             onClick={() => removeAttribute(section, category, index)}
