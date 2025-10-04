@@ -21,7 +21,7 @@ export const Input = <S extends string, C extends string>({
   index,
 }: Props<S, C>) => {
   const openIndex =
-    stores.ui.Main.state().section.category.attributes[section][category]
+    stores.ui.Main.state().section.item.attributes[section][category]
       .openedIndex;
   const open = openIndex === index;
   const setOpenIndex = stores.ui.Main.setAttributeOpenIndex();

@@ -4,7 +4,7 @@ export type State = {
   state: {
     section: {
       open: Record<string, boolean>;
-      category: {
+      item: {
         open: Record<string, Record<string, boolean>>;
         attributes: Record<
           string,
@@ -18,7 +18,7 @@ export type State = {
 export const state: () => State["state"] = () => ({
   section: {
     open: createSectionRecord(() => false),
-    category: {
+    item: {
       open: createItemRecord(() => false),
       attributes: createItemRecord(() => ({ openedIndex: null })),
     },
