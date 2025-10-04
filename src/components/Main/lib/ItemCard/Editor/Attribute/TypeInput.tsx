@@ -3,14 +3,14 @@ import { store } from "@/store/data";
 
 type Props<S, C> = {
   section: S;
-  category: C;
+  item: C;
   attribute: Attribute;
   index: number;
 };
 
 export const TypeInput = <S extends string, C extends string>({
   section,
-  category,
+  item,
   attribute,
   index,
 }: Props<S, C>) => {
@@ -23,7 +23,7 @@ export const TypeInput = <S extends string, C extends string>({
       onChange={(e) =>
         changeType(
           section,
-          category,
+          item,
           index,
           e.currentTarget.value as AttributeType,
         )

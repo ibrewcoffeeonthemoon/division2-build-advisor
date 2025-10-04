@@ -3,14 +3,14 @@ import { store } from "@/store/data";
 
 type Props<S, C> = {
   section: S;
-  category: C;
+  item: C;
   attribute: Attribute;
   index: number;
 };
 
 export const NoteInput = <S extends string, C extends string>({
   section,
-  category,
+  item,
   attribute,
   index,
 }: Props<S, C>) => {
@@ -25,7 +25,7 @@ export const NoteInput = <S extends string, C extends string>({
         onFocus={(e) => e.currentTarget.select()}
         value={attribute.note}
         onChange={(e) =>
-          changeAttributeNote(section, category, index, e.currentTarget.value)
+          changeAttributeNote(section, item, index, e.currentTarget.value)
         }
       />
     </label>

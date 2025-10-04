@@ -3,14 +3,14 @@ import { store } from "@/store/data";
 
 type Props<S, C> = {
   section: S;
-  category: C;
+  item: C;
   attribute: Attribute;
   index: number;
 };
 
 export const ValueInput = <S extends string, C extends string>({
   section,
-  category,
+  item,
   attribute,
   index,
 }: Props<S, C>) => {
@@ -27,7 +27,7 @@ export const ValueInput = <S extends string, C extends string>({
         onChange={(e) =>
           changeAttributeValue(
             section,
-            category,
+            item,
             index,
             Number(e.currentTarget.value) / 100,
           )
