@@ -5,8 +5,8 @@ import Card from "./Card";
 import { Section } from "../lib/Section";
 
 export default function Gears() {
-  const collapseOpen = store.state().Gears.collapseOpen;
-  const setCollapseOpen = store.setCollapseOpen();
+  const open = store.state().section.open["Gears"];
+  const setOpen = store.setSectionOpen();
 
   return (
     <Section
@@ -14,8 +14,8 @@ export default function Gears() {
       control={
         <input
           type="checkbox"
-          checked={collapseOpen}
-          onChange={(e) => setCollapseOpen("Gears", e.currentTarget.checked)}
+          checked={open}
+          onChange={(e) => setOpen("Gears", e.currentTarget.checked)}
         />
       }
     >

@@ -9,7 +9,7 @@ export default function Main() {
       <Gears />
       <Extras />
       <div className="w-full p-2 flex flex-row justify-center">
-        <button className="btn btn-primary btn-outline">Save to Loadout</button>
+        <button className="btn btn-ghost text-primary">Save to Loadout</button>
       </div>
     </div>
   );

@@ -5,8 +5,8 @@ import { Section } from "../lib/Section";
 import Card from "./Card";
 
 export default function Weapons() {
-  const collapseOpen = store.state().Weapons.collapseOpen;
-  const setCollapseOpen = store.setCollapseOpen();
+  const open = store.state().section.open["Weapons"];
+  const setOpen = store.setSectionOpen();
 
   return (
     <Section
@@ -14,8 +14,8 @@ export default function Weapons() {
       control={
         <input
           type="checkbox"
-          checked={collapseOpen}
-          onChange={(e) => setCollapseOpen("Weapons", e.currentTarget.checked)}
+          checked={open}
+          onChange={(e) => setOpen("Weapons", e.currentTarget.checked)}
         />
       }
     >

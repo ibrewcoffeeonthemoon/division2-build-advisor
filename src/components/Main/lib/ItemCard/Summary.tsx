@@ -1,5 +1,4 @@
 import { Attribute, AttributeType } from "@/lib/type";
-import { store } from "@/store/data";
 import {
   StopCircleIcon,
   Cog8ToothIcon,
@@ -7,19 +6,11 @@ import {
 } from "@heroicons/react/24/solid";
 import { JSX } from "react";
 
-export type SummaryProps<S, C> = {
-  section: S;
-  category: C;
+export type SummaryProps = {
   attributes: Attribute[];
 };
 
-export const Summary = <S extends string, C extends string>({
-  section,
-  category,
-  attributes,
-}: SummaryProps<S, C>) => {
-  const name = store.state()?.[section]?.[category]?.name;
-
+export const Summary = ({ attributes }: SummaryProps) => {
   const icons: Record<AttributeType, JSX.Element> = {
     Attribute: <StopCircleIcon className="w-5 h-5 text-red-500" />,
     Mod: <Cog8ToothIcon className="w-5 h-5 text-red-500" />,
@@ -27,26 +18,20 @@ export const Summary = <S extends string, C extends string>({
   };
 
   return (
-    <div className="flex flex-row">
-      <div className="">
-        <table className="table-auto">
-          <tbody>
-            {attributes.map(({ type, name, value, uptime }, i) => (
-              <tr key={i} className="">
-                <td className="w-5 h-5">{icons[type]}</td>
-                <td className="pl-2">{value}</td>
-                <td className="pl-2">{name}</td>
-                <td className="pl-2">{uptime}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div className="flex-grow" />
-      <div className="text-right">
-        <h2 className="text-lg font-semibold">{category}</h2>
-        <h2 className="text-primary font-semibold">{name}</h2>
-      </div>
+    <div className="col-span-11">
+      <table className="table-auto text-info font-light">
+        <tbody>
+          {attributes?.map(({ type, name, value, uptime, note }, i) => (
+            <tr key={i} className="">
+              <td className="w-5 h-5">{icons[type]}</td>
+              <td className="pl-2">{(value * 100).toFixed(1)}%</td>
+              <td className="pl-2">{name}</td>
+              <td className="pl-2">{(uptime * 100).toFixed(0)}%</td>
+              <td className="pl-2">{note}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

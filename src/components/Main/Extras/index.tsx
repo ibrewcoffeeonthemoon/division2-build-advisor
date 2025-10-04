@@ -5,8 +5,8 @@ import { Section } from "../lib/Section";
 import Card from "./Card";
 
 export default function Extras() {
-  const collapseOpen = store.state().Extras.collapseOpen;
-  const setCollapseOpen = store.setCollapseOpen();
+  const open = store.state().section.open["Extras"];
+  const setOpen = store.setSectionOpen();
 
   return (
     <Section
@@ -14,8 +14,8 @@ export default function Extras() {
       control={
         <input
           type="checkbox"
-          checked={collapseOpen}
-          onChange={(e) => setCollapseOpen("Extras", e.currentTarget.checked)}
+          checked={open}
+          onChange={(e) => setOpen("Extras", e.currentTarget.checked)}
         />
       }
     >
