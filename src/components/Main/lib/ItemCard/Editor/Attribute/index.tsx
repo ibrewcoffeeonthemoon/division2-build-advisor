@@ -24,7 +24,7 @@ export const Input = <S extends string, C extends string>({
     stores.ui.Main.state().section.category.attributes[section][category]
       .openedIndex;
   const open = openIndex === index;
-  const setOpenedIndex = stores.ui.Main.setOpenedIndex();
+  const setOpenIndex = stores.ui.Main.setAttributeOpenIndex();
   const removeAttribute = stores.data.removeAttribute();
 
   return (
@@ -32,7 +32,7 @@ export const Input = <S extends string, C extends string>({
       <input
         type="checkbox"
         checked={open}
-        onChange={() => setOpenedIndex(section, category, open ? null : index)}
+        onChange={() => setOpenIndex(section, category, open ? null : index)}
       />
       <div className="collapse-title p-0 ps-0 pe-0 grid grid-cols-12">
         <Title {...{ open, attribute }} />
