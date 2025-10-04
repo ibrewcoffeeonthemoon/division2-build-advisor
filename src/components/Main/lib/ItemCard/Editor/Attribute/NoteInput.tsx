@@ -17,12 +17,11 @@ export const NoteInput = <S extends string, C extends string>({
   const changeAttributeNote = store.changeAttributeNote();
 
   return (
-    <label className="input input-ghost w-full col-span-8">
-      <span className="text-neutral/50">Note</span>
+    <label className="input input-ghost w-full col-span-7">
       <input
         type="text"
         className="grow text-primary pl-1"
-        placeholder="<<<"
+        placeholder="Note"
         onFocus={(e) => e.currentTarget.select()}
         value={attribute.note}
         onChange={(e) =>

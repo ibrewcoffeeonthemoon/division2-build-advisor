@@ -7,7 +7,7 @@ type Props = {
 
 export const Title = ({ attribute, open }: Props) => {
   return (
-    <div className="col-span-12 grid grid-cols-12 items-center text-center">
+    <div className="col-span-12 grid grid-cols-12 items-center text-center text-info font-light">
       {open ? (
         <></>
       ) : (

@@ -17,7 +17,7 @@ export const ValueInput = <S extends string, C extends string>({
   const changeAttributeValue = store.changeAttributeValue();
 
   return (
-    <label className="input input-ghost input-md w-full items-center col-span-3">
+    <label className="input input-ghost input-md w-full items-center col-span-2">
       <input
         type="number"
         className="grow text-center text-primary"
