@@ -15,6 +15,10 @@ export const useStore = create<Store>()(
         set((s) => {
           s.state.section.collapseOpen[sec] = val;
         }),
+      setCategoryOpen: (sec, cat, val) =>
+        set((s) => {
+          s.state.section.category.collapseOpen[sec][cat] = val;
+        }),
       setOpenedIndex: (sec, cat, val) =>
         set((s) => {
           s.state.section.category.attributes[sec][cat].openedIndex = val;
