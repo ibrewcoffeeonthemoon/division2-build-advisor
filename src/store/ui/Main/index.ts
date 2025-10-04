@@ -6,29 +6,22 @@ import Sections from "@/lib/type/sections";
 
 type Store = {
   state: {
-    Weapons: {
-      collapseOpen: boolean;
-      Primary: { openedIndex?: number };
-      Secondary: { openedIndex?: number };
-      Sidearm: { openedIndex?: number };
-      Signature: { openedIndex?: number };
-    };
-    Gears: {
-      collapseOpen: boolean;
-      Mask: { openedIndex?: number };
-      Backpack: { openedIndex?: number };
-      Chest: { openedIndex?: number };
-      Gloves: { openedIndex?: number };
-      Holster: { openedIndex?: number };
-      Kneepads: { openedIndex?: number };
-    };
-    Extras: {
-      collapseOpen: boolean;
-      Watch: { openedIndex?: number };
-      Specialization: { openedIndex?: number };
+    section: {
+      collapseOpen: Record<Sections, boolean>;
+      category: {
+        collapseOpen: Record<Sections, Record<string, boolean>>;
+        attributes: {
+          openedIndex?: number;
+        };
+      };
     };
   };
   setCollapseOpen: (section: Sections, val: boolean) => void;
+  setOpenedIndex: (
+    section: Sections,
+    category: string,
+    val: number | null,
+  ) => void;
 };
 
 export const useStore = create<Store>()(
@@ -60,6 +53,10 @@ export const useStore = create<Store>()(
       setCollapseOpen: (section, val) =>
         set((s) => {
           s.state[section].collapseOpen = val;
+        }),
+      setOpenedIndex: (section, category, val) =>
+        set((s) => {
+          s.state[section][category].openedIndex = val;
         }),
     })),
     {
