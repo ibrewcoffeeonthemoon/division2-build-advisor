@@ -21,14 +21,13 @@ export const Input = <S extends string, C extends string>({
   index,
 }: Props<S, C>) => {
   const openIndex =
-    stores.ui.Main.state().section.item.attributes[section][item]
-      .openedIndex;
+    stores.ui.Main.state().section.item.attributes[section][item].openedIndex;
   const open = openIndex === index;
   const setOpenIndex = stores.ui.Main.setAttributeOpenIndex();
   const removeAttribute = stores.data.removeAttribute();
 
   return (
-    <div className="collapse collapse-arrow col-span-12 p-1.5 m-0 overflow-visible border-1 border-base-300 duration-1000">
+    <div className="collapse collapse-arrow col-span-12 p-1.5 m-0 border-1 border-base-300 duration-1000">
       <input
         type="checkbox"
         checked={open}
