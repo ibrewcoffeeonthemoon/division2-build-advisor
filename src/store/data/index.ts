@@ -11,39 +11,39 @@ export const useStore = create<Store>()(
   persist(
     immer((set) => ({
       state: state(),
-      setName: (sec, cat, val) =>
+      setName: (sec, item, val) =>
         set((s) => {
-          s.state[sec][cat].name = val;
+          s.state[sec][item].name = val;
         }),
-      appendAttribute: (sec, cat, attr) =>
+      appendAttribute: (sec, item, attr) =>
         set((s) => {
-          s.state[sec][cat].attributes.push(attr);
+          s.state[sec][item].attributes.push(attr);
         }),
-      removeAttribute: (sec, cat, index) =>
+      removeAttribute: (sec, item, index) =>
         set((s) => {
-          s.state[sec][cat].attributes = s.state[sec][cat].attributes.filter(
+          s.state[sec][item].attributes = s.state[sec][item].attributes.filter(
             (_, i) => i !== index,
           );
         }),
-      changeAttributeName: (sec, cat, index, val) =>
+      changeAttributeName: (sec, item, index, val) =>
         set((s) => {
-          s.state[sec][cat].attributes[index].name = val;
+          s.state[sec][item].attributes[index].name = val;
         }),
-      changeAttributeValue: (sec, cat, index, val) =>
+      changeAttributeValue: (sec, item, index, val) =>
         set((s) => {
-          s.state[sec][cat].attributes[index].value = val;
+          s.state[sec][item].attributes[index].value = val;
         }),
-      changeAttributeUptime: (sec, cat, index, val) =>
+      changeAttributeUptime: (sec, item, index, val) =>
         set((s) => {
-          s.state[sec][cat].attributes[index].uptime = val;
+          s.state[sec][item].attributes[index].uptime = val;
         }),
-      changeAttributeType: (sec, cat, index, val) =>
+      changeAttributeType: (sec, item, index, val) =>
         set((s) => {
-          s.state[sec][cat].attributes[index].type = val;
+          s.state[sec][item].attributes[index].type = val;
         }),
-      changeAttributeNote: (sec, cat, index, val) =>
+      changeAttributeNote: (sec, item, index, val) =>
         set((s) => {
-          s.state[sec][cat].attributes[index].note = val;
+          s.state[sec][item].attributes[index].note = val;
         }),
     })),
     {
