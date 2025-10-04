@@ -11,9 +11,9 @@ export const useStore = create<Store>()(
   persist(
     immer((set) => ({
       state: state(),
-      setCollapseOpen: (sec, val) =>
+      setSectionOpen: (sec, val) =>
         set((s) => {
-          s.state.section.collapseOpen[sec] = val;
+          s.state.section.open[sec] = val;
         }),
       setCategoryOpen: (sec, cat, val) =>
         set((s) => {

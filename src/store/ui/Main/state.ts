@@ -3,7 +3,7 @@ import { createCategoryRecord, createSectionRecord } from "@/store/utils";
 export type State = {
   state: {
     section: {
-      collapseOpen: Record<string, boolean>;
+      open: Record<string, boolean>;
       category: {
         open: Record<string, Record<string, boolean>>;
         attributes: Record<
@@ -17,7 +17,7 @@ export type State = {
 
 export const state: () => State["state"] = () => ({
   section: {
-    collapseOpen: createSectionRecord(() => false),
+    open: createSectionRecord(() => false),
     category: {
       open: createCategoryRecord(() => false),
       attributes: createCategoryRecord(() => ({ openedIndex: null })),
