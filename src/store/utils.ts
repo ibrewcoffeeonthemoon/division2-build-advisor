@@ -22,7 +22,7 @@ export const createSectionRecord = <T>(fn: () => T) => ({
   Extras: fn(),
 });
 
-export const createCategoryRecord = <T>(fn: () => T) => ({
+export const createItemRecord = <T>(fn: () => T) => ({
   Weapons: {
     Primary: fn(),
     Secondary: fn(),
