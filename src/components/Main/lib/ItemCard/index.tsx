@@ -12,7 +12,7 @@ export const ItemCard = <S extends string, C extends string>({
   category,
 }: ItemCardProps<S, C>) => {
   const open = stores.ui.Main.state().section.category.open[section][category];
-  const setOpen = stores.ui.Main.setCategoryOpen();
+  const setOpen = stores.ui.Main.setItemOpen();
 
   const name = stores.data.state()[section][category].name;
   const attributes = stores.data.state()[section][category].attributes;

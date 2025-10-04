@@ -15,7 +15,7 @@ export const useStore = create<Store>()(
         set((s) => {
           s.state.section.open[sec] = val;
         }),
-      setCategoryOpen: (sec, cat, val) =>
+      setItemOpen: (sec, cat, val) =>
         set((s) => {
           s.state.section.category.open[sec][cat] = val;
         }),
