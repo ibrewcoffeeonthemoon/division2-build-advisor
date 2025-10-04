@@ -2,27 +2,10 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { persist } from "zustand/middleware";
 import { createSelectors } from "@/store/utils";
-import Sections from "@/lib/type/sections";
+import { State } from "./state";
+import { Action } from "./action";
 
-type Store = {
-  state: {
-    section: {
-      collapseOpen: Record<Sections, boolean>;
-      category: {
-        collapseOpen: Record<Sections, Record<string, boolean>>;
-        attributes: {
-          openedIndex?: number;
-        };
-      };
-    };
-  };
-  setCollapseOpen: (section: Sections, val: boolean) => void;
-  setOpenedIndex: (
-    section: Sections,
-    category: string,
-    val: number | null,
-  ) => void;
-};
+type Store = State & Action;
 
 export const useStore = create<Store>()(
   persist(
