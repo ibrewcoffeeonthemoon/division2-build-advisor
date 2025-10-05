@@ -4,6 +4,7 @@ import { Header } from "./Header";
 import * as NameField from "./Name";
 import { DEFAULT_ATTRIBUTE } from "@/lib/constant";
 import { store } from "@/store/data";
+import { BaseDamage } from "./BaseDamage";
 
 type Props<S, C> = {
   section: S;
@@ -21,6 +22,7 @@ export const Editor = <S extends string, C extends string>({
   return (
     <div className="grid grid-cols-12 collapse-content px-3">
       <NameField.Input {...{ section, item }} />
+      {section === "Weapons" && <BaseDamage {...{ section, item }} />}
       <Header />
       {attributes?.map((attribute, i) => (
         <AttributeField.Input
