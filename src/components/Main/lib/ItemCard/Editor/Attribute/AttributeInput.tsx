@@ -16,16 +16,21 @@ export const AttributeInput = <S extends string, C extends string>({
   index,
 }: Props<S, C>) => {
   const changeAttributeName = store.changeAttributeName();
+  const changeAttributeAmplifier = store.changeAttributeAmplifier();
 
   return (
     <select
       className="select select-ghost col-span-7 z-10 text-primary"
       value={attribute.name ?? ""}
       onChange={(e) => {
-        var opt = e.currentTarget.options[e.currentTarget.selectedIndex];
-        const amplifier = opt.dataset.amplifier || "None";
-        console.log(amplifier);
         changeAttributeName(section, item, index, e.currentTarget.value);
+        changeAttributeAmplifier(
+          section,
+          item,
+          index,
+          e.currentTarget.options[e.currentTarget.selectedIndex].dataset
+            .amplifier as Amplifier,
+        );
       }}
     >
       {Object.entries(ATTRIBUTES).map(([amplifier, attributes], i) => (
