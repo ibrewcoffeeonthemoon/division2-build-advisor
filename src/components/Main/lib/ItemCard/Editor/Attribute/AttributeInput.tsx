@@ -1,6 +1,7 @@
 import { Amplifier, Attribute } from "@/lib/type";
 import { store } from "@/store/data";
 import { ATTRIBUTES } from "./lib/constant";
+import { Fragment } from "react";
 
 type Props<S, C> = {
   section: S;
@@ -34,8 +35,8 @@ export const AttributeInput = <S extends string, C extends string>({
       }}
     >
       {Object.entries(ATTRIBUTES).map(([amplifier, attributes], i) => (
-        <>
-          <option key={i} disabled={true} className="font-bold">
+        <Fragment key={i}>
+          <option disabled={true} className="font-bold">
             Amplifier <span className="text-info">{amplifier}</span>
           </option>
           {attributes.map((name, j) => (
@@ -47,7 +48,7 @@ export const AttributeInput = <S extends string, C extends string>({
               {name}
             </option>
           ))}
-        </>
+        </Fragment>
       ))}
     </select>
   );
