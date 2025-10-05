@@ -1,6 +1,6 @@
 import { Amplifier } from "@/lib/type";
 
-export const ATTRIBUTES: Record<Amplifier | "None", string[]> = {
+export const ATTRIBUTES: Record<Amplifier, string[]> = {
   WD: [
     "Weapon Damage",
     "Marksman Rifle Damage",
