@@ -1,6 +1,6 @@
 import { Attribute } from "@/lib/type";
 import { store } from "@/store/data";
-import { ATTRIBUTES } from "./lib/const";
+import { ATTRIBUTES } from "./lib/constant";
 
 type Props<S, C> = {
   section: S;
