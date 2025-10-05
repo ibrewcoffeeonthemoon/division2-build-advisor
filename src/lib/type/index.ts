@@ -1,4 +1,8 @@
-export type AttributeType = "Attribute" | "Mod" | "Talent";
+import { AMPLIFIERS, ATTRIBUTE_TYPES } from "../constant";
+
+export type AttributeType = (typeof ATTRIBUTE_TYPES)[number];
+
+export type Amplifier = (typeof AMPLIFIERS)[number];
 
 export type Attribute = {
   type: AttributeType;
@@ -6,12 +10,5 @@ export type Attribute = {
   value: number;
   uptime: number;
   note: string;
-};
-
-export const DEFAULT_ATTRIBUTE: Attribute = {
-  type: "Attribute",
-  name: "Weapon Damage",
-  value: 0.15,
-  uptime: 1.0,
-  note: "",
+  amplifier: Amplifier;
 };
