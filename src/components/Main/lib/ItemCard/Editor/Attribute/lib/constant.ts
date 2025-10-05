@@ -1,17 +1,31 @@
-export const ATTRIBUTES = [
-  "Weapon Damage",
-  "Critical Hit Chance",
-  "Critical Hit Damage",
-  "Headshot Damage",
-  "Damage to Armor",
-  "Damage to Health",
-  "DMG to Target out of Cover",
+import { Amplifier } from "@/lib/type";
+
+export const ATTRIBUTES: Record<Amplifier, string[]> = {
+  WD: [
+    "Weapon Damage",
+    "Marksman Rifle Damage",
+    "Assault Rifle Damage",
+    "Rifle Damage",
+    "LMG Damage",
+    "SMG Damage",
+    "< Custom >",
+  ],
+  TWD: ["< Custom >"],
+  AMP1: ["< Custom >"],
+  AMP2: ["< Custom >"],
+  AMP3: ["< Custom >"],
+  CRIT_HS: [
+    "Critical Hit Chance",
+    "Critical Hit Damage",
+    "Headshot Damage",
+    "< Custom >",
+  ],
+  DTA_DTH: ["Damage to Armor", "Damage to Health", "< Custom >"],
+  DTTOOC: ["DMG to Target out of Cover", "< Custom >"],
+};
+
+export const OTHER_ATTRIBUTES = [
   "Rate of Fire",
-  "Marksman Rifle Damage",
-  "Assault Rifle Damage",
-  "Rifle Damage",
-  "LMG Damage",
-  "SMG Damage",
   "Magazine size",
   "Reload Speed",
   "Stability",

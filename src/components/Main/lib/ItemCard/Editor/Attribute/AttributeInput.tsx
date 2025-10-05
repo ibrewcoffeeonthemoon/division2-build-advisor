@@ -1,6 +1,6 @@
 import { Attribute } from "@/lib/type";
 import { store } from "@/store/data";
-import { ATTRIBUTES } from "./lib/constant";
+import { ATTRIBUTES, OTHER_ATTRIBUTES } from "./lib/constant";
 
 type Props<S, C> = {
   section: S;
@@ -25,9 +25,27 @@ export const AttributeInput = <S extends string, C extends string>({
         changeAttributeName(section, item, index, e.currentTarget.value)
       }
     >
-      <option disabled={true}>Attribute</option>
-      {ATTRIBUTES.map((name, i) => (
-        <option key={i}>{name}</option>
+      {Object.entries(ATTRIBUTES).map(([amp, attributes], i) => (
+        <>
+          <option key={i} disabled={true} className="font-bold">
+            Amplifier: <span className="text-info">{amp}</span>
+          </option>
+          {attributes.map((name, j) => (
+            <option key={`${i}.${j}`} className="font-light text-primary">
+              {name}
+            </option>
+          ))}
+        </>
+      ))}
+      <option disabled={true} className="font-bold">
+        Amplifier: <span className="text-info">None</span>
+      </option>
+      {OTHER_ATTRIBUTES.map((name, i) => (
+        <>
+          <option key={`_${i}`} className="">
+            {name}
+          </option>
+        </>
       ))}
     </select>
   );
