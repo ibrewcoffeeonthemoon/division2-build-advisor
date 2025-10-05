@@ -1,4 +1,4 @@
-import { Attribute, AttributeType } from "@/lib/type";
+import { Amplifier, Attribute, AttributeType } from "@/lib/type";
 
 export type Action = {
   setName: (sec: string, item: string, val: string) => void;
@@ -9,6 +9,12 @@ export type Action = {
     item: string,
     index: number,
     val: string,
+  ) => void;
+  changeAttributeAmplifier: (
+    sec: string,
+    item: string,
+    index: number,
+    val: Amplifier,
   ) => void;
   changeAttributeValue: (
     sec: string,
