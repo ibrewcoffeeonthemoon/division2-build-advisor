@@ -1,16 +1,24 @@
 import { Attribute } from "./type";
 
 export const SCHEMA = {
-  Weapons: ["Primary", "Secondary", "Sidearm", "Signature"] as const,
-  Gears: [
-    "Mask",
-    "Backpack",
-    "Chest",
-    "Gloves",
-    "Holster",
-    "Kneepads",
-  ] as const,
-  Extras: ["Watch", "Specialization"] as const,
+  Weapons: {
+    Primary: null,
+    Secondary: null,
+    Sidearm: null,
+    Signature: null,
+  },
+  Gears: {
+    Mask: null,
+    Backpack: null,
+    Chest: null,
+    Gloves: null,
+    Holster: null,
+    Kneepads: null,
+  },
+  Extras: {
+    Watch: null,
+    Specialization: null,
+  },
 } as const;
 
 export const SECTIONS = ["Weapons", "Gears", "Extras"] as const;
