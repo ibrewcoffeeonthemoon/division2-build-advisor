@@ -1,0 +1,21 @@
+type Props<S, C> = {
+  section: S;
+  item: C;
+};
+
+export const RPM = <S extends string, C extends string>({
+  section,
+  item,
+}: Props<S, C>) => {
+  return (
+    <label className="input input-neutral w-full col-span-5">
+      <span className="font-semibold">RPM</span>
+      <input
+        type="number"
+        className="grow text-primary pl-1"
+        placeholder="<<<"
+        onFocus={(e) => e.currentTarget.select()}
+      />
+    </label>
+  );
+};
