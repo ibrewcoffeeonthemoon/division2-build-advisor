@@ -1,9 +1,5 @@
-export type Weapons = "Primary" | "Secondary" | "Sidearm" | "Signature";
-export type Gears =
-  | "Mask"
-  | "Backpack"
-  | "Chest"
-  | "Gloves"
-  | "Holster"
-  | "Kneepads";
-export type Extras = "Watch" | "Specialization";
+import { EXTRAS, GEARS, WEAPONS } from "../constant";
+
+export type Weapons = (typeof WEAPONS)[number];
+export type Gears = (typeof GEARS)[number];
+export type Extras = (typeof EXTRAS)[number];
