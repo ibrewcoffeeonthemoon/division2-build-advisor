@@ -8,7 +8,7 @@ export const RPM = <S extends string, C extends string>({
   item,
 }: Props<S, C>) => {
   return (
-    <label className="input input-neutral w-full col-span-5">
+    <label className="input input-ghost w-full col-span-5">
       <span className="font-semibold">RPM</span>
       <input
         type="number"

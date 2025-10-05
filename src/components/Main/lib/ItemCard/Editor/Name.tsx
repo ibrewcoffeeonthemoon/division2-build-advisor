@@ -13,7 +13,7 @@ export const Input = <S extends string, C extends string>({
   const setName = store.setName();
 
   return (
-    <label className="input input-neutral w-full col-span-12">
+    <label className="input input-ghost w-full col-span-12">
       <span className="font-bold">Name</span>
       <input
         type="text"
@@ -25,7 +25,6 @@ export const Input = <S extends string, C extends string>({
           setName(section, item, e.currentTarget.value);
         }}
       />
-      <span className="badge badge-ghost badge-xs">Required</span>
     </label>
   );
 };
