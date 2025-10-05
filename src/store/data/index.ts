@@ -29,6 +29,10 @@ export const useStore = create<Store>()(
         set((s) => {
           s.state[sec][item].attributes[index].name = val;
         }),
+      changeAttributeAmplifier: (sec, item, index, val) =>
+        set((s) => {
+          s.state[sec][item].attributes[index].amplifier = val;
+        }),
       changeAttributeValue: (sec, item, index, val) =>
         set((s) => {
           s.state[sec][item].attributes[index].value = val;
