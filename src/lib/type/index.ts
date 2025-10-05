@@ -12,12 +12,3 @@ export type Attribute = {
   note: string;
   amplifier: Amplifier;
 };
-
-export const DEFAULT_ATTRIBUTE: Attribute = {
-  type: "Attribute",
-  name: "Weapon Damage",
-  value: 0.15,
-  uptime: 1.0,
-  note: "",
-  amplifier: "WD",
-};

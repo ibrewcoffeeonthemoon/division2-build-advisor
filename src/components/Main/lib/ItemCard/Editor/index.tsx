@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as AttributeField from "./Attribute";
 import { Header } from "./Header";
 import * as NameField from "./Name";
-import { DEFAULT_ATTRIBUTE } from "@/lib/type";
+import { DEFAULT_ATTRIBUTE } from "@/lib/constant";
 import { store } from "@/store/data";
 
 type Props<S, C> = {
