@@ -9,6 +9,7 @@ export const AMPLIFIERS = [
   "CRIT_HS",
   "DTA_DTH",
   "DTTOOC",
+  "ROF",
 ] as const;
 
 export const ATTRIBUTE_TYPES = ["Attribute", "Mod", "Talent"] as const;
