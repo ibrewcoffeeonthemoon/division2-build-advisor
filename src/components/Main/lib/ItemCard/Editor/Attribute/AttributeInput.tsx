@@ -1,4 +1,4 @@
-import { Attribute } from "@/lib/type";
+import { Amplifier, Attribute } from "@/lib/type";
 import { store } from "@/store/data";
 import { ATTRIBUTES } from "./lib/constant";
 
@@ -21,17 +21,24 @@ export const AttributeInput = <S extends string, C extends string>({
     <select
       className="select select-ghost col-span-7 z-10 text-primary"
       value={attribute.name ?? ""}
-      onChange={(e) =>
-        changeAttributeName(section, item, index, e.currentTarget.value)
-      }
+      onChange={(e) => {
+        var opt = e.currentTarget.options[e.currentTarget.selectedIndex];
+        const amplifier = opt.dataset.amplifier || "None";
+        console.log(amplifier);
+        changeAttributeName(section, item, index, e.currentTarget.value);
+      }}
     >
-      {Object.entries(ATTRIBUTES).map(([amp, attributes], i) => (
+      {Object.entries(ATTRIBUTES).map(([amplifier, attributes], i) => (
         <>
           <option key={i} disabled={true} className="font-bold">
-            Amplifier <span className="text-info">{amp}</span>
+            Amplifier <span className="text-info">{amplifier}</span>
           </option>
           {attributes.map((name, j) => (
-            <option key={`${i}.${j}`} className="font-light text-primary">
+            <option
+              key={`${i}.${j}`}
+              data-amplifier={amplifier}
+              className="font-light text-primary"
+            >
               {name}
             </option>
           ))}
