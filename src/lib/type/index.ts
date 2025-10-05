@@ -1,6 +1,6 @@
-import { AMPLIFIERS } from "../constant";
+import { AMPLIFIERS, ATTRIBUTE_TYPES } from "../constant";
 
-export type AttributeType = "Attribute" | "Mod" | "Talent";
+export type AttributeType = (typeof ATTRIBUTE_TYPES)[number];
 
 export type Amplifier = (typeof AMPLIFIERS)[number];
 
