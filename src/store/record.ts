@@ -1,23 +1,23 @@
-import { SCHEMA, SECTIONS } from "@/lib/constant";
-import { Items } from "@/lib/type";
-import Sections from "@/lib/type/sections";
+import { SCHEMA } from "@/lib/constant";
+import { ItemRecords, SectionRecords } from "@/lib/type";
 
-const createSectionRecord = <T>(fn: (section: Sections) => T) => {
-  const sections = Object.keys(SCHEMA) as Sections[];
-  const entries = sections.map((section) => [section, fn(section)]);
-  return Object.fromEntries(entries);
+export const createSectionRecords = <T>(fn: (section: string) => T) => {
+  const result: Record<string, T> = {};
+  for (const section of Object.keys(SCHEMA)) {
+    result[section] = fn(section);
+  }
+  return result as SectionRecords<T>;
 };
 
-const createItemRecord = <T>(
-  fn: <S extends Sections>(section: S, item: Items<S>) => T,
+export const createItemRecords = <T>(
+  fn: (section: string, item: string) => T,
 ) => {
-  return createSectionRecord((section: Sections) => {
-    const items = Object.keys(SCHEMA[section]) as Items<Sections>[];
-    const entries = items.map((item) => [item, fn(section, item)]);
-    return Object.fromEntries(entries);
-  });
+  const result: Record<string, Record<string, T>> = {};
+  for (const [section, items] of Object.entries(SCHEMA)) {
+    result[section] = {};
+    for (const item of Object.keys(items)) {
+      result[section][item] = fn(section, item);
+    }
+  }
+  return result as ItemRecords<T>;
 };
-
-const obj = createItemRecord(() => ({
-  value: true,
-}));
