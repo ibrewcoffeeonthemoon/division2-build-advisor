@@ -1,6 +1,6 @@
 import { Amplifier } from "@/lib/type";
 
-export const ATTRIBUTES: Record<Amplifier, string[]> = {
+export const ATTRIBUTES: Record<Amplifier | "None", string[]> = {
   WD: [
     "Weapon Damage",
     "Marksman Rifle Damage",
@@ -22,28 +22,27 @@ export const ATTRIBUTES: Record<Amplifier, string[]> = {
   ],
   DTA_DTH: ["Damage to Armor", "Damage to Health", "< Custom >"],
   DTTOOC: ["DMG to Target out of Cover", "< Custom >"],
+  ROF: ["Rate of Fire", "< Custom >"],
+  None: [
+    "Magazine size",
+    "Reload Speed",
+    "Stability",
+    "Accuracy",
+    "Weapon Handling",
+    "Optimal Range",
+    "Ammo Capacity",
+    "Swap Speed",
+    "Armor",
+    "Health",
+    "Armor Regeneration",
+    "Hazard Protection",
+    "Explosive Resistance",
+    "Skill Tier",
+    "Status Effects",
+    "Skill Efficiency",
+    "Skill Repair",
+    "Skill Damage",
+    "Skill Haste",
+    "Skill Duration",
+  ],
 };
-
-export const OTHER_ATTRIBUTES = [
-  "Rate of Fire",
-  "Magazine size",
-  "Reload Speed",
-  "Stability",
-  "Accuracy",
-  "Weapon Handling",
-  "Optimal Range",
-  "Ammo Capacity",
-  "Swap Speed",
-  "Armor",
-  "Health",
-  "Armor Regeneration",
-  "Hazard Protection",
-  "Explosive Resistance",
-  "Skill Tier",
-  "Status Effects",
-  "Skill Efficiency",
-  "Skill Repair",
-  "Skill Damage",
-  "Skill Haste",
-  "Skill Duration",
-];
