@@ -39,7 +39,7 @@ export const ItemCard = <S extends string, C extends string>({
         {section === "Weapons" && damageDashboard}
         {open || <Summary {...{ attributes }} />}
       </div>
-      <Editor {...{ section, item }} />
+      <Editor {...{ section, item, damageInput }} />
     </div>
   );
 };
