@@ -33,9 +33,11 @@ const calDmg = (item: Items<"Weapons">, s: State["state"]): Dmg => {
     (1 + ( m.AMP2 || 0 )) *
     // 1 + Amplifier3
     (1 + ( m.AMP3 || 0 )) *
-    // 1 + Critical Hit Chance * Critical Hit Damage + Headshot Damage
+    // 1 + Critical Hit Chance * Critical Hit Damage + Headshot Damage.
+    // TODO factor them as separate path
     (1 + ( m.CHC || 0 ) * ( m.CHD || 0 ) + ( m.HS || 0 )) *
-    // 1 + Damage to Armor + Damage to Health
+    // 1 + Damage to Armor + Damage to Health.
+    // TODO they are mutually exclusive
     (1 + ( m.DTA_DTH || 0 )) *
     // 1 + Damage to Target out of Cover
     (1 + ( m.DTTOOC || 0 ));
