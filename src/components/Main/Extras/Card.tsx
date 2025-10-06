@@ -1,9 +1,9 @@
 import Sections from "@/lib/type/sections";
-import * as Items from "@/lib/type/items";
 import { ItemCard } from "../lib/ItemCard";
+import { Items } from "@/lib/type";
 
 type Props = {
-  item: Items.Extras;
+  item: Items<"Extras">;
 };
 
 export default function Card({ item }: Props) {
