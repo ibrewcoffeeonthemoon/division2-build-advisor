@@ -2,8 +2,8 @@ import { stores } from "@/store";
 import { ItemCard } from "../lib/ItemCard";
 import { Items, Sections } from "@/lib/type";
 import { damage } from "@/lib/damage";
-import { BaseDamage } from "../lib/ItemCard/Editor/BaseDamage";
-import { Rpm } from "../lib/ItemCard/Editor/Rpm";
+import { BaseDamage } from "./BaseDamage";
+import { Rpm } from "./Rpm";
 
 type Props = {
   item: Items<"Weapons">;
