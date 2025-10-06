@@ -1,5 +1,5 @@
 import { State } from "@/store/data/state";
-import { Amplifier, Attribute, Items } from "./type";
+import { Amplifier, Attribute, Items } from "../type";
 
 const accumulate = (s: State["state"], amp: Amplifier): number => {
   const itemStates = Object.values(s).flatMap((items) => Object.values(items));
@@ -17,7 +17,7 @@ type Dmg = {
 const calDmg = (item: Items<"Weapons">, s: State["state"]): Dmg => {
   const weapon = s["Weapons"][item];
   const baseDamage = weapon.baseDamage!;
-  const multWD = 1 + accumulate(s, "WD");
+  const multWD = 1 + accumulate(s, "WDCore");
   return {
     normal: baseDamage * multWD,
   };
