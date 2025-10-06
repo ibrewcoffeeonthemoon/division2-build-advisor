@@ -28,7 +28,7 @@ export const Rpm = <S extends string, C extends string>({
         }}
       />
       <button
-        className="btn badge badge-ghost badge-xs text-error"
+        className="btn badge badge-ghost badge-xs text-error font-extralight"
         onClick={() => setRpm(section, item, null)}
       >
         X
