@@ -21,6 +21,17 @@ export const SCHEMA = {
   },
 } as const;
 
+export const WEAPON_TYPES = [
+  "AR",
+  "LMG",
+  "SMG",
+  "Shotgun",
+  "Rifle",
+  "MMR",
+  "Pistol",
+  "Signature",
+] as const;
+
 export const AMPLIFIERS = [
   "WD",
   "TWD",
