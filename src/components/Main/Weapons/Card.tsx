@@ -9,7 +9,7 @@ type Props = {
 
 export default function Card({ item }: Props) {
   const section = "Weapons" as Sections;
-  const { dmg, dps } = damage(store.state());
+  const { dmg, dps } = damage(item, store.state());
   const damageReady = (dmg !== null && dmg > 0) || (dps !== null && dps > 0);
 
   return (
