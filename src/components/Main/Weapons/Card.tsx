@@ -15,7 +15,7 @@ export default function Card({ item }: Props) {
     <ItemCard
       {...{ section, item }}
       damageDashboard={<DamageDashboard {...{ item }} />}
-      damageInput={
+      extraInput1={
         <>
           <BaseDamage {...{ section, item }} />
           <Rpm {...{ section, item }} />

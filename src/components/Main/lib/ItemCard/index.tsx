@@ -7,14 +7,14 @@ type ItemCardProps<S, C> = {
   section: S;
   item: C;
   damageDashboard?: ReactNode;
-  damageInput?: ReactNode;
+  extraInput1?: ReactNode;
 };
 
 export const ItemCard = <S extends string, C extends string>({
   section,
   item,
   damageDashboard,
-  damageInput,
+  extraInput1,
 }: ItemCardProps<S, C>) => {
   const open = stores.ui.Main.state().section.item.open[section][item];
   const setOpen = stores.ui.Main.setItemOpen();
@@ -39,7 +39,7 @@ export const ItemCard = <S extends string, C extends string>({
         {section === "Weapons" && damageDashboard}
         {open || <Summary {...{ attributes }} />}
       </div>
-      <Editor {...{ section, item, damageInput }} />
+      <Editor {...{ section, item, extraInput1 }} />
     </div>
   );
 };
