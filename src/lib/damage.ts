@@ -3,31 +3,27 @@ import { Items } from "./type";
 
 type Dmg = {
   normal: number | null;
-  critical: number | null;
-  critical_headshot: number | null;
 };
 
 const calDmg = (item: Items<"Weapons">, s: State["state"]): Dmg => {
   const weapon = s["Weapons"][item];
-  const dmg = weapon.baseDamage;
+  const baseDamage = weapon.baseDamage;
   return {
-    normal: dmg,
-    critical: dmg,
-    critical_headshot: dmg,
+    normal: baseDamage,
   };
 };
 
 type Dps = {
-  dmg: Dmg;
+  resultDmg: Dmg;
   dps: number | null;
 };
 
 const calDps = (item: Items<"Weapons">, s: State["state"]): Dps => {
   const weapon = s["Weapons"][item];
-  const dmg = calDmg(item, s);
+  const resultDmg = calDmg(item, s);
   const rpm = weapon.rpm;
-  const dps = (dmg.normal * rpm) / 60;
-  return { dmg, dps };
+  const dps = (resultDmg.normal! * rpm!) / 60;
+  return { resultDmg, dps };
 };
 
 export type Damage = {
@@ -36,9 +32,9 @@ export type Damage = {
 };
 
 export const damage = (item: Items<"Weapons">, s: State["state"]): Damage => {
-  const result = calDps(item, s);
+  const resultDps = calDps(item, s);
   return {
-    dmg: result.dmg.normal,
-    dps: result.dps,
+    dmg: resultDps.resultDmg.normal,
+    dps: resultDps.dps,
   };
 };
