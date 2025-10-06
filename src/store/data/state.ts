@@ -3,6 +3,8 @@ import { createItemRecords } from "../record";
 
 type ItemState = {
   name: string;
+  baseDamage: number | null;
+  rpm: number | null;
   attributes: Attribute[];
 };
 
@@ -11,7 +13,12 @@ export type State = {
 };
 
 export const state: () => State["state"] = () =>
-  createItemRecords(() => ({
-    name: "",
-    attributes: [],
-  }));
+  createItemRecords((section) => {
+    const inWeapons = section === "Weapons";
+    return {
+      name: "",
+      baseDamage: inWeapons ? 48_500 : null,
+      rpm: inWeapons ? 850 : null,
+      attributes: [],
+    };
+  });
