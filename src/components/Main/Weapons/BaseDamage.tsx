@@ -22,7 +22,9 @@ export const BaseDamage = <S extends string, C extends string>({
         onFocus={(e) => e.currentTarget.select()}
         value={baseDamage ?? ""}
         onChange={(e) => {
-          setBaseDamage(section, item, Number(e.currentTarget.value));
+          const stringVal = e.currentTarget.value;
+          const val = stringVal !== "" ? Number(stringVal) : null;
+          setBaseDamage(section, item, val);
         }}
       />
     </label>
