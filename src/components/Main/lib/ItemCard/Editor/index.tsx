@@ -5,7 +5,7 @@ import * as NameField from "./Name";
 import { DEFAULT_ATTRIBUTE } from "@/lib/constant";
 import { store } from "@/store/data";
 import { BaseDamage } from "./BaseDamage";
-import { RPM } from "./RPM";
+import { Rpm } from "./Rpm";
 
 type Props<S, C> = {
   section: S;
@@ -26,7 +26,7 @@ export const Editor = <S extends string, C extends string>({
       {section === "Weapons" && (
         <>
           <BaseDamage {...{ section, item }} />
-          <RPM {...{ section, item }} />
+          <Rpm {...{ section, item }} />
         </>
       )}
       <Header />
