@@ -3,6 +3,8 @@ import { createItemRecords } from "../record";
 
 type ItemState = {
   name: string;
+  baseDamage: number | null;
+  rpm: number | null;
   attributes: Attribute[];
 };
 
