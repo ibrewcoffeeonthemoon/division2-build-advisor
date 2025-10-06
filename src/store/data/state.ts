@@ -1,10 +1,11 @@
-import { Attribute } from "@/lib/type";
+import { Attribute, WeaponType } from "@/lib/type";
 import { createItemRecords } from "../record";
 
 type ItemState = {
   name: string;
   baseDamage: number | null;
   rpm: number | null;
+  weaponType: WeaponType | null;
   attributes: Attribute[];
 };
 
@@ -19,6 +20,7 @@ export const state: () => State["state"] = () =>
       name: "",
       baseDamage: inWeapons ? 0 : null,
       rpm: inWeapons ? 0 : null,
+      weaponType: inWeapons ? ("AR" as WeaponType) : null,
       attributes: [],
     };
   });
