@@ -5,7 +5,7 @@ type Props<S, C> = {
   item: C;
 };
 
-export const RPM = <S extends string, C extends string>({
+export const Rpm = <S extends string, C extends string>({
   section,
   item,
 }: Props<S, C>) => {
