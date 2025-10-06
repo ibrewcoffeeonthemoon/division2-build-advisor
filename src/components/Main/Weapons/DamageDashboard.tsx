@@ -17,11 +17,11 @@ export const DamageDashboard = ({ item }: Props) => {
       <div className="grid grid-cols-24 items-center">
         <h2 className="col-span-3">DMG</h2>
         <span className="col-span-7 text-info overflow-hidden overflow-ellipsis text-nowrap">
-          {dmg && Math.trunc(dmg).toLocaleString()}
+          {dmg && Math.round(dmg).toLocaleString()}
         </span>
         <h2 className="col-span-3">DPS</h2>
         <span className="col-span-7 text-info overflow-hidden overflow-ellipsis text-nowrap">
-          {dps && Math.trunc(dps).toLocaleString()}
+          {dps && Math.round(dps).toLocaleString()}
         </span>
       </div>
     )
