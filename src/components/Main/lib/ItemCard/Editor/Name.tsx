@@ -25,6 +25,12 @@ export const Input = <S extends string, C extends string>({
           setName(section, item, e.currentTarget.value);
         }}
       />
+      <button
+        className="btn badge badge-ghost badge-xs text-error"
+        onClick={() => setName(section, item, "")}
+      >
+        X
+      </button>
     </label>
   );
 };
