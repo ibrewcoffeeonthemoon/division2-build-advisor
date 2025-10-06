@@ -1,28 +1,28 @@
 import { Amplifier } from "@/lib/type";
 
 export const ATTRIBUTES: Record<Amplifier, string[]> = {
-  WD: [
-    "Weapon Damage",
-    "Marksman Rifle Damage",
-    "Assault Rifle Damage",
-    "Rifle Damage",
+  WDCore: ["Weapon Damage"],
+  WDType: [
+    "AR Damage",
     "LMG Damage",
     "SMG Damage",
-    "< Custom >",
+    "Shotgun Damage",
+    "Rifle Damage",
+    "MMR Damage",
+    "Pistol Damage",
+    "Signature Damage",
   ],
+  WDTalent: ["< Custom >"],
   TWD: ["< Custom >"],
+  CHC: ["Critical Hit Chance"],
+  CHD: ["Critical Hit Damage"],
+  HS: ["Headshot Damage"],
+  DTA_DTH: ["Damage to Armor", "Damage to Health"],
+  DTTOOC: ["DMG to Target out of Cover"],
   AMP1: ["< Custom >"],
   AMP2: ["< Custom >"],
   AMP3: ["< Custom >"],
-  CRIT_HS: [
-    "Critical Hit Chance",
-    "Critical Hit Damage",
-    "Headshot Damage",
-    "< Custom >",
-  ],
-  DTA_DTH: ["Damage to Armor", "Damage to Health", "< Custom >"],
-  DTTOOC: ["DMG to Target out of Cover", "< Custom >"],
-  ROF: ["Rate of Fire", "< Custom >"],
+  ROF: ["Rate of Fire"],
   None: [
     "Magazine size",
     "Reload Speed",

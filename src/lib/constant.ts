@@ -33,12 +33,16 @@ export const WEAPON_TYPES = [
 ] as const;
 
 export const AMPLIFIERS = [
-  "WD",
+  "WDCore",
+  "WDType",
+  "WDTalent",
   "TWD",
   "AMP1",
   "AMP2",
   "AMP3",
-  "CRIT_HS",
+  "CHC",
+  "CHD",
+  "HS",
   "DTA_DTH",
   "DTTOOC",
   "ROF",
@@ -53,5 +57,5 @@ export const DEFAULT_ATTRIBUTE: Attribute = {
   value: 0.15,
   uptime: 1.0,
   note: "",
-  amplifier: "WD",
+  amplifier: "WDCore",
 };
