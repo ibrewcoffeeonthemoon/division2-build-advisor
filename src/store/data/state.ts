@@ -17,8 +17,8 @@ export const state: () => State["state"] = () =>
     const inWeapons = section === "Weapons";
     return {
       name: "",
-      baseDamage: inWeapons ? 48_500 : null,
-      rpm: inWeapons ? 850 : null,
+      baseDamage: inWeapons ? 0 : null,
+      rpm: inWeapons ? 0 : null,
       attributes: [],
     };
   });
