@@ -15,30 +15,3 @@ export const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
 
   return store;
 };
-
-export const createSectionRecord = <T>(fn: () => T) => ({
-  Weapons: fn(),
-  Gears: fn(),
-  Extras: fn(),
-});
-
-export const createItemRecord = <T>(fn: () => T) => ({
-  Weapons: {
-    Primary: fn(),
-    Secondary: fn(),
-    Sidearm: fn(),
-    Signature: fn(),
-  },
-  Gears: {
-    Mask: fn(),
-    Backpack: fn(),
-    Chest: fn(),
-    Gloves: fn(),
-    Holster: fn(),
-    Kneepads: fn(),
-  },
-  Extras: {
-    Watch: fn(),
-    Specialization: fn(),
-  },
-});
