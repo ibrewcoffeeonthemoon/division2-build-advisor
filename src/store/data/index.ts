@@ -15,6 +15,14 @@ export const useStore = create<Store>()(
         set((s) => {
           s.state[sec][item].name = val;
         }),
+      setBaseDamage: (sec, item, val) =>
+        set((s) => {
+          s.state[sec][item].baseDamage = val;
+        }),
+      setRpm: (sec, item, val) =>
+        set((s) => {
+          s.state[sec][item].rpm = val;
+        }),
       appendAttribute: (sec, item, attr) =>
         set((s) => {
           s.state[sec][item].attributes.push(attr);

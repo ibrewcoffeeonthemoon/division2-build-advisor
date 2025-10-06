@@ -2,6 +2,8 @@ import { Amplifier, Attribute, AttributeType } from "@/lib/type";
 
 export type Action = {
   setName: (sec: string, item: string, val: string) => void;
+  setBaseDamage: (sec: string, item: string, val: number | null) => void;
+  setRpm: (sec: string, item: string, val: number | null) => void;
   appendAttribute: (sec: string, item: string, attr: Attribute) => void;
   removeAttribute: (sec: string, item: string, index: number) => void;
   changeAttributeName: (
