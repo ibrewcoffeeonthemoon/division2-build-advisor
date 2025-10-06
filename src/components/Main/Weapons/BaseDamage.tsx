@@ -14,7 +14,7 @@ export const BaseDamage = <S extends string, C extends string>({
 
   return (
     <label className="input input-ghost w-full col-span-7">
-      <span className="font-semibold">Base Damage</span>
+      <span className="font-semibold">Base DMG</span>
       <input
         type="number"
         className="grow text-primary pl-1"
