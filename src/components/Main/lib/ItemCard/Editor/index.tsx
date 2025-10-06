@@ -9,12 +9,14 @@ type Props<S, C> = {
   section: S;
   item: C;
   extraInput1?: ReactNode;
+  extraInput2?: ReactNode;
 };
 
 export const Editor = <S extends string, C extends string>({
   section,
   item,
   extraInput1,
+  extraInput2,
 }: Props<S, C>) => {
   const [openedIndex, setOpenedIndex] = useState<number | null>(null);
   const attributes = store.state()[section][item].attributes;
@@ -24,6 +26,7 @@ export const Editor = <S extends string, C extends string>({
     <div className="grid grid-cols-12 collapse-content px-3">
       <NameField.Input {...{ section, item }} />
       {extraInput1}
+      {extraInput2}
       <Header />
       {attributes?.map((attribute, i) => (
         <AttributeField.Input
