@@ -1,25 +1,26 @@
-import { damage } from "@/lib/damage";
 import { Editor } from "./Editor";
 import { Summary } from "./Summary";
 import { stores } from "@/store";
+import { ReactNode } from "react";
 
 type ItemCardProps<S, C> = {
   section: S;
   item: C;
+  damageDashboard?: ReactNode;
+  damageInput?: ReactNode;
 };
 
 export const ItemCard = <S extends string, C extends string>({
   section,
   item,
+  damageDashboard,
+  damageInput,
 }: ItemCardProps<S, C>) => {
   const open = stores.ui.Main.state().section.item.open[section][item];
   const setOpen = stores.ui.Main.setItemOpen();
 
   const name = stores.data.state()[section][item].name;
   const attributes = stores.data.state()[section][item].attributes;
-
-  const { dmg, dps } = damage(stores.data.state());
-  const damageReady = (dmg !== null && dmg > 0) || (dps !== null && dps > 0);
 
   return (
     <div className="collapse collapse-arrow rounded-md border-1 border-base-300 duration-1000">
@@ -35,18 +36,7 @@ export const ItemCard = <S extends string, C extends string>({
             {name}
           </div>
         </div>
-        {section === "Weapons" && (damageReady || open) && (
-          <div className="grid grid-cols-24 items-center">
-            <h2 className="col-span-3">DMG</h2>
-            <span className="col-span-7 text-info overflow-hidden overflow-ellipsis text-nowrap">
-              {dmg}
-            </span>
-            <h2 className="col-span-3">DPS</h2>
-            <span className="col-span-7 text-info overflow-hidden overflow-ellipsis text-nowrap">
-              {dps}
-            </span>
-          </div>
-        )}
+        {section === "Weapons" && damageDashboard}
         {open || <Summary {...{ attributes }} />}
       </div>
       <Editor {...{ section, item }} />
