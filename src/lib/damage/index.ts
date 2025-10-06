@@ -1,15 +1,6 @@
 import { State } from "@/store/data/state";
-import { Amplifier, Attribute, Items } from "../type";
+import { Items } from "../type";
 import { calAmplifierSums } from "./amplifier";
-
-const accumulate = (s: State["state"], amp: Amplifier): number => {
-  const itemStates = Object.values(s).flatMap((items) => Object.values(items));
-  const attrs = itemStates.flatMap((item) => Object.values(item.attributes));
-  const matchAttrs = attrs.filter((attr) => attr.amplifier === amp);
-  const expValue = (attr: Attribute) => attr.value * attr.uptime;
-  const valueSum = matchAttrs.reduce((sum, attr) => sum + expValue(attr), 0);
-  return valueSum;
-};
 
 type Dmg = {
   normal: number | null;
