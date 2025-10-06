@@ -2,6 +2,8 @@ import { stores } from "@/store";
 import { ItemCard } from "../lib/ItemCard";
 import { Items, Sections } from "@/lib/type";
 import { damage } from "@/lib/damage";
+import { BaseDamage } from "../lib/ItemCard/Editor/BaseDamage";
+import { Rpm } from "../lib/ItemCard/Editor/Rpm";
 
 type Props = {
   item: Items<"Weapons">;
@@ -29,6 +31,12 @@ export default function Card({ item }: Props) {
             </span>
           </div>
         )
+      }
+      damageInput={
+        <>
+          <BaseDamage {...{ section, item }} />
+          <Rpm {...{ section, item }} />
+        </>
       }
     />
   );

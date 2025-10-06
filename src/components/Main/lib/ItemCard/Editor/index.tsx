@@ -1,20 +1,20 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import * as AttributeField from "./Attribute";
 import { Header } from "./Header";
 import * as NameField from "./Name";
 import { DEFAULT_ATTRIBUTE } from "@/lib/constant";
 import { store } from "@/store/data";
-import { BaseDamage } from "./BaseDamage";
-import { Rpm } from "./Rpm";
 
 type Props<S, C> = {
   section: S;
   item: C;
+  damageInput?: ReactNode;
 };
 
 export const Editor = <S extends string, C extends string>({
   section,
   item,
+  damageInput,
 }: Props<S, C>) => {
   const [openedIndex, setOpenedIndex] = useState<number | null>(null);
   const attributes = store.state()[section][item].attributes;
@@ -23,12 +23,7 @@ export const Editor = <S extends string, C extends string>({
   return (
     <div className="grid grid-cols-12 collapse-content px-3">
       <NameField.Input {...{ section, item }} />
-      {section === "Weapons" && (
-        <>
-          <BaseDamage {...{ section, item }} />
-          <Rpm {...{ section, item }} />
-        </>
-      )}
+      {damageInput}
       <Header />
       {attributes?.map((attribute, i) => (
         <AttributeField.Input
