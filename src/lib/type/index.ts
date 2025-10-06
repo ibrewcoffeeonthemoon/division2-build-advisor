@@ -1,4 +1,20 @@
-import { AMPLIFIERS, ATTRIBUTE_TYPES } from "../constant";
+import { AMPLIFIERS, ATTRIBUTE_TYPES, SCHEMA } from "../constant";
+
+export type Schema = typeof SCHEMA;
+
+export type Sections = keyof Schema;
+
+export type Items<S extends Sections> = keyof Schema[S];
+
+export type SectionRecords<T> = {
+  [S in Sections]: T;
+};
+
+export type ItemRecords<T> = {
+  [S in Sections]: {
+    [M in Items<S>]: T;
+  };
+};
 
 export type AttributeType = (typeof ATTRIBUTE_TYPES)[number];
 
