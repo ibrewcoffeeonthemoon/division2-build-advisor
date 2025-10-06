@@ -23,6 +23,10 @@ export const useStore = create<Store>()(
         set((s) => {
           s.state[sec][item].rpm = val;
         }),
+      setWeaponType: (sec, item, val) =>
+        set((s) => {
+          s.state[sec][item].weaponType = val;
+        }),
       appendAttribute: (sec, item, attr) =>
         set((s) => {
           s.state[sec][item].attributes.push(attr);

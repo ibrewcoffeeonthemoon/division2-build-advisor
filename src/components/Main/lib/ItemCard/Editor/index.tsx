@@ -8,13 +8,15 @@ import { store } from "@/store/data";
 type Props<S, C> = {
   section: S;
   item: C;
-  damageInput?: ReactNode;
+  extraInput1?: ReactNode;
+  extraInput2?: ReactNode;
 };
 
 export const Editor = <S extends string, C extends string>({
   section,
   item,
-  damageInput,
+  extraInput1,
+  extraInput2,
 }: Props<S, C>) => {
   const [openedIndex, setOpenedIndex] = useState<number | null>(null);
   const attributes = store.state()[section][item].attributes;
@@ -23,8 +25,9 @@ export const Editor = <S extends string, C extends string>({
   return (
     <div className="grid grid-cols-12 collapse-content px-3">
       <NameField.Input {...{ section, item }} />
-      {damageInput}
-      <Header />
+      {extraInput1}
+      {extraInput2}
+      {attributes.length > 0 && <Header />}
       {attributes?.map((attribute, i) => (
         <AttributeField.Input
           key={i}

@@ -3,6 +3,7 @@ import { Items, Sections } from "@/lib/type";
 import { BaseDamage } from "./BaseDamage";
 import { Rpm } from "./Rpm";
 import { DamageDashboard } from "./DamageDashboard";
+import { WeaponTypeInput } from "./WeaponTypeInput";
 
 type Props = {
   item: Items<"Weapons">;
@@ -15,10 +16,16 @@ export default function Card({ item }: Props) {
     <ItemCard
       {...{ section, item }}
       damageDashboard={<DamageDashboard {...{ item }} />}
-      damageInput={
+      extraInput1={
         <>
           <BaseDamage {...{ section, item }} />
           <Rpm {...{ section, item }} />
+        </>
+      }
+      extraInput2={
+        <>
+          <WeaponTypeInput {...{ section, item }} />
+          <div className="col-span-6" />
         </>
       }
     />
