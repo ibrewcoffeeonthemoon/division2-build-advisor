@@ -27,7 +27,7 @@ export const Editor = <S extends string, C extends string>({
       <NameField.Input {...{ section, item }} />
       {extraInput1}
       {extraInput2}
-      <Header />
+      {attributes.length > 0 && <Header />}
       {attributes?.map((attribute, i) => (
         <AttributeField.Input
           key={i}
