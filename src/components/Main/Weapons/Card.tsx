@@ -1,9 +1,8 @@
-import Sections from "@/lib/type/sections";
-import * as Items from "@/lib/type/items";
 import { ItemCard } from "../lib/ItemCard";
+import { Items, Sections } from "@/lib/type";
 
 type Props = {
-  item: Items.Weapons;
+  item: Items<"Weapons">;
 };
 
 export default function Card({ item }: Props) {

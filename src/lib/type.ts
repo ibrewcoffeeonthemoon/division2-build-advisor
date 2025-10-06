@@ -1,4 +1,4 @@
-import { AMPLIFIERS, ATTRIBUTE_TYPES, SCHEMA } from "../constant";
+import { AMPLIFIERS, ATTRIBUTE_TYPES, SCHEMA } from "./constant";
 
 export type Schema = typeof SCHEMA;
 

@@ -21,24 +21,6 @@ export const SCHEMA = {
   },
 } as const;
 
-export const SECTIONS = ["Weapons", "Gears", "Extras"] as const;
-
-export const WEAPONS = [
-  "Primary",
-  "Secondary",
-  "Sidearm",
-  "Signature",
-] as const;
-export const GEARS = [
-  "Mask",
-  "Backpack",
-  "Chest",
-  "Gloves",
-  "Holster",
-  "Kneepads",
-] as const;
-export const EXTRAS = ["Watch", "Specialization"] as const;
-
 export const AMPLIFIERS = [
   "WD",
   "TWD",
