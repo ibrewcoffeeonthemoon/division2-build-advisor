@@ -1,6 +1,5 @@
-import Sections from "@/lib/type/sections";
 import { ItemCard } from "../lib/ItemCard";
-import { Items } from "@/lib/type";
+import { Items, Sections } from "@/lib/type";
 
 type Props = {
   item: Items<"Weapons">;
