@@ -26,8 +26,22 @@ export const calAmplifierSums = (s: State["state"]): AmplifierSums => {
     ]),
   ) as Record<Items<"Weapons">, Attribute[]>;
 
-  // filter non-relevent record such as WDType
-  // TODO
+  // filter non-relevent record such as mismatch WDType
+  const filteredAttrs = Object.fromEntries(
+    Object.entries(attrs).map(([weapon, attrs]) => [
+      weapon,
+      attrs.filter((a) => {
+        // if WDType mismatch, drop
+        if (
+          a.amplifier === "WDType" &&
+          !a.name.startsWith(s.Weapons[weapon].weaponType!)
+        ) {
+          return false;
+        }
+        return true;
+      }),
+    ]),
+  ) as Record<Items<"Weapons">, Attribute[]>;
 
   // reduce the array into single quantity for each amplifier type
   const reducer = (acc: Record<Amplifier, number>, attr: Attribute) => {
@@ -36,7 +50,7 @@ export const calAmplifierSums = (s: State["state"]): AmplifierSums => {
     return acc;
   };
   const result = Object.fromEntries(
-    Object.entries(attrs).map(([weapon, attrs]) => [
+    Object.entries(filteredAttrs).map(([weapon, attrs]) => [
       weapon,
       attrs.reduce(reducer, {} as Record<Amplifier, number>),
     ]),
