@@ -1,5 +1,14 @@
 import { State } from "@/store/data/state";
-import { Items } from "./type";
+import { Amplifier, Attribute, Items } from "./type";
+
+const accumulate = (s: State["state"], amp: Amplifier): number => {
+  const itemStates = Object.values(s).flatMap((items) => Object.values(items));
+  const attrs = itemStates.flatMap((item) => Object.values(item.attributes));
+  const matchAttrs = attrs.filter((attr) => attr.amplifier === amp);
+  const expValue = (attr: Attribute) => attr.value * attr.uptime;
+  const valueSum = matchAttrs.reduce((sum, attr) => sum + expValue(attr), 0);
+  return valueSum;
+};
 
 type Dmg = {
   normal: number | null;
@@ -7,9 +16,10 @@ type Dmg = {
 
 const calDmg = (item: Items<"Weapons">, s: State["state"]): Dmg => {
   const weapon = s["Weapons"][item];
-  const baseDamage = weapon.baseDamage;
+  const baseDamage = weapon.baseDamage!;
+  const multWD = 1 + accumulate(s, "WD");
   return {
-    normal: baseDamage,
+    normal: baseDamage * multWD,
   };
 };
 
