@@ -27,6 +27,12 @@ export const BaseDamage = <S extends string, C extends string>({
           setBaseDamage(section, item, val);
         }}
       />
+      <button
+        className="btn badge badge-ghost badge-xs text-error"
+        onClick={() => setBaseDamage(section, item, null)}
+      >
+        X
+      </button>
     </label>
   );
 };

@@ -27,6 +27,12 @@ export const Rpm = <S extends string, C extends string>({
           setRpm(section, item, val);
         }}
       />
+      <button
+        className="btn badge badge-ghost badge-xs text-error"
+        onClick={() => setRpm(section, item, null)}
+      >
+        X
+      </button>
     </label>
   );
 };
