@@ -4,8 +4,8 @@ import { persist } from "zustand/middleware";
 import { createSelectors } from "../utils";
 
 type Store = {
-  activeButton: number;
-  setActiveButton: (val: number) => void;
+  activeButton: number | null;
+  setActiveButton: (val: number | null) => void;
 };
 
 export const useStore = create<Store>()(

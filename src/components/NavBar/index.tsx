@@ -3,8 +3,11 @@
 import Image from "next/image";
 import ThemeButton from "./ThemeButton";
 import Link from "next/link";
+import { stores } from "@/store/ui";
 
 export default function NavBar() {
+  const setActiveButton = stores.Dock.setActiveButton();
+
   return (
     <div>
       <div
@@ -15,7 +18,7 @@ export default function NavBar() {
       "
       >
         <div className="flex-1 flex flex-row items-center">
-          <Link href="/">
+          <Link href="/" onClick={() => setActiveButton(null)}>
             <Image
               src="/icon-192.png"
               width="192"
