@@ -1,14 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { Alert } from "./Alert";
 import ThemeButton from "./ThemeButton";
-import { store } from "@/store/ui/NavBar";
+import Link from "next/link";
 
 export default function NavBar() {
-  const showAlert = store.showAlert();
-  const toggleShowAlert = store.toggleShowAlert();
-
   return (
     <div>
       <div
@@ -19,7 +15,7 @@ export default function NavBar() {
       "
       >
         <div className="flex-1 flex flex-row items-center">
-          <button onClick={toggleShowAlert}>
+          <Link href="/">
             <Image
               src="/icon-192.png"
               width="192"
@@ -27,7 +23,7 @@ export default function NavBar() {
               alt="Logo"
               className="h-7 w-7 rounded-full"
             />
-          </button>
+          </Link>
         </div>
         <div className="flex-1 justify-center items-center">
           <h1 className="font-xl font-bold text-center align-middle">
@@ -38,7 +34,6 @@ export default function NavBar() {
           <ThemeButton />
         </div>
       </div>
-      {showAlert && <Alert />}
     </div>
   );
 }
