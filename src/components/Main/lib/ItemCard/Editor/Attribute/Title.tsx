@@ -1,4 +1,5 @@
 import { Attribute } from "@/lib/type";
+import { round } from "@/lib/utils";
 
 type Props = {
   attribute: Attribute;
@@ -13,8 +14,12 @@ export const Title = ({ attribute, open }: Props) => {
       ) : (
         <>
           <h2 className="col-span-7">{attribute.name}</h2>
-          <h2 className="col-span-2">{(attribute.value * 100).toFixed(1)}</h2>
-          <h2 className="col-span-2">{(attribute.uptime * 100).toFixed(0)}</h2>
+          <h2 className="col-span-2">
+            {attribute.value && round(attribute.value * 100, 2)}
+          </h2>
+          <h2 className="col-span-2">
+            {attribute.uptime && round(attribute.uptime * 100, 0)}
+          </h2>
         </>
       )}
     </div>

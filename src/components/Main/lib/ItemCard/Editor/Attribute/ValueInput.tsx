@@ -1,5 +1,8 @@
 import { Attribute } from "@/lib/type";
+import { round } from "@/lib/utils";
 import { store } from "@/store/data";
+
+// const round = (x: number) => Math.round((x + Number.EPSILON) * 100) / 100;
 
 type Props<S, C> = {
   section: S;
@@ -21,17 +24,14 @@ export const ValueInput = <S extends string, C extends string>({
       <input
         type="number"
         className="grow text-center text-primary"
-        placeholder="Value"
+        placeholder="> <"
         onFocus={(e) => e.currentTarget.select()}
-        value={attribute.value * 100}
-        onChange={(e) =>
-          changeAttributeValue(
-            section,
-            item,
-            index,
-            Number(e.currentTarget.value) / 100,
-          )
-        }
+        value={attribute.value !== null ? round(attribute.value * 100, 2) : ""}
+        onChange={(e) => {
+          const stringVal = e.currentTarget.value;
+          const val = stringVal !== "" ? Number(stringVal) / 100 : null;
+          changeAttributeValue(section, item, index, val);
+        }}
       />
     </label>
   );
