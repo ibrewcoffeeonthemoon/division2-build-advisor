@@ -1,8 +1,18 @@
+"use client";
+
 import Dock from "@/components/Dock";
-import Main from "@/components/Main";
 import NavBar from "@/components/NavBar";
+import { store } from "@/store/app";
+import { useEffect } from "react";
 
 export default function Home() {
+  const currentUrl = store.currentUrl();
+  const setCurrentUrl = store.setCurrentUrl();
+
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
+  }, [setCurrentUrl]);
+
   return (
     <div
       className="
@@ -17,7 +27,16 @@ export default function Home() {
         "
       >
         <NavBar />
-        <Main />
+        <div className="flex-grow overflow-auto flex flex-col justify-center items-center">
+          <h1 className="text-2xl text-neutral font-semibold">Division 2</h1>
+          <h1 className="text-4xl text-neutral font-bold">Build Advisor</h1>
+          <a
+            className="link link-info text-sm text-center w-1/2 wrap-anywhere"
+            href={currentUrl}
+          >
+            {currentUrl}
+          </a>
+        </div>
         <Dock />
       </div>
     </div>
