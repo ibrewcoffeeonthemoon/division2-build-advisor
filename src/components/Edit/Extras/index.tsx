@@ -1,6 +1,6 @@
 "use client";
 
-import { store } from "@/store/ui/Main";
+import { store } from "@/store/ui/Edit";
 import { Section } from "../lib/Section";
 import Card from "./Card";
 

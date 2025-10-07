@@ -2,7 +2,7 @@ import Weapons from "./Weapons";
 import Gears from "./Gears";
 import Extras from "./Extras";
 
-export default function Main() {
+export default function Edit() {
   return (
     <div className="flex-grow overflow-auto">
       <Weapons />

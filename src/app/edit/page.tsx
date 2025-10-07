@@ -1,8 +1,8 @@
 import Dock from "@/components/Dock";
-import Main from "@/components/Main";
+import Edit from "@/components/Edit";
 import NavBar from "@/components/NavBar";
 
-export default function Edit() {
+export default function page() {
   return (
     <div
       className="
@@ -17,7 +17,7 @@ export default function Edit() {
         "
       >
         <NavBar />
-        <Main />
+        <Edit />
         <Dock />
       </div>
     </div>
