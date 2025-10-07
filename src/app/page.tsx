@@ -31,7 +31,7 @@ export default function Home() {
           <h1 className="text-2xl text-neutral font-semibold">Division 2</h1>
           <h1 className="text-4xl text-neutral font-bold">Build Advisor</h1>
           <a
-            className="link link-info text-sm text-center w-1/2 wrap-anywhere"
+            className="link link-info text-sm text-center w-1/2 break-all whitespace-normal wrap-anywhere"
             href={currentUrl}
           >
             {currentUrl}
