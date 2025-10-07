@@ -1,10 +1,11 @@
 import { Attribute, AttributeType } from "@/lib/type";
+import { round } from "@/lib/utils";
 import {
   StopCircleIcon,
   Cog8ToothIcon,
   CubeIcon,
 } from "@heroicons/react/24/solid";
-import { JSX } from "react";
+import { Fragment, JSX } from "react";
 
 export type SummaryProps = {
   attributes: Attribute[];
@@ -18,20 +19,30 @@ export const Summary = ({ attributes }: SummaryProps) => {
   };
 
   return (
-    <div className="col-span-11">
-      <table className="table-auto text-info font-light">
-        <tbody>
-          {attributes?.map(({ type, name, value, uptime, note }, i) => (
-            <tr key={i} className="">
-              <td className="w-5 h-5">{icons[type]}</td>
-              <td className="pl-2">{(value * 100).toFixed(1)}%</td>
-              <td className="pl-2">{name}</td>
-              <td className="pl-2">{(uptime * 100).toFixed(0)}%</td>
-              <td className="pl-2">{note}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="grid grid-cols-24 text-info font-light items-center">
+      {attributes.map(({ type, name, value, uptime, note }, i) => (
+        <Fragment key={i}>
+          <span className="col-span-1 col-start-1 w-5 h-5">{icons[type]}</span>
+          <span className="col-span-3 pl-2">
+            {value && round(value * 100, 2)}%
+          </span>
+          {note === "" ? (
+            <span className="col-span-16 pl-2">{name}</span>
+          ) : (
+            <>
+              <span className="col-span-10 pl-2">{name}</span>
+              <span className="col-span-6 pl-2 overflow-clip overflow-ellipsis wrap-normal">
+                {note}
+              </span>
+            </>
+          )}
+          {uptime !== 1 && (
+            <span className="col-span-3 pl-2 text-base-content/50">
+              {uptime && round(uptime * 100, 0)}%
+            </span>
+          )}
+        </Fragment>
+      ))}
     </div>
   );
 };

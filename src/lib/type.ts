@@ -25,8 +25,8 @@ export type Amplifier = (typeof AMPLIFIERS)[number];
 export type Attribute = {
   type: AttributeType;
   name: string;
-  value: number;
-  uptime: number;
+  value: number | null;
+  uptime: number | null;
   note: string;
   amplifier: Amplifier;
 };

@@ -23,13 +23,13 @@ export type Action = {
     sec: string,
     item: string,
     index: number,
-    val: number,
+    val: number | null,
   ) => void;
   changeAttributeUptime: (
     sec: string,
     item: string,
     index: number,
-    val: number,
+    val: number | null,
   ) => void;
   changeAttributeType: (
     sec: string,

@@ -17,7 +17,7 @@ export const NoteInput = <S extends string, C extends string>({
   const changeAttributeNote = store.changeAttributeNote();
 
   return (
-    <label className="input input-ghost w-full col-span-7">
+    <label className="input input-ghost w-full col-span-8">
       <input
         type="text"
         className="grow text-primary pl-1"
@@ -28,6 +28,12 @@ export const NoteInput = <S extends string, C extends string>({
           changeAttributeNote(section, item, index, e.currentTarget.value)
         }
       />
+      <button
+        className="btn badge badge-ghost badge-xs text-error font-extralight"
+        onClick={() => changeAttributeNote(section, item, index, "")}
+      >
+        X
+      </button>
     </label>
   );
 };

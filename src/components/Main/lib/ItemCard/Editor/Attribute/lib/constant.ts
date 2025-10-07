@@ -1,17 +1,9 @@
+import { WDTYPE_NAMES } from "@/lib/constant";
 import { Amplifier } from "@/lib/type";
 
 export const ATTRIBUTES: Record<Amplifier, string[]> = {
   WDCore: ["Weapon Damage"],
-  WDType: [
-    "AR Damage",
-    "LMG Damage",
-    "SMG Damage",
-    "Shotgun Damage",
-    "Rifle Damage",
-    "MMR Damage",
-    "Pistol Damage",
-    "Signature Damage",
-  ],
+  WDType: WDTYPE_NAMES,
   WDTalent: ["< Custom >"],
   TWD: ["< Custom >"],
   CHC: ["Critical Hit Chance"],

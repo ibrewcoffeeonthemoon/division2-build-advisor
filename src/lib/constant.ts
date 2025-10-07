@@ -1,4 +1,4 @@
-import { Attribute } from "./type";
+import { Attribute, WeaponType } from "./type";
 
 export const SCHEMA = {
   Weapons: {
@@ -31,6 +31,12 @@ export const WEAPON_TYPES = [
   "Pistol",
   "Signature",
 ] as const;
+
+export const WEAPON_TYPES_WDTYPE_MAP = Object.fromEntries(
+  WEAPON_TYPES.map((name) => [name, name + " Damage"]),
+) as Record<WeaponType, string>;
+
+export const WDTYPE_NAMES = Object.values(WEAPON_TYPES_WDTYPE_MAP);
 
 export const AMPLIFIERS = [
   "WDCore",

@@ -1,4 +1,5 @@
 import { Attribute } from "@/lib/type";
+import { round } from "@/lib/utils";
 import { store } from "@/store/data";
 
 type Props<S, C> = {
@@ -23,15 +24,14 @@ export const UptimeInput = <S extends string, C extends string>({
         className="grow text-center text-primary"
         placeholder="Uptime"
         onFocus={(e) => e.currentTarget.select()}
-        value={attribute.uptime * 100}
-        onChange={(e) =>
-          changeAttributeUptime(
-            section,
-            item,
-            index,
-            Number(e.currentTarget.value) / 100,
-          )
+        value={
+          attribute.uptime !== null ? round(attribute.uptime * 100, 2) : ""
         }
+        onChange={(e) => {
+          const stringVal = e.currentTarget.value;
+          const val = stringVal !== "" ? Number(stringVal) / 100 : null;
+          changeAttributeUptime(section, item, index, val);
+        }}
       />
     </label>
   );

@@ -1,5 +1,6 @@
 import { State } from "@/store/data/state";
 import { Amplifier, Attribute, Items } from "../type";
+import { WEAPON_TYPES_WDTYPE_MAP } from "../constant";
 
 export type AmplifierSums = Record<Items<"Weapons">, Record<Amplifier, number>>;
 
@@ -31,13 +32,15 @@ export const calAmplifierSums = (s: State["state"]): AmplifierSums => {
     Object.entries(attrs).map(([weapon, attrs]) => [
       weapon,
       attrs.filter((a) => {
-        // if WDType mismatch, drop
-        if (
-          a.amplifier === "WDType" &&
-          !a.name.startsWith(s.Weapons[weapon].weaponType!)
-        ) {
-          return false;
+        // filter on all WDType Attribute
+        if (a.amplifier === "WDType") {
+          const currentWeaponType = s.Weapons[weapon].weaponType!;
+          const matchingWDTypeName = WEAPON_TYPES_WDTYPE_MAP[currentWeaponType];
+          const wdTypeName = a.name;
+          // only allow matching WDType name to stay
+          return matchingWDTypeName === wdTypeName;
         }
+        // allow everything else
         return true;
       }),
     ]),
@@ -45,7 +48,7 @@ export const calAmplifierSums = (s: State["state"]): AmplifierSums => {
 
   // reduce the array into single quantity for each amplifier type
   const reducer = (acc: Record<Amplifier, number>, attr: Attribute) => {
-    const expValue = attr.value * attr.uptime;
+    const expValue = (attr.value || 0) * (attr.uptime || 0);
     acc[attr.amplifier] = (acc[attr.amplifier] || 0) + expValue;
     return acc;
   };
