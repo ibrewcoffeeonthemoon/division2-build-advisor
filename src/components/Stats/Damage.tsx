@@ -4,6 +4,29 @@ import { stores } from "@/store";
 import { Section } from "../Edit/lib/Section";
 import { calDamage } from "@/lib/damage";
 import { round } from "@/lib/utils";
+import { Items } from "@/lib/type";
+
+export const SpreadSheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
+  const { dmgRecord } = calDamage(weapon, stores.data.state());
+
+  return (
+    <>
+      <span className="col-span-3">{weapon}</span>
+      <span className="col-span-3">
+        {round(dmgRecord.normal.bodyshot.health.nocover, 0).toLocaleString()}
+      </span>
+      <span className="col-span-3 text-red-700">
+        {round(dmgRecord.normal.headshot.health.nocover, 0).toLocaleString()}
+      </span>
+      <span className="col-span-3 text-orange-400">
+        {round(dmgRecord.critical.bodyshot.health.nocover, 0).toLocaleString()}
+      </span>
+      <span className="col-span-3 text-orange-400 font-bold">
+        {round(dmgRecord.critical.headshot.health.nocover, 0).toLocaleString()}
+      </span>
+    </>
+  );
+};
 
 export default function Damage() {
   const open = stores.ui.Stats.state().section.open["Damage"];
@@ -30,25 +53,10 @@ export default function Damage() {
         <span className="col-span-3">Body</span>
         <span className="col-span-3">Head</span>
         {/* data */}
-        <span className="col-span-3">DMG</span>
-        <span className="col-span-3">
-          {round(dmgRecord.normal.bodyshot.health.nocover, 0).toLocaleString()}
-        </span>
-        <span className="col-span-3 text-red-700">
-          {round(dmgRecord.normal.headshot.health.nocover, 0).toLocaleString()}
-        </span>
-        <span className="col-span-3 text-orange-400">
-          {round(
-            dmgRecord.critical.bodyshot.health.nocover,
-            0,
-          ).toLocaleString()}
-        </span>
-        <span className="col-span-3 text-orange-400 font-bold">
-          {round(
-            dmgRecord.critical.headshot.health.nocover,
-            0,
-          ).toLocaleString()}
-        </span>
+        <SpreadSheet weapon="Primary" />
+        <SpreadSheet weapon="Secondary" />
+        <SpreadSheet weapon="Sidearm" />
+        <SpreadSheet weapon="Signature" />
       </div>
     </Section>
   );
