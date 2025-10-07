@@ -6,7 +6,7 @@ export default function Edit() {
   return (
     <div
       className="
-        h-full w-full fixed self-auto
+        h-full w-full self-auto
         grid-cols-1 place-items-center
       "
     >
