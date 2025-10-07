@@ -26,8 +26,14 @@ export const Summary = ({ attributes }: SummaryProps) => {
           <span className="col-span-3 pl-2">
             {value && round(value * 100, 2)}%
           </span>
-          <span className="col-span-8 pl-2">{name}</span>
-          <span className="col-span-8 pl-2">{note}</span>
+          {note === "" ? (
+            <span className="col-span-16 pl-2">{name}</span>
+          ) : (
+            <>
+              <span className="col-span-10 pl-2">{name}</span>
+              <span className="col-span-6 pl-2">{note}</span>
+            </>
+          )}
           <span className="col-span-3 pl-2">
             {uptime && round(uptime * 100, 0)}%
           </span>
