@@ -8,7 +8,7 @@ type Props = {
 
 export const DamageDashboard = ({ item }: Props) => {
   const section = "Weapons" as Sections;
-  const open = stores.ui.Main.state().section.item.open[section][item];
+  const open = stores.ui.Edit.state().section.item.open[section][item];
   const { dmg: resultDmg, dps: resultDps } = calDamage(
     item,
     stores.data.state(),
