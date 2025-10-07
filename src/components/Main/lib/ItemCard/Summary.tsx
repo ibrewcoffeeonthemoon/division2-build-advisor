@@ -31,7 +31,9 @@ export const Summary = ({ attributes }: SummaryProps) => {
           ) : (
             <>
               <span className="col-span-10 pl-2">{name}</span>
-              <span className="col-span-6 pl-2">{note}</span>
+              <span className="col-span-6 pl-2 overflow-clip overflow-ellipsis wrap-normal">
+                {note}
+              </span>
             </>
           )}
           <span className="col-span-3 pl-2">
