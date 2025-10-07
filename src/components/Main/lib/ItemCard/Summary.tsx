@@ -36,9 +36,11 @@ export const Summary = ({ attributes }: SummaryProps) => {
               </span>
             </>
           )}
-          <span className="col-span-3 pl-2">
-            {uptime && round(uptime * 100, 0)}%
-          </span>
+          {uptime !== 1 && (
+            <span className="col-span-3 pl-2 text-base-content/50">
+              {uptime && round(uptime * 100, 0)}%
+            </span>
+          )}
         </>
       ))}
     </div>
