@@ -1,7 +1,7 @@
 import { State } from "@/store/data/state";
 import { Amplifier, Attribute, Items } from "../type";
 
-type AmplifierSums = Record<Items<"Weapons">, Record<Amplifier, number>>;
+export type AmplifierSums = Record<Items<"Weapons">, Record<Amplifier, number>>;
 
 export const calAmplifierSums = (s: State["state"]): AmplifierSums => {
   // extract weapon item attrs into their own records
