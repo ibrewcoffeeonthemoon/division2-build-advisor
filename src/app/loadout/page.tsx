@@ -1,7 +1,8 @@
 import Dock from "@/components/Dock";
+import Loadout from "@/components/Loadout";
 import NavBar from "@/components/NavBar";
 
-export default function Loadout() {
+export default function page() {
   return (
     <div
       className="
@@ -16,9 +17,7 @@ export default function Loadout() {
         "
       >
         <NavBar />
-        <div className="flex-grow overflow-auto flex flex-col justify-center items-center">
-          <h1 className="text-5xl">Loadout</h1>
-        </div>
+        <Loadout />
         <Dock />
       </div>
     </div>
