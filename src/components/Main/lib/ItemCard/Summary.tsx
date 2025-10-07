@@ -19,20 +19,20 @@ export const Summary = ({ attributes }: SummaryProps) => {
   };
 
   return (
-    <div className="col-span-11">
-      <table className="table-auto text-info font-light">
-        <tbody>
-          {attributes?.map(({ type, name, value, uptime, note }, i) => (
-            <tr key={i} className="">
-              <td className="w-5 h-5">{icons[type]}</td>
-              <td className="pl-2">{value && round(value * 100, 2)}%</td>
-              <td className="pl-2">{name}</td>
-              <td className="pl-2">{uptime && round(uptime * 100, 0)}%</td>
-              <td className="pl-2">{note}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="grid grid-cols-24 text-info font-light">
+      {attributes.map(({ type, name, value, uptime, note }) => (
+        <>
+          <span className="col-span-1 col-start-1 w-5 h-5">{icons[type]}</span>
+          <span className="col-span-3 pl-2">
+            {value && round(value * 100, 2)}%
+          </span>
+          <span className="col-span-8 pl-2">{name}</span>
+          <span className="col-span-8 pl-2">{note}</span>
+          <span className="col-span-3 pl-2">
+            {uptime && round(uptime * 100, 0)}%
+          </span>
+        </>
+      ))}
     </div>
   );
 };
