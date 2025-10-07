@@ -3,13 +3,12 @@
 import { stores } from "@/store";
 import { Section } from "../Edit/lib/Section";
 import { calDamage } from "@/lib/damage";
+import { round } from "@/lib/utils";
 
 export default function Damage() {
   const open = stores.ui.Stats.state().section.open["Damage"];
   const setOpen = stores.ui.Stats.setSectionOpen();
   const { dmgRecord, dpsRecord } = calDamage("Primary", stores.data.state());
-  const dmg = dmgRecord.normal.bodyshot.health.nocover;
-  const dps = dpsRecord.normal.bodyshot.health.nocover;
 
   return (
     <Section
@@ -22,21 +21,34 @@ export default function Damage() {
         />
       }
     >
-      <div className="flex-grow overflow-auto flex flex-col justify-center items-center">
-        <div className="flex flex-col">
-          <div className="flex flex-row justify-between">
-            <h2 className="">DMG</h2>
-            <span className="text-info overflow-hidden overflow-ellipsis text-nowrap">
-              {dmg && Math.round(dmg).toLocaleString()}
-            </span>
-          </div>
-          <div className="flex flex-row justify-between">
-            <h2 className="">DPS</h2>
-            <span className="text-info overflow-hidden overflow-ellipsis text-nowrap">
-              {dps && Math.round(dps).toLocaleString()}
-            </span>
-          </div>
-        </div>
+      <div className="grid grid-cols-15 p-2">
+        {/* header */}
+        <span className="col-span-6 col-start-4">Normal</span>
+        <span className="col-span-6">Critical</span>
+        <span className="col-span-3 col-start-4">Body</span>
+        <span className="col-span-3">Head</span>
+        <span className="col-span-3">Body</span>
+        <span className="col-span-3">Head</span>
+        {/* data */}
+        <span className="col-span-3">DMG</span>
+        <span className="col-span-3">
+          {round(dmgRecord.normal.bodyshot.health.nocover, 0).toLocaleString()}
+        </span>
+        <span className="col-span-3 text-red-700">
+          {round(dmgRecord.normal.headshot.health.nocover, 0).toLocaleString()}
+        </span>
+        <span className="col-span-3 text-orange-400">
+          {round(
+            dmgRecord.critical.bodyshot.health.nocover,
+            0,
+          ).toLocaleString()}
+        </span>
+        <span className="col-span-3 text-orange-400 font-bold">
+          {round(
+            dmgRecord.critical.headshot.health.nocover,
+            0,
+          ).toLocaleString()}
+        </span>
       </div>
     </Section>
   );
