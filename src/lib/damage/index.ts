@@ -21,30 +21,26 @@ const calDmg = (item: Items<"Weapons">, s: State["state"]): Dmg => {
 };
 
 type Dps = {
-  resultDmg: Dmg;
-  dps: number | null;
+  dmg: Dmg;
+  dps: DamageRecord<number>;
 };
 
 const calDps = (item: Items<"Weapons">, s: State["state"]): Dps => {
   const weapon = s["Weapons"][item];
   const resultDmg = calDmg(item, s);
   const rpm = weapon.rpm;
-  const dps = (resultDmg.normal.bodyshot.health.nocover! * rpm!) / 60;
-  return { resultDmg, dps };
+  const dps = createDamageRecord((n0, n1, n2, n3) => {
+    const rps = (rpm || 0) / 60;
+    return resultDmg[n0][n1][n2][n3] * rps;
+  });
+  return { dmg: resultDmg, dps };
 };
 
-export type Damage = {
-  dmg: number | null;
-  dps: number | null;
-};
+export type Damage = Dps;
 
 export const calDamage = (
   item: Items<"Weapons">,
   s: State["state"],
 ): Damage => {
-  const resultDps = calDps(item, s);
-  return {
-    dmg: resultDps.resultDmg.normal.bodyshot.health.nocover,
-    dps: resultDps.dps,
-  };
+  return calDps(item, s);
 };
