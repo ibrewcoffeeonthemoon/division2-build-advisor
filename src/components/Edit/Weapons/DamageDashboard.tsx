@@ -9,12 +9,9 @@ type Props = {
 export const DamageDashboard = ({ item }: Props) => {
   const section = "Weapons" as Sections;
   const open = stores.ui.Edit.state().section.item.open[section][item];
-  const { dmg: resultDmg, dps: resultDps } = calDamage(
-    item,
-    stores.data.state(),
-  );
-  const dmg = resultDmg.normal.bodyshot.health.nocover;
-  const dps = resultDps.normal.bodyshot.health.nocover;
+  const { dmgRecord, dpsRecord } = calDamage(item, stores.data.state());
+  const dmg = dmgRecord.normal.bodyshot.health.nocover;
+  const dps = dpsRecord.normal.bodyshot.health.nocover;
   const damageReady = (dmg !== null && dmg > 0) || (dps !== null && dps > 0);
 
   return (
