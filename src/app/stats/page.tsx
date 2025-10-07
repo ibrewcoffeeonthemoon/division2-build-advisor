@@ -1,7 +1,8 @@
 import Dock from "@/components/Dock";
 import NavBar from "@/components/NavBar";
+import Stats from "@/components/Stats";
 
-export default function Stats() {
+export default function page() {
   return (
     <div
       className="
@@ -16,9 +17,7 @@ export default function Stats() {
         "
       >
         <NavBar />
-        <div className="flex-grow overflow-auto flex flex-col justify-center items-center">
-          <h1 className="text-5xl">Stats</h1>
-        </div>
+        <Stats />
         <Dock />
       </div>
     </div>
