@@ -38,7 +38,7 @@ const Button = ({
 export default function Dock() {
   const buttons = [
     { name: "Loadout", href: "/loadout", icon: <ArchiveBoxIcon /> },
-    { name: "Build", href: "/build", icon: <WrenchScrewdriverIcon /> },
+    { name: "Edit", href: "/edit", icon: <WrenchScrewdriverIcon /> },
     { name: "Stats", href: "/stats", icon: <ChartBarIcon /> },
   ];
   return (

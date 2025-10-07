@@ -2,7 +2,7 @@ import Dock from "@/components/Dock";
 import Main from "@/components/Main";
 import NavBar from "@/components/NavBar";
 
-export default function Build() {
+export default function Edit() {
   return (
     <div
       className="
