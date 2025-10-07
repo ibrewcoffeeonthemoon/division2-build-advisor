@@ -1,9 +1,15 @@
-import { store } from "@/store/ui/Stats";
+"use client";
+
+import { stores } from "@/store";
 import { Section } from "../Edit/lib/Section";
+import { calDamage } from "@/lib/damage";
 
 export default function Damage() {
-  const open = store.state().section.open["Damage"];
-  const setOpen = store.setSectionOpen();
+  const open = stores.ui.Stats.state().section.open["Damage"];
+  const setOpen = stores.ui.Stats.setSectionOpen();
+  const { dmgRecord, dpsRecord } = calDamage("Primary", stores.data.state());
+  const dmg = dmgRecord.normal.bodyshot.health.nocover;
+  const dps = dpsRecord.normal.bodyshot.health.nocover;
 
   return (
     <Section
@@ -16,7 +22,22 @@ export default function Damage() {
         />
       }
     >
-      <h1 className="text-5xl">Damage</h1>
+      <div className="flex-grow overflow-auto flex flex-col justify-center items-center">
+        <div className="flex flex-col">
+          <div className="flex flex-row justify-between">
+            <h2 className="">DMG</h2>
+            <span className="text-info overflow-hidden overflow-ellipsis text-nowrap">
+              {dmg && Math.round(dmg).toLocaleString()}
+            </span>
+          </div>
+          <div className="flex flex-row justify-between">
+            <h2 className="">DPS</h2>
+            <span className="text-info overflow-hidden overflow-ellipsis text-nowrap">
+              {dps && Math.round(dps).toLocaleString()}
+            </span>
+          </div>
+        </div>
+      </div>
     </Section>
   );
 }
