@@ -1,10 +1,13 @@
 import { State } from "@/store/data/state";
 import { Items } from "../type";
-import { calAmplifierSums } from "./amplifier";
+import { AmplifierSums, calAmplifierSums } from "./amplifier";
 import { calMultiplier } from "./multiplier";
 import { createDamageRecord, DamageRecord } from "./record";
 
-type Dmg = DamageRecord<number>;
+type Dmg = {
+  amp: AmplifierSums[Items<"Weapons">];
+  dmg: DamageRecord<number>;
+};
 
 const calDmg = (item: Items<"Weapons">, s: State["state"]): Dmg => {
   const weapon = s["Weapons"][item];
@@ -15,25 +18,26 @@ const calDmg = (item: Items<"Weapons">, s: State["state"]): Dmg => {
   const dmg = createDamageRecord(
     (n0, n1, n2, n3) => baseDamage * multiplier[n0][n1][n2][n3],
   );
-  // console.log(JSON.stringify(dmg, null, 2));
 
-  return dmg;
+  return { amp: amplifierSum, dmg };
 };
 
 type Dps = {
-  dmg: Dmg;
+  dmg: DamageRecord<number>;
   dps: DamageRecord<number>;
 };
 
 const calDps = (item: Items<"Weapons">, s: State["state"]): Dps => {
   const weapon = s["Weapons"][item];
-  const resultDmg = calDmg(item, s);
+  const { amp: amp_, dmg: dmg_ } = calDmg(item, s);
   const rpm = weapon.rpm;
   const dps = createDamageRecord((n0, n1, n2, n3) => {
     const rps = (rpm || 0) / 60;
-    return resultDmg[n0][n1][n2][n3] * rps;
+    const rof = 1 + (amp_.ROF || 0);
+    const dmg = dmg_[n0][n1][n2][n3];
+    return dmg * rps * rof;
   });
-  return { dmg: resultDmg, dps };
+  return { dmg: dmg_, dps: dps };
 };
 
 export type Damage = Dps;
