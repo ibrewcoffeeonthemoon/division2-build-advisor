@@ -27,7 +27,7 @@ export const Summary = ({ attributes }: SummaryProps) => {
               <td className="w-5 h-5">{icons[type]}</td>
               <td className="pl-2">{value && round(value * 100, 2)}%</td>
               <td className="pl-2">{name}</td>
-              <td className="pl-2">{(uptime * 100).toFixed(0)}%</td>
+              <td className="pl-2">{uptime && round(uptime * 100, 0)}%</td>
               <td className="pl-2">{note}</td>
             </tr>
           ))}
