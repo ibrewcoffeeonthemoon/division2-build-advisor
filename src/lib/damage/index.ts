@@ -37,7 +37,10 @@ export type Damage = {
   dps: number | null;
 };
 
-export const damage = (item: Items<"Weapons">, s: State["state"]): Damage => {
+export const calDamage = (
+  item: Items<"Weapons">,
+  s: State["state"],
+): Damage => {
   const resultDps = calDps(item, s);
   return {
     dmg: resultDps.resultDmg.normal,

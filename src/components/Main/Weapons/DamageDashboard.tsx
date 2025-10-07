@@ -1,5 +1,5 @@
 import { stores } from "@/store";
-import { damage } from "@/lib/damage";
+import { calDamage } from "@/lib/damage";
 import { Items, Sections } from "@/lib/type";
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 export const DamageDashboard = ({ item }: Props) => {
   const section = "Weapons" as Sections;
   const open = stores.ui.Main.state().section.item.open[section][item];
-  const { dmg, dps } = damage(item, stores.data.state());
+  const { dmg, dps } = calDamage(item, stores.data.state());
   const damageReady = (dmg !== null && dmg > 0) || (dps !== null && dps > 0);
 
   return (
