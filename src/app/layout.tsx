@@ -36,12 +36,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" dir="ltr">
+    <html lang="en" dir="ltr" className="h-full w-full">
       <head>
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`h-full w-full ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
       </body>
