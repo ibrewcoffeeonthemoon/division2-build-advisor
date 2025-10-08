@@ -32,7 +32,7 @@ export type Action = {
         index: number,
         val: Amplifier,
       ) => void;
-      changeAttributeValue: (
+      setValue: (
         cat: string,
         item: string,
         index: number,

@@ -59,7 +59,7 @@ export const useStore = create<Store>()(
             set((s) => {
               s.state.items[cat][item].attributes[index].amplifier = val;
             }),
-          changeAttributeValue: (cat, item, index, val) =>
+          setValue: (cat, item, index, val) =>
             set((s) => {
               s.state.items[cat][item].attributes[index].value = val;
             }),
