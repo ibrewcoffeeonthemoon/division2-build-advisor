@@ -7,7 +7,7 @@ export const Title = () => {
   const title = activeButton === null ? "" : titles[activeButton];
 
   return (
-    <div className="flex-1 justify-center items-center">
+    <div className="grow justify-center items-center">
       <h1 className="font-xl font-bold text-center align-middle">{title}</h1>
     </div>
   );
