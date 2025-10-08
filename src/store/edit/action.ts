@@ -38,7 +38,7 @@ export type Action = {
         index: number,
         val: number | null,
       ) => void;
-      changeAttributeUptime: (
+      setUptime: (
         cat: string,
         item: string,
         index: number,
