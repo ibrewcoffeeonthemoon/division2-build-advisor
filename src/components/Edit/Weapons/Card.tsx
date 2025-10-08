@@ -10,21 +10,21 @@ type Props = {
 };
 
 export default function Card({ item }: Props) {
-  const section = "Weapons" as CategoryKey;
+  const category = "Weapons" as CategoryKey;
 
   return (
     <ItemCard
-      {...{ section, item }}
+      {...{ category, item }}
       damageDashboard={<DamageDashboard {...{ item }} />}
       extraInput1={
         <>
-          <BaseDamage {...{ section, item }} />
-          <Rpm {...{ section, item }} />
+          <BaseDamage {...{ category, item }} />
+          <Rpm {...{ category, item }} />
         </>
       }
       extraInput2={
         <>
-          <WeaponTypeInput {...{ section, item }} />
+          <WeaponTypeInput {...{ category, item }} />
           <div className="col-span-6" />
         </>
       }

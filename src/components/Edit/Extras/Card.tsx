@@ -6,7 +6,7 @@ type Props = {
 };
 
 export default function Card({ item }: Props) {
-  const section = "Extras" as CategoryKey;
+  const category = "Extras" as CategoryKey;
 
-  return <ItemCard {...{ section, item }} />;
+  return <ItemCard {...{ category, item }} />;
 }

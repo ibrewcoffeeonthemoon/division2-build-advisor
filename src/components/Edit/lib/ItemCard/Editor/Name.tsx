@@ -1,15 +1,15 @@
 import { store } from "@/store/edit";
 
-type Props<S, C> = {
-  section: S;
-  item: C;
+type Props<C, M> = {
+  category: C;
+  item: M;
 };
 
-export const Input = <S extends string, C extends string>({
-  section,
+export const Input = <C extends string, M extends string>({
+  category,
   item,
-}: Props<S, C>) => {
-  const name = store.state().items[section][item].name;
+}: Props<C, M>) => {
+  const name = store.state().items[category][item].name;
   const setName = store.setName();
 
   return (
@@ -22,12 +22,12 @@ export const Input = <S extends string, C extends string>({
         onFocus={(e) => e.currentTarget.select()}
         value={name ?? ""}
         onChange={(e) => {
-          setName(section, item, e.currentTarget.value);
+          setName(category, item, e.currentTarget.value);
         }}
       />
       <button
         className="btn badge badge-ghost badge-xs text-error font-extralight"
-        onClick={() => setName(section, item, "")}
+        onClick={() => setName(category, item, "")}
       >
         X
       </button>

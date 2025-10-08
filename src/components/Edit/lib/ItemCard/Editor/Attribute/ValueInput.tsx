@@ -4,19 +4,19 @@ import { store } from "@/store/edit";
 
 // const round = (x: number) => Math.round((x + Number.EPSILON) * 100) / 100;
 
-type Props<S, C> = {
-  section: S;
-  item: C;
+type Props<C, M> = {
+  category: C;
+  item: M;
   attribute: Attribute;
   index: number;
 };
 
-export const ValueInput = <S extends string, C extends string>({
-  section,
+export const ValueInput = <C extends string, M extends string>({
+  category,
   item,
   attribute,
   index,
-}: Props<S, C>) => {
+}: Props<C, M>) => {
   const changeAttributeValue = store.changeAttributeValue();
 
   return (
@@ -30,7 +30,7 @@ export const ValueInput = <S extends string, C extends string>({
         onChange={(e) => {
           const stringVal = e.currentTarget.value;
           const val = stringVal !== "" ? Number(stringVal) / 100 : null;
-          changeAttributeValue(section, item, index, val);
+          changeAttributeValue(category, item, index, val);
         }}
       />
     </label>

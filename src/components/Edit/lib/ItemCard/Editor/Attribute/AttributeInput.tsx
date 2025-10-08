@@ -2,19 +2,19 @@ import { Amplifier, Attribute } from "@/lib/type";
 import { store } from "@/store/edit";
 import { ATTRIBUTES } from "./lib/constant";
 
-type Props<S, C> = {
-  section: S;
-  item: C;
+type Props<C, M> = {
+  category: C;
+  item: M;
   attribute: Attribute;
   index: number;
 };
 
-export const AttributeInput = <S extends string, C extends string>({
-  section,
+export const AttributeInput = <C extends string, M extends string>({
+  category,
   item,
   attribute,
   index,
-}: Props<S, C>) => {
+}: Props<C, M>) => {
   const changeAttributeName = store.changeAttributeName();
   const changeAttributeAmplifier = store.changeAttributeAmplifier();
 
@@ -23,9 +23,9 @@ export const AttributeInput = <S extends string, C extends string>({
       className="select select-ghost col-span-7 z-10 text-primary"
       value={attribute.name ?? ""}
       onChange={(e) => {
-        changeAttributeName(section, item, index, e.currentTarget.value);
+        changeAttributeName(category, item, index, e.currentTarget.value);
         changeAttributeAmplifier(
-          section,
+          category,
           item,
           index,
           e.currentTarget.options[e.currentTarget.selectedIndex].dataset

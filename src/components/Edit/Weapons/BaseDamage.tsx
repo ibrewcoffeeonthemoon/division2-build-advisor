@@ -1,15 +1,15 @@
 import { store } from "@/store/edit";
 
-type Props<S, C> = {
-  section: S;
-  item: C;
+type Props<C, M> = {
+  category: C;
+  item: M;
 };
 
-export const BaseDamage = <S extends string, C extends string>({
-  section,
+export const BaseDamage = <C extends string, M extends string>({
+  category,
   item,
-}: Props<S, C>) => {
-  const baseDamage = store.state().items[section][item].baseDamage;
+}: Props<C, M>) => {
+  const baseDamage = store.state().items[category][item].baseDamage;
   const setBaseDamage = store.setBaseDamage();
 
   return (
@@ -24,12 +24,12 @@ export const BaseDamage = <S extends string, C extends string>({
         onChange={(e) => {
           const stringVal = e.currentTarget.value;
           const val = stringVal !== "" ? Number(stringVal) : null;
-          setBaseDamage(section, item, val);
+          setBaseDamage(category, item, val);
         }}
       />
       <button
         className="btn badge badge-ghost badge-xs text-error font-extralight"
-        onClick={() => setBaseDamage(section, item, null)}
+        onClick={() => setBaseDamage(category, item, null)}
       >
         X
       </button>

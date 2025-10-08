@@ -7,8 +7,8 @@ type Props = {
 };
 
 export const DamageDashboard = ({ item }: Props) => {
-  const section = "Weapons" as CategoryKey;
-  const open = stores.ui.Edit.state().section.item.open[section][item];
+  const category = "Weapons" as CategoryKey;
+  const open = stores.ui.Edit.state().section.item.open[category][item];
   const { dmgRecord, dpsRecord } = calDamage(item, stores.edit.state());
   const dmg = dmgRecord.normal.bodyshot.health.nocover;
   const dps = dpsRecord.normal.bodyshot.health.nocover;
