@@ -15,7 +15,7 @@ export const useStore = create<Store>()(
         set((s) => {
           s.state.section.open[sec] = val;
         }),
-      setItemOpen: (sec, item, val) =>
+      setTopicOpen: (sec, item, val) =>
         set((s) => {
           s.state.section.topic.open[sec][item] = val;
         }),
