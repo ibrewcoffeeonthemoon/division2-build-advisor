@@ -1,6 +1,7 @@
 "use client";
 
 import { store } from "@/store/loadout";
+import BuildCard from "./BuildCard";
 
 export default function Loadout() {
   const builds = store.state().builds;
@@ -8,14 +9,7 @@ export default function Loadout() {
   return (
     <div className="flex-grow overflow-auto flex flex-col">
       {builds.map((build, i) => (
-        <div key={i} className="card">
-          <div className="card-body">
-            <div className="card-title">{build.name}</div>
-            <div className="">Attribute</div>
-            <div className="">Attribute</div>
-            <div className="">Attribute</div>
-          </div>
-        </div>
+        <BuildCard key={i} build={build} />
       ))}
     </div>
   );
