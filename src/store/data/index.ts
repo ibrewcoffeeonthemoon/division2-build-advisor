@@ -11,6 +11,10 @@ export const useStore = create<Store>()(
   persist(
     immer((set) => ({
       state: state(),
+      setBuildName: (val) =>
+        set((s) => {
+          s.state.name = val;
+        }),
       setName: (sec, item, val) =>
         set((s) => {
           s.state.items[sec][item].name = val;

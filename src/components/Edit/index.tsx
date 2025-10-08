@@ -8,6 +8,7 @@ import { Build } from "@/lib/type";
 
 export default function Edit() {
   const currentBuild = stores.data.state() as Build;
+  const setBuildName = stores.data.setBuildName();
   const saveLoadout = stores.loadout.saveLoadout();
 
   return (
@@ -25,7 +26,7 @@ export default function Edit() {
             onFocus={(e) => e.currentTarget.select()}
             value={currentBuild.name}
             onChange={(e) => {
-              // setName(section, item, e.currentTarget.value);
+              setBuildName(e.currentTarget.value);
             }}
           />
           <button
