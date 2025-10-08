@@ -15,7 +15,7 @@ export const AttributeInput = <C extends string, M extends string>({
   attribute,
   index,
 }: Props<C, M>) => {
-  const changeAttributeName = store.action().attribute.changeAttributeName;
+  const setName = store.action().attribute.setName;
   const changeAttributeAmplifier =
     store.action().attribute.changeAttributeAmplifier;
 
@@ -24,7 +24,7 @@ export const AttributeInput = <C extends string, M extends string>({
       className="select select-ghost col-span-7 z-10 text-primary"
       value={attribute.name ?? ""}
       onChange={(e) => {
-        changeAttributeName(category, item, index, e.currentTarget.value);
+        setName(category, item, index, e.currentTarget.value);
         changeAttributeAmplifier(
           category,
           item,

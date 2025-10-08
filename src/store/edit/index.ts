@@ -51,7 +51,7 @@ export const useStore = create<Store>()(
                 item
               ].attributes.filter((_, i) => i !== index);
             }),
-          changeAttributeName: (cat, item, index, val) =>
+          setName: (cat, item, index, val) =>
             set((s) => {
               s.state.items[cat][item].attributes[index].name = val;
             }),
