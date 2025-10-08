@@ -1,8 +1,8 @@
 "use client";
 
 import { store } from "@/store/ui/Edit";
-import { Section } from "../lib/Section";
 import Card from "./Card";
+import { Section } from "@/components/lib/Section";
 
 export default function Extras() {
   const open = store.state().section.open["Extras"];

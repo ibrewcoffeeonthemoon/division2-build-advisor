@@ -3,9 +3,9 @@
 import { stores } from "@/store";
 import { Items } from "@/lib/type";
 import { SCHEMA } from "@/lib/constant";
-import { Section } from "@/components/Edit/lib/Section";
 import { ItemCard } from "../lib/ItemCard";
 import { Spreadsheet } from "./Spreadsheet";
+import { Section } from "@/components/lib/Section";
 
 export default function Damage() {
   const section = "Damage";
