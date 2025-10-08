@@ -1,16 +1,8 @@
-import { Attribute, WeaponType } from "@/lib/type";
+import { Item, WeaponType } from "@/lib/type";
 import { createItemRecords } from "../record";
 
-type ItemState = {
-  name: string;
-  baseDamage: number | null;
-  rpm: number | null;
-  weaponType: WeaponType | null;
-  attributes: Attribute[];
-};
-
 export type State = {
-  state: Record<string, Record<string, ItemState>>;
+  state: Record<string, Record<string, Item>>;
 };
 
 export const state: () => State["state"] = () =>
