@@ -1,12 +1,12 @@
 "use client";
 
 import { stores } from "@/store";
-import { Section } from "../Edit/lib/Section";
 import { calDamage } from "@/lib/damage";
 import { round } from "@/lib/utils";
 import { Items } from "@/lib/type";
-import { ItemCard } from "./lib/ItemCard";
 import { SCHEMA } from "@/lib/constant";
+import { Section } from "@/components/Edit/lib/Section";
+import { ItemCard } from "../lib/ItemCard";
 
 export const SpreadSheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
   const { dmgRecord: d } = calDamage(weapon, stores.data.state());
