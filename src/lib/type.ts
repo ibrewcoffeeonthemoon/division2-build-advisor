@@ -33,9 +33,9 @@ export type Attribute = {
 
 export type Item = {
   name: string;
-  baseDamage: number | null;
-  rpm: number | null;
-  weaponType: WeaponType | null;
+  baseDamage?: number | null;
+  rpm?: number | null;
+  weaponType?: WeaponType | null;
   attributes: Attribute[];
 };
 
