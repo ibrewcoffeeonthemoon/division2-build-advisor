@@ -14,7 +14,7 @@ export const NoteInput = <C extends string, M extends string>({
   attribute,
   index,
 }: Props<C, M>) => {
-  const changeAttributeNote = store.changeAttributeNote();
+  const setNote = store.action().attribute.setNote;
 
   return (
     <label className="input input-ghost w-full col-span-8">
@@ -24,13 +24,11 @@ export const NoteInput = <C extends string, M extends string>({
         placeholder="Note"
         onFocus={(e) => e.currentTarget.select()}
         value={attribute.note}
-        onChange={(e) =>
-          changeAttributeNote(category, item, index, e.currentTarget.value)
-        }
+        onChange={(e) => setNote(category, item, index, e.currentTarget.value)}
       />
       <button
         className="btn badge badge-ghost badge-xs text-error font-extralight"
-        onClick={() => changeAttributeNote(category, item, index, "")}
+        onClick={() => setNote(category, item, index, "")}
       >
         X
       </button>

@@ -20,8 +20,8 @@ const Button = ({
   icon: ReactNode;
   href: string;
 }) => {
-  const activeButton = store.activeButton();
-  const setActiveButton = store.setActiveButton();
+  const activeButton = store.state().activeButton;
+  const setActiveButton = store.action().setActiveButton;
 
   return (
     <Link

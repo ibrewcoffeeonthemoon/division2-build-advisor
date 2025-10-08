@@ -14,19 +14,14 @@ export const TypeInput = <C extends string, M extends string>({
   attribute,
   index,
 }: Props<C, M>) => {
-  const changeType = store.changeAttributeType();
+  const setType = store.action().attribute.setType;
 
   return (
     <select
       className="select select-ghost col-span-4 text-primary"
       value={attribute.type}
       onChange={(e) =>
-        changeType(
-          category,
-          item,
-          index,
-          e.currentTarget.value as AttributeType,
-        )
+        setType(category, item, index, e.currentTarget.value as AttributeType)
       }
     >
       <option disabled={true}>Type</option>

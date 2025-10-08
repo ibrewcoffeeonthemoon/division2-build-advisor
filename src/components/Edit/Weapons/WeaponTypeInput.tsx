@@ -12,7 +12,7 @@ export const WeaponTypeInput = <C extends string, M extends string>({
   item,
 }: Props<C, M>) => {
   const weaponType = store.state().items[category][item].weaponType;
-  const setWeaponType = store.setWeaponType();
+  const setWeaponType = store.action().item.setWeaponType;
 
   return (
     <div className="col-span-6 flex flex-row items-baseline px-3">

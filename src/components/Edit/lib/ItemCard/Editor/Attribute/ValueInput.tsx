@@ -17,7 +17,7 @@ export const ValueInput = <C extends string, M extends string>({
   attribute,
   index,
 }: Props<C, M>) => {
-  const changeAttributeValue = store.changeAttributeValue();
+  const setValue = store.action().attribute.setValue;
 
   return (
     <label className="input input-ghost input-md w-full items-center col-span-2">
@@ -30,7 +30,7 @@ export const ValueInput = <C extends string, M extends string>({
         onChange={(e) => {
           const stringVal = e.currentTarget.value;
           const val = stringVal !== "" ? Number(stringVal) / 100 : null;
-          changeAttributeValue(category, item, index, val);
+          setValue(category, item, index, val);
         }}
       />
     </label>

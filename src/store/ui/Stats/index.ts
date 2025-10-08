@@ -11,14 +11,16 @@ export const useStore = create<Store>()(
   persist(
     immer((set) => ({
       state: state(),
-      setSectionOpen: (sec, val) =>
-        set((s) => {
-          s.state.section.open[sec] = val;
-        }),
-      setTopicOpen: (sec, tp, val) =>
-        set((s) => {
-          s.state.section.topic.open[sec][tp] = val;
-        }),
+      action: {
+        setSectionOpen: (sec, val) =>
+          set((s) => {
+            s.state.section.open[sec] = val;
+          }),
+        setTopicOpen: (sec, tp, val) =>
+          set((s) => {
+            s.state.section.topic.open[sec][tp] = val;
+          }),
+      },
     })),
     {
       name: "store.ui.Stats",

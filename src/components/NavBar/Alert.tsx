@@ -7,8 +7,8 @@ import { useEffect } from "react";
 export const Alert = () => {
   const currentUrl = stores.app.currentUrl();
   const setCurrentUrl = stores.app.setCurrentUrl();
-  const showAlert = stores.ui.NavBar.showAlert();
-  const setShowAlert = stores.ui.NavBar.setShowAlert();
+  const showAlert = stores.ui.NavBar.state().showAlert;
+  const setShowAlert = stores.ui.NavBar.action().setShowAlert;
 
   useEffect(() => {
     if (showAlert) {

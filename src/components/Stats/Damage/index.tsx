@@ -10,7 +10,7 @@ import { Section } from "@/components/lib/Section";
 export default function Damage() {
   const section = "Damage";
   const open = stores.ui.Stats.state().section.open[section];
-  const setOpen = stores.ui.Stats.setSectionOpen();
+  const setOpen = stores.ui.Stats.action().setSectionOpen;
 
   return (
     <Section

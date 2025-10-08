@@ -10,7 +10,7 @@ export const Input = <C extends string, M extends string>({
   item,
 }: Props<C, M>) => {
   const name = store.state().items[category][item].name;
-  const setName = store.setName();
+  const setName = store.action().item.setName;
 
   return (
     <label className="input input-ghost w-full col-span-12">

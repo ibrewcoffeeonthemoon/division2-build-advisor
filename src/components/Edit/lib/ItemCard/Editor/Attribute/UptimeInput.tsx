@@ -15,7 +15,7 @@ export const UptimeInput = <C extends string, M extends string>({
   attribute,
   index,
 }: Props<C, M>) => {
-  const changeAttributeUptime = store.changeAttributeUptime();
+  const setUptime = store.action().attribute.setUptime;
 
   return (
     <label className="input input-ghost input-md w-full items-center col-span-2">
@@ -30,7 +30,7 @@ export const UptimeInput = <C extends string, M extends string>({
         onChange={(e) => {
           const stringVal = e.currentTarget.value;
           const val = stringVal !== "" ? Number(stringVal) / 100 : null;
-          changeAttributeUptime(category, item, index, val);
+          setUptime(category, item, index, val);
         }}
       />
     </label>

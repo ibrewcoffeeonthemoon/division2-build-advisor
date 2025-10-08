@@ -7,7 +7,7 @@ import { stores } from "@/store/ui";
 import { Title } from "./Title";
 
 export default function NavBar() {
-  const setActiveButton = stores.Dock.setActiveButton();
+  const setActiveButton = stores.Dock.action().setActiveButton;
 
   return (
     <div>

@@ -6,7 +6,7 @@ import { Section } from "@/components/lib/Section";
 
 export default function Gears() {
   const open = store.state().section.open["Gears"];
-  const setOpen = store.setSectionOpen();
+  const setOpen = store.action().setSectionOpen;
 
   return (
     <Section
