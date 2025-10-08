@@ -2,7 +2,7 @@ import { stores } from "@/store";
 
 export const Title = () => {
   const activeButton = stores.ui.Dock.activeButton();
-  const buildName = stores.data.state().name;
+  const buildName = stores.edit.state().name;
   const titles = ["Loadout", buildName, "Stats"];
   const title = activeButton === null ? "" : titles[activeButton];
 

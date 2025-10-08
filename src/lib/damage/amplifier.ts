@@ -1,4 +1,4 @@
-import { State } from "@/store/data/state";
+import { State } from "@/store/edit/state";
 import { Amplifier, Attribute, Items } from "../type";
 import { WEAPON_TYPES_WDTYPE_MAP } from "../constant";
 

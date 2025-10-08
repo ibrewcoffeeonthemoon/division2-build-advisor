@@ -3,7 +3,7 @@ import * as AttributeField from "./Attribute";
 import { Header } from "./Header";
 import * as NameField from "./Name";
 import { DEFAULT_ATTRIBUTE } from "@/lib/constant";
-import { store } from "@/store/data";
+import { store } from "@/store/edit";
 
 type Props<S, C> = {
   section: S;

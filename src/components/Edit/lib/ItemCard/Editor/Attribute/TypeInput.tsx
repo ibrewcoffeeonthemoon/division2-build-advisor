@@ -1,5 +1,5 @@
 import { Attribute, AttributeType } from "@/lib/type";
-import { store } from "@/store/data";
+import { store } from "@/store/edit";
 
 type Props<S, C> = {
   section: S;
@@ -21,12 +21,7 @@ export const TypeInput = <S extends string, C extends string>({
       className="select select-ghost col-span-4 text-primary"
       value={attribute.type}
       onChange={(e) =>
-        changeType(
-          section,
-          item,
-          index,
-          e.currentTarget.value as AttributeType,
-        )
+        changeType(section, item, index, e.currentTarget.value as AttributeType)
       }
     >
       <option disabled={true}>Type</option>

@@ -71,7 +71,7 @@ export const useStore = create<Store>()(
         }),
     })),
     {
-      name: "store.data",
+      name: "store.edit",
       partialize: (s) => ({
         state: s.state,
       }),
