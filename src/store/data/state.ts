@@ -9,7 +9,7 @@ export type State = {
 };
 
 export const state: () => State["state"] = () => ({
-  name: "Default Build Name",
+  name: "Default",
   items: createItemRecords((section) => {
     const inWeapons = section === "Weapons";
     return {
