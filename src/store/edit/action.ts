@@ -9,44 +9,44 @@ import {
 export type Action = {
   setBuild: (val: Build) => void;
   setBuildName: (val: string) => void;
-  setName: (sec: string, item: string, val: string) => void;
-  setBaseDamage: (sec: string, item: string, val: number | null) => void;
-  setRpm: (sec: string, item: string, val: number | null) => void;
-  setWeaponType: (sec: string, item: string, val: WeaponType | null) => void;
-  appendAttribute: (sec: string, item: string, attr: Attribute) => void;
-  removeAttribute: (sec: string, item: string, index: number) => void;
+  setName: (cat: string, item: string, val: string) => void;
+  setBaseDamage: (cat: string, item: string, val: number | null) => void;
+  setRpm: (cat: string, item: string, val: number | null) => void;
+  setWeaponType: (cat: string, item: string, val: WeaponType | null) => void;
+  appendAttribute: (cat: string, item: string, attr: Attribute) => void;
+  removeAttribute: (cat: string, item: string, index: number) => void;
   changeAttributeName: (
-    sec: string,
+    cat: string,
     item: string,
     index: number,
     val: string,
   ) => void;
   changeAttributeAmplifier: (
-    sec: string,
+    cat: string,
     item: string,
     index: number,
     val: Amplifier,
   ) => void;
   changeAttributeValue: (
-    sec: string,
+    cat: string,
     item: string,
     index: number,
     val: number | null,
   ) => void;
   changeAttributeUptime: (
-    sec: string,
+    cat: string,
     item: string,
     index: number,
     val: number | null,
   ) => void;
   changeAttributeType: (
-    sec: string,
+    cat: string,
     item: string,
     index: number,
     val: AttributeType,
   ) => void;
   changeAttributeNote: (
-    sec: string,
+    cat: string,
     item: string,
     index: number,
     val: string,
