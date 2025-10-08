@@ -41,8 +41,14 @@ export default function Home() {
           <button
             className="btn btn-ghost text-error"
             onClick={() => {
-              localStorage.clear();
-              window.location.reload();
+              if (
+                window.confirm(
+                  "Are you sure to clear all data and reset this app?",
+                )
+              ) {
+                localStorage.clear();
+                window.location.reload();
+              }
             }}
           >
             Reset App
