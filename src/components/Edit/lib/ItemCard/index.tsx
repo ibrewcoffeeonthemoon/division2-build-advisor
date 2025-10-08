@@ -18,8 +18,8 @@ export const ItemCard = <C extends string, M extends string>({
   extraInput1,
   extraInput2,
 }: ItemCardProps<C, M>) => {
-  const open = stores.ui.Edit.state().section.item.open[category][item];
-  const setOpen = stores.ui.Edit.setItemOpen();
+  const open = stores.ui.Edit.state().section.topic.open[category][item];
+  const setOpen = stores.ui.Edit.setTopicOpen();
 
   const name = stores.edit.state().items[category][item].name;
   const attributes = stores.edit.state().items[category][item].attributes;
