@@ -10,7 +10,7 @@ export type Action = {
   action: {
     build: {
       setBuild: (val: Build) => void;
-      setBuildName: (val: string) => void;
+      setName: (val: string) => void;
     };
     item: {
       setName: (cat: string, item: string, val: string) => void;

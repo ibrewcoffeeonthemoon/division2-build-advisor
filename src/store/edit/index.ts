@@ -17,7 +17,7 @@ export const useStore = create<Store>()(
             set((s) => {
               s.state = val;
             }),
-          setBuildName: (val) =>
+          setName: (val) =>
             set((s) => {
               s.state.name = val;
             }),

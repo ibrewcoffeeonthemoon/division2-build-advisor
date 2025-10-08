@@ -9,7 +9,7 @@ import { DEFAULT_BUILD } from "@/lib/default";
 
 export default function Edit() {
   const currentBuild = stores.edit.state() as Build;
-  const setBuildName = stores.edit.action().build.setBuildName;
+  const setBuildName = stores.edit.action().build.setName;
   const setBuild = stores.edit.action().build.setBuild;
   const saveLoadout = stores.loadout.action().saveLoadout;
 
