@@ -13,7 +13,7 @@ export const ItemCard = <C extends string, M extends string>({
   children,
 }: ItemCardProps<C, M>) => {
   const open = store.state().section.topic.open[category][item];
-  const setOpen = store.setItemOpen();
+  const setOpen = store.setTopicOpen();
 
   return (
     <div className="collapse collapse-arrow rounded-md border-1 border-base-300 duration-1000">
