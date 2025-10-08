@@ -3,33 +3,33 @@ import { Summary } from "./Summary";
 import { stores } from "@/store";
 import { ReactNode } from "react";
 
-type ItemCardProps<S, C> = {
-  section: S;
-  item: C;
+type ItemCardProps<C, M> = {
+  category: C;
+  item: M;
   damageDashboard?: ReactNode;
   extraInput1?: ReactNode;
   extraInput2?: ReactNode;
 };
 
-export const ItemCard = <S extends string, C extends string>({
-  section,
+export const ItemCard = <C extends string, M extends string>({
+  category,
   item,
   damageDashboard,
   extraInput1,
   extraInput2,
-}: ItemCardProps<S, C>) => {
-  const open = stores.ui.Edit.state().section.item.open[section][item];
+}: ItemCardProps<C, M>) => {
+  const open = stores.ui.Edit.state().section.item.open[category][item];
   const setOpen = stores.ui.Edit.setItemOpen();
 
-  const name = stores.edit.state().items[section][item].name;
-  const attributes = stores.edit.state().items[section][item].attributes;
+  const name = stores.edit.state().items[category][item].name;
+  const attributes = stores.edit.state().items[category][item].attributes;
 
   return (
     <div className="collapse collapse-arrow rounded-md border-1 border-base-300 duration-1000">
       <input
         type="checkbox"
         checked={open}
-        onChange={(e) => setOpen(section, item, e.currentTarget.checked)}
+        onChange={(e) => setOpen(category, item, e.currentTarget.checked)}
       />
       <div className="collapse-title p-3">
         <div className="grid grid-cols-12 items-center">
@@ -38,10 +38,10 @@ export const ItemCard = <S extends string, C extends string>({
             {name}
           </div>
         </div>
-        {section === "Weapons" && damageDashboard}
+        {category === "Weapons" && damageDashboard}
         {open || <Summary {...{ attributes }} />}
       </div>
-      <Editor {...{ section, item, extraInput1, extraInput2 }} />
+      <Editor {...{ category, item, extraInput1, extraInput2 }} />
     </div>
   );
 };

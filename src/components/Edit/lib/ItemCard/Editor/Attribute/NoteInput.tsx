@@ -1,19 +1,19 @@
 import { Attribute } from "@/lib/type";
 import { store } from "@/store/edit";
 
-type Props<S, C> = {
-  section: S;
-  item: C;
+type Props<C, M> = {
+  category: C;
+  item: M;
   attribute: Attribute;
   index: number;
 };
 
-export const NoteInput = <S extends string, C extends string>({
-  section,
+export const NoteInput = <C extends string, M extends string>({
+  category,
   item,
   attribute,
   index,
-}: Props<S, C>) => {
+}: Props<C, M>) => {
   const changeAttributeNote = store.changeAttributeNote();
 
   return (
@@ -25,12 +25,12 @@ export const NoteInput = <S extends string, C extends string>({
         onFocus={(e) => e.currentTarget.select()}
         value={attribute.note}
         onChange={(e) =>
-          changeAttributeNote(section, item, index, e.currentTarget.value)
+          changeAttributeNote(category, item, index, e.currentTarget.value)
         }
       />
       <button
         className="btn badge badge-ghost badge-xs text-error font-extralight"
-        onClick={() => changeAttributeNote(section, item, index, "")}
+        onClick={() => changeAttributeNote(category, item, index, "")}
       >
         X
       </button>

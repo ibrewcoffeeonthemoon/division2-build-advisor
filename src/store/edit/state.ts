@@ -10,8 +10,8 @@ export type State = {
 
 export const state: () => State["state"] = () => ({
   name: "Default",
-  items: createItemRecords((section) => {
-    const inWeapons = section === "Weapons";
+  items: createItemRecords((category) => {
+    const inWeapons = category === "Weapons";
     return {
       name: "",
       baseDamage: inWeapons ? 0 : null,

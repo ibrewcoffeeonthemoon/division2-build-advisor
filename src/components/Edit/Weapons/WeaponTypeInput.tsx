@@ -2,16 +2,16 @@ import { WEAPON_TYPES } from "@/lib/constant";
 import { WeaponType } from "@/lib/type";
 import { store } from "@/store/edit";
 
-type Props<S, C> = {
-  section: S;
-  item: C;
+type Props<C, M> = {
+  category: C;
+  item: M;
 };
 
-export const WeaponTypeInput = <S extends string, C extends string>({
-  section,
+export const WeaponTypeInput = <C extends string, M extends string>({
+  category,
   item,
-}: Props<S, C>) => {
-  const weaponType = store.state().items[section][item].weaponType;
+}: Props<C, M>) => {
+  const weaponType = store.state().items[category][item].weaponType;
   const setWeaponType = store.setWeaponType();
 
   return (
@@ -21,7 +21,7 @@ export const WeaponTypeInput = <S extends string, C extends string>({
         className="select select-ghost col-span-4 w-full text-primary"
         value={weaponType ?? ""}
         onChange={(e) =>
-          setWeaponType(section, item, e.currentTarget.value as WeaponType)
+          setWeaponType(category, item, e.currentTarget.value as WeaponType)
         }
       >
         <option disabled={true}>Weapon Type</option>

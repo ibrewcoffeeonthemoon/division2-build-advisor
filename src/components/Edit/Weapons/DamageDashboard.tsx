@@ -1,14 +1,14 @@
 import { stores } from "@/store";
 import { calDamage } from "@/lib/damage";
-import { Items, Sections } from "@/lib/type";
+import { Items, CategoryKey } from "@/lib/type";
 
 type Props = {
   item: Items<"Weapons">;
 };
 
 export const DamageDashboard = ({ item }: Props) => {
-  const section = "Weapons" as Sections;
-  const open = stores.ui.Edit.state().section.item.open[section][item];
+  const category = "Weapons" as CategoryKey;
+  const open = stores.ui.Edit.state().section.item.open[category][item];
   const { dmgRecord, dpsRecord } = calDamage(item, stores.edit.state());
   const dmg = dmgRecord.normal.bodyshot.health.nocover;
   const dps = dpsRecord.normal.bodyshot.health.nocover;

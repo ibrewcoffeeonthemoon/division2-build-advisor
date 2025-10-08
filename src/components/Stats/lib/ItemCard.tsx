@@ -1,18 +1,18 @@
 import { store } from "@/store/ui/Stats";
 import { ReactNode } from "react";
 
-type ItemCardProps<S, M> = {
-  section: S;
+type ItemCardProps<C, M> = {
+  category: C;
   item: M;
   children: ReactNode;
 };
 
-export const ItemCard = <S extends string, M extends string>({
-  section,
+export const ItemCard = <C extends string, M extends string>({
+  category,
   item,
   children,
-}: ItemCardProps<S, M>) => {
-  const open = store.state().section.item.open[section][item];
+}: ItemCardProps<C, M>) => {
+  const open = store.state().section.item.open[category][item];
   const setOpen = store.setItemOpen();
 
   return (
@@ -20,7 +20,7 @@ export const ItemCard = <S extends string, M extends string>({
       <input
         type="checkbox"
         checked={open}
-        onChange={(e) => setOpen(section, item, e.currentTarget.checked)}
+        onChange={(e) => setOpen(category, item, e.currentTarget.checked)}
       />
       <div className="collapse-title p-3">
         <div className="grid grid-cols-12 items-center">

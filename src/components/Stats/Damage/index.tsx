@@ -24,7 +24,7 @@ export default function Damage() {
       }
     >
       {Object.keys(SCHEMA.Weapons).map((item, i) => (
-        <ItemCard key={i} section={section} item={item}>
+        <ItemCard key={i} category={section} item={item}>
           <div className="col-span-12 grid grid-cols-15 p-0 text-right">
             {/* header */}
             <span className="col-span-6 col-start-4">Normal</span>

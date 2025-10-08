@@ -1,19 +1,19 @@
 import { Attribute, AttributeType } from "@/lib/type";
 import { store } from "@/store/edit";
 
-type Props<S, C> = {
-  section: S;
-  item: C;
+type Props<C, M> = {
+  category: C;
+  item: M;
   attribute: Attribute;
   index: number;
 };
 
-export const TypeInput = <S extends string, C extends string>({
-  section,
+export const TypeInput = <C extends string, M extends string>({
+  category,
   item,
   attribute,
   index,
-}: Props<S, C>) => {
+}: Props<C, M>) => {
   const changeType = store.changeAttributeType();
 
   return (
@@ -21,7 +21,12 @@ export const TypeInput = <S extends string, C extends string>({
       className="select select-ghost col-span-4 text-primary"
       value={attribute.type}
       onChange={(e) =>
-        changeType(section, item, index, e.currentTarget.value as AttributeType)
+        changeType(
+          category,
+          item,
+          index,
+          e.currentTarget.value as AttributeType,
+        )
       }
     >
       <option disabled={true}>Type</option>

@@ -1,12 +1,12 @@
 import { ItemCard } from "../lib/ItemCard";
-import { Items, Sections } from "@/lib/type";
+import { Items, CategoryKey } from "@/lib/type";
 
 type Props = {
   item: Items<"Gears">;
 };
 
 export default function Card({ item }: Props) {
-  const section = "Gears" as Sections;
+  const category = "Gears" as CategoryKey;
 
-  return <ItemCard {...{ section, item }} />;
+  return <ItemCard {...{ category, item }} />;
 }

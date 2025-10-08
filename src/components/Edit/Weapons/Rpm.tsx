@@ -1,15 +1,15 @@
 import { store } from "@/store/edit";
 
-type Props<S, C> = {
-  section: S;
-  item: C;
+type Props<C, M> = {
+  category: C;
+  item: M;
 };
 
-export const Rpm = <S extends string, C extends string>({
-  section,
+export const Rpm = <C extends string, M extends string>({
+  category,
   item,
-}: Props<S, C>) => {
-  const rpm = store.state().items[section][item].rpm;
+}: Props<C, M>) => {
+  const rpm = store.state().items[category][item].rpm;
   const setRpm = store.setRpm();
 
   return (
@@ -24,12 +24,12 @@ export const Rpm = <S extends string, C extends string>({
         onChange={(e) => {
           const stringVal = e.currentTarget.value;
           const val = stringVal !== "" ? Number(stringVal) : null;
-          setRpm(section, item, val);
+          setRpm(category, item, val);
         }}
       />
       <button
         className="btn badge badge-ghost badge-xs text-error font-extralight"
-        onClick={() => setRpm(section, item, null)}
+        onClick={() => setRpm(category, item, null)}
       >
         X
       </button>
