@@ -10,7 +10,7 @@ export default function BuildCard({
   build: Build;
   index: number;
 }) {
-  const setBuild = stores.edit.action().setBuild;
+  const setBuild = stores.edit.action().build.setBuild;
   const removeLoadout = stores.loadout.action().removeLoadout;
   const format = (x?: number | null) => (x ? round(x, 0).toLocaleString() : "");
 

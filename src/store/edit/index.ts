@@ -12,14 +12,16 @@ export const useStore = create<Store>()(
     immer((set) => ({
       state: state(),
       action: {
-        setBuild: (val) =>
-          set((s) => {
-            s.state = val;
-          }),
-        setBuildName: (val) =>
-          set((s) => {
-            s.state.name = val;
-          }),
+        build: {
+          setBuild: (val) =>
+            set((s) => {
+              s.state = val;
+            }),
+          setBuildName: (val) =>
+            set((s) => {
+              s.state.name = val;
+            }),
+        },
         setName: (cat, item, val) =>
           set((s) => {
             s.state.items[cat][item].name = val;

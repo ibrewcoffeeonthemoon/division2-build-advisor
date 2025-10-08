@@ -8,12 +8,16 @@ import {
 
 export type Action = {
   action: {
-    setBuild: (val: Build) => void;
-    setBuildName: (val: string) => void;
+    build: {
+      setBuild: (val: Build) => void;
+      setBuildName: (val: string) => void;
+    };
+    // item
     setName: (cat: string, item: string, val: string) => void;
     setBaseDamage: (cat: string, item: string, val: number | null) => void;
     setRpm: (cat: string, item: string, val: number | null) => void;
     setWeaponType: (cat: string, item: string, val: WeaponType | null) => void;
+    // attribute
     appendAttribute: (cat: string, item: string, attr: Attribute) => void;
     removeAttribute: (cat: string, item: string, index: number) => void;
     changeAttributeName: (
