@@ -11,6 +11,10 @@ export const useStore = create<Store>()(
   persist(
     immer((set) => ({
       state: state(),
+      saveLoadout: (build) =>
+        set((s) => {
+          s.state.builds.push(build);
+        }),
     })),
     {
       name: "store.loadout",

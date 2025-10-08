@@ -1,1 +1,5 @@
-export type Action = {};
+import { Build } from "@/lib/type";
+
+export type Action = {
+  saveLoadout: (build: Build) => void;
+};
