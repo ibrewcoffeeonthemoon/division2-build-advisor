@@ -11,14 +11,16 @@ export const useStore = create<Store>()(
   persist(
     immer((set) => ({
       state: state(),
-      saveLoadout: (build) =>
-        set((s) => {
-          s.state.builds.push(build);
-        }),
-      removeLoadout: (index) =>
-        set((s) => {
-          s.state.builds.splice(index, 1);
-        }),
+      action: {
+        saveLoadout: (build) =>
+          set((s) => {
+            s.state.builds.push(build);
+          }),
+        removeLoadout: (index) =>
+          set((s) => {
+            s.state.builds.splice(index, 1);
+          }),
+      },
     })),
     {
       name: "store.loadout",

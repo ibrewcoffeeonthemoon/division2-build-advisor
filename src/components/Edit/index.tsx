@@ -11,7 +11,7 @@ export default function Edit() {
   const currentBuild = stores.edit.state() as Build;
   const setBuildName = stores.edit.setBuildName();
   const setBuild = stores.edit.setBuild();
-  const saveLoadout = stores.loadout.saveLoadout();
+  const saveLoadout = stores.loadout.action().saveLoadout;
 
   return (
     <div className="flex-grow overflow-auto">

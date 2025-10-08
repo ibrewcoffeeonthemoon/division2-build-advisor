@@ -11,7 +11,7 @@ export default function BuildCard({
   index: number;
 }) {
   const setBuild = stores.edit.setBuild();
-  const removeLoadout = stores.loadout.removeLoadout();
+  const removeLoadout = stores.loadout.action().removeLoadout;
   const format = (x?: number | null) => (x ? round(x, 0).toLocaleString() : "");
 
   return (
