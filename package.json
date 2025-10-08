@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "check-everything": "tsc --noEmit && eslint && echo '\n<<< SUCCESS >>>\n\n'",
+    "check": "pnpm run --silent check-everything"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
