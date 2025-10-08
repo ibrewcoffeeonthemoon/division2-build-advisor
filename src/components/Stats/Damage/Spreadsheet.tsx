@@ -3,8 +3,8 @@ import { Items } from "@/lib/type";
 import { round } from "@/lib/utils";
 import { stores } from "@/store";
 
-const Cell = ({ style, text }: { style?: string; text: string }) => (
-  <span className={`col-span-3 ${style}`}>{text}</span>
+const Cell = ({ className, text }: { className?: string; text: string }) => (
+  <span className={`col-span-3 text-base ${className}`}>{text}</span>
 );
 
 export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
@@ -13,60 +13,77 @@ export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
 
   return (
     <>
-      <Cell text="Health inC" />
-      <Cell text={format(d.normal.bodyshot.health.cover)} />
+      {/* Health */}
+      <Cell text="Health C" />
       <Cell
-        style="text-red-700"
+        className="font-light"
+        text={format(d.normal.bodyshot.health.cover)}
+      />
+      <Cell
+        className="text-red-700"
         text={format(d.normal.headshot.health.cover)}
       />
       <Cell
-        style="text-orange-400"
+        className="text-orange-400 font-bold"
         text={format(d.critical.bodyshot.health.cover)}
       />
       <Cell
-        style="text-orange-400 font-bold"
+        className="text-orange-400 font-extrabold"
         text={format(d.critical.headshot.health.cover)}
       />
 
-      <Cell text="Health ooC" />
-      <Cell text={format(d.normal.bodyshot.health.nocover)} />
+      <Cell text="Health oC" />
       <Cell
-        style="text-red-700"
+        className="font-light"
+        text={format(d.normal.bodyshot.health.nocover)}
+      />
+      <Cell
+        className="text-red-700"
         text={format(d.normal.headshot.health.nocover)}
       />
       <Cell
-        style="text-orange-400"
+        className="text-orange-400 font-bold"
         text={format(d.critical.bodyshot.health.nocover)}
       />
       <Cell
-        style="text-orange-400 font-bold"
+        className="text-orange-400 font-extrabold"
         text={format(d.critical.headshot.health.nocover)}
       />
 
-      <Cell text="Armor inC" />
-      <Cell text={format(d.normal.bodyshot.armor.cover)} />
-      <Cell style="text-red-700" text={format(d.normal.headshot.armor.cover)} />
+      {/* Armor */}
+      <Cell text="Armor C" />
       <Cell
-        style="text-orange-400"
+        className="text-blue-600 font-light"
+        text={format(d.normal.bodyshot.armor.cover)}
+      />
+      <Cell
+        className="text-blue-600"
+        text={format(d.normal.headshot.armor.cover)}
+      />
+      <Cell
+        className="text-blue-600 font-bold"
         text={format(d.critical.bodyshot.armor.cover)}
       />
       <Cell
-        style="text-orange-400 font-bold"
+        className="text-blue-600 font-extrabold"
         text={format(d.critical.headshot.armor.cover)}
       />
 
-      <Cell text="Armor ooC" />
-      <Cell text={format(d.normal.bodyshot.armor.nocover)} />
+      <Cell text="Armor oC" />
       <Cell
-        style="text-red-700"
+        className="text-blue-600 font-light"
+        text={format(d.normal.bodyshot.armor.nocover)}
+      />
+      <Cell
+        className="text-blue-600"
         text={format(d.normal.headshot.armor.nocover)}
       />
       <Cell
-        style="text-orange-400"
+        className="text-blue-600 font-bold"
         text={format(d.critical.bodyshot.armor.nocover)}
       />
       <Cell
-        style="text-orange-400 font-bold"
+        className="text-blue-600 font-extrabold"
         text={format(d.critical.headshot.armor.nocover)}
       />
     </>
