@@ -6,7 +6,7 @@ import { Section } from "@/components/lib/Section";
 
 export default function Extras() {
   const open = store.state().section.open["Extras"];
-  const setOpen = store.setSectionOpen();
+  const setOpen = store.action().setSectionOpen;
 
   return (
     <Section

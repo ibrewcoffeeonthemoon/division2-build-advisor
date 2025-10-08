@@ -23,7 +23,7 @@ export const Input = <C extends string, M extends string>({
   const openIndex =
     stores.ui.Edit.state().section.topic.attributes[category][item].openedIndex;
   const open = openIndex === index;
-  const setOpenIndex = stores.ui.Edit.setAttributeOpenIndex();
+  const setOpenIndex = stores.ui.Edit.action().setAttributeOpenIndex;
   const removeAttribute = stores.edit.action().removeAttribute;
 
   return (
