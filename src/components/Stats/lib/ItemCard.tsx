@@ -12,7 +12,7 @@ export const ItemCard = <C extends string, M extends string>({
   item,
   children,
 }: ItemCardProps<C, M>) => {
-  const open = store.state().section.item.open[category][item];
+  const open = store.state().section.topic.open[category][item];
   const setOpen = store.setItemOpen();
 
   return (

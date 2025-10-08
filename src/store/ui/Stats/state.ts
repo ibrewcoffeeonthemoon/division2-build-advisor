@@ -2,7 +2,7 @@ export type State = {
   state: {
     section: {
       open: Record<string, boolean>;
-      item: {
+      topic: {
         open: Record<string, Record<string, boolean>>;
       };
     };
@@ -14,7 +14,7 @@ export const state: () => State["state"] = () => ({
     open: {
       Damage: false,
     },
-    item: {
+    topic: {
       open: {
         Damage: {
           Primary: false,
