@@ -50,12 +50,7 @@ export type Action = {
         index: number,
         val: AttributeType,
       ) => void;
-      changeAttributeNote: (
-        cat: string,
-        item: string,
-        index: number,
-        val: string,
-      ) => void;
+      setNote: (cat: string, item: string, index: number, val: string) => void;
     };
   };
 };

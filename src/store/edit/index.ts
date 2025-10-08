@@ -71,7 +71,7 @@ export const useStore = create<Store>()(
             set((s) => {
               s.state.items[cat][item].attributes[index].type = val;
             }),
-          changeAttributeNote: (cat, item, index, val) =>
+          setNote: (cat, item, index, val) =>
             set((s) => {
               s.state.items[cat][item].attributes[index].note = val;
             }),
