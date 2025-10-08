@@ -41,7 +41,7 @@ export const useStore = create<Store>()(
             }),
         },
         attribute: {
-          appendAttribute: (cat, item, attr) =>
+          append: (cat, item, attr) =>
             set((s) => {
               s.state.items[cat][item].attributes.push(attr);
             }),
