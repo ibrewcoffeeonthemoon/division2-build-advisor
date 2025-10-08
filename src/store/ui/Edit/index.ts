@@ -17,11 +17,11 @@ export const useStore = create<Store>()(
         }),
       setItemOpen: (sec, item, val) =>
         set((s) => {
-          s.state.section.item.open[sec][item] = val;
+          s.state.section.topic.open[sec][item] = val;
         }),
       setAttributeOpenIndex: (sec, item, val) =>
         set((s) => {
-          s.state.section.item.attributes[sec][item].openedIndex = val;
+          s.state.section.topic.attributes[sec][item].openedIndex = val;
         }),
     })),
     {
