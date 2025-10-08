@@ -10,7 +10,7 @@ type Dmg = {
 };
 
 const calDmg = (item: Items<"Weapons">, s: State["state"]): Dmg => {
-  const weapon = s["Weapons"][item];
+  const weapon = s.items["Weapons"][item];
   const baseDamage = weapon.baseDamage!;
   const amplifierSums = calAmplifierSums(s)[item];
   const multiplier = calMultiplier(amplifierSums);
@@ -28,7 +28,7 @@ type Dps = {
 };
 
 const calDps = (item: Items<"Weapons">, s: State["state"]): Dps => {
-  const weapon = s["Weapons"][item];
+  const weapon = s.items["Weapons"][item];
   const { amplifierSums, dmgRecord } = calDmg(item, s);
   const rpm = weapon.rpm;
   const dpsRecord = createDamageRecord((n0, n1, n2, n3) => {
