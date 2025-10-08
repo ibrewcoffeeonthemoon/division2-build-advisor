@@ -67,7 +67,7 @@ export const useStore = create<Store>()(
             set((s) => {
               s.state.items[cat][item].attributes[index].uptime = val;
             }),
-          changeAttributeType: (cat, item, index, val) =>
+          setType: (cat, item, index, val) =>
             set((s) => {
               s.state.items[cat][item].attributes[index].type = val;
             }),
