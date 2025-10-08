@@ -15,6 +15,10 @@ export const useStore = create<Store>()(
         set((s) => {
           s.state.builds.push(build);
         }),
+      removeLoadout: (index) =>
+        set((s) => {
+          s.state.builds.splice(index, 1);
+        }),
     })),
     {
       name: "store.loadout",
