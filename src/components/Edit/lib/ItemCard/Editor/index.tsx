@@ -20,7 +20,7 @@ export const Editor = <C extends string, M extends string>({
 }: Props<C, M>) => {
   const [openedIndex, setOpenedIndex] = useState<number | null>(null);
   const attributes = store.state().items[category][item].attributes;
-  const appendAttribute = store.action().item.appendAttribute;
+  const appendAttribute = store.action().attribute.appendAttribute;
 
   return (
     <div className="grid grid-cols-12 collapse-content px-3">

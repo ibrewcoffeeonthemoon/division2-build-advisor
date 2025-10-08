@@ -39,6 +39,8 @@ export const useStore = create<Store>()(
             set((s) => {
               s.state.items[cat][item].weaponType = val;
             }),
+        },
+        attribute: {
           appendAttribute: (cat, item, attr) =>
             set((s) => {
               s.state.items[cat][item].attributes.push(attr);

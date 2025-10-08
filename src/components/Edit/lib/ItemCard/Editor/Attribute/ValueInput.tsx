@@ -17,7 +17,7 @@ export const ValueInput = <C extends string, M extends string>({
   attribute,
   index,
 }: Props<C, M>) => {
-  const changeAttributeValue = store.action().item.changeAttributeValue;
+  const changeAttributeValue = store.action().attribute.changeAttributeValue;
 
   return (
     <label className="input input-ghost input-md w-full items-center col-span-2">

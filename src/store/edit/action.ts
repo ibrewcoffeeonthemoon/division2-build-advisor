@@ -21,6 +21,8 @@ export type Action = {
         item: string,
         val: WeaponType | null,
       ) => void;
+    };
+    attribute: {
       appendAttribute: (cat: string, item: string, attr: Attribute) => void;
       removeAttribute: (cat: string, item: string, index: number) => void;
       changeAttributeName: (
