@@ -1,5 +1,4 @@
-import { Build, Item } from "@/lib/type";
-import { createItemRecords } from "../record";
+import { Build } from "@/lib/type";
 
 export type State = {
   state: {
@@ -8,17 +7,7 @@ export type State = {
 };
 
 export const state: () => State["state"] = () => {
-  const dummyItem = (name: string): Item => ({ name, attributes: [] });
   return {
-    builds: [
-      {
-        name: "Hello World",
-        items: createItemRecords<Item>(() => dummyItem("demo1")),
-      },
-      {
-        name: "Hello World Again",
-        items: createItemRecords<Item>(() => dummyItem("demo2")),
-      },
-    ],
+    builds: [],
   };
 };
