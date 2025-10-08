@@ -5,10 +5,12 @@ import Gears from "./Gears";
 import Extras from "./Extras";
 import { stores } from "@/store";
 import { Build } from "@/lib/type";
+import { DEFAULT_BUILD } from "@/lib/default";
 
 export default function Edit() {
   const currentBuild = stores.data.state() as Build;
   const setBuildName = stores.data.setBuildName();
+  const setBuild = stores.data.setBuild();
   const saveLoadout = stores.loadout.saveLoadout();
 
   return (
@@ -36,6 +38,14 @@ export default function Edit() {
             Save Loadout
           </button>
         </label>
+        <div className="flex flex-row justify-end pr-3">
+          <button
+            className="btn btn-ghost text-error"
+            onClick={() => setBuild(DEFAULT_BUILD)}
+          >
+            Load Default
+          </button>
+        </div>
       </div>
     </div>
   );
