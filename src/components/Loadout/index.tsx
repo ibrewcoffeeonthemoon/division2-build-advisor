@@ -9,7 +9,7 @@ export default function Loadout() {
   return (
     <div className="flex-grow overflow-auto flex flex-col">
       {builds.map((build, i) => (
-        <BuildCard key={i} build={build} />
+        <BuildCard key={i} index={i} build={build} />
       ))}
     </div>
   );
