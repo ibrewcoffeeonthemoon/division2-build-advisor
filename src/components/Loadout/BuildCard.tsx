@@ -1,6 +1,6 @@
 import { Build } from "@/lib/type";
 import { round } from "@/lib/utils";
-import { store } from "@/store/loadout";
+import { stores } from "@/store";
 import { Fragment } from "react";
 
 export default function BuildCard({
@@ -10,7 +10,8 @@ export default function BuildCard({
   build: Build;
   index: number;
 }) {
-  const removeLoadout = store.removeLoadout();
+  const setBuild = stores.data.setBuild();
+  const removeLoadout = stores.loadout.removeLoadout();
   const format = (x?: number | null) => (x ? round(x, 0).toLocaleString() : "");
 
   return (
@@ -34,7 +35,13 @@ export default function BuildCard({
             </Fragment>
           ))}
         </div>
-        <div className="justify-end card-actions">
+        <div className="justify-between card-actions">
+          <button
+            className="btn btn-ghost text-primary"
+            onClick={() => setBuild(build)}
+          >
+            Load
+          </button>
           <button
             className="btn btn-ghost text-error"
             onClick={() => removeLoadout(index)}
