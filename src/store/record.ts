@@ -1,22 +1,22 @@
 import { SCHEMA } from "@/lib/constant";
 import { ItemRecords, CategoryRecords } from "@/lib/type";
 
-export const createCategoryRecords = <T>(fn: (section: string) => T) => {
+export const createCategoryRecords = <T>(fn: (category: string) => T) => {
   const result: Record<string, T> = {};
-  for (const section of Object.keys(SCHEMA)) {
-    result[section] = fn(section);
+  for (const category of Object.keys(SCHEMA)) {
+    result[category] = fn(category);
   }
   return result as CategoryRecords<T>;
 };
 
 export const createItemRecords = <T>(
-  fn: (section: string, item: string) => T,
+  fn: (category: string, item: string) => T,
 ) => {
   const result: Record<string, Record<string, T>> = {};
-  for (const [section, items] of Object.entries(SCHEMA)) {
-    result[section] = {};
+  for (const [category, items] of Object.entries(SCHEMA)) {
+    result[category] = {};
     for (const item of Object.keys(items)) {
-      result[section][item] = fn(section, item);
+      result[category][item] = fn(category, item);
     }
   }
   return result as ItemRecords<T>;
