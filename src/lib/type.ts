@@ -6,13 +6,13 @@ export type CategoryKey = keyof Schema;
 
 export type Items<C extends CategoryKey> = keyof Schema[C];
 
-export type SectionRecords<T> = {
+export type CategoryRecords<T> = {
   [C in CategoryKey]: T;
 };
 
 export type ItemRecords<T> = {
-  [S in CategoryKey]: {
-    [M in Items<S>]: T;
+  [C in CategoryKey]: {
+    [M in Items<C>]: T;
   };
 };
 
