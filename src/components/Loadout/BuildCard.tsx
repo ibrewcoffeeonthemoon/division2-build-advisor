@@ -2,17 +2,11 @@ import { Build } from "@/lib/type";
 import { round } from "@/lib/utils";
 import { Fragment } from "react";
 
-export default function BuildCard({
-  key,
-  build,
-}: {
-  key: number;
-  build: Build;
-}) {
+export default function BuildCard({ build }: { build: Build }) {
   const format = (x?: number | null) => (x ? round(x, 0).toLocaleString() : "");
 
   return (
-    <div key={key} className="card">
+    <div className="card">
       <div className="card-body">
         <div className="card-title">{build.name}</div>
         <div className="grid grid-cols-24">
