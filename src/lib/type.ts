@@ -2,16 +2,16 @@ import { AMPLIFIERS, ATTRIBUTE_TYPES, SCHEMA, WEAPON_TYPES } from "./constant";
 
 export type Schema = typeof SCHEMA;
 
-export type Sections = keyof Schema;
+export type CategoryKey = keyof Schema;
 
-export type Items<S extends Sections> = keyof Schema[S];
+export type Items<S extends CategoryKey> = keyof Schema[S];
 
 export type SectionRecords<T> = {
-  [S in Sections]: T;
+  [S in CategoryKey]: T;
 };
 
 export type ItemRecords<T> = {
-  [S in Sections]: {
+  [S in CategoryKey]: {
     [M in Items<S>]: T;
   };
 };

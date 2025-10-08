@@ -1,5 +1,5 @@
 import { ItemCard } from "../lib/ItemCard";
-import { Items, Sections } from "@/lib/type";
+import { Items, CategoryKey } from "@/lib/type";
 import { BaseDamage } from "./BaseDamage";
 import { Rpm } from "./Rpm";
 import { DamageDashboard } from "./DamageDashboard";
@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function Card({ item }: Props) {
-  const section = "Weapons" as Sections;
+  const section = "Weapons" as CategoryKey;
 
   return (
     <ItemCard
