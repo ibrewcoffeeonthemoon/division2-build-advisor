@@ -2,7 +2,7 @@
 
 import { store } from "@/store/ui/Edit";
 import Card from "./Card";
-import { Section } from "../lib/Section";
+import { Section } from "@/components/lib/Section";
 
 export default function Gears() {
   const open = store.state().section.open["Gears"];
