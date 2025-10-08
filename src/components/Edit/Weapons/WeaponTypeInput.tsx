@@ -11,7 +11,7 @@ export const WeaponTypeInput = <S extends string, C extends string>({
   section,
   item,
 }: Props<S, C>) => {
-  const weaponType = store.state()[section][item].weaponType;
+  const weaponType = store.state().items[section][item].weaponType;
   const setWeaponType = store.setWeaponType();
 
   return (

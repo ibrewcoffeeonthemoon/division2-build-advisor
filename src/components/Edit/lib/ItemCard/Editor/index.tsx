@@ -19,7 +19,7 @@ export const Editor = <S extends string, C extends string>({
   extraInput2,
 }: Props<S, C>) => {
   const [openedIndex, setOpenedIndex] = useState<number | null>(null);
-  const attributes = store.state()[section][item].attributes;
+  const attributes = store.state().items[section][item].attributes;
   const appendAttribute = store.appendAttribute();
 
   return (

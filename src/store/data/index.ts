@@ -11,55 +11,59 @@ export const useStore = create<Store>()(
   persist(
     immer((set) => ({
       state: state(),
+      setBuildName: (val) =>
+        set((s) => {
+          s.state.name = val;
+        }),
       setName: (sec, item, val) =>
         set((s) => {
-          s.state[sec][item].name = val;
+          s.state.items[sec][item].name = val;
         }),
       setBaseDamage: (sec, item, val) =>
         set((s) => {
-          s.state[sec][item].baseDamage = val;
+          s.state.items[sec][item].baseDamage = val;
         }),
       setRpm: (sec, item, val) =>
         set((s) => {
-          s.state[sec][item].rpm = val;
+          s.state.items[sec][item].rpm = val;
         }),
       setWeaponType: (sec, item, val) =>
         set((s) => {
-          s.state[sec][item].weaponType = val;
+          s.state.items[sec][item].weaponType = val;
         }),
       appendAttribute: (sec, item, attr) =>
         set((s) => {
-          s.state[sec][item].attributes.push(attr);
+          s.state.items[sec][item].attributes.push(attr);
         }),
       removeAttribute: (sec, item, index) =>
         set((s) => {
-          s.state[sec][item].attributes = s.state[sec][item].attributes.filter(
-            (_, i) => i !== index,
-          );
+          s.state.items[sec][item].attributes = s.state.items[sec][
+            item
+          ].attributes.filter((_, i) => i !== index);
         }),
       changeAttributeName: (sec, item, index, val) =>
         set((s) => {
-          s.state[sec][item].attributes[index].name = val;
+          s.state.items[sec][item].attributes[index].name = val;
         }),
       changeAttributeAmplifier: (sec, item, index, val) =>
         set((s) => {
-          s.state[sec][item].attributes[index].amplifier = val;
+          s.state.items[sec][item].attributes[index].amplifier = val;
         }),
       changeAttributeValue: (sec, item, index, val) =>
         set((s) => {
-          s.state[sec][item].attributes[index].value = val;
+          s.state.items[sec][item].attributes[index].value = val;
         }),
       changeAttributeUptime: (sec, item, index, val) =>
         set((s) => {
-          s.state[sec][item].attributes[index].uptime = val;
+          s.state.items[sec][item].attributes[index].uptime = val;
         }),
       changeAttributeType: (sec, item, index, val) =>
         set((s) => {
-          s.state[sec][item].attributes[index].type = val;
+          s.state.items[sec][item].attributes[index].type = val;
         }),
       changeAttributeNote: (sec, item, index, val) =>
         set((s) => {
-          s.state[sec][item].attributes[index].note = val;
+          s.state.items[sec][item].attributes[index].note = val;
         }),
     })),
     {

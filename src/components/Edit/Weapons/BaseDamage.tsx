@@ -9,7 +9,7 @@ export const BaseDamage = <S extends string, C extends string>({
   section,
   item,
 }: Props<S, C>) => {
-  const baseDamage = store.state()[section][item].baseDamage;
+  const baseDamage = store.state().items[section][item].baseDamage;
   const setBaseDamage = store.setBaseDamage();
 
   return (

@@ -7,16 +7,16 @@ export type AmplifierSums = Record<Items<"Weapons">, Record<Amplifier, number>>;
 export const calAmplifierSums = (s: State["state"]): AmplifierSums => {
   // extract weapon item attrs into their own records
   const weaponItemAttrs = {
-    Primary: [...s.Weapons.Primary.attributes],
-    Secondary: [...s.Weapons.Secondary.attributes],
-    Sidearm: [...s.Weapons.Sidearm.attributes],
-    Signature: [...s.Weapons.Signature.attributes],
+    Primary: [...s.items.Weapons.Primary.attributes],
+    Secondary: [...s.items.Weapons.Secondary.attributes],
+    Sidearm: [...s.items.Weapons.Sidearm.attributes],
+    Signature: [...s.items.Weapons.Signature.attributes],
   } as Record<Items<"Weapons">, Attribute[]>;
 
   // extract other item attrs into a shared records
   const otherItemAttrs = Object.values({
-    ...s["Gears"],
-    ...s["Extras"],
+    ...s.items["Gears"],
+    ...s.items["Extras"],
   }).flatMap((items) => Object.values(items.attributes));
 
   // combine to form a relevent record for each weapon
@@ -34,7 +34,7 @@ export const calAmplifierSums = (s: State["state"]): AmplifierSums => {
       attrs.filter((a) => {
         // filter on all WDType Attribute
         if (a.amplifier === "WDType") {
-          const currentWeaponType = s.Weapons[weapon].weaponType!;
+          const currentWeaponType = s.items.Weapons[weapon].weaponType!;
           const matchingWDTypeName = WEAPON_TYPES_WDTYPE_MAP[currentWeaponType];
           const wdTypeName = a.name;
           // only allow matching WDType name to stay

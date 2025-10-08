@@ -9,7 +9,7 @@ export const Rpm = <S extends string, C extends string>({
   section,
   item,
 }: Props<S, C>) => {
-  const rpm = store.state()[section][item].rpm;
+  const rpm = store.state().items[section][item].rpm;
   const setRpm = store.setRpm();
 
   return (

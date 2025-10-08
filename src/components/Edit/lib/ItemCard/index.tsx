@@ -21,8 +21,8 @@ export const ItemCard = <S extends string, C extends string>({
   const open = stores.ui.Edit.state().section.item.open[section][item];
   const setOpen = stores.ui.Edit.setItemOpen();
 
-  const name = stores.data.state()[section][item].name;
-  const attributes = stores.data.state()[section][item].attributes;
+  const name = stores.data.state().items[section][item].name;
+  const attributes = stores.data.state().items[section][item].attributes;
 
   return (
     <div className="collapse collapse-arrow rounded-md border-1 border-base-300 duration-1000">
