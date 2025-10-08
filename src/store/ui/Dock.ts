@@ -4,22 +4,30 @@ import { persist } from "zustand/middleware";
 import { createSelectors } from "../utils";
 
 type Store = {
-  activeButton: number | null;
-  setActiveButton: (val: number | null) => void;
+  state: {
+    activeButton: number | null;
+  };
+  action: {
+    setActiveButton: (val: number | null) => void;
+  };
 };
 
 export const useStore = create<Store>()(
   persist(
     immer((set) => ({
-      activeButton: 0,
-      setActiveButton: (val) =>
-        set((s) => {
-          s.activeButton = val;
-        }),
+      state: {
+        activeButton: 0,
+      },
+      action: {
+        setActiveButton: (val) =>
+          set((s) => {
+            s.state.activeButton = val;
+          }),
+      },
     })),
     {
       name: "store.ui.Dock",
-      partialize: (s) => ({ activeButton: s.activeButton }),
+      partialize: (s) => ({ state: s.state }),
     },
   ),
 );
