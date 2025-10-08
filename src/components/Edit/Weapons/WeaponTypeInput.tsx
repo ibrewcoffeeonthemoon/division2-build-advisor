@@ -26,8 +26,11 @@ export const WeaponTypeInput = <S extends string, C extends string>({
       >
         <option disabled={true}>Weapon Type</option>
         {WEAPON_TYPES.map((name, i) => (
-          <option key={i}>{name}</option>
+          <option key={i} value={name}>
+            {name}
+          </option>
         ))}
+        <option value="">None</option>
       </select>
     </div>
   );
