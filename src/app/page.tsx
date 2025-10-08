@@ -37,6 +37,17 @@ export default function Home() {
             {currentUrl}
           </a>
         </div>
+        <div className="flex justify-center pb-5">
+          <button
+            className="btn btn-ghost text-error"
+            onClick={() => {
+              localStorage.clear();
+              window.location.reload();
+            }}
+          >
+            Reset App
+          </button>
+        </div>
         <Dock />
       </div>
     </div>
