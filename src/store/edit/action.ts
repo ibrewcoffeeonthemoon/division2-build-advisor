@@ -24,7 +24,7 @@ export type Action = {
     };
     attribute: {
       append: (cat: string, item: string, attr: Attribute) => void;
-      removeAttribute: (cat: string, item: string, index: number) => void;
+      remove: (cat: string, item: string, index: number) => void;
       changeAttributeName: (
         cat: string,
         item: string,

@@ -45,7 +45,7 @@ export const useStore = create<Store>()(
             set((s) => {
               s.state.items[cat][item].attributes.push(attr);
             }),
-          removeAttribute: (cat, item, index) =>
+          remove: (cat, item, index) =>
             set((s) => {
               s.state.items[cat][item].attributes = s.state.items[cat][
                 item
