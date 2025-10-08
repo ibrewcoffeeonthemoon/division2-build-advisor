@@ -4,9 +4,10 @@ import Weapons from "./Weapons";
 import Gears from "./Gears";
 import Extras from "./Extras";
 import { stores } from "@/store";
-import { createItemRecords } from "@/store/record";
+import { Build } from "@/lib/type";
 
 export default function Edit() {
+  const currentBuild = stores.data.state() as Build;
   const saveLoadout = stores.loadout.saveLoadout();
 
   return (
@@ -17,15 +18,7 @@ export default function Edit() {
       <div className="w-full p-2 flex flex-row justify-center">
         <button
           className="btn btn-ghost text-primary"
-          onClick={() =>
-            saveLoadout({
-              name: "Brandnew loadout",
-              items: createItemRecords(() => ({
-                name: "some weapon",
-                attributes: [],
-              })),
-            })
-          }
+          onClick={() => saveLoadout(currentBuild)}
         >
           Save to Loadout
         </button>
