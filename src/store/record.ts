@@ -1,7 +1,7 @@
 import { SCHEMA } from "@/lib/constant";
 import { ItemRecords, CategoryRecords } from "@/lib/type";
 
-export const createSectionRecords = <T>(fn: (section: string) => T) => {
+export const createCategoryRecords = <T>(fn: (section: string) => T) => {
   const result: Record<string, T> = {};
   for (const section of Object.keys(SCHEMA)) {
     result[section] = fn(section);

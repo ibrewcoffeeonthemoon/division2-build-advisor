@@ -1,4 +1,4 @@
-import { createItemRecords, createSectionRecords } from "@/store/record";
+import { createItemRecords, createCategoryRecords } from "@/store/record";
 
 export type State = {
   state: {
@@ -17,7 +17,7 @@ export type State = {
 
 export const state: () => State["state"] = () => ({
   section: {
-    open: createSectionRecords(() => false),
+    open: createCategoryRecords(() => false),
     item: {
       open: createItemRecords(() => false),
       attributes: createItemRecords(() => ({ openedIndex: null })),
