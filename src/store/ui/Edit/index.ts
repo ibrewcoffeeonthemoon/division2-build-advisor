@@ -15,13 +15,13 @@ export const useStore = create<Store>()(
         set((s) => {
           s.state.section.open[sec] = val;
         }),
-      setTopicOpen: (sec, item, val) =>
+      setTopicOpen: (sec, tp, val) =>
         set((s) => {
-          s.state.section.topic.open[sec][item] = val;
+          s.state.section.topic.open[sec][tp] = val;
         }),
-      setAttributeOpenIndex: (sec, item, val) =>
+      setAttributeOpenIndex: (sec, tp, val) =>
         set((s) => {
-          s.state.section.topic.attributes[sec][item].openedIndex = val;
+          s.state.section.topic.attributes[sec][tp].openedIndex = val;
         }),
     })),
     {
