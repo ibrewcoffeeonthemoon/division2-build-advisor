@@ -1,6 +1,13 @@
-import { Amplifier, Attribute, AttributeType, WeaponType } from "@/lib/type";
+import {
+  Amplifier,
+  Attribute,
+  AttributeType,
+  Build,
+  WeaponType,
+} from "@/lib/type";
 
 export type Action = {
+  setBuild: (val: Build) => void;
   setBuildName: (val: string) => void;
   setName: (sec: string, item: string, val: string) => void;
   setBaseDamage: (sec: string, item: string, val: number | null) => void;
