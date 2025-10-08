@@ -30,7 +30,7 @@ export default function NavBar() {
         </div>
         <div className="flex-1 justify-center items-center">
           <h1 className="font-xl font-bold text-center align-middle">
-            Awesome Build
+            Build Advisor
           </h1>
         </div>
         <div className="flex-1 flex flex-row justify-end items-center gap-2">
