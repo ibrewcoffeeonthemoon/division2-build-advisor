@@ -15,7 +15,7 @@ export const UptimeInput = <C extends string, M extends string>({
   attribute,
   index,
 }: Props<C, M>) => {
-  const changeAttributeUptime = store.changeAttributeUptime();
+  const changeAttributeUptime = store.action().changeAttributeUptime;
 
   return (
     <label className="input input-ghost input-md w-full items-center col-span-2">

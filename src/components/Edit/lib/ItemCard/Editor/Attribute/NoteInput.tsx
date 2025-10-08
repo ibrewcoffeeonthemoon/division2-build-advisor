@@ -14,7 +14,7 @@ export const NoteInput = <C extends string, M extends string>({
   attribute,
   index,
 }: Props<C, M>) => {
-  const changeAttributeNote = store.changeAttributeNote();
+  const changeAttributeNote = store.action().changeAttributeNote;
 
   return (
     <label className="input input-ghost w-full col-span-8">

@@ -10,7 +10,7 @@ export const BaseDamage = <C extends string, M extends string>({
   item,
 }: Props<C, M>) => {
   const baseDamage = store.state().items[category][item].baseDamage;
-  const setBaseDamage = store.setBaseDamage();
+  const setBaseDamage = store.action().setBaseDamage;
 
   return (
     <label className="input input-ghost w-full col-span-7">
