@@ -10,7 +10,7 @@ export const Rpm = <C extends string, M extends string>({
   item,
 }: Props<C, M>) => {
   const rpm = store.state().items[category][item].rpm;
-  const setRpm = store.action().setRpm;
+  const setRpm = store.action().item.setRpm;
 
   return (
     <label className="input input-ghost w-full col-span-5">

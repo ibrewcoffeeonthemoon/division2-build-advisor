@@ -24,7 +24,7 @@ export const Input = <C extends string, M extends string>({
     stores.ui.Edit.state().section.topic.attributes[category][item].openedIndex;
   const open = openIndex === index;
   const setOpenIndex = stores.ui.Edit.action().setAttributeOpenIndex;
-  const removeAttribute = stores.edit.action().removeAttribute;
+  const removeAttribute = stores.edit.action().item.removeAttribute;
 
   return (
     <div className="collapse collapse-arrow col-span-12 p-1.5 m-0 border-1 border-base-300 duration-1000">

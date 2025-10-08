@@ -15,8 +15,8 @@ export const AttributeInput = <C extends string, M extends string>({
   attribute,
   index,
 }: Props<C, M>) => {
-  const changeAttributeName = store.action().changeAttributeName;
-  const changeAttributeAmplifier = store.action().changeAttributeAmplifier;
+  const changeAttributeName = store.action().item.changeAttributeName;
+  const changeAttributeAmplifier = store.action().item.changeAttributeAmplifier;
 
   return (
     <select
