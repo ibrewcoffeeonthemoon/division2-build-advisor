@@ -9,22 +9,36 @@ import { ItemCard } from "./lib/ItemCard";
 import { SCHEMA } from "@/lib/constant";
 
 export const SpreadSheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
-  const { dmgRecord } = calDamage(weapon, stores.data.state());
+  const { dmgRecord: d } = calDamage(weapon, stores.data.state());
+  const format = (x: number) => round(x, 0).toLocaleString();
 
   return (
     <>
-      <span className="col-span-3">{weapon}</span>
+      <span className="col-span-3">health inC</span>
       <span className="col-span-3">
-        {round(dmgRecord.normal.bodyshot.health.nocover, 0).toLocaleString()}
+        {format(d.normal.bodyshot.health.cover)}
       </span>
       <span className="col-span-3 text-red-700">
-        {round(dmgRecord.normal.headshot.health.nocover, 0).toLocaleString()}
+        {format(d.normal.headshot.health.cover)}
       </span>
       <span className="col-span-3 text-orange-400">
-        {round(dmgRecord.critical.bodyshot.health.nocover, 0).toLocaleString()}
+        {format(d.critical.bodyshot.health.cover)}
       </span>
       <span className="col-span-3 text-orange-400 font-bold">
-        {round(dmgRecord.critical.headshot.health.nocover, 0).toLocaleString()}
+        {format(d.critical.headshot.health.cover)}
+      </span>
+      <span className="col-span-3">health ooC</span>
+      <span className="col-span-3">
+        {format(d.normal.bodyshot.health.nocover)}
+      </span>
+      <span className="col-span-3 text-red-700">
+        {format(d.normal.headshot.health.nocover)}
+      </span>
+      <span className="col-span-3 text-orange-400">
+        {format(d.critical.bodyshot.health.nocover)}
+      </span>
+      <span className="col-span-3 text-orange-400 font-bold">
+        {format(d.critical.headshot.health.nocover)}
       </span>
     </>
   );
