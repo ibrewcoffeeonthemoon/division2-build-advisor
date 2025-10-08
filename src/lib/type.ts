@@ -4,10 +4,10 @@ export type Schema = typeof SCHEMA;
 
 export type CategoryKey = keyof Schema;
 
-export type Items<S extends CategoryKey> = keyof Schema[S];
+export type Items<C extends CategoryKey> = keyof Schema[C];
 
 export type SectionRecords<T> = {
-  [S in CategoryKey]: T;
+  [C in CategoryKey]: T;
 };
 
 export type ItemRecords<T> = {
