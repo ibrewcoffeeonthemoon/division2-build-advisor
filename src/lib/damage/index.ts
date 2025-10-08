@@ -1,4 +1,4 @@
-import { State } from "@/store/data/state";
+import { State } from "@/store/edit/state";
 import { Items } from "../type";
 import { AmplifierSums, calAmplifierSums } from "./amplifier";
 import { calMultiplier } from "./multiplier";

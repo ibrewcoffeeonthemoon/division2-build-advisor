@@ -1,5 +1,5 @@
 import { Attribute } from "@/lib/type";
-import { store } from "@/store/data";
+import { store } from "@/store/edit";
 
 type Props<S, C> = {
   section: S;

@@ -1,6 +1,6 @@
 import { Attribute } from "@/lib/type";
 import { round } from "@/lib/utils";
-import { store } from "@/store/data";
+import { store } from "@/store/edit";
 
 type Props<S, C> = {
   section: S;
