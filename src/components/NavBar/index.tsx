@@ -14,7 +14,7 @@ export default function NavBar() {
       <div
         className="
         navbar bg-base-200 shadow-sm border-y-2 border-base-300
-        grid grid-cols-3
+        flex flex-row
         px-4
       "
       >
