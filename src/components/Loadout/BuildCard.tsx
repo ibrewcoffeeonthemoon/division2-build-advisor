@@ -1,4 +1,5 @@
 import { Build } from "@/lib/type";
+import { round } from "@/lib/utils";
 import { Fragment } from "react";
 
 export default function BuildCard({
@@ -8,6 +9,8 @@ export default function BuildCard({
   key: number;
   build: Build;
 }) {
+  const format = (x?: number | null) => (x ? round(x, 0).toLocaleString() : "");
+
   return (
     <div key={key} className="card">
       <div className="card-body">
@@ -24,8 +27,8 @@ export default function BuildCard({
               <span className="col-span-10 font-semibold text-primary">
                 {item.name}
               </span>
-              <span className="col-span-6">{"48,500"}</span>
-              <span className="col-span-3">{"850"}</span>
+              <span className="col-span-6">{format(item.baseDamage)}</span>
+              <span className="col-span-3">{format(item.rpm)}</span>
             </Fragment>
           ))}
         </div>
