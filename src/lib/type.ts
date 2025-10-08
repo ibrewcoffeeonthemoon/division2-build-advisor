@@ -30,3 +30,16 @@ export type Attribute = {
   note: string;
   amplifier: Amplifier;
 };
+
+export type Item = {
+  name: string;
+  baseDamage?: number | null;
+  rpm?: number | null;
+  weaponType?: WeaponType | null;
+  attributes: Attribute[];
+};
+
+export type Build = {
+  name: string;
+  items: ItemRecords<Item>;
+};
