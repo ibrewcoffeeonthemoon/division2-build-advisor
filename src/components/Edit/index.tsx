@@ -15,13 +15,26 @@ export default function Edit() {
       <Weapons />
       <Gears />
       <Extras />
-      <div className="w-full p-2 flex flex-row justify-center">
-        <button
-          className="btn btn-ghost text-primary"
-          onClick={() => saveLoadout(currentBuild)}
-        >
-          Save to Loadout
-        </button>
+      <div className="w-full p-2">
+        <label className="input input-ghost w-full">
+          <span className="font-bold">Build Name</span>
+          <input
+            type="text"
+            className="grow text-primary pl-1"
+            placeholder="<<<"
+            onFocus={(e) => e.currentTarget.select()}
+            value={currentBuild.name}
+            onChange={(e) => {
+              // setName(section, item, e.currentTarget.value);
+            }}
+          />
+          <button
+            className="btn btn-ghost text-primary"
+            onClick={() => saveLoadout(currentBuild)}
+          >
+            Save Loadout
+          </button>
+        </label>
       </div>
     </div>
   );
