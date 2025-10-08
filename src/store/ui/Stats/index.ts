@@ -15,6 +15,10 @@ export const useStore = create<Store>()(
         set((s) => {
           s.state.section.open[sec] = val;
         }),
+      setItemOpen: (sec, item, val) =>
+        set((s) => {
+          s.state.section.item.open[sec][item] = val;
+        }),
     })),
     {
       name: "store.ui.Stats",

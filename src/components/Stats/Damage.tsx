@@ -5,6 +5,8 @@ import { Section } from "../Edit/lib/Section";
 import { calDamage } from "@/lib/damage";
 import { round } from "@/lib/utils";
 import { Items } from "@/lib/type";
+import { ItemCard } from "./lib/ItemCard";
+import { SCHEMA } from "@/lib/constant";
 
 export const SpreadSheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
   const { dmgRecord } = calDamage(weapon, stores.data.state());
@@ -29,35 +31,36 @@ export const SpreadSheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
 };
 
 export default function Damage() {
-  const open = stores.ui.Stats.state().section.open["Damage"];
+  const section = "Damage";
+  const open = stores.ui.Stats.state().section.open[section];
   const setOpen = stores.ui.Stats.setSectionOpen();
-  const { dmgRecord, dpsRecord } = calDamage("Primary", stores.data.state());
 
   return (
     <Section
-      name="Damage"
+      name={section}
       control={
         <input
           type="checkbox"
           checked={open}
-          onChange={(e) => setOpen("Damage", e.currentTarget.checked)}
+          onChange={(e) => setOpen(section, e.currentTarget.checked)}
         />
       }
     >
-      <div className="grid grid-cols-15 p-2">
-        {/* header */}
-        <span className="col-span-6 col-start-4">Normal</span>
-        <span className="col-span-6">Critical</span>
-        <span className="col-span-3 col-start-4">Body</span>
-        <span className="col-span-3">Head</span>
-        <span className="col-span-3">Body</span>
-        <span className="col-span-3">Head</span>
-        {/* data */}
-        <SpreadSheet weapon="Primary" />
-        <SpreadSheet weapon="Secondary" />
-        <SpreadSheet weapon="Sidearm" />
-        <SpreadSheet weapon="Signature" />
-      </div>
+      {Object.keys(SCHEMA.Weapons).map((item, i) => (
+        <ItemCard key={i} section={section} item={item}>
+          <div className="col-span-12 grid grid-cols-15 p-0">
+            {/* header */}
+            <span className="col-span-6 col-start-4">Normal</span>
+            <span className="col-span-6">Critical</span>
+            <span className="col-span-3 col-start-4">Body</span>
+            <span className="col-span-3">Head</span>
+            <span className="col-span-3">Body</span>
+            <span className="col-span-3">Head</span>
+            {/* data */}
+            <SpreadSheet weapon={item as Items<"Weapons">} />
+          </div>
+        </ItemCard>
+      ))}
     </Section>
   );
 }
