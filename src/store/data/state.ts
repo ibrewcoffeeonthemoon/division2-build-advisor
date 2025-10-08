@@ -2,11 +2,15 @@ import { Item, WeaponType } from "@/lib/type";
 import { createItemRecords } from "../record";
 
 export type State = {
-  state: Record<string, Record<string, Item>>;
+  state: {
+    name: string;
+    items: Record<string, Record<string, Item>>;
+  };
 };
 
-export const state: () => State["state"] = () =>
-  createItemRecords((section) => {
+export const state: () => State["state"] = () => ({
+  name: "Default Build Name",
+  items: createItemRecords((section) => {
     const inWeapons = section === "Weapons";
     return {
       name: "",
@@ -15,4 +19,5 @@ export const state: () => State["state"] = () =>
       weaponType: inWeapons ? ("AR" as WeaponType) : null,
       attributes: [],
     };
-  });
+  }),
+});
