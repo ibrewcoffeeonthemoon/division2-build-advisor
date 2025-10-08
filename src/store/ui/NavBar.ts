@@ -3,22 +3,30 @@ import { immer } from "zustand/middleware/immer";
 import { createSelectors } from "../utils";
 
 type Store = {
-  showAlert: boolean;
-  setShowAlert: (val: boolean) => void;
-  toggleShowAlert: () => void;
+  state: {
+    showAlert: boolean;
+  };
+  action: {
+    setShowAlert: (val: boolean) => void;
+    toggleShowAlert: () => void;
+  };
 };
 
 export const useStore = create<Store>()(
   immer((set) => ({
-    showAlert: false,
-    setShowAlert: (val) =>
-      set((s) => {
-        s.showAlert = val;
-      }),
-    toggleShowAlert: () =>
-      set((s) => {
-        s.showAlert = !s.showAlert;
-      }),
+    state: {
+      showAlert: false,
+    },
+    action: {
+      setShowAlert: (val) =>
+        set((s) => {
+          s.state.showAlert = val;
+        }),
+      toggleShowAlert: () =>
+        set((s) => {
+          s.state.showAlert = !s.state.showAlert;
+        }),
+    },
   })),
 );
 
