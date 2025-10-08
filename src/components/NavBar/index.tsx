@@ -4,6 +4,7 @@ import Image from "next/image";
 import ThemeButton from "./ThemeButton";
 import Link from "next/link";
 import { stores } from "@/store/ui";
+import { Title } from "./Title";
 
 export default function NavBar() {
   const setActiveButton = stores.Dock.setActiveButton();
@@ -28,11 +29,7 @@ export default function NavBar() {
             />
           </Link>
         </div>
-        <div className="flex-1 justify-center items-center">
-          <h1 className="font-xl font-bold text-center align-middle">
-            Build Advisor
-          </h1>
-        </div>
+        <Title />
         <div className="flex-1 flex flex-row justify-end items-center gap-2">
           <ThemeButton />
         </div>
