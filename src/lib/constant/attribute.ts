@@ -1,4 +1,5 @@
-import { Amplifier, Attribute } from "../type";
+import { Attribute } from "../type";
+import { Amplifier } from "../type/amplifier";
 import { WDTYPE_NAMES } from "./weapon";
 
 export const ATTRIBUTE_TYPES = ["Attribute", "Mod", "Talent"] as const;

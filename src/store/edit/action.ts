@@ -1,10 +1,5 @@
-import {
-  Amplifier,
-  Attribute,
-  AttributeType,
-  Build,
-  WeaponType,
-} from "@/lib/type";
+import { Attribute, AttributeType, Build, WeaponType } from "@/lib/type";
+import { Amplifier } from "@/lib/type/amplifier";
 
 export type Action = {
   action: {
