@@ -1,3 +1,4 @@
+import { RedCore } from "./presets";
 import { Build } from "./type";
 
 export const DEFAULT_BUILD: Build = {
@@ -8,28 +9,19 @@ export const DEFAULT_BUILD: Build = {
         name: "Lexington",
         baseDamage: 48_700,
         rpm: 850,
-        attributes: [
-          {
-            name: "Weapon Damage",
-            amplifier: "WDCore",
-            type: "Attribute",
-            note: "",
-            uptime: 1,
-            value: 0.15,
-          },
-        ],
+        attributes: [RedCore()],
       },
       Secondary: { name: "", attributes: [] },
       Sidearm: { name: "", attributes: [] },
       Signature: { name: "", attributes: [] },
     },
     Gears: {
-      Mask: { name: "", attributes: [] },
-      Backpack: { name: "", attributes: [] },
-      Chest: { name: "", attributes: [] },
-      Gloves: { name: "", attributes: [] },
-      Holster: { name: "", attributes: [] },
-      Kneepads: { name: "", attributes: [] },
+      Mask: { name: "", attributes: [RedCore()] },
+      Backpack: { name: "", attributes: [RedCore()] },
+      Chest: { name: "", attributes: [RedCore()] },
+      Gloves: { name: "", attributes: [RedCore()] },
+      Holster: { name: "", attributes: [RedCore()] },
+      Kneepads: { name: "", attributes: [RedCore()] },
     },
     Extras: {
       Watch: { name: "", attributes: [] },
