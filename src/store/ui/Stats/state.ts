@@ -14,6 +14,7 @@ export const state: () => State["state"] = () => ({
     open: {
       Basic: false,
       Damage: false,
+      Dps: false,
     },
     topic: {
       open: {
@@ -24,6 +25,12 @@ export const state: () => State["state"] = () => ({
           Signature: false,
         },
         Damage: {
+          Primary: false,
+          Secondary: false,
+          Sidearm: false,
+          Signature: false,
+        },
+        Dps: {
           Primary: false,
           Secondary: false,
           Sidearm: false,
