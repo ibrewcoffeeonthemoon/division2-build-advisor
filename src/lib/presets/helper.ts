@@ -1,4 +1,5 @@
 import { Attribute, AttributeType } from "../type/attribute";
+import { WDTypesName } from "../type/weapon";
 
 type Input = {
   value?: number;
@@ -36,4 +37,17 @@ export const HS = ({ value, uptime, type }: Input = {}): Attribute => ({
   type: type ?? "Attribute",
   uptime: uptime ?? 1,
   value: value ?? 0.1,
+});
+
+export const WDType = ({
+  value,
+  uptime,
+  type,
+  wdtype,
+}: Input & { wdtype?: WDTypesName } = {}): Attribute => ({
+  name: wdtype ?? "AR Damage",
+  amplifier: "WDType",
+  type: type ?? "Attribute",
+  uptime: uptime ?? 1,
+  value: value ?? 0.15,
 });
