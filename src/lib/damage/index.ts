@@ -12,7 +12,7 @@ type Dmg = {
 const calDmg = (item: Items<"Weapons">, s: State["state"]): Dmg => {
   const weapon = s.items["Weapons"][item];
   const baseDamage = weapon.baseDamage!;
-  const amplifierSums = calAmplifierSums(s)[item];
+  const amplifierSums = calAmplifierSums(s, { uptime: false })[item];
   const multiplier = calMultiplier(amplifierSums);
 
   const dmgRecord = createDamageRecord(

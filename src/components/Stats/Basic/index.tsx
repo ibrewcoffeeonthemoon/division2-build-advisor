@@ -18,7 +18,9 @@ const Row = ({
   name: string;
   amplifier: Amplifier;
 }) => {
-  const amplifierSums = calAmplifierSums(stores.edit.state());
+  const amplifierSums = calAmplifierSums(stores.edit.state(), {
+    uptime: false,
+  });
   const pct = amplifierSums[item as Items<"Weapons">][amplifier] * 100;
 
   return (
