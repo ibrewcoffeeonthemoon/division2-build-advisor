@@ -1,7 +1,7 @@
 import { SCHEMA } from "../constant";
 import { ATTRIBUTE_TYPES } from "../constant/attribute";
-import { WEAPON_TYPES } from "../constant/weapon";
 import { Amplifier } from "./amplifier";
+import { WeaponType } from "./weapon";
 
 export type Schema = typeof SCHEMA;
 
@@ -18,8 +18,6 @@ export type ItemRecords<T> = {
     [M in Items<C>]: T;
   };
 };
-
-export type WeaponType = (typeof WEAPON_TYPES)[number];
 
 export type AttributeType = (typeof ATTRIBUTE_TYPES)[number];
 

@@ -1,5 +1,5 @@
 import { WEAPON_TYPES } from "@/lib/constant/weapon";
-import { WeaponType } from "@/lib/type";
+import { WeaponType } from "@/lib/type/weapon";
 import { store } from "@/store/edit";
 
 type Props<C, M> = {

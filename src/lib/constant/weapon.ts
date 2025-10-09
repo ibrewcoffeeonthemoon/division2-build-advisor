@@ -1,4 +1,4 @@
-import { WeaponType } from "../type";
+import { WeaponType } from "../type/weapon";
 
 export const WEAPON_TYPES = [
   "AR",
