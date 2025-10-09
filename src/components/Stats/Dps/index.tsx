@@ -1,14 +1,14 @@
 "use client";
 
 import { stores } from "@/store";
-import { Items } from "@/lib/type";
 import { SCHEMA } from "@/lib/constant";
 import { ItemCard } from "../lib/ItemCard";
-import { Spreadsheet } from "./Spreadsheet";
 import { Section } from "@/components/lib/Section";
+import { Spreadsheet } from "./Spreadsheet";
+import { Items } from "@/lib/type";
 
-export default function Damage() {
-  const section = "Damage";
+export default function Dps() {
+  const section = "Dps";
   const open = stores.ui.Stats.state().section.open[section];
   const setOpen = stores.ui.Stats.action().setSectionOpen;
   const baseDamageReady = (item: string) =>
