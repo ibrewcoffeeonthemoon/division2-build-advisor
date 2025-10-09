@@ -1,12 +1,11 @@
-import { Items } from "../type";
-import { AmplifierSums } from "./amplifier";
-import { DmgRecord, createDmgRecord } from "./dmg/record";
+import { Items } from "@/lib/type";
+import { AmplifierSums } from "../amplifier";
+import { createDpsRecord, DpsRecord } from "./record";
 
-type Multiplier = DmgRecord<number>;
+type Multiplier = DpsRecord<number>;
 
 export const calMultiplier = (
   amplifierSums: AmplifierSums[Items<"Weapons">],
-  { CHC }: { CHC: boolean },
 ) => {
   const m = amplifierSums;
 
@@ -22,15 +21,11 @@ export const calMultiplier = (
     // 1 + Amplifier3
     (1 + (m.AMP3 ?? 0));
 
-  const result = createDmgRecord((n0, n1, n2, n3) => {
+  const result = createDpsRecord((n1, n2, n3) => {
     //
     let y = 1;
     // 1 + Critical Hit Chanmce * Critical Hit Damage + Headshot Damage.
-    if (CHC) {
-      y += n0 === "critical" ? (m.CHD ?? 0) * (m.CHC ?? 0) : 0;
-    } else {
-      y += n0 === "critical" ? (m.CHD ?? 0) : 0;
-    }
+    y += (m.CHD ?? 0) * (m.CHC ?? 0);
     y += n1 === "headshot" ? (m.HS ?? 0) : 0;
     // 1 + Damage to Armor + Damage to Health.
     y *= n2 === "armor" ? 1 + (m.DTA ?? 0) : 1 + (m.DTH ?? 0);

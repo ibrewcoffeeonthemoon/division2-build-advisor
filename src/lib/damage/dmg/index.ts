@@ -1,6 +1,6 @@
 import { Items } from "@/lib/type";
 import { State } from "@/store/edit/state";
-import { calMultiplier } from "../multiplier";
+import { calMultiplier } from "./multiplier";
 import { createDmgRecord, DmgRecord } from "./record";
 import { AmplifierSums } from "../amplifier";
 
