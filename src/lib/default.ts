@@ -1,4 +1,5 @@
 import { RedCore } from "./presets";
+import * as p from "./presets/helper";
 import { Build } from "./type";
 
 export const DEFAULT_BUILD: Build = {
@@ -24,7 +25,10 @@ export const DEFAULT_BUILD: Build = {
       Kneepads: { name: "", attributes: [RedCore()] },
     },
     Extras: {
-      Watch: { name: "", attributes: [] },
+      Watch: {
+        name: "Keener's Watch",
+        attributes: [p.WD(0.1), p.CHC(0.1), p.CHD(0.2), p.HS(0.2)],
+      },
       Specialization: { name: "", attributes: [] },
     },
   },
