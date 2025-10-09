@@ -1,4 +1,4 @@
-import { KeenersWatchRed, RedCore } from "./presets";
+import { KeenersWatchRed, RedCore, WeaponExpertise } from "./presets";
 import * as p from "./presets/helper";
 import { Build } from "./type";
 
@@ -23,6 +23,7 @@ export const DEFAULT_BUILD: Build = {
             value: 0.3,
             note: "Ranger",
           },
+          WeaponExpertise(30),
         ],
       },
       Secondary: { name: "", attributes: [] },
