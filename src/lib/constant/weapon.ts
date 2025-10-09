@@ -1,4 +1,4 @@
-import { WeaponType } from "../type/weapon";
+import { WDTypesName, WeaponType } from "../type/weapon";
 
 export const WEAPON_TYPES = [
   "AR",
@@ -13,6 +13,8 @@ export const WEAPON_TYPES = [
 
 export const WEAPON_TYPES_WDTYPE_MAP = Object.fromEntries(
   WEAPON_TYPES.map((name) => [name, name + " Damage"]),
-) as Record<WeaponType, string>;
+) as Record<WeaponType, WDTypesName>;
 
-export const WDTYPE_NAMES = Object.values(WEAPON_TYPES_WDTYPE_MAP);
+export const WDTYPE_NAMES = Object.values(
+  WEAPON_TYPES_WDTYPE_MAP,
+) as WDTypesName[];
