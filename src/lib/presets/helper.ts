@@ -32,7 +32,7 @@ export const CHD = ({ value, uptime, type }: Input = {}): Attribute => ({
 
 export const HS = ({ value, uptime, type }: Input = {}): Attribute => ({
   name: "Critical Hit Damage",
-  amplifier: "CHD",
+  amplifier: "HS",
   type: type ?? "Attribute",
   uptime: uptime ?? 1,
   value: value ?? 0.1,
