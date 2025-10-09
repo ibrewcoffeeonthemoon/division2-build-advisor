@@ -1,4 +1,9 @@
-import { KeenersWatchRed, RedCore, WeaponExpertise } from "./presets";
+import {
+  AgentBasic,
+  KeenersWatchRed,
+  RedCore,
+  WeaponExpertise,
+} from "./presets";
 import * as p from "./presets/helper";
 import { Build } from "./type";
 
@@ -61,6 +66,10 @@ export const DEFAULT_BUILD: Build = {
       Kneepads: { name: "Striker", attributes: [RedCore(), p.CHD()] },
     },
     Extras: {
+      Basic: {
+        name: "Agent Basic",
+        attributes: [...AgentBasic()],
+      },
       Watch: {
         name: "Keener's Watch",
         attributes: [...KeenersWatchRed()],
@@ -72,6 +81,10 @@ export const DEFAULT_BUILD: Build = {
           p.WDType({ wdtype: "LMG Damage" }),
           p.WDType({ wdtype: "Rifle Damage" }),
         ],
+      },
+      Season: {
+        name: "Seasonal Bonus",
+        attributes: [],
       },
     },
   },

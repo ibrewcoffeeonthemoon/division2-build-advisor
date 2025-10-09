@@ -8,6 +8,12 @@ export const WeaponExpertise = (level: number): Attribute => ({
   note: `Expertise ${level}`,
 });
 
+export const AgentBasic = (): Attribute[] => [
+  p.CHC({ value: 0.1 }),
+  p.CHD({ value: 0.25 }),
+  p.HS({ value: 0.55 }),
+];
+
 export const KeenersWatchRed = (): Attribute[] => [
   p.WD({ value: 0.1 }),
   p.CHC({ value: 0.1 }),
