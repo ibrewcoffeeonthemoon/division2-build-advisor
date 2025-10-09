@@ -2,49 +2,51 @@ import { State } from "@/store/edit/state";
 import { Items } from "../type";
 import { AmplifierSums, calAmplifierSums } from "./amplifier";
 import { calMultiplier } from "./multiplier";
-import { createDamageRecord, DamageRecord } from "./record";
+import { createDmgRecord, DmgRecord } from "./record";
 
-type Dmg = {
-  amplifierSums: AmplifierSums[Items<"Weapons">];
-  dmgRecord: DamageRecord<number>;
-};
-
-const calDmg = (item: Items<"Weapons">, s: State["state"]): Dmg => {
+const calDmg = (
+  item: Items<"Weapons">,
+  s: State["state"],
+  ampSums: AmplifierSums,
+): DmgRecord<number> => {
   const weapon = s.items["Weapons"][item];
   const baseDamage = weapon.baseDamage!;
-  const amplifierSums = calAmplifierSums(s, { uptime: true })[item];
-  const multiplier = calMultiplier(amplifierSums, { CHC: false });
+  const multiplier = calMultiplier(ampSums[item], { CHC: false });
 
-  const dmgRecord = createDamageRecord(
+  const dmgRecord = createDmgRecord(
     (n0, n1, n2, n3) => baseDamage * multiplier[n0][n1][n2][n3],
   );
 
-  return { amplifierSums, dmgRecord };
+  return dmgRecord;
 };
 
-type Dps = {
-  dmgRecord: DamageRecord<number>;
-  dpsRecord: DamageRecord<number>;
-};
-
-const calDps = (item: Items<"Weapons">, s: State["state"]): Dps => {
+const calDps = (
+  item: Items<"Weapons">,
+  s: State["state"],
+  ampSums: AmplifierSums,
+): DmgRecord<number> => {
   const weapon = s.items["Weapons"][item];
-  const { amplifierSums, dmgRecord } = calDmg(item, s);
+  const dmgRecord = calDmg(item, s, ampSums);
   const rpm = weapon.rpm;
-  const dpsRecord = createDamageRecord((n0, n1, n2, n3) => {
+  const dpsRecord = createDmgRecord((n0, n1, n2, n3) => {
     const rps = (rpm ?? 0) / 60;
-    const rof = 1 + (amplifierSums.ROF ?? 0);
+    const rof = 1 + (ampSums[item].ROF ?? 0);
     const dmg = dmgRecord[n0][n1][n2][n3];
     return dmg * rps * rof;
   });
-  return { dmgRecord, dpsRecord };
+  return dpsRecord;
 };
-
-export type Damage = Dps;
 
 export const calDamage = (
   item: Items<"Weapons">,
   s: State["state"],
-): Damage => {
-  return calDps(item, s);
+): {
+  dmgRecord: DmgRecord<number>;
+  dpsRecord: DmgRecord<number>;
+} => {
+  const ampSums = calAmplifierSums(s, { uptime: true });
+  return {
+    dmgRecord: calDmg(item, s, ampSums),
+    dpsRecord: calDps(item, s, ampSums),
+  };
 };

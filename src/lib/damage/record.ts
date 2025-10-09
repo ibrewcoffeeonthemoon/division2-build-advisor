@@ -9,14 +9,14 @@ export type HealthArmorShotType = (typeof HEALTH_ARMOR)[number];
 export type CoverNoCoverShotType = (typeof COVER_NOCOVER)[number];
 
 // prettier-ignore
-export type DamageRecord<T> = 
+export type DmgRecord<T> = 
   Record<NormalCriticalShotType, 
     Record<HeadBodyShotType, 
       Record<HealthArmorShotType, 
         Record<CoverNoCoverShotType, T>>>
 >;
 
-export const createDamageRecord = <T>(
+export const createDmgRecord = <T>(
   fn: (
     n0: NormalCriticalShotType,
     n1: HeadBodyShotType,
@@ -40,5 +40,5 @@ export const createDamageRecord = <T>(
     });
   });
 
-  return result as DamageRecord<T>;
+  return result as DmgRecord<T>;
 };

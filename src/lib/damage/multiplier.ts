@@ -1,8 +1,8 @@
 import { Items } from "../type";
 import { AmplifierSums } from "./amplifier";
-import { createDamageRecord, DamageRecord } from "./record";
+import { createDmgRecord, DmgRecord } from "./record";
 
-type Multiplier = DamageRecord<number>;
+type Multiplier = DmgRecord<number>;
 
 export const calMultiplier = (
   amplifierSums: AmplifierSums[Items<"Weapons">],
@@ -22,7 +22,7 @@ export const calMultiplier = (
     // 1 + Amplifier3
     (1 + (m.AMP3 ?? 0));
 
-  const result = createDamageRecord((n0, n1, n2, n3) => {
+  const result = createDmgRecord((n0, n1, n2, n3) => {
     //
     let y = 1;
     // 1 + Critical Hit Chanmce * Critical Hit Damage + Headshot Damage.
