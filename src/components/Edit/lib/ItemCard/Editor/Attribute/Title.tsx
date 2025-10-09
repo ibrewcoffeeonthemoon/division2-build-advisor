@@ -1,4 +1,4 @@
-import { Attribute } from "@/lib/type";
+import { Attribute } from "@/lib/type/attribute";
 import { round } from "@/lib/utils";
 
 type Props = {

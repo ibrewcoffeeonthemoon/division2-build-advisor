@@ -1,6 +1,6 @@
 import { ATTRIBUTES } from "@/lib/constant/attribute";
-import { Attribute } from "@/lib/type";
 import { Amplifier } from "@/lib/type/amplifier";
+import { Attribute } from "@/lib/type/attribute";
 import { store } from "@/store/edit";
 
 type Props<C, M> = {

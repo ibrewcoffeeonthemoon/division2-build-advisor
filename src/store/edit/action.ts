@@ -1,5 +1,6 @@
-import { Attribute, AttributeType, Build } from "@/lib/type";
+import { Build } from "@/lib/type";
 import { Amplifier } from "@/lib/type/amplifier";
+import { Attribute, AttributeType } from "@/lib/type/attribute";
 import { WeaponType } from "@/lib/type/weapon";
 
 export type Action = {

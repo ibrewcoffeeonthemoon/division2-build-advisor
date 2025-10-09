@@ -1,4 +1,4 @@
-import { Attribute, AttributeType } from "@/lib/type";
+import { Attribute, AttributeType } from "@/lib/type/attribute";
 import { round } from "@/lib/utils";
 import {
   StopCircleIcon,

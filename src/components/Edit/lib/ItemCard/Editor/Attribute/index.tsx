@@ -1,4 +1,3 @@
-import { Attribute } from "@/lib/type";
 import { stores } from "@/store";
 import { TypeInput } from "./TypeInput";
 import { AttributeInput } from "./AttributeInput";
@@ -6,6 +5,7 @@ import { ValueInput } from "./ValueInput";
 import { UptimeInput } from "./UptimeInput";
 import { NoteInput } from "./NoteInput";
 import { Title } from "./Title";
+import { Attribute } from "@/lib/type/attribute";
 
 type Props<C, M> = {
   category: C;

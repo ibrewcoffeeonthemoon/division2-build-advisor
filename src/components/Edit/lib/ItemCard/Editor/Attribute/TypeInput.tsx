@@ -1,4 +1,4 @@
-import { Attribute, AttributeType } from "@/lib/type";
+import { Attribute, AttributeType } from "@/lib/type/attribute";
 import { store } from "@/store/edit";
 
 type Props<C, M> = {
