@@ -12,7 +12,7 @@ export const DamageDashboard = ({ item }: Props) => {
   const { dmgRecord, dpsRecord } = calDamage(item, stores.edit.state());
   const dmg = dmgRecord.normal.bodyshot.health.nocover;
   const dps = dpsRecord.normal.bodyshot.health.nocover;
-  const damageReady = (dmg !== null && dmg > 0) || (dps !== null && dps > 0);
+  const damageReady = ((dmg ?? 0) && dmg > 0) || ((dps ?? 0) && dps > 0);
 
   return (
     (open || damageReady) && (
