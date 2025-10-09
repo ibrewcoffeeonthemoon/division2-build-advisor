@@ -1,10 +1,12 @@
 import { Attribute, AttributeType } from "../type/attribute";
 
-export const WD = (
-  value?: number,
-  uptime?: number,
-  type?: AttributeType,
-): Attribute => ({
+type Input = {
+  value?: number;
+  uptime?: number;
+  type?: AttributeType;
+};
+
+export const WD = ({ value, uptime, type }: Input = {}): Attribute => ({
   name: "Weapon Damage",
   amplifier: "WDCore",
   type: type ?? "Attribute",
@@ -12,11 +14,7 @@ export const WD = (
   value: value ?? 0.15,
 });
 
-export const CHC = (
-  value?: number,
-  uptime?: number,
-  type?: AttributeType,
-): Attribute => ({
+export const CHC = ({ value, uptime, type }: Input = {}): Attribute => ({
   name: "Critical Hit Chance",
   amplifier: "CHC",
   type: type ?? "Attribute",
@@ -24,11 +22,7 @@ export const CHC = (
   value: value ?? 0.06,
 });
 
-export const CHD = (
-  value?: number,
-  uptime?: number,
-  type?: AttributeType,
-): Attribute => ({
+export const CHD = ({ value, uptime, type }: Input = {}): Attribute => ({
   name: "Critical Hit Damage",
   amplifier: "CHD",
   type: type ?? "Attribute",
@@ -36,11 +30,7 @@ export const CHD = (
   value: value ?? 0.12,
 });
 
-export const HS = (
-  value?: number,
-  uptime?: number,
-  type?: AttributeType,
-): Attribute => ({
+export const HS = ({ value, uptime, type }: Input = {}): Attribute => ({
   name: "Critical Hit Damage",
   amplifier: "CHD",
   type: type ?? "Attribute",
