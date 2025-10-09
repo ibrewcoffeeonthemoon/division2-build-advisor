@@ -1,8 +1,8 @@
-import { AgentBasic, KeenersWatchRed, RedCore, WeaponExpertise } from "./";
-import * as p from "./helper";
-import { Build } from "../type";
+import { Build } from "@/lib/type";
+import { AgentBasic, KeenersWatchRed, RedCore, WeaponExpertise } from "../";
+import * as p from "../helper";
 
-export const DEFAULT_BUILD: Build = {
+export const LexingtonStriker: Build = {
   name: "Lexington Striker",
   items: {
     Weapons: {

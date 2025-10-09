@@ -5,7 +5,7 @@ import Gears from "./Gears";
 import Extras from "./Extras";
 import { stores } from "@/store";
 import { Build } from "@/lib/type";
-import { DEFAULT_BUILD } from "@/lib/presets/builds";
+import { builds } from "@/lib/presets/builds";
 
 export default function Edit() {
   const currentBuild = stores.edit.state() as Build;
@@ -41,7 +41,7 @@ export default function Edit() {
         <div className="flex flex-row justify-end pr-3">
           <button
             className="btn btn-ghost text-error"
-            onClick={() => setBuild(DEFAULT_BUILD)}
+            onClick={() => setBuild(builds.LexingtonStriker)}
           >
             Load Default
           </button>

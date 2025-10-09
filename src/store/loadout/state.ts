@@ -1,4 +1,4 @@
-import { DEFAULT_BUILD } from "@/lib/presets/builds";
+import { builds } from "@/lib/presets/builds";
 import { Build } from "@/lib/type";
 
 export type State = {
@@ -9,6 +9,6 @@ export type State = {
 
 export const state: () => State["state"] = () => {
   return {
-    builds: [DEFAULT_BUILD],
+    builds: [builds.LexingtonStriker],
   };
 };
