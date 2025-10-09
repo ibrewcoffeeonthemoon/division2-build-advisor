@@ -1,10 +1,43 @@
 import { Amplifier } from "../type/amplifier";
-import { Attribute } from "../type/attribute";
+import { Attribute, AttributeName } from "../type/attribute";
 import { WDTYPE_NAMES } from "./weapon";
 
 export const ATTRIBUTE_TYPES = ["Attribute", "Mod", "Talent"] as const;
 
-export const ATTRIBUTES: Record<Amplifier, string[]> = {
+export const ATTRIBUTE_NAMES = [
+  "Weapon Damage",
+  ...WDTYPE_NAMES,
+  "Critical Hit Chance",
+  "Critical Hit Damage",
+  "Headshot Damage",
+  "Damage to Armor",
+  "Damage to Health",
+  "DMG to Target out of Cover",
+  "Rate of Fire",
+  "Magazine size",
+  "Reload Speed",
+  "Stability",
+  "Accuracy",
+  "Weapon Handling",
+  "Optimal Range",
+  "Ammo Capacity",
+  "Swap Speed",
+  "Armor",
+  "Health",
+  "Armor Regeneration",
+  "Hazard Protection",
+  "Explosive Resistance",
+  "Skill Tier",
+  "Status Effects",
+  "Skill Efficiency",
+  "Skill Repair",
+  "Skill Damage",
+  "Skill Haste",
+  "Skill Duration",
+  "< Custom >",
+] as const;
+
+export const ATTRIBUTES: Record<Amplifier, AttributeName[]> = {
   WDCore: ["Weapon Damage"],
   WDType: WDTYPE_NAMES,
   WDTalent: ["< Custom >"],
