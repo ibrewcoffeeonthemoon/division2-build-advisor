@@ -61,6 +61,10 @@ export const DEFAULT_BUILD: Build = {
       Kneepads: { name: "Striker", attributes: [RedCore(), p.CHD()] },
     },
     Extras: {
+      Basic: {
+        name: "Agent Basic",
+        attributes: [],
+      },
       Watch: {
         name: "Keener's Watch",
         attributes: [...KeenersWatchRed()],
@@ -72,6 +76,10 @@ export const DEFAULT_BUILD: Build = {
           p.WDType({ wdtype: "LMG Damage" }),
           p.WDType({ wdtype: "Rifle Damage" }),
         ],
+      },
+      Season: {
+        name: "Seasonal Bonus",
+        attributes: [],
       },
     },
   },
