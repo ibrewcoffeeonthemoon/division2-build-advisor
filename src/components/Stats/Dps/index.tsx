@@ -29,13 +29,7 @@ export default function Dps() {
         (item, i) =>
           baseDamageReady(item) && (
             <ItemCard key={i} category={section} item={item}>
-              <div className="col-span-12 grid grid-cols-12 p-0 text-right">
-                {/* header */}
-                <span className="col-span-4 col-start-5">Body</span>
-                <span className="col-span-4">Head</span>
-                {/* data */}
-                <Spreadsheet weapon={item as Items<"Weapons">} />
-              </div>
+              <Spreadsheet weapon={item as Items<"Weapons">} />
             </ItemCard>
           ),
       )}
