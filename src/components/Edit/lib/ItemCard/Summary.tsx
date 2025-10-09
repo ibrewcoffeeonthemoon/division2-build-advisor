@@ -22,7 +22,9 @@ export const Summary = ({ attributes }: SummaryProps) => {
     <div className="grid grid-cols-24 text-info font-light items-center">
       {attributes.map(({ type, name, value, uptime, note }, i) => (
         <Fragment key={i}>
-          <span className="col-span-1 col-start-1 w-5 h-5">{icons[type]}</span>
+          <span className="col-span-1 col-start-1 w-5 h-5">
+            {type && icons[type]}
+          </span>
           <span className="col-span-3 pl-2">
             {value && round(value * 100, 2)}%
           </span>
