@@ -12,18 +12,19 @@ export const DamageDashboard = ({ item }: Props) => {
   const { dmgRecord, dpsRecord } = calDamage(item, stores.edit.state());
   const dmg = dmgRecord.normal.bodyshot.health.nocover;
   const dps = dpsRecord.normal.bodyshot.health.nocover;
-  const damageReady = ((dmg ?? 0) && dmg > 0) || ((dps ?? 0) && dps > 0);
+  const dmgReady = (dmg ?? 0) > 0;
+  const dpsReady = (dps ?? 0) > 0;
 
   return (
-    (open || damageReady) && (
+    (open || dmgReady || dpsReady) && (
       <div className="grid grid-cols-24 items-center">
         <h2 className="col-span-3">DMG</h2>
         <span className="col-span-7 text-info overflow-hidden overflow-ellipsis text-nowrap">
-          {dmg && Math.round(dmg).toLocaleString()}
+          {dmgReady && Math.round(dmg).toLocaleString()}
         </span>
         <h2 className="col-span-3">DPS</h2>
         <span className="col-span-7 text-info overflow-hidden overflow-ellipsis text-nowrap">
-          {dps && Math.round(dps).toLocaleString()}
+          {dpsReady && Math.round(dps).toLocaleString()}
         </span>
       </div>
     )
