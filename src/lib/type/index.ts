@@ -1,4 +1,6 @@
-import { AMPLIFIERS, ATTRIBUTE_TYPES, SCHEMA, WEAPON_TYPES } from "./constant";
+import { SCHEMA } from "../constant";
+import { Attribute } from "./attribute";
+import { WeaponType } from "./weapon";
 
 export type Schema = typeof SCHEMA;
 
@@ -14,21 +16,6 @@ export type ItemRecords<T> = {
   [C in CategoryKey]: {
     [M in Items<C>]: T;
   };
-};
-
-export type WeaponType = (typeof WEAPON_TYPES)[number];
-
-export type AttributeType = (typeof ATTRIBUTE_TYPES)[number];
-
-export type Amplifier = (typeof AMPLIFIERS)[number];
-
-export type Attribute = {
-  type: AttributeType;
-  name: string;
-  value: number | null;
-  uptime: number | null;
-  note: string;
-  amplifier: Amplifier;
 };
 
 export type Item = {

@@ -1,5 +1,6 @@
-import { Item, WeaponType } from "@/lib/type";
+import { Item } from "@/lib/type";
 import { createItemRecords } from "../record";
+import { WeaponType } from "@/lib/type/weapon";
 
 export type State = {
   state: {
