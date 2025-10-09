@@ -19,7 +19,7 @@ export const TypeInput = <C extends string, M extends string>({
   return (
     <select
       className="select select-ghost col-span-4 text-primary"
-      value={attribute.type}
+      value={attribute.type ?? ""}
       onChange={(e) =>
         setType(category, item, index, e.currentTarget.value as AttributeType)
       }
@@ -28,6 +28,7 @@ export const TypeInput = <C extends string, M extends string>({
       <option>Attribute</option>
       <option>Mod</option>
       <option>Talent</option>
+      <option value="">None</option>
     </select>
   );
 };
