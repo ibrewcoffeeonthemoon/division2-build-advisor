@@ -11,8 +11,8 @@ export default function Damage() {
   const section = "Damage";
   const open = stores.ui.Stats.state().section.open[section];
   const setOpen = stores.ui.Stats.action().setSectionOpen;
-  const baseDamageOf = (item: string) =>
-    stores.edit.state().items["Weapons"][item].baseDamage;
+  const baseDamageReady = (item: string) =>
+    (stores.edit.state().items["Weapons"][item].baseDamage ?? 0) > 0;
 
   return (
     <Section
@@ -27,7 +27,7 @@ export default function Damage() {
     >
       {Object.keys(SCHEMA.Weapons).map(
         (item, i) =>
-          baseDamageOf(item) && (
+          baseDamageReady(item) && (
             <ItemCard key={i} category={section} item={item}>
               <div className="col-span-12 grid grid-cols-15 p-0 text-right">
                 {/* header */}
