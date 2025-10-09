@@ -29,7 +29,7 @@ export const DEFAULT_BUILD: Build = {
         name: "Lengmo",
         attributes: [RedCore(), p.CHD(), p.CHD({ type: "Mod" })],
       },
-      Gloves: { name: "", attributes: [RedCore()] },
+      Gloves: { name: "Striker", attributes: [RedCore(), p.CHD()] },
       Holster: { name: "", attributes: [RedCore()] },
       Kneepads: { name: "", attributes: [RedCore()] },
     },
