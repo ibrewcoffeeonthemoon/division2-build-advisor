@@ -27,7 +27,7 @@ export const DEFAULT_BUILD: Build = {
     Extras: {
       Watch: {
         name: "Keener's Watch",
-        attributes: [p.WD(0.1), p.CHC(0.1), p.CHD(0.2), p.HS(0.2)],
+        attributes: [...KeenersWatchRed()],
       },
       Specialization: { name: "", attributes: [] },
     },
