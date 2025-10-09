@@ -1,4 +1,9 @@
-import { KeenersWatchRed, RedCore, WeaponExpertise } from "./presets";
+import {
+  AgentBasic,
+  KeenersWatchRed,
+  RedCore,
+  WeaponExpertise,
+} from "./presets";
 import * as p from "./presets/helper";
 import { Build } from "./type";
 
@@ -63,7 +68,7 @@ export const DEFAULT_BUILD: Build = {
     Extras: {
       Basic: {
         name: "Agent Basic",
-        attributes: [],
+        attributes: [...AgentBasic()],
       },
       Watch: {
         name: "Keener's Watch",
