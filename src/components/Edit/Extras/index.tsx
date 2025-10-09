@@ -3,6 +3,8 @@
 import { store } from "@/store/ui/Edit";
 import Card from "./Card";
 import { Section } from "@/components/lib/Section";
+import { SCHEMA } from "@/lib/constant";
+import { Items } from "@/lib/type";
 
 export default function Extras() {
   const open = store.state().section.open["Extras"];
@@ -19,10 +21,9 @@ export default function Extras() {
         />
       }
     >
-      <Card item="Basic" />
-      <Card item="Watch" />
-      <Card item="Specialization" />
-      <Card item="Season" />
+      {Object.keys(SCHEMA.Extras).map((item, i) => (
+        <Card key={i} item={item as Items<"Extras">} />
+      ))}
     </Section>
   );
 }

@@ -3,6 +3,8 @@
 import { store } from "@/store/ui/Edit";
 import Card from "./Card";
 import { Section } from "@/components/lib/Section";
+import { SCHEMA } from "@/lib/constant";
+import { Items } from "@/lib/type";
 
 export default function Weapons() {
   const open = store.state().section.open["Weapons"];
@@ -19,10 +21,9 @@ export default function Weapons() {
         />
       }
     >
-      <Card item="Primary" />
-      <Card item="Secondary" />
-      <Card item="Sidearm" />
-      <Card item="Signature" />
+      {Object.keys(SCHEMA.Weapons).map((item, i) => (
+        <Card key={i} item={item as Items<"Weapons">} />
+      ))}
     </Section>
   );
 }
