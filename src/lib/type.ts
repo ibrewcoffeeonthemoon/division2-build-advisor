@@ -1,4 +1,5 @@
-import { AMPLIFIERS, SCHEMA } from "./constant";
+import { SCHEMA } from "./constant";
+import { AMPLIFIERS } from "./constant/amplifier";
 import { ATTRIBUTE_TYPES } from "./constant/attribute";
 import { WEAPON_TYPES } from "./constant/weapon";
 

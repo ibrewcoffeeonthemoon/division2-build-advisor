@@ -18,21 +18,3 @@ export const SCHEMA = {
     Specialization: null,
   },
 } as const;
-
-export const AMPLIFIERS = [
-  "WDCore",
-  "WDType",
-  "WDTalent",
-  "TWD",
-  "AMP1",
-  "AMP2",
-  "AMP3",
-  "CHC",
-  "CHD",
-  "HS",
-  "DTA",
-  "DTH",
-  "DTTOOC",
-  "ROF",
-  "None",
-] as const;
