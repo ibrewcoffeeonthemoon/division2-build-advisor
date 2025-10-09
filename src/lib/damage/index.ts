@@ -4,13 +4,14 @@ import { calAmplifierSums } from "./amplifier";
 import { calDmg } from "./dmg";
 import { calDps } from "./dps";
 import { DmgRecord } from "./dmg/record";
+import { DpsRecord } from "./dps/record";
 
 export const calDamage = (
   item: Items<"Weapons">,
   s: State["state"],
 ): {
   dmgRecord: DmgRecord<number>;
-  dpsRecord: DmgRecord<number>;
+  dpsRecord: DpsRecord<number>;
 } => {
   const ampSums = calAmplifierSums(s, { uptime: true });
   return {

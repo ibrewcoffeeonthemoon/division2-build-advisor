@@ -1,21 +1,23 @@
 import { Items } from "@/lib/type";
 import { State } from "@/store/edit/state";
 import { AmplifierSums } from "../amplifier";
-import { DmgRecord, createDmgRecord } from "../dmg/record";
-import { calDmg } from "../dmg";
+import { createDpsRecord, DpsRecord } from "./record";
+import { calDpsMultiplier } from "./multiplier";
 
 export const calDps = (
   item: Items<"Weapons">,
   s: State["state"],
   ampSums: AmplifierSums,
-): DmgRecord<number> => {
+): DpsRecord<number> => {
   const weapon = s.items["Weapons"][item];
-  const dmgRecord = calDmg(item, s, ampSums);
+  const baseDamage = weapon.baseDamage!;
   const rpm = weapon.rpm;
-  const dpsRecord = createDmgRecord((n0, n1, n2, n3) => {
+  const multiplier = calDpsMultiplier(ampSums[item]);
+
+  const dpsRecord = createDpsRecord((n1, n2, n3) => {
     const rps = (rpm ?? 0) / 60;
     const rof = 1 + (ampSums[item].ROF ?? 0);
-    const dmg = dmgRecord[n0][n1][n2][n3];
+    const dmg = baseDamage * multiplier[n1][n2][n3];
     return dmg * rps * rof;
   });
   return dpsRecord;
