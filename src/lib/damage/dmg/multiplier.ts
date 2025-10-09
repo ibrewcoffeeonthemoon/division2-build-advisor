@@ -2,9 +2,9 @@ import { Items } from "@/lib/type";
 import { AmplifierSums } from "../amplifier";
 import { DmgRecord, createDmgRecord } from "./record";
 
-type Multiplier = DmgRecord<number>;
+type DmgMultiplier = DmgRecord<number>;
 
-export const calMultiplier = (
+export const calDmgMultiplier = (
   amplifierSums: AmplifierSums[Items<"Weapons">],
   { CHC }: { CHC: boolean },
 ) => {
@@ -40,5 +40,5 @@ export const calMultiplier = (
     return x * y;
   });
 
-  return result as Multiplier;
+  return result as DmgMultiplier;
 };

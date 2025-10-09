@@ -1,6 +1,6 @@
 import { Items } from "@/lib/type";
 import { State } from "@/store/edit/state";
-import { calMultiplier } from "./multiplier";
+import { calDmgMultiplier } from "./multiplier";
 import { createDmgRecord, DmgRecord } from "./record";
 import { AmplifierSums } from "../amplifier";
 
@@ -11,7 +11,7 @@ export const calDmg = (
 ): DmgRecord<number> => {
   const weapon = s.items["Weapons"][item];
   const baseDamage = weapon.baseDamage!;
-  const multiplier = calMultiplier(ampSums[item], { CHC: false });
+  const multiplier = calDmgMultiplier(ampSums[item], { CHC: false });
 
   const dmgRecord = createDmgRecord(
     (n0, n1, n2, n3) => baseDamage * multiplier[n0][n1][n2][n3],

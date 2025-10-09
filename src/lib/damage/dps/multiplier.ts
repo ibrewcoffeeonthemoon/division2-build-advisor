@@ -2,9 +2,9 @@ import { Items } from "@/lib/type";
 import { AmplifierSums } from "../amplifier";
 import { createDpsRecord, DpsRecord } from "./record";
 
-type Multiplier = DpsRecord<number>;
+type DpsMultiplier = DpsRecord<number>;
 
-export const calMultiplier = (
+export const calDpsMultiplier = (
   amplifierSums: AmplifierSums[Items<"Weapons">],
 ) => {
   const m = amplifierSums;
@@ -35,5 +35,5 @@ export const calMultiplier = (
     return x * y;
   });
 
-  return result as Multiplier;
+  return result as DpsMultiplier;
 };
