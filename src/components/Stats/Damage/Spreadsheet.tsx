@@ -3,6 +3,9 @@ import { Items } from "@/lib/type";
 import { round } from "@/lib/utils";
 import { stores } from "@/store";
 
+const RowHead = ({ className, text }: { className?: string; text: string }) => (
+  <span className={`col-span-3 text-base ${className}`}>{text}</span>
+);
 const Cell = ({ className, text }: { className?: string; text: string }) => (
   <span className={`col-span-3 text-base ${className}`}>{text}</span>
 );
@@ -12,9 +15,17 @@ export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
   const format = (x: number) => round(x, 0).toLocaleString();
 
   return (
-    <>
+    <div className="col-span-12 grid grid-cols-15 p-0 text-right">
+      {/* header */}
+      <span className="col-span-6 col-start-4">Normal</span>
+      <span className="col-span-6">Critical</span>
+      <span className="col-span-3 col-start-4">Body</span>
+      <span className="col-span-3">Head</span>
+      <span className="col-span-3">Body</span>
+      <span className="col-span-3">Head</span>
+
       {/* Health */}
-      <Cell text="Health C" />
+      <RowHead text="Health C" />
       <Cell
         className="font-light"
         text={format(d.normal.bodyshot.health.cover)}
@@ -32,7 +43,7 @@ export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
         text={format(d.critical.headshot.health.cover)}
       />
 
-      <Cell text="Health oC" />
+      <RowHead text="Health oC" />
       <Cell
         className="font-light"
         text={format(d.normal.bodyshot.health.nocover)}
@@ -51,7 +62,7 @@ export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
       />
 
       {/* Armor */}
-      <Cell text="Armor C" />
+      <RowHead text="Armor C" />
       <Cell
         className="text-blue-600 font-light"
         text={format(d.normal.bodyshot.armor.cover)}
@@ -69,7 +80,7 @@ export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
         text={format(d.critical.headshot.armor.cover)}
       />
 
-      <Cell text="Armor oC" />
+      <RowHead text="Armor oC" />
       <Cell
         className="text-blue-600 font-light"
         text={format(d.normal.bodyshot.armor.nocover)}
@@ -86,6 +97,6 @@ export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
         className="text-blue-600 font-extrabold"
         text={format(d.critical.headshot.armor.nocover)}
       />
-    </>
+    </div>
   );
 };

@@ -29,17 +29,7 @@ export default function Damage() {
         (item, i) =>
           baseDamageReady(item) && (
             <ItemCard key={i} category={section} item={item}>
-              <div className="col-span-12 grid grid-cols-15 p-0 text-right">
-                {/* header */}
-                <span className="col-span-6 col-start-4">Normal</span>
-                <span className="col-span-6">Critical</span>
-                <span className="col-span-3 col-start-4">Body</span>
-                <span className="col-span-3">Head</span>
-                <span className="col-span-3">Body</span>
-                <span className="col-span-3">Head</span>
-                {/* data */}
-                <Spreadsheet weapon={item as Items<"Weapons">} />
-              </div>
+              <Spreadsheet weapon={item as Items<"Weapons">} />
             </ItemCard>
           ),
       )}
