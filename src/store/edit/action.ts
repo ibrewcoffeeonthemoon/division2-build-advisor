@@ -1,6 +1,6 @@
 import { Build } from "@/lib/type";
 import { Amplifier } from "@/lib/type/amplifier";
-import { Attribute, AttributeType } from "@/lib/type/attribute";
+import { Attribute, AttributeName, AttributeType } from "@/lib/type/attribute";
 import { WeaponType } from "@/lib/type/weapon";
 
 export type Action = {
@@ -22,7 +22,12 @@ export type Action = {
     attribute: {
       append: (cat: string, item: string, attr: Attribute) => void;
       remove: (cat: string, item: string, index: number) => void;
-      setName: (cat: string, item: string, index: number, val: string) => void;
+      setName: (
+        cat: string,
+        item: string,
+        index: number,
+        val: AttributeName,
+      ) => void;
       setAmplifier: (
         cat: string,
         item: string,

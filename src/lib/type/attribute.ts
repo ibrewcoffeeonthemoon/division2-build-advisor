@@ -7,7 +7,7 @@ export type AttributeName = (typeof ATTRIBUTE_NAMES)[number];
 
 export type Attribute = {
   type: AttributeType;
-  name: string;
+  name: AttributeName;
   value: number | null;
   uptime: number | null;
   note: string;

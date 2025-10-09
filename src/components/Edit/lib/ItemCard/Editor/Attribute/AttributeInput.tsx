@@ -1,6 +1,6 @@
 import { ATTRIBUTES } from "@/lib/constant/attribute";
 import { Amplifier } from "@/lib/type/amplifier";
-import { Attribute } from "@/lib/type/attribute";
+import { Attribute, AttributeName } from "@/lib/type/attribute";
 import { store } from "@/store/edit";
 
 type Props<C, M> = {
@@ -24,7 +24,7 @@ export const AttributeInput = <C extends string, M extends string>({
       className="select select-ghost col-span-7 z-10 text-primary"
       value={attribute.name ?? ""}
       onChange={(e) => {
-        setName(category, item, index, e.currentTarget.value);
+        setName(category, item, index, e.currentTarget.value as AttributeName);
         setAmplifier(
           category,
           item,
