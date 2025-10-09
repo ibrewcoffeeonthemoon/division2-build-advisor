@@ -1,4 +1,5 @@
-import { AMPLIFIERS, ATTRIBUTE_TYPES, SCHEMA } from "./constant";
+import { AMPLIFIERS, SCHEMA } from "./constant";
+import { ATTRIBUTE_TYPES } from "./constant/attribute";
 import { WEAPON_TYPES } from "./constant/weapon";
 
 export type Schema = typeof SCHEMA;

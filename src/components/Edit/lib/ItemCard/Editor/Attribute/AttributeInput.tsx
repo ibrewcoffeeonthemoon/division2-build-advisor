@@ -1,4 +1,4 @@
-import { ATTRIBUTES } from "@/lib/constant";
+import { ATTRIBUTES } from "@/lib/constant/attribute";
 import { Amplifier, Attribute } from "@/lib/type";
 import { store } from "@/store/edit";
 
