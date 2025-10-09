@@ -1,6 +1,6 @@
 import { Items } from "../type";
 import { AmplifierSums } from "./amplifier";
-import { createDmgRecord, DmgRecord } from "./record";
+import { DmgRecord, createDmgRecord } from "./dmg/record";
 
 type Multiplier = DmgRecord<number>;
 
