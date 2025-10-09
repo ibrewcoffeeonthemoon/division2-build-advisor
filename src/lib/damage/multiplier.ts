@@ -6,6 +6,7 @@ type Multiplier = DamageRecord<number>;
 
 export const calMultiplier = (
   amplifierSums: AmplifierSums[Items<"Weapons">],
+  { CHC }: { CHC: boolean },
 ) => {
   const m = amplifierSums;
 
@@ -25,7 +26,11 @@ export const calMultiplier = (
     //
     let y = 1;
     // 1 + Critical Hit Chanmce * Critical Hit Damage + Headshot Damage.
-    y += n0 === "critical" ? (m.CHD ?? 0) : 0;
+    if (CHC) {
+      y += n0 === "critical" ? (m.CHD ?? 0) * (m.CHC ?? 0) : 0;
+    } else {
+      y += n0 === "critical" ? (m.CHD ?? 0) : 0;
+    }
     y += n1 === "headshot" ? (m.HS ?? 0) : 0;
     // 1 + Damage to Armor + Damage to Health.
     y *= n2 === "armor" ? 1 + (m.DTA ?? 0) : 1 + (m.DTH ?? 0);
