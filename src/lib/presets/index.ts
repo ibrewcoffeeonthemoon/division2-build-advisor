@@ -1,10 +1,4 @@
 import { Attribute } from "../type/attribute";
+import * as p from "./helper";
 
-export const RedCore = (): Attribute => ({
-  name: "Weapon Damage",
-  amplifier: "WDCore",
-  type: "Attribute",
-  note: "Red Core",
-  uptime: 1,
-  value: 0.15,
-});
+export const RedCore = (): Attribute => p.WD();
