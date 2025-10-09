@@ -19,8 +19,10 @@ export default function Extras() {
         />
       }
     >
+      <Card item="Basic" />
       <Card item="Watch" />
       <Card item="Specialization" />
+      <Card item="Season" />
     </Section>
   );
 }
