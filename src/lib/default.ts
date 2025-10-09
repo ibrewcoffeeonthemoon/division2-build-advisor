@@ -21,8 +21,14 @@ export const DEFAULT_BUILD: Build = {
         name: "Coyote",
         attributes: [RedCore(), p.CHC(), p.CHD(), p.CHD({ type: "Mod" })],
       },
-      Backpack: { name: "", attributes: [RedCore()] },
-      Chest: { name: "", attributes: [RedCore()] },
+      Backpack: {
+        name: "Striker",
+        attributes: [RedCore(), p.CHC(), p.CHD(), p.CHD({ type: "Mod" })],
+      },
+      Chest: {
+        name: "",
+        attributes: [RedCore()],
+      },
       Gloves: { name: "", attributes: [RedCore()] },
       Holster: { name: "", attributes: [RedCore()] },
       Kneepads: { name: "", attributes: [RedCore()] },
