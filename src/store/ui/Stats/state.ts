@@ -12,10 +12,17 @@ export type State = {
 export const state: () => State["state"] = () => ({
   section: {
     open: {
+      Basic: false,
       Damage: false,
     },
     topic: {
       open: {
+        Basic: {
+          Primary: false,
+          Secondary: false,
+          Sidearm: false,
+          Signature: false,
+        },
         Damage: {
           Primary: false,
           Secondary: false,
