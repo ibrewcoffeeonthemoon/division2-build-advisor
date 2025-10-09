@@ -1,4 +1,4 @@
-import { Amplifier, Attribute, WeaponType } from "./type";
+import { Amplifier, Attribute, WeaponType } from "../type";
 
 export const SCHEMA = {
   Weapons: {
