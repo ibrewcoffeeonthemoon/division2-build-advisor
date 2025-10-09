@@ -14,7 +14,9 @@ export const SCHEMA = {
     Kneepads: null,
   },
   Extras: {
+    Basic: null,
     Watch: null,
     Specialization: null,
+    Season: null,
   },
 } as const;
