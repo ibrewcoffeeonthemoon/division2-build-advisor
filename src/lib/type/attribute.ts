@@ -10,6 +10,6 @@ export type Attribute = {
   name: AttributeName;
   value: number | null;
   uptime: number | null;
-  note: string;
+  note?: string;
   amplifier: Amplifier;
 };
