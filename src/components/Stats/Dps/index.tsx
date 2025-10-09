@@ -4,6 +4,8 @@ import { stores } from "@/store";
 import { SCHEMA } from "@/lib/constant";
 import { ItemCard } from "../lib/ItemCard";
 import { Section } from "@/components/lib/Section";
+import { Spreadsheet } from "./Spreadsheet";
+import { Items } from "@/lib/type";
 
 export default function Dps() {
   const section = "Dps";
@@ -27,14 +29,12 @@ export default function Dps() {
         (item, i) =>
           baseDamageReady(item) && (
             <ItemCard key={i} category={section} item={item}>
-              <div className="col-span-12 grid grid-cols-15 p-0 text-right">
+              <div className="col-span-12 grid grid-cols-12 p-0 text-right">
                 {/* header */}
-                <span className="col-span-3 col-start-4">Body</span>
-                <span className="col-span-3">Head</span>
-                <span className="col-span-3">Body</span>
-                <span className="col-span-3">Head</span>
+                <span className="col-span-4 col-start-5">Body</span>
+                <span className="col-span-4">Head</span>
                 {/* data */}
-                {/* <Spreadsheet weapon={item as Items<"Weapons">} /> */}
+                <Spreadsheet weapon={item as Items<"Weapons">} />
               </div>
             </ItemCard>
           ),
