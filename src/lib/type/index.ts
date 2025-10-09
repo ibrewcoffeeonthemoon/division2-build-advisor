@@ -1,7 +1,7 @@
-import { SCHEMA } from "./constant";
-import { AMPLIFIERS } from "./constant/amplifier";
-import { ATTRIBUTE_TYPES } from "./constant/attribute";
-import { WEAPON_TYPES } from "./constant/weapon";
+import { SCHEMA } from "../constant";
+import { AMPLIFIERS } from "../constant/amplifier";
+import { ATTRIBUTE_TYPES } from "../constant/attribute";
+import { WEAPON_TYPES } from "../constant/weapon";
 
 export type Schema = typeof SCHEMA;
 
