@@ -1,9 +1,9 @@
-import { RedCore } from "./presets";
+import { KeenersWatchRed, RedCore } from "./presets";
 import * as p from "./presets/helper";
 import { Build } from "./type";
 
 export const DEFAULT_BUILD: Build = {
-  name: "6 Red Lexington Build",
+  name: "Lexington Striker",
   items: {
     Weapons: {
       Primary: {
@@ -17,7 +17,10 @@ export const DEFAULT_BUILD: Build = {
       Signature: { name: "", attributes: [] },
     },
     Gears: {
-      Mask: { name: "", attributes: [RedCore()] },
+      Mask: {
+        name: "Coyote",
+        attributes: [RedCore(), p.CHC(), p.CHD(), p.CHD({ type: "Mod" })],
+      },
       Backpack: { name: "", attributes: [RedCore()] },
       Chest: { name: "", attributes: [RedCore()] },
       Gloves: { name: "", attributes: [RedCore()] },
