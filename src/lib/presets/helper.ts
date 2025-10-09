@@ -51,3 +51,27 @@ export const WDType = ({
   uptime: uptime ?? 1,
   value: value ?? 0.15,
 });
+
+export const DTA = ({ value, uptime, type }: Input = {}): Attribute => ({
+  name: "Damage to Armor",
+  amplifier: "DTA",
+  type: type ?? "Attribute",
+  uptime: uptime ?? 1,
+  value: value ?? 0.06,
+});
+
+export const DTH = ({ value, uptime, type }: Input = {}): Attribute => ({
+  name: "Damage to Health",
+  amplifier: "DTH",
+  type: type ?? "Attribute",
+  uptime: uptime ?? 1,
+  value: value ?? 0.09,
+});
+
+export const DTTOOC = ({ value, uptime, type }: Input = {}): Attribute => ({
+  name: "DMG to Target out of Cover",
+  amplifier: "DTTOOC",
+  type: type ?? "Attribute",
+  uptime: uptime ?? 1,
+  value: value ?? 0.1,
+});
