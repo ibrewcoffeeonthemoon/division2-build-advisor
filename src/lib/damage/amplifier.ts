@@ -1,6 +1,6 @@
 import { State } from "@/store/edit/state";
 import { Amplifier, Attribute, Items } from "../type";
-import { WEAPON_TYPES_WDTYPE_MAP } from "../constant";
+import { WEAPON_TYPES_WDTYPE_MAP } from "../constant/weapon";
 
 export type AmplifierSums = Record<Items<"Weapons">, Record<Amplifier, number>>;
 

@@ -1,4 +1,4 @@
-import { WEAPON_TYPES } from "@/lib/constant";
+import { WEAPON_TYPES } from "@/lib/constant/weapon";
 import { WeaponType } from "@/lib/type";
 import { store } from "@/store/edit";
 

@@ -1,4 +1,5 @@
-import { Amplifier, Attribute, WeaponType } from "../type";
+import { Amplifier, Attribute } from "../type";
+import { WDTYPE_NAMES } from "./weapon";
 
 export const SCHEMA = {
   Weapons: {
@@ -20,23 +21,6 @@ export const SCHEMA = {
     Specialization: null,
   },
 } as const;
-
-export const WEAPON_TYPES = [
-  "AR",
-  "LMG",
-  "SMG",
-  "Shotgun",
-  "Rifle",
-  "MMR",
-  "Pistol",
-  "Signature",
-] as const;
-
-export const WEAPON_TYPES_WDTYPE_MAP = Object.fromEntries(
-  WEAPON_TYPES.map((name) => [name, name + " Damage"]),
-) as Record<WeaponType, string>;
-
-export const WDTYPE_NAMES = Object.values(WEAPON_TYPES_WDTYPE_MAP);
 
 export const AMPLIFIERS = [
   "WDCore",
