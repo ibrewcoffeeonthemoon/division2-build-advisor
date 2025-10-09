@@ -5,7 +5,7 @@ import Gears from "./Gears";
 import Extras from "./Extras";
 import { stores } from "@/store";
 import { Build } from "@/lib/type";
-import { DEFAULT_BUILD } from "@/lib/default";
+import { DEFAULT_BUILD } from "@/lib/presets/builds";
 
 export default function Edit() {
   const currentBuild = stores.edit.state() as Build;

@@ -1,4 +1,4 @@
-import { DEFAULT_BUILD } from "@/lib/default";
+import { DEFAULT_BUILD } from "@/lib/presets/builds";
 import { Build } from "@/lib/type";
 
 export type State = {

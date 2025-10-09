@@ -1,11 +1,6 @@
-import {
-  AgentBasic,
-  KeenersWatchRed,
-  RedCore,
-  WeaponExpertise,
-} from "./presets";
-import * as p from "./presets/helper";
-import { Build } from "./type";
+import { AgentBasic, KeenersWatchRed, RedCore, WeaponExpertise } from "./";
+import * as p from "./helper";
+import { Build } from "../type";
 
 export const DEFAULT_BUILD: Build = {
   name: "Lexington Striker",
