@@ -31,7 +31,7 @@ export const DEFAULT_BUILD: Build = {
       },
       Gloves: { name: "Striker", attributes: [RedCore(), p.CHD()] },
       Holster: { name: "Striker", attributes: [RedCore(), p.CHD()] },
-      Kneepads: { name: "", attributes: [RedCore()] },
+      Kneepads: { name: "Striker", attributes: [RedCore(), p.CHD()] },
     },
     Extras: {
       Watch: {
