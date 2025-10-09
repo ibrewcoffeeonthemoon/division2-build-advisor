@@ -1,3 +1,4 @@
+import { DEFAULT_BUILD } from "@/lib/default";
 import { Build } from "@/lib/type";
 
 export type State = {
@@ -8,6 +9,6 @@ export type State = {
 
 export const state: () => State["state"] = () => {
   return {
-    builds: [],
+    builds: [DEFAULT_BUILD],
   };
 };
