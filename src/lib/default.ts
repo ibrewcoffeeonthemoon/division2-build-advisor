@@ -29,7 +29,14 @@ export const DEFAULT_BUILD: Build = {
         name: "Keener's Watch",
         attributes: [...KeenersWatchRed()],
       },
-      Specialization: { name: "", attributes: [] },
+      Specialization: {
+        name: "Gunner",
+        attributes: [
+          p.WDType({ wdtype: "AR Damage" }),
+          p.WDType({ wdtype: "LMG Damage" }),
+          p.WDType({ wdtype: "Rifle Damage" }),
+        ],
+      },
     },
   },
 };
