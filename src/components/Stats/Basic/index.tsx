@@ -7,6 +7,7 @@ import { Section } from "@/components/lib/Section";
 import { calAmplifierSums } from "@/lib/damage/amplifier";
 import { Items } from "@/lib/type";
 import { Amplifier } from "@/lib/type/amplifier";
+import { round } from "@/lib/utils";
 
 const Row = ({
   item,
@@ -18,12 +19,13 @@ const Row = ({
   amplifier: Amplifier;
 }) => {
   const amplifierSums = calAmplifierSums(stores.edit.state());
+  const pct = amplifierSums[item as Items<"Weapons">][amplifier] * 100;
 
   return (
     <>
-      <span className="col-span-9 text-bold">{name}</span>
-      <span className="col-span-6 text-info">
-        {amplifierSums[item as Items<"Weapons">][amplifier] * 100}%
+      <span className="col-span-7 font-semibold">{name}</span>
+      <span className="col-span-4 font-semibold text-info">
+        {round(pct, 0).toLocaleString()} %
       </span>
     </>
   );
@@ -51,7 +53,7 @@ export default function Basic() {
         (item, i) =>
           baseDamageReady(item) && (
             <ItemCard key={i} category={section} item={item}>
-              <div className="col-span-12 grid grid-cols-15 p-0 text-right">
+              <div className="col-span-12 grid grid-cols-12 p-0 text-right">
                 <Row item={item} name="Critical Hit Chance" amplifier="CHC" />
                 <Row item={item} name="Critical Hit Damage" amplifier="CHD" />
                 <Row item={item} name="Headshot Damage" amplifier="HS" />
