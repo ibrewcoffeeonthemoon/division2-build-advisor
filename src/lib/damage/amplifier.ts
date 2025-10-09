@@ -50,8 +50,8 @@ export const calAmplifierSums = (s: State["state"]): AmplifierSums => {
 
   // reduce the array into single quantity for each amplifier type
   const reducer = (acc: Record<Amplifier, number>, attr: Attribute) => {
-    const expValue = (attr.value || 0) * (attr.uptime || 0);
-    acc[attr.amplifier] = (acc[attr.amplifier] || 0) + expValue;
+    const expValue = (attr.value ?? 0) * (attr.uptime ?? 0);
+    acc[attr.amplifier] = (acc[attr.amplifier] ?? 0) + expValue;
     return acc;
   };
   const result = Object.fromEntries(
