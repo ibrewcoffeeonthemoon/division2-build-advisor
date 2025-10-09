@@ -9,12 +9,35 @@ export type HealthArmorShotType = (typeof HEALTH_ARMOR)[number];
 export type CoverNoCoverShotType = (typeof COVER_NOCOVER)[number];
 
 // prettier-ignore
-export type DmgRecord<T> = 
-  Record<NormalCriticalShotType, 
+export type DpsRecord<T> = 
     Record<HeadBodyShotType, 
       Record<HealthArmorShotType, 
         Record<CoverNoCoverShotType, T>>>
->;
+
+export type DmgRecord<T> = Record<NormalCriticalShotType, DpsRecord<T>>;
+
+export const createDpsRecord = <T>(
+  fn: (
+    n1: HeadBodyShotType,
+    n2: HealthArmorShotType,
+    n3: CoverNoCoverShotType,
+  ) => T,
+) => {
+  //prettier-ignore
+  const result: Record<string, Record<string, Record<string, T>>> = {};
+
+  HEADBODY_BODYSHOT.forEach((n1) => {
+    result[n1] = {};
+    HEALTH_ARMOR.forEach((n2) => {
+      result[n1][n2] = {};
+      COVER_NOCOVER.forEach((n3) => {
+        result[n1][n2][n3] = fn(n1, n2, n3);
+      });
+    });
+  });
+
+  return result as DpsRecord<T>;
+};
 
 export const createDmgRecord = <T>(
   fn: (
@@ -28,16 +51,7 @@ export const createDmgRecord = <T>(
   const result: Record<string, Record<string, Record<string, Record<string, T>>>> = {};
 
   NORMAL_CRIT.forEach((n0) => {
-    result[n0] = {};
-    HEADBODY_BODYSHOT.forEach((n1) => {
-      result[n0][n1] = {};
-      HEALTH_ARMOR.forEach((n2) => {
-        result[n0][n1][n2] = {};
-        COVER_NOCOVER.forEach((n3) => {
-          result[n0][n1][n2][n3] = fn(n0, n1, n2, n3);
-        });
-      });
-    });
+    result[n0] = createDpsRecord((n1, n2, n3) => fn(n0, n1, n2, n3));
   });
 
   return result as DmgRecord<T>;
