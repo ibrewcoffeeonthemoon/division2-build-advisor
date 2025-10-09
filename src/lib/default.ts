@@ -37,7 +37,20 @@ export const DEFAULT_BUILD: Build = {
       },
       Backpack: {
         name: "Striker",
-        attributes: [RedCore(), p.CHC(), p.CHD(), p.CHD({ type: "Mod" })],
+        attributes: [
+          RedCore(),
+          p.CHC(),
+          p.CHD(),
+          p.CHD({ type: "Mod" }),
+          {
+            amplifier: "TWD",
+            name: "< Custom >",
+            type: "Talent",
+            uptime: 1,
+            value: 0.65,
+            note: "Risk Management",
+          },
+        ],
       },
       Chest: {
         name: "Lengmo",
