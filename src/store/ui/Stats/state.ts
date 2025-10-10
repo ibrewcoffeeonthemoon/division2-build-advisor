@@ -1,42 +1,30 @@
-export type State = {
-  state: {
-    section: {
-      open: Record<string, boolean>;
-      topic: {
-        open: Record<string, Record<string, boolean>>;
-      };
-    };
-  };
-};
+export const SECTION_NAMES = ["Basic", "Damage", "Dps"] as const;
+export const TOPIC_NAMES = [
+  "Primary",
+  "Secondary",
+  "Sidearm",
+  "Signature",
+] as const;
 
-export const state: () => State["state"] = () => ({
+export type SectionName = (typeof SECTION_NAMES)[number];
+export type TopicName = (typeof TOPIC_NAMES)[number];
+
+export const STATE = {
   section: {
-    open: {
-      Basic: false,
-      Damage: false,
-      Dps: false,
-    },
+    open: Object.fromEntries(SECTION_NAMES.map((sec) => [sec, false])),
     topic: {
-      open: {
-        Basic: {
-          Primary: false,
-          Secondary: false,
-          Sidearm: false,
-          Signature: false,
-        },
-        Damage: {
-          Primary: false,
-          Secondary: false,
-          Sidearm: false,
-          Signature: false,
-        },
-        Dps: {
-          Primary: false,
-          Secondary: false,
-          Sidearm: false,
-          Signature: false,
-        },
-      },
+      open: Object.fromEntries(
+        SECTION_NAMES.map((sec) => [
+          sec,
+          Object.fromEntries(TOPIC_NAMES.map((top) => [top, false])),
+        ]),
+      ),
     },
   },
-});
+} as const;
+
+export type State = {
+  state: typeof STATE;
+};
+
+export const state: () => State["state"] = () => STATE;
