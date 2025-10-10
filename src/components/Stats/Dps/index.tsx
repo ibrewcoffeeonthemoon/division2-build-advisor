@@ -6,6 +6,7 @@ import { ItemCard } from "../lib/ItemCard";
 import { Section } from "@/components/lib/Section";
 import { Spreadsheet } from "./Spreadsheet";
 import { Items } from "@/lib/type";
+import { keysOf } from "@/lib/utils";
 
 export default function Dps() {
   const section = "Dps";
@@ -25,7 +26,7 @@ export default function Dps() {
         />
       }
     >
-      {Object.keys(SCHEMA.Weapons).map(
+      {keysOf(SCHEMA.Weapons).map(
         (item, i) =>
           baseDamageReady(item) && (
             <ItemCard key={i} category={section} item={item}>

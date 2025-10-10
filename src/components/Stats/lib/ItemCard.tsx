@@ -1,5 +1,6 @@
 import { stores } from "@/store";
 import { store } from "@/store/ui/Stats";
+import { SectionName, TopicName } from "@/store/ui/Stats/state";
 import { ReactNode } from "react";
 
 type ItemCardProps<C, M> = {
@@ -8,7 +9,7 @@ type ItemCardProps<C, M> = {
   children: ReactNode;
 };
 
-export const ItemCard = <C extends string, M extends string>({
+export const ItemCard = <C extends SectionName, M extends TopicName>({
   category,
   item,
   children,

@@ -1,6 +1,12 @@
+import { SectionName, TopicName } from "./state";
+
 export type Action = {
   action: {
-    setSectionOpen: (section: string, val: boolean) => void;
-    setTopicOpen: (section: string, topic: string, val: boolean) => void;
+    setSectionOpen: (section: SectionName, val: boolean) => void;
+    setTopicOpen: (
+      section: SectionName,
+      topic: TopicName,
+      val: boolean,
+    ) => void;
   };
 };

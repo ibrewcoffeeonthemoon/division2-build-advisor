@@ -7,7 +7,7 @@ import { Section } from "@/components/lib/Section";
 import { calAmplifierSums } from "@/lib/damage/amplifier";
 import { Items } from "@/lib/type";
 import { Amplifier } from "@/lib/type/amplifier";
-import { round } from "@/lib/utils";
+import { keysOf, round } from "@/lib/utils";
 
 const Row = ({
   item,
@@ -51,7 +51,7 @@ export default function Basic() {
         />
       }
     >
-      {Object.keys(SCHEMA.Weapons).map(
+      {keysOf(SCHEMA.Weapons).map(
         (item, i) =>
           baseDamageReady(item) && (
             <ItemCard key={i} category={section} item={item}>
