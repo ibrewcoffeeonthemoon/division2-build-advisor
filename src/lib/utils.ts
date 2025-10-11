@@ -3,8 +3,8 @@ export const round = (x: number, n: number) => {
   return Math.round((x + Number.EPSILON) * factor) / factor;
 };
 
-export const keysOf = <T extends object>(obj: T): Array<keyof T> => {
-  return Object.keys(obj) as Array<keyof T>;
+export const keys = <T extends object>(obj: T): (keyof T)[] => {
+  return Object.keys(obj) as (keyof T)[];
 };
 
 export const fromEntriesOf = <
