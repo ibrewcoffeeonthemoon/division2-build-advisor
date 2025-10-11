@@ -17,7 +17,7 @@ export const LexingtonStriker: Build = {
           p.DTTOOC({ value: 0.1 }),
           {
             amplifier: "AMP1",
-            name: "< Custom >",
+            name: "< AMP1 >",
             type: "Talent",
             uptime: 1,
             value: 0.3,
@@ -44,7 +44,7 @@ export const LexingtonStriker: Build = {
           p.CHD({ type: "Mod" }),
           {
             amplifier: "TWD",
-            name: "< Custom >",
+            name: "< TWD >",
             type: "Talent",
             uptime: 1,
             value: 0.65,

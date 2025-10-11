@@ -45,7 +45,7 @@ export const BluescreenTippingScales: Build = {
           p.CHD({ type: "Mod" }),
           {
             amplifier: "CHD",
-            name: "< Custom >",
+            name: "Critical Hit Damage",
             type: "Talent",
             uptime: 1,
             value: 50 * 0.07,
@@ -65,7 +65,7 @@ export const BluescreenTippingScales: Build = {
           p.CHD(),
           {
             amplifier: "AMP1",
-            name: "< Custom >",
+            name: "< AMP1 >",
             type: "Talent",
             uptime: 1,
             value: 0.3,
