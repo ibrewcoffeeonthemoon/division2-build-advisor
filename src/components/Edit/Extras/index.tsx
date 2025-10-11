@@ -3,7 +3,7 @@
 import { store } from "@/store/ui/Edit";
 import Card from "./Card";
 import { Section } from "@/components/lib/Section";
-import { SCHEMA } from "@/lib/constant";
+import { ITEM_NAMES } from "@/lib/constant";
 import { Items } from "@/lib/type";
 
 export default function Extras() {
@@ -21,7 +21,7 @@ export default function Extras() {
         />
       }
     >
-      {Object.keys(SCHEMA.Extras).map((item, i) => (
+      {ITEM_NAMES.Extras.map((item, i) => (
         <Card key={i} item={item as Items<"Extras">} />
       ))}
     </Section>

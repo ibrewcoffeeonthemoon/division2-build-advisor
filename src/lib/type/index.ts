@@ -1,12 +1,10 @@
-import { SCHEMA } from "../constant";
+import { CATEGORY_NAMES, ITEM_NAMES } from "../constant";
 import { Attribute } from "./attribute";
 import { WeaponType } from "./weapon";
 
-export type Schema = typeof SCHEMA;
+export type CategoryKey = (typeof CATEGORY_NAMES)[number];
 
-export type CategoryKey = keyof Schema;
-
-export type Items<C extends CategoryKey> = keyof Schema[C];
+export type Items<C extends CategoryKey> = (typeof ITEM_NAMES)[C][number];
 
 export type CategoryRecords<T> = {
   [C in CategoryKey]: T;

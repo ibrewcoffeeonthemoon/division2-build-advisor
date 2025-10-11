@@ -2,11 +2,10 @@
 
 import { stores } from "@/store";
 import { Items } from "@/lib/type";
-import { SCHEMA } from "@/lib/constant";
 import { ItemCard } from "../lib/ItemCard";
 import { Spreadsheet } from "./Spreadsheet";
 import { Section } from "@/components/lib/Section";
-import { keys } from "@/lib/utils";
+import { ITEM_NAMES } from "@/lib/constant";
 
 export default function Damage() {
   const section = "Damage";
@@ -26,7 +25,7 @@ export default function Damage() {
         />
       }
     >
-      {keys(SCHEMA.Weapons).map(
+      {ITEM_NAMES.Weapons.map(
         (item, i) =>
           baseDamageReady(item) && (
             <ItemCard key={i} category={section} item={item}>

@@ -1,5 +1,6 @@
 import { Attribute, AttributeType } from "@/lib/type/attribute";
 import { store } from "@/store/edit";
+import { SectionName, TopicName } from "@/store/edit/state";
 
 type Props<C, M> = {
   category: C;
@@ -8,7 +9,7 @@ type Props<C, M> = {
   index: number;
 };
 
-export const TypeInput = <C extends string, M extends string>({
+export const TypeInput = <C extends SectionName, M extends TopicName<C>>({
   category,
   item,
   attribute,

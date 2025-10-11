@@ -1,12 +1,8 @@
+import { ITEM_NAMES } from "@/lib/constant";
 import { fromEntries } from "@/lib/utils";
 
 export const SECTION_NAMES = ["Basic", "Damage", "Dps"] as const;
-export const TOPIC_NAMES = [
-  "Primary",
-  "Secondary",
-  "Sidearm",
-  "Signature",
-] as const;
+export const TOPIC_NAMES = ITEM_NAMES.Weapons;
 
 export type SectionName = (typeof SECTION_NAMES)[number];
 export type TopicName = (typeof TOPIC_NAMES)[number];
