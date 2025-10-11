@@ -1,5 +1,4 @@
 import { ITEM_NAMES } from "@/lib/constant";
-import { fromEntries } from "@/lib/utils";
 
 export const SECTION_NAMES = ["Basic", "Damage", "Dps"] as const;
 export const TOPIC_NAMES = ITEM_NAMES.Weapons;
@@ -9,12 +8,12 @@ export type TopicName = (typeof TOPIC_NAMES)[number];
 
 export const STATE = {
   section: {
-    open: fromEntries(SECTION_NAMES.map((sec) => [sec, false])),
+    open: Object.fromEntries(SECTION_NAMES.map((sec) => [sec, false])),
     topic: {
-      open: fromEntries(
+      open: Object.fromEntries(
         SECTION_NAMES.map((sec) => [
           sec,
-          fromEntries(TOPIC_NAMES.map((top) => [top, false])),
+          Object.fromEntries(TOPIC_NAMES.map((top) => [top, false])),
         ]),
       ),
     },
