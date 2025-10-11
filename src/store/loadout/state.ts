@@ -9,6 +9,6 @@ export type State = {
 
 export const state: () => State["state"] = () => {
   return {
-    builds: [builds.LexingtonStriker],
+    builds: [builds.LexingtonStriker, builds.BluescreenTippingScales],
   };
 };

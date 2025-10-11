@@ -75,3 +75,11 @@ export const DTTOOC = ({ value, uptime, type }: Input = {}): Attribute => ({
   uptime: uptime ?? 1,
   value: value ?? 0.1,
 });
+
+export const ROF = ({ value, uptime, type }: Input = {}): Attribute => ({
+  name: "Rate of Fire",
+  amplifier: "ROF",
+  type: type ?? "Attribute",
+  uptime: uptime ?? 1,
+  value: value ?? 0.15,
+});
