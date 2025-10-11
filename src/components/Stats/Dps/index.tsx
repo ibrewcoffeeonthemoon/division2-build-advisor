@@ -1,12 +1,11 @@
 "use client";
 
 import { stores } from "@/store";
-import { SCHEMA } from "@/lib/constant";
 import { ItemCard } from "../lib/ItemCard";
 import { Section } from "@/components/lib/Section";
 import { Spreadsheet } from "./Spreadsheet";
 import { Items } from "@/lib/type";
-import { keys } from "@/lib/utils";
+import { ITEM_NAMES } from "@/lib/constant";
 
 export default function Dps() {
   const section = "Dps";
@@ -26,7 +25,7 @@ export default function Dps() {
         />
       }
     >
-      {keys(SCHEMA.Weapons).map(
+      {ITEM_NAMES.Weapons.map(
         (item, i) =>
           baseDamageReady(item) && (
             <ItemCard key={i} category={section} item={item}>

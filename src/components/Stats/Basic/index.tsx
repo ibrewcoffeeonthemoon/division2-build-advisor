@@ -1,13 +1,13 @@
 "use client";
 
 import { stores } from "@/store";
-import { SCHEMA } from "@/lib/constant";
+import { ITEM_NAMES } from "@/lib/constant";
 import { ItemCard } from "../lib/ItemCard";
 import { Section } from "@/components/lib/Section";
 import { calAmplifierSums } from "@/lib/damage/amplifier";
 import { Items } from "@/lib/type";
 import { Amplifier } from "@/lib/type/amplifier";
-import { keys, round } from "@/lib/utils";
+import { round } from "@/lib/utils";
 
 const Row = ({
   item,
@@ -51,7 +51,7 @@ export default function Basic() {
         />
       }
     >
-      {keys(SCHEMA.Weapons).map(
+      {ITEM_NAMES.Weapons.map(
         (item, i) =>
           baseDamageReady(item) && (
             <ItemCard key={i} category={section} item={item}>
