@@ -1,16 +1,7 @@
-export const SECTION_NAMES = ["Weapons", "Gears", "Extras"] as const;
-export const TOPIC_NAMES = {
-  Weapons: ["Primary", "Secondary", "Sidearm", "Signature"] as const,
-  Gears: [
-    "Mask",
-    "Backpack",
-    "Chest",
-    "Gloves",
-    "Holster",
-    "Kneepads",
-  ] as const,
-  Extras: ["Basic", "Watch", "Specialization", "Season"] as const,
-} as const;
+import { CATEGORY_NAMES, ITEM_NAMES } from "@/lib/constant";
+
+const SECTION_NAMES = CATEGORY_NAMES;
+const TOPIC_NAMES = ITEM_NAMES;
 
 export type SectionName = (typeof SECTION_NAMES)[number];
 export type TopicName<T extends SectionName> = (typeof TOPIC_NAMES)[T][number];
