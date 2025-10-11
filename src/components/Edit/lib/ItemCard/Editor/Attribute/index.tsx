@@ -6,6 +6,7 @@ import { UptimeInput } from "./UptimeInput";
 import { NoteInput } from "./NoteInput";
 import { Title } from "./Title";
 import { Attribute } from "@/lib/type/attribute";
+import { SectionName, TopicName } from "@/store/ui/Edit/state";
 
 type Props<C, M> = {
   category: C;
@@ -14,16 +15,16 @@ type Props<C, M> = {
   index: number;
 };
 
-export const Input = <C extends string, M extends string>({
+export const Input = <C extends SectionName, M extends TopicName<C>>({
   category,
   item,
   attribute,
   index,
 }: Props<C, M>) => {
   const openIndex =
-    stores.ui.Edit.state().section.topic.attributes[category][item].openedIndex;
+    stores.ui.Edit.state().section.topic.paragraph.openedIndex[category][item];
   const open = openIndex === index;
-  const setOpenIndex = stores.ui.Edit.action().setAttributeOpenIndex;
+  const setOpenIndex = stores.ui.Edit.action().setParagraphOpenIndex;
   const removeAttribute = stores.edit.action().attribute.remove;
 
   return (

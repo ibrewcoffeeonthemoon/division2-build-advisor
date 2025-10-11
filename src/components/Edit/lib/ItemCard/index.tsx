@@ -1,3 +1,4 @@
+import { SectionName, TopicName } from "@/store/ui/Edit/state";
 import { Editor } from "./Editor";
 import { Summary } from "./Summary";
 import { stores } from "@/store";
@@ -11,7 +12,7 @@ type ItemCardProps<C, M> = {
   extraInput2?: ReactNode;
 };
 
-export const ItemCard = <C extends string, M extends string>({
+export const ItemCard = <C extends SectionName, M extends TopicName<C>>({
   category,
   item,
   damageDashboard,

@@ -1,26 +1,46 @@
-import { createItemRecords, createCategoryRecords } from "@/store/record";
+export const SECTION_NAMES = ["Weapons", "Gears", "Extras"] as const;
+export const TOPIC_NAMES = {
+  Weapons: ["Primary", "Secondary", "Sidearm", "Signature"] as const,
+  Gears: [
+    "Mask",
+    "Backpack",
+    "Chest",
+    "Gloves",
+    "Holster",
+    "Kneepads",
+  ] as const,
+  Extras: ["Basic", "Watch", "Specialization", "Season"] as const,
+} as const;
 
-export type State = {
-  state: {
-    section: {
-      open: Record<string, boolean>;
-      topic: {
-        open: Record<string, Record<string, boolean>>;
-        attributes: Record<
-          string,
-          Record<string, { openedIndex: number | null }>
-        >;
-      };
-    };
-  };
-};
+export type SectionName = (typeof SECTION_NAMES)[number];
+export type TopicName<T extends SectionName> = (typeof TOPIC_NAMES)[T][number];
 
-export const state: () => State["state"] = () => ({
+export const STATE = {
   section: {
-    open: createCategoryRecords(() => false),
+    open: Object.fromEntries(SECTION_NAMES.map((sec) => [sec, false])),
     topic: {
-      open: createItemRecords(() => false),
-      attributes: createItemRecords(() => ({ openedIndex: null })),
+      open: Object.fromEntries(
+        SECTION_NAMES.map((sec) => [
+          sec,
+          Object.fromEntries(TOPIC_NAMES[sec].map((top) => [top, false])),
+        ]),
+      ),
+      paragraph: {
+        openedIndex: Object.fromEntries(
+          SECTION_NAMES.map((sec) => [
+            sec,
+            Object.fromEntries(
+              TOPIC_NAMES[sec].map((top) => [top, null]),
+            ) as Record<string, number | null>,
+          ]),
+        ),
+      },
     },
   },
-});
+} as const;
+
+export type State = {
+  state: typeof STATE;
+};
+
+export const state: () => State["state"] = () => STATE;

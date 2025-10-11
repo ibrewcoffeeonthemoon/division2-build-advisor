@@ -4,6 +4,7 @@ import { Header } from "./Header";
 import * as NameField from "./Name";
 import { store } from "@/store/edit";
 import { DEFAULT_ATTRIBUTE } from "@/lib/constant/attribute";
+import { SectionName, TopicName } from "@/store/ui/Edit/state";
 
 type Props<C, M> = {
   category: C;
@@ -12,7 +13,7 @@ type Props<C, M> = {
   extraInput2?: ReactNode;
 };
 
-export const Editor = <C extends string, M extends string>({
+export const Editor = <C extends SectionName, M extends TopicName<C>>({
   category,
   item,
   extraInput1,
