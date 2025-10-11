@@ -1,6 +1,7 @@
 import { Attribute } from "@/lib/type/attribute";
 import { round } from "@/lib/utils";
 import { store } from "@/store/edit";
+import { SectionName, TopicName } from "@/store/edit/state";
 
 type Props<C, M> = {
   category: C;
@@ -9,7 +10,7 @@ type Props<C, M> = {
   index: number;
 };
 
-export const UptimeInput = <C extends string, M extends string>({
+export const UptimeInput = <C extends SectionName, M extends TopicName<C>>({
   category,
   item,
   attribute,

@@ -1,6 +1,7 @@
 import { Attribute } from "@/lib/type/attribute";
 import { round } from "@/lib/utils";
 import { store } from "@/store/edit";
+import { SectionName, TopicName } from "@/store/edit/state";
 
 // const round = (x: number) => Math.round((x + Number.EPSILON) * 100) / 100;
 
@@ -11,7 +12,7 @@ type Props<C, M> = {
   index: number;
 };
 
-export const ValueInput = <C extends string, M extends string>({
+export const ValueInput = <C extends SectionName, M extends TopicName<C>>({
   category,
   item,
   attribute,

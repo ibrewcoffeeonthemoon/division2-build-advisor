@@ -2,6 +2,7 @@ import { Build } from "@/lib/type";
 import { Amplifier } from "@/lib/type/amplifier";
 import { Attribute, AttributeName, AttributeType } from "@/lib/type/attribute";
 import { WeaponType } from "@/lib/type/weapon";
+import { SectionName, TopicName } from "./state";
 
 export type Action = {
   action: {
@@ -10,49 +11,74 @@ export type Action = {
       setName: (val: string) => void;
     };
     item: {
-      setName: (cat: string, item: string, val: string) => void;
-      setBaseDamage: (cat: string, item: string, val: number | null) => void;
-      setRpm: (cat: string, item: string, val: number | null) => void;
-      setWeaponType: (
-        cat: string,
-        item: string,
+      setName: <S extends SectionName>(
+        cat: S,
+        item: TopicName<S>,
+        val: string,
+      ) => void;
+      setBaseDamage: <S extends SectionName>(
+        cat: S,
+        item: TopicName<S>,
+        val: number | null,
+      ) => void;
+      setRpm: <S extends SectionName>(
+        cat: S,
+        item: TopicName<S>,
+        val: number | null,
+      ) => void;
+      setWeaponType: <S extends SectionName>(
+        cat: S,
+        item: TopicName<S>,
         val: WeaponType | null,
       ) => void;
     };
     attribute: {
-      append: (cat: string, item: string, attr: Attribute) => void;
-      remove: (cat: string, item: string, index: number) => void;
-      setName: (
-        cat: string,
-        item: string,
+      append: <S extends SectionName>(
+        cat: S,
+        item: TopicName<S>,
+        attr: Attribute,
+      ) => void;
+      remove: <S extends SectionName>(
+        cat: S,
+        item: TopicName<S>,
+        index: number,
+      ) => void;
+      setName: <S extends SectionName>(
+        cat: S,
+        item: TopicName<S>,
         index: number,
         val: AttributeName,
       ) => void;
-      setAmplifier: (
-        cat: string,
-        item: string,
+      setAmplifier: <S extends SectionName>(
+        cat: S,
+        item: TopicName<S>,
         index: number,
         val: Amplifier,
       ) => void;
-      setValue: (
-        cat: string,
-        item: string,
+      setValue: <S extends SectionName>(
+        cat: S,
+        item: TopicName<S>,
         index: number,
         val: number | null,
       ) => void;
-      setUptime: (
-        cat: string,
-        item: string,
+      setUptime: <S extends SectionName>(
+        cat: S,
+        item: TopicName<S>,
         index: number,
         val: number | null,
       ) => void;
-      setType: (
-        cat: string,
-        item: string,
+      setType: <S extends SectionName>(
+        cat: S,
+        item: TopicName<S>,
         index: number,
         val: AttributeType,
       ) => void;
-      setNote: (cat: string, item: string, index: number, val: string) => void;
+      setNote: <S extends SectionName>(
+        cat: S,
+        item: TopicName<S>,
+        index: number,
+        val: string,
+      ) => void;
     };
   };
 };

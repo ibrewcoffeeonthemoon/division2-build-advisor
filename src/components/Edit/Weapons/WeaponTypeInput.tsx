@@ -1,13 +1,14 @@
 import { WEAPON_TYPES } from "@/lib/constant/weapon";
 import { WeaponType } from "@/lib/type/weapon";
 import { store } from "@/store/edit";
+import { SectionName, TopicName } from "@/store/edit/state";
 
 type Props<C, M> = {
   category: C;
   item: M;
 };
 
-export const WeaponTypeInput = <C extends string, M extends string>({
+export const WeaponTypeInput = <C extends SectionName, M extends TopicName<C>>({
   category,
   item,
 }: Props<C, M>) => {
