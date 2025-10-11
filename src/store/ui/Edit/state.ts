@@ -25,14 +25,16 @@ export const STATE = {
           Object.fromEntries(TOPIC_NAMES[sec].map((top) => [top, false])),
         ]),
       ),
-      attributes: Object.fromEntries(
-        SECTION_NAMES.map((sec) => [
-          sec,
-          Object.fromEntries(
-            TOPIC_NAMES[sec].map((top) => [top, { openedIndex: null }]),
-          ) as Record<string, { openedIndex: number | null }>,
-        ]),
-      ),
+      paragraph: {
+        openedIndex: Object.fromEntries(
+          SECTION_NAMES.map((sec) => [
+            sec,
+            Object.fromEntries(
+              TOPIC_NAMES[sec].map((top) => [top, null]),
+            ) as Record<string, number | null>,
+          ]),
+        ),
+      },
     },
   },
 } as const;

@@ -21,9 +21,9 @@ export const Input = <C extends string, M extends string>({
   index,
 }: Props<C, M>) => {
   const openIndex =
-    stores.ui.Edit.state().section.topic.attributes[category][item].openedIndex;
+    stores.ui.Edit.state().section.topic.paragraph.openedIndex[category][item];
   const open = openIndex === index;
-  const setOpenIndex = stores.ui.Edit.action().setAttributeOpenIndex;
+  const setOpenIndex = stores.ui.Edit.action().setParagraphOpenIndex;
   const removeAttribute = stores.edit.action().attribute.remove;
 
   return (

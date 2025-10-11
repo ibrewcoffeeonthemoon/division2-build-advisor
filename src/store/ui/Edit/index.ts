@@ -20,9 +20,9 @@ export const useStore = create<Store>()(
           set((s) => {
             s.state.section.topic.open[sec][tp] = val;
           }),
-        setAttributeOpenIndex: (sec, tp, val) =>
+        setParagraphOpenIndex: (sec, tp, val) =>
           set((s) => {
-            s.state.section.topic.attributes[sec][tp].openedIndex = val;
+            s.state.section.topic.paragraph.openedIndex[sec][tp] = val;
           }),
       },
     })),
