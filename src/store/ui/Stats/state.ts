@@ -30,11 +30,14 @@ export const STATE = {
           Object.fromEntries(TOPIC_NAMES.map((top) => [top, false])),
         ]),
       ),
-      selection: {
-        Basic: null as Selection | null,
-        Damage: ["normal", "bodyshot", "health", "cover"] as Selection | null,
-        Dps: null as Selection | null,
-      },
+      selection: Object.fromEntries(
+        SECTION_NAMES.map((sec) => [
+          sec,
+          Object.fromEntries(
+            TOPIC_NAMES.map((top) => [top, null as Selection | null]),
+          ),
+        ]),
+      ),
       paragraph: {
         open: Object.fromEntries(
           SECTION_NAMES.map((sec) => [

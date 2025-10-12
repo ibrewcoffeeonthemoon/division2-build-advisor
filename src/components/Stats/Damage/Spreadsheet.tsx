@@ -27,7 +27,7 @@ const Cell = ({
   return (
     <span
       className={`col-span-3 ${textSize} ${className}`}
-      onClick={() => setSelection("Damage", index)}
+      onClick={() => setSelection("Damage", weapon, index)}
     >
       {text}
     </span>

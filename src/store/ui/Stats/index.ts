@@ -21,9 +21,9 @@ export const useStore = create<Store>()(
           set((s) => {
             s.state.section.topic.open[sec][tp] = val;
           }),
-        setTopicSelection: (sec, val) =>
+        setTopicSelection: (sec, tp, val) =>
           set((s) => {
-            s.state.section.topic.selection[sec] = val;
+            s.state.section.topic.selection[sec][tp] = val;
           }),
         setParagraphOpen: (sec, tp, val) =>
           set((s) => {

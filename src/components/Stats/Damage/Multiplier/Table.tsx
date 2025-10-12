@@ -8,7 +8,7 @@ export const Table = ({
   category: SectionName;
   item: TopicName;
 }) => {
-  const selection = store.state().section.topic.selection[category];
+  const selection = store.state().section.topic.selection[category][item];
   const [n0, n1, n2, n3] = selection ?? [null, null, null, null];
   const m = store.stash()[item]?.ampSums ?? null;
   const ready = m && n0 && n1 && n2 && n3;
