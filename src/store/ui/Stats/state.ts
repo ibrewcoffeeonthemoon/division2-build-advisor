@@ -1,4 +1,5 @@
 import { ITEM_NAMES } from "@/lib/constant";
+import { AmplifierSums } from "@/lib/damage/amplifier";
 import { DmgRecord, NormalCriticalShotType } from "@/lib/damage/dmg/record";
 import {
   HeadBodyShotType,
@@ -47,6 +48,7 @@ export const STATE = {
 } as const;
 
 export type DamageResult = {
+  ampSums?: AmplifierSums[TopicName];
   dmgRecord?: DmgRecord<number>;
   dpsRecord?: DpsRecord<number>;
 };

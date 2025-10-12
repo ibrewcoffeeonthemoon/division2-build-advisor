@@ -36,16 +36,13 @@ const Cell = ({
 
 export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
   const state = stores.edit.state();
-  const { dmgRecord, dpsRecord } = useMemo(() => {
+  const damageResult = useMemo(() => {
     return calDamage(weapon, state);
   }, [weapon, state]);
   const stashDamageResult = stores.ui.Stats.action().stashDamageResult;
   useEffect(() => {
-    stashDamageResult(weapon, {
-      dmgRecord,
-      dpsRecord,
-    });
-  }, [dmgRecord, dpsRecord, weapon, state, stashDamageResult]);
+    stashDamageResult(weapon, damageResult);
+  }, [damageResult, weapon, state, stashDamageResult]);
 
   return (
     <div className="col-span-12 grid grid-cols-15 items-center p-0 text-right">
