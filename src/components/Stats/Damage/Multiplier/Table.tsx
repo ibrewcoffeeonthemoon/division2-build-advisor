@@ -2,19 +2,27 @@ import { store } from "@/store/ui/Stats";
 import { SectionName, TopicName } from "@/store/ui/Stats/state";
 
 const RowHeader = ({ text }: { text: string }) => (
-  <span className="col-span-3 font-semibold">{text}</span>
+  <span className="col-span-3 font-semibold text-right pr-3">{text}</span>
 );
 
 const Cell = ({ amps }: { amps: (() => number | null)[] }) => {
   const format = (x: number | null | undefined) => x?.toFixed(2);
-
-  let text = "1";
-  amps.forEach((amp) => {
-    const val = amp();
-    text += val ? ` + ${format(val)}` : "";
-  });
-
-  return <span className="col-span-9">{text}</span>;
+  return (
+    <span className="col-span-9">
+      <span>1</span>
+      {amps.map((amp, i) => {
+        const val = amp();
+        if (val) {
+          return (
+            <span key={i}>
+              {" + "}
+              <span className="text-info font-semibold">{format(val)}</span>
+            </span>
+          );
+        }
+      })}
+    </span>
+  );
 };
 
 export const Table = ({
@@ -28,7 +36,6 @@ export const Table = ({
   const [n0, n1, n2, n3] = selection ?? [null, null, null, null];
   const m = store.stash()[item]?.ampSums ?? null;
   const ready = m && n0 && n1 && n2 && n3;
-  const f = (x: number | null | undefined) => x?.toFixed(2);
 
   return (
     ready && (
