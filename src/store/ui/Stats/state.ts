@@ -29,7 +29,9 @@ export const STATE = {
         ]),
       ),
       selection: {
+        Basic: null as Selection | null,
         Damage: ["normal", "bodyshot", "health", "cover"] as Selection | null,
+        Dps: null as Selection | null,
       },
       paragraph: {
         open: Object.fromEntries(

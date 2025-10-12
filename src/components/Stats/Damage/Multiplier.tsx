@@ -15,7 +15,7 @@ export const Multiplier = <C extends SectionName, M extends TopicName>({
 }: Props<C, M>) => {
   const open = store.state().section.topic.paragraph.open[category][item];
   const setOpen = store.action().setParagraphOpen;
-  const selection = store.state().section.topic.selection["Damage"];
+  const selection = store.state().section.topic.selection[category];
   const [n0, n1, n2, n3] = selection ?? ["", "", "", ""];
 
   return (
