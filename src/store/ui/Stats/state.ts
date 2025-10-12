@@ -53,6 +53,7 @@ export const STATE = {
 export type DamageResult = {
   ampSums?: AmplifierSums[TopicName];
   dmgRecord?: DmgRecord<number>;
+  dmgMultiplier?: DmgRecord<number>;
   dpsRecord?: DpsRecord<number>;
 };
 
