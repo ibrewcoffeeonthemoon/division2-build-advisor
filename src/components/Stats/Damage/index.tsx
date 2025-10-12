@@ -6,7 +6,7 @@ import { ItemCard } from "../lib/ItemCard";
 import { Spreadsheet } from "./Spreadsheet";
 import { Section } from "@/components/lib/Section";
 import { ITEM_NAMES } from "@/lib/constant";
-import Multiplier from "./Multiplier";
+import { Multiplier } from "./Multiplier";
 
 export default function Damage() {
   const section = "Damage";
@@ -31,7 +31,7 @@ export default function Damage() {
           baseDamageReady(item) && (
             <ItemCard key={i} category={section} item={item}>
               <Spreadsheet weapon={item as Items<"Weapons">} />
-              <Multiplier />
+              <Multiplier category={section} item={item} />
             </ItemCard>
           ),
       )}
