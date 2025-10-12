@@ -30,7 +30,7 @@ export const Multiplier = <C extends SectionName, M extends TopicName>({
             Multiplier
           </span>
         </div>
-        <div className="collapse-content !p-0 pb-0 ps-0 pe-0 grid grid-cols-12">
+        <div className="collapse-content !p-0 pb-0 ps-0 pe-0">
           <Table {...{ category, item }} />
         </div>
       </div>
