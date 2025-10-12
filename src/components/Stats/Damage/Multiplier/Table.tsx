@@ -7,21 +7,27 @@ const RowHeader = ({ text }: { text: string }) => (
 
 const Cell = ({ amps }: { amps: (() => number | null)[] }) => {
   const format = (x: number | null | undefined) => x?.toFixed(2);
+  const rowSum = amps.reduce((sum, amp) => sum + (amp() ?? 0), 1);
   return (
-    <span className="col-span-9">
-      <span>1</span>
-      {amps.map((amp, i) => {
-        const val = amp();
-        if (val) {
-          return (
-            <span key={i}>
-              {" + "}
-              <span className="text-info font-semibold">{format(val)}</span>
-            </span>
-          );
-        }
-      })}
-    </span>
+    <>
+      <span className="col-span-2 text-info font-semibold text-right pr-2">
+        {format(rowSum)}
+      </span>
+      <span className="col-span-6">
+        <span>= 1</span>
+        {amps.map((amp, i) => {
+          const val = amp();
+          if (val) {
+            return (
+              <span key={i}>
+                {" + "}
+                <span className="text-info font-semibold">{format(val)}</span>
+              </span>
+            );
+          }
+        })}
+      </span>
+    </>
   );
 };
 
