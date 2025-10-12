@@ -8,5 +8,10 @@ export type Action = {
       topic: TopicName,
       val: boolean,
     ) => void;
+    setParagraphOpen: (
+      section: SectionName,
+      topic: TopicName,
+      val: boolean,
+    ) => void;
   };
 };

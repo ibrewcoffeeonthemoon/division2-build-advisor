@@ -16,6 +16,14 @@ export const STATE = {
           Object.fromEntries(TOPIC_NAMES.map((top) => [top, false])),
         ]),
       ),
+      paragraph: {
+        open: Object.fromEntries(
+          SECTION_NAMES.map((sec) => [
+            sec,
+            Object.fromEntries(TOPIC_NAMES.map((top) => [top, false])),
+          ]),
+        ),
+      },
     },
   },
 } as const;

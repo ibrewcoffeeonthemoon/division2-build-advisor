@@ -20,6 +20,10 @@ export const useStore = create<Store>()(
           set((s) => {
             s.state.section.topic.open[sec][tp] = val;
           }),
+        setParagraphOpen: (sec, tp, val) =>
+          set((s) => {
+            s.state.section.topic.paragraph.open[sec][tp] = val;
+          }),
       },
     })),
     {
