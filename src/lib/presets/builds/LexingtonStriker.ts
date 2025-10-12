@@ -88,7 +88,10 @@ export const LexingtonStriker: Build = {
       },
       Season: {
         name: "Seasonal Bonus",
-        attributes: [],
+        attributes: [
+          p.WD({ value: 0.25, uptime: 0 }),
+          p.ROF({ value: 0.25, uptime: 0 }),
+        ],
       },
     },
   },
