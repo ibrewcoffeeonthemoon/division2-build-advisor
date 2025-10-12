@@ -5,6 +5,17 @@ const RowHeader = ({ text }: { text: string }) => (
   <span className="col-span-3 font-semibold">{text}</span>
 );
 
+const Cell = ({ amps }: { amps: (number | null)[] }) => {
+  const format = (x: number | null | undefined) => x?.toFixed(2);
+
+  let text = "1";
+  amps.forEach((amp) => {
+    text += amp ? ` + ${format(amp)}` : "";
+  });
+
+  return <span className="col-span-9">{text}</span>;
+};
+
 export const Table = ({
   category,
   item,
@@ -22,23 +33,19 @@ export const Table = ({
     ready && (
       <div className="w-full grid grid-cols-12">
         <RowHeader text="WD" />
-        <span className="col-span-9">
-          1{m.WDCore && `+ ${f(m.WDCore)}`}
-          {m.WDType && `+ ${f(m.WDType)}`}
-          {m.WDTalent && `+ ${f(m.WDTalent)}`}
-        </span>
+        <Cell amps={[m.WDCore, m.WDType, m.WDTalent]} />
 
         <RowHeader text="TWD" />
-        <span className="col-span-9">1{m.TWD && `+ ${f(m.TWD)}`}</span>
+        <Cell amps={[m.TWD]} />
 
         <RowHeader text="AMP1" />
-        <span className="col-span-9">1{m.AMP1 && `+ ${f(m.AMP1)}`}</span>
+        <Cell amps={[m.AMP1]} />
 
         <RowHeader text="AMP2" />
-        <span className="col-span-9">1{m.AMP2 && `+ ${f(m.AMP2)}`}</span>
+        <Cell amps={[m.AMP2]} />
 
         <RowHeader text="AMP3" />
-        <span className="col-span-9">1{m.AMP3 && `+ ${f(m.AMP3)}`}</span>
+        <Cell amps={[m.AMP3]} />
 
         <RowHeader text="CHD/HS" />
         <span className="col-span-9">
