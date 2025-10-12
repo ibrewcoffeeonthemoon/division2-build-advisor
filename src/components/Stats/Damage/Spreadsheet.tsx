@@ -1,20 +1,40 @@
 import { calDamage } from "@/lib/damage";
+import { DmgRecord } from "@/lib/damage/dmg/record";
 import { Items } from "@/lib/type";
 import { round } from "@/lib/utils";
 import { stores } from "@/store";
+import { Selection } from "@/store/ui/Stats/state";
 
 const RowHead = ({ className, text }: { className?: string; text: string }) => (
   <span className={`col-span-3 text-base ${className}`}>{text}</span>
 );
-const Cell = ({ className, text }: { className?: string; text: string }) => {
+const Cell = ({
+  className,
+  index,
+  d,
+}: {
+  className?: string;
+  index: Selection;
+  d: DmgRecord<number>;
+}) => {
+  const setSelection = stores.ui.Stats.action().setTopicSelection;
+  const format = (x: number) => round(x, 0).toLocaleString();
+  const [n0, n1, n2, n3] = index;
+  const text = format(d[n0][n1][n2][n3]);
   const textSize =
     text.length <= 7 ? "text-md" : text.length <= 9 ? "text-sm" : "text-xs";
-  return <span className={`col-span-3 ${textSize} ${className}`}>{text}</span>;
+  return (
+    <span
+      className={`col-span-3 ${textSize} ${className}`}
+      onClick={() => setSelection("Damage", index)}
+    >
+      {text}
+    </span>
+  );
 };
 
 export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
   const { dmgRecord: d } = calDamage(weapon, stores.edit.state());
-  const format = (x: number) => round(x, 0).toLocaleString();
 
   return (
     <div className="col-span-12 grid grid-cols-15 items-center p-0 text-right">
@@ -30,74 +50,90 @@ export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
       <RowHead text="Health C" />
       <Cell
         className="font-light"
-        text={format(d.normal.bodyshot.health.cover)}
+        index={["normal", "bodyshot", "health", "cover"]}
+        d={d}
       />
       <Cell
         className="text-red-700"
-        text={format(d.normal.headshot.health.cover)}
+        index={["normal", "headshot", "health", "cover"]}
+        d={d}
       />
       <Cell
         className="text-orange-400 font-bold"
-        text={format(d.critical.bodyshot.health.cover)}
+        index={["critical", "bodyshot", "health", "cover"]}
+        d={d}
       />
       <Cell
         className="text-orange-400 font-extrabold"
-        text={format(d.critical.headshot.health.cover)}
+        index={["critical", "headshot", "health", "cover"]}
+        d={d}
       />
 
       <RowHead text="Health oC" />
       <Cell
         className="font-light"
-        text={format(d.normal.bodyshot.health.nocover)}
+        index={["normal", "bodyshot", "health", "nocover"]}
+        d={d}
       />
       <Cell
         className="text-red-700"
-        text={format(d.normal.headshot.health.nocover)}
+        index={["normal", "headshot", "health", "nocover"]}
+        d={d}
       />
       <Cell
         className="text-orange-400 font-bold"
-        text={format(d.critical.bodyshot.health.nocover)}
+        index={["critical", "bodyshot", "health", "nocover"]}
+        d={d}
       />
       <Cell
         className="text-orange-400 font-extrabold"
-        text={format(d.critical.headshot.health.nocover)}
+        index={["critical", "headshot", "health", "nocover"]}
+        d={d}
       />
 
       {/* Armor */}
       <RowHead text="Armor C" />
       <Cell
         className="text-blue-600 font-light"
-        text={format(d.normal.bodyshot.armor.cover)}
+        index={["normal", "bodyshot", "armor", "cover"]}
+        d={d}
       />
       <Cell
         className="text-blue-600"
-        text={format(d.normal.headshot.armor.cover)}
+        index={["normal", "headshot", "armor", "cover"]}
+        d={d}
       />
       <Cell
         className="text-blue-600 font-bold"
-        text={format(d.critical.bodyshot.armor.cover)}
+        index={["critical", "bodyshot", "armor", "cover"]}
+        d={d}
       />
       <Cell
         className="text-blue-600 font-extrabold"
-        text={format(d.critical.headshot.armor.cover)}
+        index={["critical", "headshot", "armor", "cover"]}
+        d={d}
       />
 
       <RowHead text="Armor oC" />
       <Cell
         className="text-blue-600 font-light"
-        text={format(d.normal.bodyshot.armor.nocover)}
+        index={["normal", "bodyshot", "armor", "nocover"]}
+        d={d}
       />
       <Cell
         className="text-blue-600"
-        text={format(d.normal.headshot.armor.nocover)}
+        index={["normal", "headshot", "armor", "nocover"]}
+        d={d}
       />
       <Cell
         className="text-blue-600 font-bold"
-        text={format(d.critical.bodyshot.armor.nocover)}
+        index={["critical", "bodyshot", "armor", "nocover"]}
+        d={d}
       />
       <Cell
         className="text-blue-600 font-extrabold"
-        text={format(d.critical.headshot.armor.nocover)}
+        index={["critical", "headshot", "armor", "nocover"]}
+        d={d}
       />
     </div>
   );
