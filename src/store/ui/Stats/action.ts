@@ -1,4 +1,4 @@
-import { SectionName, TopicName } from "./state";
+import { SectionName, Selection, TopicName } from "./state";
 
 export type Action = {
   action: {
@@ -8,6 +8,7 @@ export type Action = {
       topic: TopicName,
       val: boolean,
     ) => void;
+    setTopicSelection: (section: "Damage", val: Selection) => void;
     setParagraphOpen: (
       section: SectionName,
       topic: TopicName,
