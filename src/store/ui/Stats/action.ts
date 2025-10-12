@@ -1,4 +1,4 @@
-import { SectionName, Selection, TopicName } from "./state";
+import { DamageResult, SectionName, Selection, TopicName } from "./state";
 
 export type Action = {
   action: {
@@ -8,11 +8,16 @@ export type Action = {
       topic: TopicName,
       val: boolean,
     ) => void;
-    setTopicSelection: (section: SectionName, val: Selection) => void;
+    setTopicSelection: (
+      section: SectionName,
+      topic: TopicName,
+      val: Selection,
+    ) => void;
     setParagraphOpen: (
       section: SectionName,
       topic: TopicName,
       val: boolean,
     ) => void;
+    stashDamageResult: (topic: TopicName, val: DamageResult) => void;
   };
 };

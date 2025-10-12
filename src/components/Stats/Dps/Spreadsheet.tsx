@@ -12,7 +12,7 @@ const RowHead = ({ className, text }: { className?: string; text: string }) => (
 const Cell = ({ className, text }: { className?: string; text: string }) => {
   const textSize =
     text.length <= 7 ? "text-md" : text.length <= 9 ? "text-sm" : "text-xs";
-  return <span className={`col-span-3 ${textSize} ${className}`}>{text}</span>;
+  return <span className={`col-span-6 ${textSize} ${className}`}>{text}</span>;
 };
 
 export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
