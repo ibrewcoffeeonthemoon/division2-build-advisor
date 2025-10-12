@@ -47,8 +47,8 @@ export const STATE = {
 } as const;
 
 export type DamageResult = {
-  dmgRecord: DmgRecord<number>;
-  dpsRecord: DpsRecord<number>;
+  dmgRecord?: DmgRecord<number>;
+  dpsRecord?: DpsRecord<number>;
 };
 
 export const STASH = Object.fromEntries(
