@@ -18,13 +18,13 @@ const Cell = ({
   weapon,
 }: {
   className?: string;
-  index: Selection;
+  index: Selection<"Dps">;
   weapon: Items<"Weapons">;
 }) => {
   const format = (x: number) => round(x, 0).toLocaleString();
   const d = stores.ui.Stats.stash()[weapon].dpsValue;
   const setSelection = stores.ui.Stats.action().setTopicSelection;
-  const [n0, n1, n2, n3] = index;
+  const [, n1, n2, n3] = index;
   const text = d ? format(d[n1][n2][n3]) : "";
   const textSize =
     text.length <= 7 ? "text-md" : text.length <= 9 ? "text-sm" : "text-xs";
@@ -57,24 +57,24 @@ export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
       <RowHead className="col-span-2" text="Health C" />
       <Cell
         className="font-light"
-        index={["critical", "bodyshot", "health", "cover"]}
+        index={[null, "bodyshot", "health", "cover"]}
         {...{ weapon }}
       />
       <Cell
         className="text-red-700"
-        index={["critical", "headshot", "health", "cover"]}
+        index={[null, "headshot", "health", "cover"]}
         {...{ weapon }}
       />
 
       <RowHead text="Health oC" />
       <Cell
         className="font-light"
-        index={["critical", "bodyshot", "health", "nocover"]}
+        index={[null, "bodyshot", "health", "nocover"]}
         {...{ weapon }}
       />
       <Cell
         className="text-red-700"
-        index={["critical", "headshot", "health", "nocover"]}
+        index={[null, "headshot", "health", "nocover"]}
         {...{ weapon }}
       />
 
@@ -82,24 +82,24 @@ export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
       <RowHead text="Armor C" />
       <Cell
         className="text-blue-600 font-light"
-        index={["critical", "bodyshot", "armor", "cover"]}
+        index={[null, "bodyshot", "armor", "cover"]}
         {...{ weapon }}
       />
       <Cell
         className="text-blue-600"
-        index={["critical", "headshot", "armor", "cover"]}
+        index={[null, "headshot", "armor", "cover"]}
         {...{ weapon }}
       />
 
       <RowHead text="Armor oC" />
       <Cell
         className="text-blue-600 font-light"
-        index={["critical", "bodyshot", "armor", "nocover"]}
+        index={[null, "bodyshot", "armor", "nocover"]}
         {...{ weapon }}
       />
       <Cell
         className="text-blue-600"
-        index={["critical", "headshot", "armor", "nocover"]}
+        index={[null, "headshot", "armor", "nocover"]}
         {...{ weapon }}
       />
     </div>
