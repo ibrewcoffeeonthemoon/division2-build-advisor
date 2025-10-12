@@ -14,11 +14,11 @@ export const calDps = (
   const rpm = weapon.rpm;
   const multiplier = calDpsMultiplier(ampSums[item]);
 
-  const dpsRecord = createDpsRecord((n1, n2, n3) => {
+  const dpsValue = createDpsRecord((n1, n2, n3) => {
     const rps = (rpm ?? 0) / 60;
     const rof = 1 + (ampSums[item].ROF ?? 0);
     const dmg = baseDamage * multiplier[n1][n2][n3];
     return dmg * rps * rof;
   });
-  return dpsRecord;
+  return dpsValue;
 };

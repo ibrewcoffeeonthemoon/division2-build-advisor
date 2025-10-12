@@ -13,7 +13,7 @@ export const calDamage = (
   ampSums: AmplifierSums[Items<"Weapons">];
   dmgValue: DmgRecord<number>;
   dmgMultiplier: DmgRecord<number>;
-  dpsRecord: DpsRecord<number>;
+  dpsValue: DpsRecord<number>;
 } => {
   const ampSums = calAmplifierSums(s, { uptime: true });
   const { dmgValue, dmgMultiplier } = calDmg(item, s, ampSums);
@@ -21,6 +21,6 @@ export const calDamage = (
     ampSums: ampSums[item],
     dmgValue,
     dmgMultiplier,
-    dpsRecord: calDps(item, s, ampSums),
+    dpsValue: calDps(item, s, ampSums),
   };
 };

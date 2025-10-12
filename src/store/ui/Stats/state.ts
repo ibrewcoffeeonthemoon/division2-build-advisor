@@ -54,7 +54,7 @@ export type DamageResult = {
   ampSums?: AmplifierSums[TopicName];
   dmgRecord?: DmgRecord<number>;
   dmgMultiplier?: DmgRecord<number>;
-  dpsRecord?: DpsRecord<number>;
+  dpsValue?: DpsRecord<number>;
 };
 
 export const STASH = Object.fromEntries(

@@ -16,7 +16,7 @@ const Cell = ({ className, text }: { className?: string; text: string }) => {
 };
 
 export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
-  const { dpsRecord: d } = calDamage(weapon, stores.edit.state());
+  const { dpsValue: d } = calDamage(weapon, stores.edit.state());
   const format = (x: number) => round(x, 0).toLocaleString();
 
   return (
