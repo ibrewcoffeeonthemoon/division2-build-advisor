@@ -1,5 +1,4 @@
 import { calDamage } from "@/lib/damage";
-import { DmgRecord } from "@/lib/damage/dmg/record";
 import { Items } from "@/lib/type";
 import { round } from "@/lib/utils";
 import { stores } from "@/store";
@@ -11,14 +10,15 @@ const RowHead = ({ className, text }: { className?: string; text: string }) => (
 const Cell = ({
   className,
   index,
-  d,
+  weapon,
 }: {
   className?: string;
   index: Selection;
-  d: DmgRecord<number>;
+  weapon: Items<"Weapons">;
 }) => {
-  const setSelection = stores.ui.Stats.action().setTopicSelection;
   const format = (x: number) => round(x, 0).toLocaleString();
+  const d = stores.ui.Stats.stash()[weapon].dmgRecord;
+  const setSelection = stores.ui.Stats.action().setTopicSelection;
   const [n0, n1, n2, n3] = index;
   const text = format(d[n0][n1][n2][n3]);
   const textSize =
@@ -34,7 +34,11 @@ const Cell = ({
 };
 
 export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
-  const { dmgRecord: d } = calDamage(weapon, stores.edit.state());
+  const { dmgRecord: d, dpsRecord } = calDamage(weapon, stores.edit.state());
+  stores.ui.Stats.action().stashDamageResult(weapon, {
+    dmgRecord: d,
+    dpsRecord,
+  });
 
   return (
     <div className="col-span-12 grid grid-cols-15 items-center p-0 text-right">
@@ -51,44 +55,44 @@ export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
       <Cell
         className="font-light"
         index={["normal", "bodyshot", "health", "cover"]}
-        d={d}
+        {...{ weapon }}
       />
       <Cell
         className="text-red-700"
         index={["normal", "headshot", "health", "cover"]}
-        d={d}
+        {...{ weapon }}
       />
       <Cell
         className="text-orange-400 font-bold"
         index={["critical", "bodyshot", "health", "cover"]}
-        d={d}
+        {...{ weapon }}
       />
       <Cell
         className="text-orange-400 font-extrabold"
         index={["critical", "headshot", "health", "cover"]}
-        d={d}
+        {...{ weapon }}
       />
 
       <RowHead text="Health oC" />
       <Cell
         className="font-light"
         index={["normal", "bodyshot", "health", "nocover"]}
-        d={d}
+        {...{ weapon }}
       />
       <Cell
         className="text-red-700"
         index={["normal", "headshot", "health", "nocover"]}
-        d={d}
+        {...{ weapon }}
       />
       <Cell
         className="text-orange-400 font-bold"
         index={["critical", "bodyshot", "health", "nocover"]}
-        d={d}
+        {...{ weapon }}
       />
       <Cell
         className="text-orange-400 font-extrabold"
         index={["critical", "headshot", "health", "nocover"]}
-        d={d}
+        {...{ weapon }}
       />
 
       {/* Armor */}
@@ -96,44 +100,44 @@ export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
       <Cell
         className="text-blue-600 font-light"
         index={["normal", "bodyshot", "armor", "cover"]}
-        d={d}
+        {...{ weapon }}
       />
       <Cell
         className="text-blue-600"
         index={["normal", "headshot", "armor", "cover"]}
-        d={d}
+        {...{ weapon }}
       />
       <Cell
         className="text-blue-600 font-bold"
         index={["critical", "bodyshot", "armor", "cover"]}
-        d={d}
+        {...{ weapon }}
       />
       <Cell
         className="text-blue-600 font-extrabold"
         index={["critical", "headshot", "armor", "cover"]}
-        d={d}
+        {...{ weapon }}
       />
 
       <RowHead text="Armor oC" />
       <Cell
         className="text-blue-600 font-light"
         index={["normal", "bodyshot", "armor", "nocover"]}
-        d={d}
+        {...{ weapon }}
       />
       <Cell
         className="text-blue-600"
         index={["normal", "headshot", "armor", "nocover"]}
-        d={d}
+        {...{ weapon }}
       />
       <Cell
         className="text-blue-600 font-bold"
         index={["critical", "bodyshot", "armor", "nocover"]}
-        d={d}
+        {...{ weapon }}
       />
       <Cell
         className="text-blue-600 font-extrabold"
         index={["critical", "headshot", "armor", "nocover"]}
-        d={d}
+        {...{ weapon }}
       />
     </div>
   );
