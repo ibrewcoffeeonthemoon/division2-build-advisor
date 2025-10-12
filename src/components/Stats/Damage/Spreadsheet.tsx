@@ -6,16 +6,18 @@ import { stores } from "@/store";
 const RowHead = ({ className, text }: { className?: string; text: string }) => (
   <span className={`col-span-3 text-base ${className}`}>{text}</span>
 );
-const Cell = ({ className, text }: { className?: string; text: string }) => (
-  <span className={`col-span-3 text-base ${className}`}>{text}</span>
-);
+const Cell = ({ className, text }: { className?: string; text: string }) => {
+  const textSize =
+    text.length <= 7 ? "text-md" : text.length <= 9 ? "text-sm" : "text-xs";
+  return <span className={`col-span-3 ${textSize} ${className}`}>{text}</span>;
+};
 
 export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
   const { dmgRecord: d } = calDamage(weapon, stores.edit.state());
   const format = (x: number) => round(x, 0).toLocaleString();
 
   return (
-    <div className="col-span-12 grid grid-cols-15 p-0 text-right">
+    <div className="col-span-12 grid grid-cols-15 items-center p-0 text-right">
       {/* header */}
       <span className="col-span-6 col-start-4">Normal</span>
       <span className="col-span-6">Critical</span>
