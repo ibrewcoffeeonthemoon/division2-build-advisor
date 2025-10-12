@@ -13,8 +13,8 @@ export const TOPIC_NAMES = ITEM_NAMES.Weapons;
 
 export type SectionName = (typeof SECTION_NAMES)[number];
 export type TopicName = (typeof TOPIC_NAMES)[number];
-export type Selection = [
-  NormalCriticalShotType,
+export type Selection<Crit extends SectionName> = [
+  Crit extends "Damage" ? NormalCriticalShotType : null,
   HeadBodyShotType,
   HealthArmorShotType,
   CoverNoCoverShotType,
@@ -34,7 +34,10 @@ export const STATE = {
         SECTION_NAMES.map((sec) => [
           sec,
           Object.fromEntries(
-            TOPIC_NAMES.map((top) => [top, null as Selection | null]),
+            TOPIC_NAMES.map((top) => [
+              top,
+              null as Selection<SectionName> | null,
+            ]),
           ),
         ]),
       ),

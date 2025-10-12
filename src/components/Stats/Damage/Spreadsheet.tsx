@@ -14,7 +14,7 @@ const Cell = ({
   weapon,
 }: {
   className?: string;
-  index: Selection;
+  index: Selection<"Damage">;
   weapon: Items<"Weapons">;
 }) => {
   const format = (x: number) => round(x, 0).toLocaleString();

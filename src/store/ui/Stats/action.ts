@@ -11,7 +11,7 @@ export type Action = {
     setTopicSelection: (
       section: SectionName,
       topic: TopicName,
-      val: Selection,
+      val: Selection<SectionName>,
     ) => void;
     setParagraphOpen: (
       section: SectionName,

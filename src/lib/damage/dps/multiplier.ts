@@ -10,7 +10,9 @@ export const calDpsMultiplier = (
 ) => {
   const m = amplifierSums;
 
-  const x = calCommonMultiplier(m);
+  let x = calCommonMultiplier(m);
+
+  x *= 1 + (m.ROF ?? 0);
 
   const result = createDpsRecord((n1, n2, n3) => {
     //

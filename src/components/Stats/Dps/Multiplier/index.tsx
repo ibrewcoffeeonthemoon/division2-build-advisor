@@ -1,6 +1,6 @@
 import { store } from "@/store/ui/Stats";
 import { SectionName, TopicName } from "@/store/ui/Stats/state";
-// import { Table } from "./Table";
+import { Table } from "./Table";
 
 type Props<C, M> = {
   category: C;
@@ -13,9 +13,9 @@ export const Multiplier = <C extends SectionName, M extends TopicName>({
   const open = store.state().section.topic.paragraph.open[category][item];
   const setOpen = store.action().setParagraphOpen;
   const selection = store.state().section.topic.selection[category][item];
-  const [n0, n1, n2, n3] = selection ?? [null, null, null, null];
+  const [, n1, n2, n3] = selection ?? [null, null, null, null];
   const m = store.stash()[item]?.ampSums ?? null;
-  const ready = m && n0 && n1 && n2 && n3;
+  const ready = m && n1 && n2 && n3;
 
   return (
     ready && (
@@ -31,7 +31,7 @@ export const Multiplier = <C extends SectionName, M extends TopicName>({
           </span>
         </div>
         <div className="collapse-content !p-0 pb-0 ps-0 pe-0">
-          {/* <Table {...{ category, item }} /> */}
+          <Table {...{ category, item }} />
         </div>
       </div>
     )
