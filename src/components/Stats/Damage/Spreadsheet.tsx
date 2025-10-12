@@ -1,13 +1,9 @@
 import { calDamage } from "@/lib/damage";
-import { DmgRecord, NormalCriticalShotType } from "@/lib/damage/dmg/record";
-import {
-  HeadBodyShotType,
-  HealthArmorShotType,
-  CoverNoCoverShotType,
-} from "@/lib/damage/dps/record";
+import { DmgRecord } from "@/lib/damage/dmg/record";
 import { Items } from "@/lib/type";
 import { round } from "@/lib/utils";
 import { stores } from "@/store";
+import { Selection } from "@/store/ui/Stats/state";
 
 const RowHead = ({ className, text }: { className?: string; text: string }) => (
   <span className={`col-span-3 text-base ${className}`}>{text}</span>
@@ -18,19 +14,23 @@ const Cell = ({
   d,
 }: {
   className?: string;
-  index: [
-    NormalCriticalShotType,
-    HeadBodyShotType,
-    HealthArmorShotType,
-    CoverNoCoverShotType,
-  ];
+  index: Selection;
   d: DmgRecord<number>;
 }) => {
+  const setSelection = stores.ui.Stats.action().setTopicSelection;
   const format = (x: number) => round(x, 0).toLocaleString();
-  const text = format(d[index[0]][index[1]][index[2]][index[3]]);
+  const [n0, n1, n2, n3] = index;
+  const text = format(d[n0][n1][n2][n3]);
   const textSize =
     text.length <= 7 ? "text-md" : text.length <= 9 ? "text-sm" : "text-xs";
-  return <span className={`col-span-3 ${textSize} ${className}`}>{text}</span>;
+  return (
+    <span
+      className={`col-span-3 ${textSize} ${className}`}
+      onClick={() => setSelection("Damage", index)}
+    >
+      {text}
+    </span>
+  );
 };
 
 export const Spreadsheet = ({ weapon }: { weapon: Items<"Weapons"> }) => {
