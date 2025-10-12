@@ -8,17 +8,20 @@ export const calDps = (
   item: Items<"Weapons">,
   s: State["state"],
   ampSums: AmplifierSums,
-): DpsRecord<number> => {
+): {
+  dpsValue: DpsRecord<number>;
+  dpsMultiplier: DpsRecord<number>;
+} => {
   const weapon = s.items["Weapons"][item];
   const baseDamage = weapon.baseDamage!;
   const rpm = weapon.rpm;
-  const multiplier = calDpsMultiplier(ampSums[item]);
+  const dpsMultiplier = calDpsMultiplier(ampSums[item]);
 
-  const dpsRecord = createDpsRecord((n1, n2, n3) => {
+  const dpsValue = createDpsRecord((n1, n2, n3) => {
     const rps = (rpm ?? 0) / 60;
     const rof = 1 + (ampSums[item].ROF ?? 0);
-    const dmg = baseDamage * multiplier[n1][n2][n3];
+    const dmg = baseDamage * dpsMultiplier[n1][n2][n3];
     return dmg * rps * rof;
   });
-  return dpsRecord;
+  return { dpsValue, dpsMultiplier };
 };

@@ -8,14 +8,17 @@ export const calDmg = (
   item: Items<"Weapons">,
   s: State["state"],
   ampSums: AmplifierSums,
-): DmgRecord<number> => {
+): {
+  dmgValue: DmgRecord<number>;
+  dmgMultiplier: DmgRecord<number>;
+} => {
   const weapon = s.items["Weapons"][item];
   const baseDamage = weapon.baseDamage!;
-  const multiplier = calDmgMultiplier(ampSums[item], { CHC: false });
+  const dmgMultiplier = calDmgMultiplier(ampSums[item], { CHC: false });
 
-  const dmgRecord = createDmgRecord(
-    (n0, n1, n2, n3) => baseDamage * multiplier[n0][n1][n2][n3],
+  const dmgValue = createDmgRecord(
+    (n0, n1, n2, n3) => baseDamage * dmgMultiplier[n0][n1][n2][n3],
   );
 
-  return dmgRecord;
+  return { dmgValue, dmgMultiplier };
 };

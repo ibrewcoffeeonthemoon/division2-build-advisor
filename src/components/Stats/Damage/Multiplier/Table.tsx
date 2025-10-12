@@ -1,27 +1,56 @@
+import { round } from "@/lib/utils";
 import { store } from "@/store/ui/Stats";
 import { SectionName, TopicName } from "@/store/ui/Stats/state";
+
+const format = (x: number | null | undefined) => x?.toFixed(2);
 
 const RowHeader = ({ text }: { text: string }) => (
   <span className="col-span-3 font-semibold text-right pr-3">{text}</span>
 );
 
 const Cell = ({ amps }: { amps: (() => number | null)[] }) => {
-  const format = (x: number | null | undefined) => x?.toFixed(2);
+  const rowSum = amps.reduce((sum, amp) => sum + (amp() ?? 0), 1);
   return (
-    <span className="col-span-9">
-      <span>1</span>
-      {amps.map((amp, i) => {
-        const val = amp();
-        if (val) {
-          return (
-            <span key={i}>
-              {" + "}
-              <span className="text-info font-semibold">{format(val)}</span>
-            </span>
-          );
-        }
-      })}
-    </span>
+    <>
+      <span className="col-span-2 text-info font-semibold text-right pr-2">
+        {format(rowSum)}
+      </span>
+      <span className="col-span-6">
+        <span>= 1</span>
+        {amps.map((amp, i) => {
+          const val = amp();
+          if (val) {
+            return (
+              <span key={i}>
+                {" + "}
+                <span className="text-info font-semibold">{format(val)}</span>
+              </span>
+            );
+          }
+        })}
+      </span>
+    </>
+  );
+};
+
+export const Total = ({
+  category,
+  item,
+}: {
+  category: SectionName;
+  item: TopicName;
+}) => {
+  const selection = store.state().section.topic.selection[category][item];
+  const [n0, n1, n2, n3] = selection ?? [null, null, null, null];
+  const x = store.stash()[item]?.dmgMultiplier ?? null;
+  const ready = x && n0 && n1 && n2 && n3;
+
+  return (
+    ready && (
+      <span className="col-span-5 pr-2 text-right text-info font-bold text-xl">
+        {round(x[n0][n1][n2][n3], 3)}
+      </span>
+    )
   );
 };
 
@@ -73,6 +102,8 @@ export const Table = ({
 
         <RowHeader text="DTTOOC" />
         <Cell amps={[() => (n3 === "nocover" ? m.DTTOOC : null)]} />
+
+        <Total {...{ category, item }} />
       </div>
     )
   );
