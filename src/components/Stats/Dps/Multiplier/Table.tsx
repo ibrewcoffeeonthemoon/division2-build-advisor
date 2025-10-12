@@ -103,6 +103,9 @@ export const Table = ({
         <RowHeader text="DTTOOC" />
         <Cell amps={[() => (n3 === "nocover" ? m.DTTOOC : null)]} />
 
+        <RowHeader text="ROF" />
+        <Cell amps={[() => m.ROF]} />
+
         <Total {...{ category, item }} />
       </div>
     )
