@@ -1,9 +1,10 @@
 import { ITEM_NAMES } from "@/lib/constant";
-import { NormalCriticalShotType } from "@/lib/damage/dmg/record";
+import { DmgRecord, NormalCriticalShotType } from "@/lib/damage/dmg/record";
 import {
   HeadBodyShotType,
   HealthArmorShotType,
   CoverNoCoverShotType,
+  DpsRecord,
 } from "@/lib/damage/dps/record";
 
 export const SECTION_NAMES = ["Basic", "Damage", "Dps"] as const;
@@ -45,8 +46,19 @@ export const STATE = {
   },
 } as const;
 
+export type DamageResult = {
+  dmgRecord: DmgRecord<number>;
+  dpsRecord: DpsRecord<number>;
+};
+
+export const STASH = Object.fromEntries(
+  TOPIC_NAMES.map((top) => [top, {} as DamageResult]),
+);
+
 export type State = {
   state: typeof STATE;
+  stash: typeof STASH;
 };
 
 export const state: () => State["state"] = () => STATE;
+export const stash: () => State["stash"] = () => STASH;
