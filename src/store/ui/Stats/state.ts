@@ -52,9 +52,10 @@ export const STATE = {
 
 export type DamageResult = {
   ampSums?: AmplifierSums[TopicName];
-  dmgRecord?: DmgRecord<number>;
+  dmgValue?: DmgRecord<number>;
   dmgMultiplier?: DmgRecord<number>;
   dpsValue?: DpsRecord<number>;
+  dpsMultiplier?: DpsRecord<number>;
 };
 
 export const STASH = Object.fromEntries(

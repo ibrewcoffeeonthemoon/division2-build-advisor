@@ -18,7 +18,7 @@ const Cell = ({
   weapon: Items<"Weapons">;
 }) => {
   const format = (x: number) => round(x, 0).toLocaleString();
-  const d = stores.ui.Stats.stash()[weapon].dmgRecord;
+  const d = stores.ui.Stats.stash()[weapon].dmgValue;
   const setSelection = stores.ui.Stats.action().setTopicSelection;
   const [n0, n1, n2, n3] = index;
   const text = d ? format(d[n0][n1][n2][n3]) : "";
