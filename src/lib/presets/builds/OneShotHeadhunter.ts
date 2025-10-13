@@ -19,6 +19,14 @@ export const OneShotHeadhunter: Build = {
           p.HS({ value: 0.45 }),
           p.CHD({ value: -0.05 }),
           p.HS({ value: 0.15 }),
+          {
+            amplifier: "WDTalent",
+            name: "< WDTalent >",
+            type: "Talent",
+            uptime: 1,
+            value: 12.5,
+            note: "Perfect Headhunter",
+          },
         ],
       },
       Secondary: {
@@ -72,14 +80,6 @@ export const OneShotHeadhunter: Build = {
           RedCore(),
           p.HS(),
           p.HS({ value: 0.1, type: "Mod" }),
-          {
-            amplifier: "WDTalent",
-            name: "< WDTalent >",
-            type: "Talent",
-            uptime: 1,
-            value: 12.5,
-            note: "Perfect Headhunter",
-          },
         ],
       },
       Gloves: {
