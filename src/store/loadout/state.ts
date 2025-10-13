@@ -9,6 +9,10 @@ export type State = {
 
 export const state: () => State["state"] = () => {
   return {
-    builds: [builds.LexingtonStriker, builds.BluescreenTippingScales],
+    builds: [
+      builds.OneShotHeadhunter,
+      builds.LexingtonStriker,
+      builds.BluescreenTippingScales,
+    ],
   };
 };
