@@ -10,6 +10,7 @@ export const OneShotHeadhunter: Build = {
         name: "SR-1",
         baseDamage: 409_357,
         rpm: 60,
+        weaponType: "MMR",
         attributes: [
           p.WDType({ wdtype: "MMR Damage" }),
           p.HS({ value: 1.11 }),
@@ -17,12 +18,14 @@ export const OneShotHeadhunter: Build = {
           WeaponExpertise(30),
           p.HS({ value: 0.45 }),
           p.CHD({ value: -0.05 }),
+          p.HS({ value: 0.15 }),
         ],
       },
       Secondary: {
         name: "Bullet King",
         baseDamage: 54_604,
         rpm: 850,
+        weaponType: "LMG",
         attributes: [
           p.WDType({ wdtype: "LMG Damage" }),
           p.DTTOOC({ value: 0.12 }),
@@ -119,11 +122,11 @@ export const OneShotHeadhunter: Build = {
         attributes: [...KeenersWatchRed()],
       },
       Specialization: {
-        name: "Gunner",
+        name: "Sharpshooter",
         attributes: [
           p.WDType({ wdtype: "AR Damage" }),
           p.WDType({ wdtype: "LMG Damage" }),
-          p.WDType({ wdtype: "Rifle Damage" }),
+          p.WDType({ wdtype: "MMR Damage" }),
         ],
       },
       Season: {

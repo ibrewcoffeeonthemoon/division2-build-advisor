@@ -10,6 +10,7 @@ export const BluescreenTippingScales: Build = {
         name: "Bluescreen",
         baseDamage: 62_361,
         rpm: 720,
+        weaponType: "LMG",
         attributes: [
           p.WDType({ wdtype: "LMG Damage" }),
           p.DTTOOC({ value: 0.12 }),
@@ -22,11 +23,20 @@ export const BluescreenTippingScales: Build = {
         name: "UIC15 MOD2",
         baseDamage: 150_316,
         rpm: 240,
+        weaponType: "Rifle",
         attributes: [
           p.WDType({ wdtype: "Rifle Damage" }),
           p.CHD({ value: 0.17 }),
           p.DTTOOC({ value: 0.1 }),
           WeaponExpertise(30),
+          {
+            amplifier: "AMP1",
+            name: "< AMP1 >",
+            type: "Talent",
+            uptime: 1,
+            value: 0.25,
+            note: "Ranger",
+          },
         ],
       },
       Sidearm: { name: "", attributes: [] },

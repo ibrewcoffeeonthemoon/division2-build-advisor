@@ -10,6 +10,7 @@ export const LexingtonStriker: Build = {
         name: "Bluescreen",
         baseDamage: 62_361,
         rpm: 720,
+        weaponType: "LMG",
         attributes: [
           p.WDType({ wdtype: "LMG Damage" }),
           p.DTTOOC({ value: 0.12 }),
@@ -22,6 +23,7 @@ export const LexingtonStriker: Build = {
         name: "Lexington",
         baseDamage: 48_700,
         rpm: 850,
+        weaponType: "AR",
         attributes: [
           p.WDType({ wdtype: "AR Damage" }),
           p.DTH({ value: 0.21 }),
@@ -32,7 +34,7 @@ export const LexingtonStriker: Build = {
             name: "< AMP1 >",
             type: "Talent",
             uptime: 1,
-            value: 0.3,
+            value: 0.25,
             note: "Ranger",
           },
         ],
