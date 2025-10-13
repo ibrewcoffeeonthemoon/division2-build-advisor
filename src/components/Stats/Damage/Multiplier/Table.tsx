@@ -15,7 +15,7 @@ const Cell = ({ amps }: { amps: (() => number | null)[] }) => {
       <span className="col-span-2 text-info font-semibold text-right pr-2">
         {format(rowSum)}
       </span>
-      <span className="col-span-6">
+      <span className="col-span-7 text-nowrap overflow-scroll">
         <span>= 1</span>
         {amps.map((amp, i) => {
           const val = amp();
