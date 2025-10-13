@@ -68,7 +68,10 @@ export const LexingtonStriker: Build = {
         attributes: [p.CHD({ type: "Mod" })],
       },
       Gloves: { name: "Striker", attributes: [RedCore(), p.CHC()] },
-      Holster: { name: "Striker", attributes: [RedCore(), p.CHD(), p.ROF()] },
+      Holster: {
+        name: "Striker",
+        attributes: [p.ROF({ type: "Gearset" }), RedCore(), p.CHD()],
+      },
       Kneepads: { name: "Striker", attributes: [RedCore(), p.CHD()] },
     },
     Extras: {

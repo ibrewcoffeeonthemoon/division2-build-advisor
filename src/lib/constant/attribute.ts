@@ -2,7 +2,13 @@ import { Amplifier } from "../type/amplifier";
 import { Attribute, AttributeName } from "../type/attribute";
 import { WDTYPE_NAMES } from "./weapon";
 
-export const ATTRIBUTE_TYPES = ["Attribute", "Mod", "Talent"] as const;
+export const ATTRIBUTE_TYPES = [
+  "Attribute",
+  "Mod",
+  "Talent",
+  "Brandset",
+  "Gearset",
+] as const;
 
 export const ATTRIBUTE_NAMES = [
   "Weapon Damage",

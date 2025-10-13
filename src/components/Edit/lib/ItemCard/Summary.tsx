@@ -13,6 +13,8 @@ export type SummaryProps = {
 
 export const Summary = ({ attributes }: SummaryProps) => {
   const icons: Record<AttributeType, JSX.Element> = {
+    Brandset: <StopCircleIcon className="w-5 h-5 text-yellow-500" />,
+    Gearset: <StopCircleIcon className="w-5 h-5 text-green-500" />,
     Attribute: <StopCircleIcon className="w-5 h-5 text-red-500" />,
     Mod: <Cog8ToothIcon className="w-5 h-5 text-red-500" />,
     Talent: <CubeIcon className="w-5 h-5 text-base-content" />,

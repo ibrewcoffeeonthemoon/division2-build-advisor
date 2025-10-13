@@ -41,7 +41,7 @@ export const OneShotHeadhunter: Build = {
       Mask: {
         name: "Habsburg Guard",
         attributes: [
-          p.HS({ value: 0.13 }),
+          p.HS({ value: 0.13, type: "Brandset" }),
           RedCore(),
           p.CHD(),
           p.HS(),
@@ -51,7 +51,7 @@ export const OneShotHeadhunter: Build = {
       Backpack: {
         name: "Providence Defense - The Gift",
         attributes: [
-          p.HS({ value: 0.13 }),
+          p.HS({ value: 0.13, type: "Brandset" }),
           RedCore(),
           p.HS(),
           p.HS({ type: "Mod" }),
@@ -68,7 +68,7 @@ export const OneShotHeadhunter: Build = {
       Chest: {
         name: "Walker Harris - Perfect Headhunter",
         attributes: [
-          p.WD({ value: 0.05 }),
+          p.WD({ value: 0.05, type: "Brandset" }),
           RedCore(),
           p.HS(),
           p.HS({ value: 0.1, type: "Mod" }),
@@ -101,7 +101,7 @@ export const OneShotHeadhunter: Build = {
       Holster: {
         name: "Habsburg Guard",
         attributes: [
-          p.WDType({ wdtype: "MMR Damage", value: 0.2 }),
+          p.WDType({ wdtype: "MMR Damage", value: 0.2, type: "Brandset" }),
           RedCore(),
           p.CHD(),
           p.HS(),

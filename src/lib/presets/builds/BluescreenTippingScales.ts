@@ -86,9 +86,9 @@ export const BluescreenTippingScales: Build = {
       Holster: {
         name: "Tipping Scales",
         attributes: [
+          p.WDType({ wdtype: "LMG Damage", value: 0.3, type: "Gearset" }),
           RedCore(),
           p.CHC(),
-          p.WDType({ wdtype: "LMG Damage", value: 0.3 }),
         ],
       },
       Kneepads: {
