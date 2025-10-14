@@ -1,85 +1,95 @@
-import { Attribute, AttributeType } from "../type/attribute";
+import { Amplifier } from "../type/amplifier";
+import { Attribute, AttributeName, AttributeType } from "../type/attribute";
 import { WDTypesName } from "../type/weapon";
 
-type Input = {
-  value?: number;
-  uptime?: number;
+type Options = {
   type?: AttributeType;
+  name?: AttributeName;
+  value?: number | null;
+  uptime?: number | null;
+  note?: string;
+  amplifier?: Amplifier;
 };
 
-export const WD = ({ value, uptime, type }: Input = {}): Attribute => ({
-  name: "Weapon Damage",
-  amplifier: "WDCore",
-  type: type ?? "Attribute",
-  uptime: uptime ?? 1,
-  value: value ?? 0.15,
+export const WD = (o: Options = {}): Attribute => ({
+  type: o.type ?? "Attribute",
+  name: o.name ?? "Weapon Damage",
+  value: o.value ?? 0.15,
+  uptime: o.uptime ?? 1,
+  note: o.note ?? "",
+  amplifier: o.amplifier ?? "WDCore",
 });
 
-export const CHC = ({ value, uptime, type }: Input = {}): Attribute => ({
-  name: "Critical Hit Chance",
-  amplifier: "CHC",
-  type: type ?? "Attribute",
-  uptime: uptime ?? 1,
-  value: value ?? 0.06,
+export const CHC = (o: Options = {}): Attribute => ({
+  type: o.type ?? "Attribute",
+  name: o.name ?? "Critical Hit Chance",
+  value: o.value ?? 0.06,
+  uptime: o.uptime ?? 1,
+  note: o.note ?? "",
+  amplifier: o.amplifier ?? "CHC",
 });
 
-export const CHD = ({ value, uptime, type }: Input = {}): Attribute => ({
-  name: "Critical Hit Damage",
-  amplifier: "CHD",
-  type: type ?? "Attribute",
-  uptime: uptime ?? 1,
-  value: value ?? 0.12,
+export const CHD = (o: Options = {}): Attribute => ({
+  type: o.type ?? "Attribute",
+  name: o.name ?? "Critical Hit Damage",
+  value: o.value ?? 0.12,
+  uptime: o.uptime ?? 1,
+  note: o.note ?? "",
+  amplifier: o.amplifier ?? "CHD",
 });
 
-export const HS = ({ value, uptime, type }: Input = {}): Attribute => ({
-  name: "Headshot Damage",
-  amplifier: "HS",
-  type: type ?? "Attribute",
-  uptime: uptime ?? 1,
-  value: value ?? 0.1,
+export const HS = (o: Options = {}): Attribute => ({
+  type: o.type ?? "Attribute",
+  name: o.name ?? "Headshot Damage",
+  value: o.value ?? 0.1,
+  uptime: o.uptime ?? 1,
+  note: o.note ?? "",
+  amplifier: o.amplifier ?? "HS",
 });
 
-export const WDType = ({
-  value,
-  uptime,
-  type,
-  wdtype,
-}: Input & { wdtype?: WDTypesName } = {}): Attribute => ({
-  name: wdtype ?? "AR Damage",
-  amplifier: "WDType",
-  type: type ?? "Attribute",
-  uptime: uptime ?? 1,
-  value: value ?? 0.15,
+export const WDType = (
+  o: Options & { wdtype?: WDTypesName } = {},
+): Attribute => ({
+  type: o.type ?? "Attribute",
+  name: o.wdtype ?? "AR Damage",
+  value: o.value ?? 0.15,
+  uptime: o.uptime ?? 1,
+  note: o.note ?? "",
+  amplifier: o.amplifier ?? "WDType",
 });
 
-export const DTA = ({ value, uptime, type }: Input = {}): Attribute => ({
-  name: "Damage to Armor",
-  amplifier: "DTA",
-  type: type ?? "Attribute",
-  uptime: uptime ?? 1,
-  value: value ?? 0.06,
+export const DTA = (o: Options = {}): Attribute => ({
+  type: o.type ?? "Attribute",
+  name: o.name ?? "Damage to Armor",
+  value: o.value ?? 0.06,
+  uptime: o.uptime ?? 1,
+  note: o.note ?? "",
+  amplifier: o.amplifier ?? "DTA",
 });
 
-export const DTH = ({ value, uptime, type }: Input = {}): Attribute => ({
-  name: "Damage to Health",
-  amplifier: "DTH",
-  type: type ?? "Attribute",
-  uptime: uptime ?? 1,
-  value: value ?? 0.09,
+export const DTH = (o: Options = {}): Attribute => ({
+  type: o.type ?? "Attribute",
+  name: o.name ?? "Damage to Health",
+  value: o.value ?? 0.09,
+  uptime: o.uptime ?? 1,
+  note: o.note ?? "",
+  amplifier: o.amplifier ?? "DTH",
 });
 
-export const DTTOOC = ({ value, uptime, type }: Input = {}): Attribute => ({
-  name: "DMG to Target out of Cover",
-  amplifier: "DTTOOC",
-  type: type ?? "Attribute",
-  uptime: uptime ?? 1,
-  value: value ?? 0.1,
+export const DTTOOC = (o: Options = {}): Attribute => ({
+  type: o.type ?? "Attribute",
+  name: o.name ?? "DMG to Target out of Cover",
+  value: o.value ?? 0.1,
+  uptime: o.uptime ?? 1,
+  note: o.note ?? "",
+  amplifier: o.amplifier ?? "DTTOOC",
 });
 
-export const ROF = ({ value, uptime, type }: Input = {}): Attribute => ({
-  name: "Rate of Fire",
-  amplifier: "ROF",
-  type: type ?? "Attribute",
-  uptime: uptime ?? 1,
-  value: value ?? 0.15,
+export const ROF = (o: Options = {}): Attribute => ({
+  type: o.type ?? "Attribute",
+  name: o.name ?? "Rate of Fire",
+  value: o.value ?? 0.15,
+  uptime: o.uptime ?? 1,
+  note: o.note ?? "",
+  amplifier: o.amplifier ?? "ROF",
 });
