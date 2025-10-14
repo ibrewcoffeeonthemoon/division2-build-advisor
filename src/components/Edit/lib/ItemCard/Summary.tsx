@@ -36,7 +36,7 @@ export const Summary = ({ attributes }: SummaryProps) => {
             </span>
             <span
               className={`${
-                showNote ? "col-span-10" : "col-span-16"
+                showNote ? "col-span-9" : "col-span-16"
               } pl-2 text-nowrap overflow-clip overflow-ellipsis`}
             >
               {name}
@@ -44,7 +44,7 @@ export const Summary = ({ attributes }: SummaryProps) => {
             {showNote && (
               <span
                 className={`${
-                  showUptime ? "col-span-6" : "col-span-9"
+                  showUptime ? "col-span-7" : "col-span-10"
                 } pl-2 text-warning text-nowrap overflow-clip overflow-ellipsis`}
               >
                 {note}
