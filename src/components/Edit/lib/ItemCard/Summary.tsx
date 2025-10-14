@@ -21,7 +21,7 @@ export const Summary = ({ attributes }: SummaryProps) => {
   };
 
   return (
-    <div className="grid grid-cols-24 text-info font-light items-center text-nowrap">
+    <div className="grid grid-cols-24 font-light items-center text-nowrap">
       {attributes.map(({ type, name, value, uptime, note }, i) => {
         const showNote = note && note !== "";
         const showUptime = typeof uptime === "number" && uptime < 1;
@@ -31,7 +31,7 @@ export const Summary = ({ attributes }: SummaryProps) => {
             <span className="col-span-1 col-start-1 w-5 h-5">
               {type && icons[type]}
             </span>
-            <span className="col-span-3 pl-2">
+            <span className="col-span-3 pl-2 text-info text-right">
               {value && round(value * 100, 2)}%
             </span>
             <span
@@ -45,7 +45,7 @@ export const Summary = ({ attributes }: SummaryProps) => {
               <span
                 className={`${
                   showUptime ? "col-span-6" : "col-span-9"
-                } pl-2 text-nowrap overflow-clip overflow-ellipsis`}
+                } pl-2 text-warning text-nowrap overflow-clip overflow-ellipsis`}
               >
                 {note}
               </span>
