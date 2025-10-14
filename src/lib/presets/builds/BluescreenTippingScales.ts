@@ -35,7 +35,7 @@ export const BluescreenTippingScales: Build = {
             type: "Talent",
             uptime: 1,
             value: 0.25,
-            note: "Ranger",
+            note: "Ranger (50m)",
           },
         ],
       },
@@ -111,6 +111,7 @@ export const BluescreenTippingScales: Build = {
           p.WDType({ wdtype: "AR Damage" }),
           p.WDType({ wdtype: "LMG Damage" }),
           p.WDType({ wdtype: "Rifle Damage" }),
+          p.ROF({ value: 0.05, note: "Barrage - Gunner" }),
         ],
       },
       Season: {

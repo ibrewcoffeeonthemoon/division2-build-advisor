@@ -16,7 +16,7 @@ export const LexingtonStriker: Build = {
           p.DTTOOC({ value: 0.12 }),
           p.DTA({ value: 0.06 }),
           WeaponExpertise(30),
-          p.ROF({ value: 0.2 }),
+          p.ROF({ value: 0.2, type: "Mod" }),
         ],
       },
       Secondary: {
@@ -35,7 +35,7 @@ export const LexingtonStriker: Build = {
             type: "Talent",
             uptime: 1,
             value: 0.25,
-            note: "Ranger",
+            note: "Ranger (50m)",
           },
         ],
       },
@@ -89,6 +89,7 @@ export const LexingtonStriker: Build = {
           p.WDType({ wdtype: "AR Damage" }),
           p.WDType({ wdtype: "LMG Damage" }),
           p.WDType({ wdtype: "Rifle Damage" }),
+          p.ROF({ value: 0.05, note: "Barrage - Gunner" }),
         ],
       },
       Season: {
