@@ -26,7 +26,7 @@ export default function Edit() {
             className="grow text-primary pl-1"
             placeholder="<<<"
             onFocus={(e) => e.currentTarget.select()}
-            value={currentBuild.name}
+            value={currentBuild.name ?? ""}
             onChange={(e) => {
               setBuildName(e.currentTarget.value);
             }}

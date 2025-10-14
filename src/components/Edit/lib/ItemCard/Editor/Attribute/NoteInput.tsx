@@ -24,7 +24,7 @@ export const NoteInput = <C extends SectionName, M extends TopicName<C>>({
         className="grow text-primary pl-1"
         placeholder="Note"
         onFocus={(e) => e.currentTarget.select()}
-        value={attribute.note}
+        value={attribute.note ?? ""}
         onChange={(e) => setNote(category, item, index, e.currentTarget.value)}
       />
       <button
