@@ -26,11 +26,10 @@ const Cell = ({
   const setSelection = stores.ui.Stats.action().setTopicSelection;
   const [, n1, n2, n3] = index;
   const text = d ? format(d[n1][n2][n3]) : "";
-  const textSize =
-    text.length <= 7 ? "text-md" : text.length <= 9 ? "text-sm" : "text-xs";
+
   return (
     <span
-      className={`col-span-6 ${textSize} ${className}`}
+      className={`col-span-6 ${className}`}
       onClick={() => setSelection("Dps", weapon, index)}
     >
       {text}
